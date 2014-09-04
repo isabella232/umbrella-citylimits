@@ -12,22 +12,24 @@ Version:        0.1.0
   background-color: #f61212;
 }
 
+/* User registration form */
 form .form-group {
 	margin: 10px 0;
 }
-
 form label {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: bold;
 	font-size: 18px;
 	margin: 10px 0;
 }
-
 form input {
 	margin: 0 0 18px 0;
 }
-
 form input[type="checkbox"],
 form input[type="radio"] {
 	margin: 0 10px 0 0;
+}
+form .alert-error {
+	color: #b94a48;
+	font-size: 14px;
 }

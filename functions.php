@@ -57,14 +57,15 @@ function set_job_types($types) {
 }
 
 /* Custom fields for user registration */
-function citylimits_custom_signup_fields($errors) {
+function citylimits_custom_signup_fields($values, $errors) {
+	extract($values);
 ?>
 	<div class="form-group">
 		<label for="membership_type"><?php _e('I am registering an', 'citylimits'); ?></label>
-		<input value="1" checked="checked" name="membership_type" id="mt_1" type="radio" /> Individual<br />
-		<input value="2" name="membership_type" id="mt_2" type="radio" /> Business or For-Profit Organization<br />
-		<input value="3" name="membership_type" id="mt_3" type="radio" /> Non-Profit/Community Organization<br />
-		<input value="4" name="membership_type" id="mt_4" type="radio" /> Employment Agency<br />
+		<input value="1" <?php if (empty($membership_type) || $membership_type == '1') { echo 'checked'; } ?> name="membership_type" id="mt_1" type="radio" /> Individual<br />
+		<input value="2" <?php checked($membership_type, '2', true); ?> name="membership_type" id="mt_2" type="radio" /> Business or For-Profit Organization<br />
+		<input value="3" <?php checked($membership_type, '3', true); ?> name="membership_type" id="mt_3" type="radio" /> Non-Profit/Community Organization<br />
+		<input value="4" <?php checked($membership_type, '4', true); ?> name="membership_type" id="mt_4" type="radio" /> Employment Agency<br />
 	<?php if ( $errmsg = $errors->get_error_message('membership_type') ) { ?>
 		<p class="alert alert-error"><?php echo $errmsg; ?></p>
 	<?php } ?>
@@ -73,24 +74,30 @@ function citylimits_custom_signup_fields($errors) {
 	<div class="form-group">
 		<label for="borough"><?php _e('Location', 'citylimits'); ?></label>
 		<select size="1" name="borough">
-			<option selected value="0">(All Locations)</option>
-			<option value="1">Manhattan</option>
-			<option value="2">Brooklyn</option>
-			<option value="3">Queens</option>
-			<option value="4">Bronx</option>
-			<option value="5">Staten Island</option>
-			<option value="-1">Outside of NYC</option>
+			<option <?php if (empty($borough) || $borough == '0') { echo 'selected'; } ?> value="0">(All Locations)</option>
+			<option <?php if (!empty($borough) && $borough == '1') { echo 'selected'; } ?> value="1">Manhattan</option>
+			<option <?php if (!empty($borough) && $borough == '2') { echo 'selected'; } ?> value="2">Brooklyn</option>
+			<option <?php if (!empty($borough) && $borough == '3') { echo 'selected'; } ?> value="3">Queens</option>
+			<option <?php if (!empty($borough) && $borough == '4') { echo 'selected'; } ?> value="4">Bronx</option>
+			<option <?php if (!empty($borough) && $borough == '5') { echo 'selected'; } ?> value="5">Staten Island</option>
+			<option <?php if (!empty($borough) && $borough == '6') { echo 'selected'; } ?> value="-1">Outside of NYC</option>
 		</select>
+	<?php if ( $errmsg = $errors->get_error_message('borough') ) { ?>
+		<p class="alert alert-error"><?php echo $errmsg; ?></p>
+	<?php } ?>
 	</div>
 
 	<div class="form-group">
 		<label for="mailing_id"><?php _e('I would like to receive the (please check all that apply)', 'citylimits'); ?></label>
-		<input type="checkbox" value="8" name="mailing_id"> City Limits Monthly Newsletter <br />
-		<input type="checkbox" value="1" name="mailing_id"> City Limits Weekly Newsletter<br />
-		<input type="checkbox" value="2" name="mailing_id"> City Limits: NYC Jobs Update <br />
-		<input type="checkbox" value="4" name="mailing_id"> City Limits: NYC Events Update<br />
+		<input <?php if (in_array('8', $mailing_id)) { echo 'checked'; } ?> type="checkbox" value="8" name="mailing_id[]"> City Limits Monthly Newsletter <br />
+		<input <?php if (in_array('1', $mailing_id)) { echo 'checked'; } ?> type="checkbox" value="1" name="mailing_id[]"> City Limits Weekly Newsletter<br />
+		<input <?php if (in_array('2', $mailing_id)) { echo 'checked'; } ?> type="checkbox" value="2" name="mailing_id[]"> City Limits: NYC Jobs Update <br />
+		<input <?php if (in_array('4', $mailing_id)) { echo 'checked'; } ?> type="checkbox" value="4" name="mailing_id[]"> City Limits: NYC Events Update<br />
+	<?php if ( $errmsg = $errors->get_error_message('mailing_id') ) { ?>
+		<p class="alert alert-error"><?php echo $errmsg; ?></p>
+	<?php } ?>
 	</div>
 
 <?php
 }
-add_action('signup_extra_fields', 'citylimits_custom_signup_fields', 10, 1);
+add_action('largo_registration_extra_fields', 'citylimits_custom_signup_fields', 10, 2);
