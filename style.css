@@ -8,8 +8,30 @@ Template:       largo-dev
 Version:        0.1.0
 */
 
+a {
+  color: #343434;
+  text-decoration: none;
+}
+a:hover, a:active {
+  color: #555555;
+  text-decoration: none;
+}
+
+#site-footer a {
+  color: #cccccc;
+}
+#site-footer a:hover,
+#site-footer a:active {
+  color: #f1f1f1;
+}
+
 .navbar-inner {
   background-color: #f61212;
+}
+
+.navbar .open > a,
+html.no-touch .navbar li > a:hover {
+  background-color: #343434;
 }
 
 /* User registration form */
