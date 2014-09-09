@@ -63,13 +63,13 @@ function citylimits_custom_signup_fields($values, $errors) {
 	<div class="form-group">
 		<label for="mailing_id"><?php _e('I would like to receive the (please check all that apply)', 'citylimits'); ?></label>
 		<input <?php if (in_array('8', (array)$mailing_id)) {echo 'checked'; } ?> type="checkbox"
-			value="8" name="mailing_id[]"> City Limits Monthly Newsletter <br />
+			value="8" name="mailing_id[]"> CityLimits.org Monthly Newsletter <br />
 		<input <?php if (in_array('1', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-			value="1" name="mailing_id[]"> City Limits Weekly Newsletter<br />
+			value="1" name="mailing_id[]"> CityLimits.org Weekly Newsletter<br />
 		<input <?php if (in_array('2', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-			value="2" name="mailing_id[]"> City Limits: NYC Jobs Update <br />
+			value="2" name="mailing_id[]"> CityLimits.org: NYC Jobs Update <br />
 		<input <?php if (in_array('4', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-			value="4" name="mailing_id[]"> City Limits: NYC Events Update<br />
+			value="4" name="mailing_id[]"> CityLimits.org: NYC Events Update<br />
 
 	<?php if ( $errmsg = $errors->get_error_message('mailing_id') ) { ?>
 		<p class="alert alert-error"><?php echo $errmsg; ?></p>
