@@ -34,6 +34,16 @@ a:hover, a:active {
 html.no-touch .navbar li > a:hover {
   background-color: #343434;
 }
+.sticky-nav-holder .navbar .nav li.dropdown.open > .dropdown-toggle,
+.sticky-nav-holder .navbar .nav li.dropdown.active > .dropdown-toggle,
+.sticky-nav-holder .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+	background: #555;
+}
+.sticky-nav-holder .navbar .nav li.dropdown.open > .dropdown-toggle:hover,
+.sticky-nav-holder .navbar .nav li.dropdown.active > .dropdown-toggle:hover,
+.sticky-nav-holder .navbar .nav li.dropdown.open.active > .dropdown-toggle:hover {
+	background: #343434;
+}
 
 /* Sticky nav */
 .sticky-nav-holder {
