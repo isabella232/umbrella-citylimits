@@ -25,6 +25,7 @@ a:hover, a:active {
   color: #f1f1f1;
 }
 
+/* Navbars */
 .navbar-inner {
   background-color: #f61212;
 }
@@ -32,6 +33,23 @@ a:hover, a:active {
 .navbar .open > a,
 html.no-touch .navbar li > a:hover {
   background-color: #343434;
+}
+
+/* Sticky nav */
+.sticky-nav-holder {
+  border-bottom: 1px solid #343434;
+}
+.sticky-nav-holder .navbar li > a {
+  color: #343434;
+}
+.sticky-nav-holder .navbar li .caret:before {
+  border-top-color: #343434;
+}
+
+/* Sticky posts */
+.sticky-related, .sticky-solo {
+background-color: #f61212;
+border: 1px solid #D41313;
 }
 
 /* User registration form */
