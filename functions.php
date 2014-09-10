@@ -72,13 +72,13 @@ function citylimits_custom_signup_fields($values, $errors) {
 
 	<div class="form-group">
 		<label for="mailing_id"><?php _e('I would like to receive the (please check all that apply)', 'citylimits'); ?></label>
-		<input <?php if (in_array('8', (array)$mailing_id)) {echo 'checked'; } ?> type="checkbox"
+		<input <?php if ($mailing_id && in_array('8', (array)$mailing_id)) {echo 'checked'; } ?> type="checkbox"
 			value="8" name="mailing_id[]"> CityLimits.org Monthly Newsletter <br />
-		<input <?php if (in_array('1', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
+		<input <?php if ($mailing_id && in_array('1', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
 			value="1" name="mailing_id[]"> CityLimits.org Weekly Newsletter<br />
-		<input <?php if (in_array('2', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
+		<input <?php if ($mailing_id && in_array('2', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
 			value="2" name="mailing_id[]"> CityLimits.org: NYC Jobs Update <br />
-		<input <?php if (in_array('4', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
+		<input <?php if ($mailing_id && in_array('4', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
 			value="4" name="mailing_id[]"> CityLimits.org: NYC Events Update<br />
 
 	<?php if ( $errmsg = $errors->get_error_message('mailing_id') ) { ?>
@@ -86,6 +86,51 @@ function citylimits_custom_signup_fields($values, $errors) {
 	<?php } ?>
 	</div>
 
+
+	<div class="form-group">
+		<label for="recaptcha_response_field"><?php _e('Are you human?', 'citylimits'); ?></label>
+	<?php 
+		/* ReCaptcha */ 
+		require_once('lib/recaptchalib.php');
+		echo recaptcha_get_html(RECAPCHA_PUBLIC_KEY);
+		if ($errmsg = $errors->get_error_message('recaptcha')) { ?>
+			<p class="alert alert-error"><?php echo $errmsg; ?></p>
+	<? } ?>
+
+	</div>
+
+
 <?php
 }
 add_action('largo_registration_extra_fields', 'citylimits_custom_signup_fields', 10, 2);
+
+
+
+/**
+ * Verify citylimits custom signup fields applied above.
+ *
+ * @param $result. array. The $_POST variables from the form to validate.
+ * @param $extras. array. ??
+ */
+function citylimits_verify_custom_signup_fields($result,$extras = null) {
+	
+	/* Check the reCaptcha */
+	require_once('lib/recaptchalib.php');
+	$privatekey = RECAPCHA_PRIVATE_KEY;
+	
+	$resp = recaptcha_check_answer ($privatekey,
+                                $_SERVER["REMOTE_ADDR"],
+                                $result["recaptcha_challenge_field"],
+                                $result["recaptcha_response_field"]);
+	
+	/* Check the Captcha */
+	if (!$resp->is_valid) {
+		$result['errors']->add('recaptcha',__('The entered captcha was incorrect','citylimits'));
+    	return $result;
+	} else {
+		return $result;
+	}
+
+}
+add_action('largo_validate_user_signup_extra_fields', 'citylimits_verify_custom_signup_fields');
+
