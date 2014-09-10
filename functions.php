@@ -60,6 +60,16 @@ function set_job_types($types) {
 function citylimits_custom_signup_fields($values, $errors) {
 	extract($values);
 ?>
+
+	<div class="form-group">
+		<label for="organization"><?php _e('Organization name', 'citylimits'); ?></label>
+		<input type="text" value="<?php if (!empty($organization)) { echo $organization; } ?>" name="organization">
+
+	<?php if ( $errmsg = $errors->get_error_message('organization') ) { ?>
+		<p class="alert alert-error"><?php echo $errmsg; ?></p>
+	<?php } ?>
+	</div>
+
 	<div class="form-group">
 		<label for="mailing_id"><?php _e('I would like to receive the (please check all that apply)', 'citylimits'); ?></label>
 		<input <?php if (in_array('8', (array)$mailing_id)) {echo 'checked'; } ?> type="checkbox"
