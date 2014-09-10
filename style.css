@@ -25,6 +25,14 @@ a:hover, a:active {
   color: #f1f1f1;
 }
 
+/* Header */
+#site-header {
+  text-align: center;
+}
+#site-header img {
+  margin: 20px 0;
+}
+
 /* Navbars */
 .navbar-inner {
   background-color: #f61212;
