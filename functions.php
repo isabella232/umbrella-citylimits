@@ -89,8 +89,8 @@ function citylimits_custom_signup_fields($values, $errors) {
 
 	<div class="form-group">
 		<label for="recaptcha_response_field"><?php _e('Are you human?', 'citylimits'); ?></label>
-	<?php 
-		/* ReCaptcha */ 
+	<?php
+		/* ReCaptcha */
 		require_once('lib/recaptchalib.php');
 		echo recaptcha_get_html(RECAPCHA_PUBLIC_KEY);
 		if ($errmsg = $errors->get_error_message('recaptcha')) { ?>

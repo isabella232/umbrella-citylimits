@@ -91,3 +91,15 @@ form .alert-error {
 	color: #b94a48;
 	font-size: 14px;
 }
+span#recaptcha_privacy { display: none; }
+
+#largo-user-logged-in-message,
+#largo-registration-success-msg {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#largo-user-logged-in-message a,
+#largo-registration-success-msg a {
+	text-decoration: underline;
+}
