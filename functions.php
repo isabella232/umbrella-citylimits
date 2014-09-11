@@ -104,8 +104,6 @@ function citylimits_custom_signup_fields($values, $errors) {
 }
 add_action('largo_registration_extra_fields', 'citylimits_custom_signup_fields', 10, 2);
 
-
-
 /**
  * Verify citylimits custom signup fields applied above.
  *
@@ -113,24 +111,67 @@ add_action('largo_registration_extra_fields', 'citylimits_custom_signup_fields',
  * @param $extras. array. ??
  */
 function citylimits_verify_custom_signup_fields($result,$extras = null) {
-	
 	/* Check the reCaptcha */
 	require_once('lib/recaptchalib.php');
 	$privatekey = RECAPCHA_PRIVATE_KEY;
-	
+
 	$resp = recaptcha_check_answer ($privatekey,
                                 $_SERVER["REMOTE_ADDR"],
                                 $result["recaptcha_challenge_field"],
                                 $result["recaptcha_response_field"]);
-	
+
 	/* Check the Captcha */
 	if (!$resp->is_valid) {
 		$result['errors']->add('recaptcha',__('The entered captcha was incorrect','citylimits'));
-    	return $result;
+		return $result;
 	} else {
 		return $result;
 	}
-
 }
 add_action('largo_validate_user_signup_extra_fields', 'citylimits_verify_custom_signup_fields');
 
+
+function citylimits_user_profile_fields($user) {
+	$organization = get_user_meta($user->ID, 'organization', true);
+	$mailing_id = get_user_meta($user->ID, 'mailing_id', true);
+	?>
+	<h3>Other preferences</h3>
+
+	<table class="form-table">
+		<tbody>
+			<tr>
+				<th><label for="organization"><?php _e('Organization name', 'citylimits'); ?></label></th>
+				<td><input type="text" value="<?php if (!empty($organization)) { echo $organization; } ?>" name="organization"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table class="form-table">
+		<tbody>
+			<tr>
+				<th><label for="mailing_id"><?php _e('Newsletter preferences', 'citylimits'); ?></label></th>
+				<td>
+					<input <?php if ($mailing_id && in_array('8', (array)$mailing_id)) {echo 'checked'; } ?> type="checkbox"
+						value="8" name="mailing_id[]"> CityLimits.org Monthly Newsletter <br />
+					<input <?php if ($mailing_id && in_array('1', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
+						value="1" name="mailing_id[]"> CityLimits.org Weekly Newsletter<br />
+					<input <?php if ($mailing_id && in_array('2', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
+						value="2" name="mailing_id[]"> CityLimits.org: NYC Jobs Update <br />
+					<input <?php if ($mailing_id && in_array('4', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
+						value="4" name="mailing_id[]"> CityLimits.org: NYC Events Update<br />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<?php
+}
+add_action('show_user_profile',  'citylimits_user_profile_fields');
+
+
+function citylimits_save_user_profile_fields($user_id) {
+	if (!empty($_POST)) {
+		update_user_meta($user_id, 'organization', $_POST['organization']);
+		update_user_meta($user_id, 'mailing_id', $_POST['mailing_id']);
+	}
+}
+add_action('personal_options_update', 'citylimits_save_user_profile_fields');
