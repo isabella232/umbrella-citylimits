@@ -120,3 +120,12 @@ span#recaptcha_privacy { display: none; }
 .tribe-events-button.tribe-active:hover {
 	background-color: #f61212;
 }
+
+/* Job board */
+.wpjb-flash-error {
+	font-size: 22px;
+	font-weight: bold;
+	background-color: transparent !important;
+	padding: 0 !important;
+	border: none !important;
+}
