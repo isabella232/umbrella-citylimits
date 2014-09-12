@@ -71,23 +71,6 @@ function citylimits_custom_signup_fields($values, $errors) {
 	</div>
 
 	<div class="form-group">
-		<label for="mailing_id"><?php _e('I would like to receive the (please check all that apply)', 'citylimits'); ?></label>
-		<input <?php if ($mailing_id && in_array('8', (array)$mailing_id)) {echo 'checked'; } ?> type="checkbox"
-			value="8" name="mailing_id[]"> CityLimits.org Monthly Newsletter <br />
-		<input <?php if ($mailing_id && in_array('1', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-			value="1" name="mailing_id[]"> CityLimits.org Weekly Newsletter<br />
-		<input <?php if ($mailing_id && in_array('2', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-			value="2" name="mailing_id[]"> CityLimits.org: NYC Jobs Update <br />
-		<input <?php if ($mailing_id && in_array('4', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-			value="4" name="mailing_id[]"> CityLimits.org: NYC Events Update<br />
-
-	<?php if ( $errmsg = $errors->get_error_message('mailing_id') ) { ?>
-		<p class="alert alert-error"><?php echo $errmsg; ?></p>
-	<?php } ?>
-	</div>
-
-
-	<div class="form-group">
 		<label for="recaptcha_response_field"><?php _e('Are you human?', 'citylimits'); ?></label>
 	<?php
 		/* ReCaptcha */
@@ -146,23 +129,6 @@ function citylimits_user_profile_fields($user) {
 		</tbody>
 	</table>
 
-	<table class="form-table">
-		<tbody>
-			<tr>
-				<th><label for="mailing_id"><?php _e('Newsletter preferences', 'citylimits'); ?></label></th>
-				<td>
-					<input <?php if ($mailing_id && in_array('8', (array)$mailing_id)) {echo 'checked'; } ?> type="checkbox"
-						value="8" name="mailing_id[]"> CityLimits.org Monthly Newsletter <br />
-					<input <?php if ($mailing_id && in_array('1', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-						value="1" name="mailing_id[]"> CityLimits.org Weekly Newsletter<br />
-					<input <?php if ($mailing_id && in_array('2', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-						value="2" name="mailing_id[]"> CityLimits.org: NYC Jobs Update <br />
-					<input <?php if ($mailing_id && in_array('4', (array)$mailing_id)) { echo 'checked'; } ?> type="checkbox"
-						value="4" name="mailing_id[]"> CityLimits.org: NYC Events Update<br />
-				</td>
-			</tr>
-		</tbody>
-	</table>
 	<?php
 }
 add_action('show_user_profile',  'citylimits_user_profile_fields');
