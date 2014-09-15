@@ -57,7 +57,7 @@ function set_job_types($types) {
 }
 
 /* Custom fields for user registration */
-function citylimits_custom_signup_fields($values, $errors) {
+function citylimits_custom_signup_fields_early($values) {
 	extract($values);
 ?>
 
@@ -69,7 +69,13 @@ function citylimits_custom_signup_fields($values, $errors) {
 		<p class="alert alert-error"><?php echo $errmsg; ?></p>
 	<?php } ?>
 	</div>
+<?php
+}
+add_action('signup_extra_fields', 'citylimits_custom_signup_fields_early', 1, 2);
 
+function citylimits_custom_signup_fields_late($values) {
+	extract($values);
+?>
 	<div class="form-group">
 		<label for="recaptcha_response_field"><?php _e('Are you human?', 'citylimits'); ?></label>
 	<?php
@@ -79,13 +85,10 @@ function citylimits_custom_signup_fields($values, $errors) {
 		if ($errmsg = $errors->get_error_message('recaptcha')) { ?>
 			<p class="alert alert-error"><?php echo $errmsg; ?></p>
 	<? } ?>
-
 	</div>
-
-
 <?php
 }
-add_action('largo_registration_extra_fields', 'citylimits_custom_signup_fields', 10, 2);
+add_action('signup_extra_fields', 'citylimits_custom_signup_fields_late', 10, 2);
 
 /**
  * Verify citylimits custom signup fields applied above.
@@ -93,15 +96,14 @@ add_action('largo_registration_extra_fields', 'citylimits_custom_signup_fields',
  * @param $result. array. The $_POST variables from the form to validate.
  * @param $extras. array. ??
  */
-function citylimits_verify_custom_signup_fields($result,$extras = null) {
+function citylimits_verify_custom_signup_fields($result, $extras=null) {
 	/* Check the reCaptcha */
 	require_once('lib/recaptchalib.php');
 	$privatekey = RECAPCHA_PRIVATE_KEY;
 
-	$resp = recaptcha_check_answer ($privatekey,
-                                $_SERVER["REMOTE_ADDR"],
-                                $result["recaptcha_challenge_field"],
-                                $result["recaptcha_response_field"]);
+	$resp = recaptcha_check_answer(
+		$privatekey, $_SERVER["REMOTE_ADDR"], $result["recaptcha_challenge_field"],
+		$result["recaptcha_response_field"]);
 
 	/* Check the Captcha */
 	if (!$resp->is_valid) {
@@ -112,7 +114,6 @@ function citylimits_verify_custom_signup_fields($result,$extras = null) {
 	}
 }
 add_action('largo_validate_user_signup_extra_fields', 'citylimits_verify_custom_signup_fields');
-
 
 function citylimits_user_profile_fields($user) {
 	$organization = get_user_meta($user->ID, 'organization', true);
@@ -133,11 +134,8 @@ function citylimits_user_profile_fields($user) {
 }
 add_action('show_user_profile',  'citylimits_user_profile_fields');
 
-
 function citylimits_save_user_profile_fields($user_id) {
-	if (!empty($_POST)) {
+	if (!empty($_POST))
 		update_user_meta($user_id, 'organization', $_POST['organization']);
-		update_user_meta($user_id, 'mailing_id', $_POST['mailing_id']);
-	}
 }
 add_action('personal_options_update', 'citylimits_save_user_profile_fields');
