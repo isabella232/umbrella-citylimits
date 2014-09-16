@@ -56,6 +56,12 @@ function set_job_types($types) {
 	}
 }
 
+/* Custom registration link */
+add_filter('register', function($link) {
+	return '<a href="' . site_url('/register') . '">Register</a>';
+});
+
+
 /* Custom fields for user registration */
 function citylimits_custom_signup_fields_early($values) {
 	extract($values);
