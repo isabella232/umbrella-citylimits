@@ -26,7 +26,7 @@
 - The registration page is a standard WordPress page (titled "Register") with a Largo registration short code embedded in it.
 - In the event that it is lost or accidentally modified, the short code for CityLimits.org is:
 
-    `[largo_registration_form first_name last_name]`.
+    `[largo_registration_form first_name last_name]`
 
 - The URL for the Register page is "/register." Other components of the CityLimits.org theme depend on this, so please don't alter the URL.
 
