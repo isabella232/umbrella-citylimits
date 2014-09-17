@@ -2,7 +2,34 @@
 
 ## Job listings
 
-    TODO
+Make sure the WPJobBoard plugin is activated.
+
+### To set up PayPal:
+
+- Go to Settings (WPJB) > Configuration > PayPal (under "Payment Methods")
+- Next to "Availability" select "Enable this payment method"
+- In the PayPal section:
+    - Enter your PayPal account email address
+    - For "PayPal Environment" choose "Production (Real money)"
+- You can set prices for single job postings by going to Settings (WPJB) > Pricing
+
+### To set up Indeed:
+
+- Go to Settings (WPJB) > Configuration
+- Input your Indeed publisher ID in the "Indeed Publisher API Key" field.
+- Click update
+
+### To import jobs from Indeed:
+- Go to Settings (WPJB) > Import
+- Click "Schedule New Import"
+- Values for new import as configured by INN:
+    - Set "Import from" to "Indeed"
+    - "Keyword" field can be anything. On initial set up, I used the labels for the default job categories. For example, "Advocacy and Community Organization"
+    - Set the "Import Category" field to the appropriate value
+    - "Job Country" set to "United States"
+    - "Job Location" set to  "New York" -- note: this field can not be left blank
+    - "Posted within" - 7 days
+    - "Add jobs" - 10
 
 ## Event Listings
 
