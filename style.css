@@ -17,12 +17,15 @@ a:hover, a:active {
   text-decoration: none;
 }
 
-#site-footer a {
-  color: #cccccc;
+.btn-primary {
+  color: #eee;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #D41313;
+  border: 1px solid #D41313;
 }
-#site-footer a:hover,
-#site-footer a:active {
-  color: #f1f1f1;
+.btn-primary:hover {
+  color: #fff;
+  background-color: #f61212;
 }
 
 /* Header */
@@ -31,6 +34,18 @@ a:hover, a:active {
 }
 #site-header img {
   margin: 20px 0;
+}
+
+/* Footer */
+#site-footer a {
+  color: #cccccc;
+}
+#site-footer a:hover,
+#site-footer a:active {
+  color: #f1f1f1;
+}
+#site-footer a.btn-primary {
+  color: #ffffff;
 }
 
 /* Navbars */
