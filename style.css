@@ -46,6 +46,7 @@ a:hover, a:active {
 }
 #site-footer a.btn-primary {
   color: #ffffff;
+  font-weight: bold;
 }
 
 /* Navbars */
@@ -115,7 +116,7 @@ border: 1px solid #D41313;
   padding: 0 10px 10px 0;
 }
 .TopStories #homepage-featured .sub-stories .story p {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 
