@@ -85,6 +85,40 @@ background-color: #f61212;
 border: 1px solid #D41313;
 }
 
+/* Homepage */
+.home #content .widget {
+  border-top: none;
+  margin-top: 10px;
+  /*padding: 1.5%;*/
+  padding: 0;
+  width: 46%;
+}
+
+.TopStories #homepage-featured {
+  border: none;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 0;
+  border-radius: 0;
+  margin-top: 22px;
+}
+.TopStories #homepage-featured .sub-stories .story:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.TopStories #homepage-featured .top-story {
+  padding: 0 10px 0 0;
+}
+.TopStories #homepage-featured .top-story p {
+  font-size: 16px;
+}
+.TopStories #homepage-featured .sub-stories {
+  padding: 0 10px 10px 0;
+}
+.TopStories #homepage-featured .sub-stories .story p {
+  font-size: 12px;
+}
+
+
 /* User registration form */
 form .form-group {
 	margin: 10px 0;
