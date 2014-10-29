@@ -145,3 +145,34 @@ function citylimits_save_user_profile_fields($user_id) {
 		update_user_meta($user_id, 'organization', $_POST['organization']);
 }
 add_action('personal_options_update', 'citylimits_save_user_profile_fields');
+
+/* Google ad tags */
+function googletag_scripts() { ?>
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+	var gads = document.createElement('script');
+	gads.async = true;
+	gads.type = 'text/javascript';
+	var useSSL = 'https:' == document.location.protocol;
+	gads.src = (useSSL ? 'https:' : 'http:') +
+	'//www.googletagservices.com/tag/js/gpt.js';
+	var node = document.getElementsByTagName('script')[0];
+	node.parentNode.insertBefore(gads, node);
+})();
+</script>
+<script type='text/javascript'>
+	googletag.cmd.push(function() {
+		googletag.defineSlot('/1291657/Brooklyn_Ad_Slot1_300x250', [300, 250], 'div-gpt-ad-1367765273715-0').addService(googletag.pubads());
+		googletag.defineSlot('/1291657/Brooklyn_Ad_Slot2_300x250', [300, 250], 'div-gpt-ad-1367765273715-1').addService(googletag.pubads());
+		googletag.defineSlot('/1291657/Brooklyn_Ad_Slot3_300x250', [300, 250], 'div-gpt-ad-1367765273715-2').addService(googletag.pubads());
+		googletag.defineSlot('/1291657/Brooklyn_Leaderboard_Ad_Slot', [728, 90], 'div-gpt-ad-1367765273715-3').addService(googletag.pubads());
+		googletag.defineSlot('/1291657/Brooklyn_Leaderboard_Lower_Slot', [728, 90], 'div-gpt-ad-1367765273715-4').addService(googletag.pubads());
+		googletag.pubads().enableSingleRequest();
+		googletag.enableServices();
+	});
+</script>
+<?php
+}
+add_action('wp_head', 'googletag_scripts');
