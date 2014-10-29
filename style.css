@@ -152,7 +152,7 @@ border: 1px solid #D41313;
   }
 }
 
-/* Single posts and pages */
+/* Largo related and recent posts */
 #sidebar .largo-related-posts .wp-post-image {
   margin-bottom: 10px;
   width: 120px;
@@ -179,6 +179,9 @@ border: 1px solid #D41313;
 #sidebar .largo-related-posts .entry-date,
 #sidebar .largo-related-posts .clean-read { display: none; }
 
+#sidebar .widget ul {
+	margin: 0;
+}
 
 /* User registration form */
 form .form-group {
