@@ -36,6 +36,14 @@ a:hover, a:active {
   margin: 20px 0;
 }
 
+/* Leaderboard ad */
+.header-ad-zone {
+  text-align: center;
+}
+.header-ad-zone div[id^="div-gpt-ad"] {
+  margin: 0 auto;
+}
+
 /* Footer */
 #site-footer a {
   color: #cccccc;
