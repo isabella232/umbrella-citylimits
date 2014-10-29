@@ -28,6 +28,18 @@ a:hover, a:active {
   background-color: #f61212;
 }
 
+#main {
+  clear: both;
+  border-top: 1px solid #ccc;
+  padding-top: 28px;
+}
+
+.home #main {
+  padding-top: 0;
+}
+
+#main-nav { clear: both; }
+
 /* Homepage alert */
 .alert-wrapper {
   background-color: #f2dede;
@@ -44,7 +56,9 @@ a:hover, a:active {
 
 /* Header */
 #site-header {
+  float: left;
   text-align: center;
+  margin-bottom: 28px;
 }
 #site-header img {
   margin: 20px 0;
@@ -52,6 +66,7 @@ a:hover, a:active {
 
 /* Leaderboard ad */
 .header-ad-zone {
+  float: right;
   text-align: center;
 }
 .header-ad-zone div[id^="div-gpt-ad"] {
@@ -71,18 +86,36 @@ a:hover, a:active {
   font-weight: bold;
 }
 
-/* Navbars */
-.sticky-nav-container .navbar li {
-  font-size: 12px;
+/* Sticky footer */
+.sticky-footer-holder {
+  border-top: 1px solid #343434;
 }
-.sticky-nav-container .navbar li a {
-  padding: 6px;
+.sticky-footer-holder h4 {
+  color: #555;
+}
+
+/* Navbars */
+.navbar .btn-navbar {
+  background-color: #343434;
+}
+.navbar .btn-navbar:hover {
+  background-color: #555555;
 }
 .navbar-inner {
   background-color: #f61212;
 }
 
+/* Sticky nav */
+.sticky-nav-holder .nav-right .form-search .toggle {
+  color: #343434;
+}
 .navbar .open > a,
+.sticky-nav-container .navbar li {
+  font-size: 14px;
+}
+.sticky-nav-container .navbar li a {
+  padding: 6px;
+}
 html.no-touch .navbar li > a:hover {
   background-color: #343434;
 }
@@ -97,7 +130,6 @@ html.no-touch .navbar li > a:hover {
 	background: #343434;
 }
 
-/* Sticky nav */
 .sticky-nav-holder {
   border-bottom: 1px solid #343434;
 }
@@ -162,6 +194,16 @@ border: 1px solid #D41313;
     margin-top: 10px;
     padding: 0;
     width: 46%;
+  }
+}
+
+@media (max-width: 1140px) {
+  .header-ad-zone {
+    display: none;
+  }
+  #site-header {
+    width: 100%;
+    margin-bottom: 0;
   }
 }
 
