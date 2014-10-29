@@ -72,6 +72,12 @@ a:hover, a:active {
 }
 
 /* Navbars */
+.sticky-nav-container .navbar li {
+  font-size: 12px;
+}
+.sticky-nav-container .navbar li a {
+  padding: 6px;
+}
 .navbar-inner {
   background-color: #f61212;
 }
