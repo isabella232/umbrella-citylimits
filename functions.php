@@ -166,9 +166,7 @@ googletag.cmd = googletag.cmd || [];
 	googletag.cmd.push(function() {
 		googletag.defineSlot('/1291657/Brooklyn_Ad_Slot1_300x250', [300, 250], 'div-gpt-ad-1367765273715-0').addService(googletag.pubads());
 		googletag.defineSlot('/1291657/Brooklyn_Ad_Slot2_300x250', [300, 250], 'div-gpt-ad-1367765273715-1').addService(googletag.pubads());
-		googletag.defineSlot('/1291657/Brooklyn_Ad_Slot3_300x250', [300, 250], 'div-gpt-ad-1367765273715-2').addService(googletag.pubads());
 		googletag.defineSlot('/1291657/Brooklyn_Leaderboard_Ad_Slot', [728, 90], 'div-gpt-ad-1367765273715-3').addService(googletag.pubads());
-		googletag.defineSlot('/1291657/Brooklyn_Leaderboard_Lower_Slot', [728, 90], 'div-gpt-ad-1367765273715-4').addService(googletag.pubads());
 		googletag.pubads().enableSingleRequest();
 		googletag.enableServices();
 	});
