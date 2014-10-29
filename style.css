@@ -111,7 +111,7 @@ a:hover, a:active {
 }
 .navbar .open > a,
 .sticky-nav-container .navbar li {
-  font-size: 14px;
+  font-size: 13px;
 }
 .sticky-nav-container .navbar li a {
   padding: 6px;
