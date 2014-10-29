@@ -130,6 +130,12 @@ border: 1px solid #D41313;
   font-size: 13px;
 }
 
+@media (max-width: 1200px) {
+  .global-nav .nav-right ul#header-social.visible-desktop {
+    display: none;
+  }
+}
+
 @media (min-width: 980px) {
   .home #content .widget {
     border-top: none;
