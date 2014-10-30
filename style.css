@@ -40,6 +40,10 @@ a:hover, a:active {
 
 #main-nav { clear: both; }
 
+body.clean-read.single-post.classic #content {
+  margin: 0 auto;
+}
+
 /* Homepage alert */
 .alert-wrapper {
   background-color: #f2dede;
@@ -62,6 +66,11 @@ a:hover, a:active {
 }
 #site-header img {
   margin: 20px 0;
+}
+body.clean-read #site-header {
+  border-bottom: none;
+  margin: 0 auto;
+  max-width: none;
 }
 
 /* Leaderboard ad */
