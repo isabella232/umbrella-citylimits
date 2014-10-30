@@ -330,6 +330,9 @@ span#recaptcha_privacy { display: none; }
     padding: 0;
     width: 46%;
   }
+}
+
+@media (max-width: 980px) {
   .global-nav ul {
     display: none;
   }
