@@ -57,7 +57,6 @@ body.clean-read.single-post.classic #content {
   color: #343434;
 }
 
-
 /* Header */
 #site-header {
   float: left;
@@ -305,8 +304,13 @@ span#recaptcha_privacy { display: none; }
 
 @media (max-width: 1140px) {
   .header-ad-zone {
-    display: none;
+    float: none;
+    text-align: left;
   }
+  .header-ad-zone div[id^="div-gpt-ad"] {
+    margin: 0 auto;
+  }
+
   #site-header {
     width: 100%;
     margin-bottom: 0;
@@ -341,4 +345,8 @@ span#recaptcha_privacy { display: none; }
   #sidebar div[id^="div-gpt-ad"] {
     margin: 0 auto;
   }
+}
+
+@media (max-width: 728px) {
+  .header-ad-zone { display: none; }
 }
