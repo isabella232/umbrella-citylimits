@@ -1,5 +1,7 @@
 <?php
 
+define('SHOW_STICKY_NAV', false);
+
 /* Don't use WPJB css */
 add_action('wpjb_inject_media', function($media) {
 	$media['css'] = false;

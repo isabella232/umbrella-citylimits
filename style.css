@@ -123,40 +123,15 @@ body.clean-read #site-header {
 .navbar-inner {
   background-color: #f61212;
 }
-
-/* Sticky nav */
-.sticky-nav-holder .nav-right .form-search .toggle {
-  color: #343434;
+.navbar .nav-shelf li.dropdown.open > a.dropdown-toggle,
+.navbar .active > a, .navbar .active > a:hover {
+  background-color: #343434;
+  color: white;
 }
 .navbar .open > a,
-.sticky-nav-container .navbar li {
-  font-size: 13px;
-}
-.sticky-nav-container .navbar li a {
-  padding: 6px;
-}
 html.no-touch .navbar li > a:hover {
   background-color: #343434;
-}
-.sticky-nav-holder .navbar .nav li.dropdown.open > .dropdown-toggle,
-.sticky-nav-holder .navbar .nav li.dropdown.active > .dropdown-toggle,
-.sticky-nav-holder .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-	background: #555;
-}
-.sticky-nav-holder .navbar .nav li.dropdown.open > .dropdown-toggle:hover,
-.sticky-nav-holder .navbar .nav li.dropdown.active > .dropdown-toggle:hover,
-.sticky-nav-holder .navbar .nav li.dropdown.open.active > .dropdown-toggle:hover {
-	background: #343434;
-}
-
-.sticky-nav-holder {
-  border-bottom: 1px solid #343434;
-}
-.sticky-nav-holder .navbar li > a {
-  color: #343434;
-}
-.sticky-nav-holder .navbar li .caret:before {
-  border-top-color: #343434;
+  color: white;
 }
 
 /* Sticky posts */
@@ -366,8 +341,47 @@ span#recaptcha_privacy { display: none; }
   #sidebar div[id^="div-gpt-ad"] {
     margin: 0 auto;
   }
+
+  /* Navbar */
+  .home #site-header,
+  #site-header,
+  .home #main-nav,
+  #main-nav {
+    display: block;
+  }
+  #main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  #page {
+    margin-top: 32px;
+  }
+  .navbar .nav-shelf a {
+    color: #343434;
+    margin-left: 8px;
+  }
+  .navbar .open > a {
+    font-size: 112%;
+  }
+  .navbar .nav-shelf li .caret {
+    margin-right: 15px;
+    background-color: #343434;
+  }
+  .navbar .nav-shelf li.dropdown.open > a.dropdown-toggle,
+  .navbar .active > a, .navbar .active > a:hover {
+    background-color: #343434;
+    color: white;
+  }
 }
 
 @media (max-width: 728px) {
   .header-ad-zone { display: none; }
+}
+
+@media (max-width: 500px) {
+  #site-header img {
+    max-width: 100%;
+  }
 }
