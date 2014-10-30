@@ -28,11 +28,7 @@ a:hover, a:active {
   background-color: #f61212;
 }
 
-#main {
-  clear: both;
-  border-top: 1px solid #ccc;
-  padding-top: 28px;
-}
+#main { clear: both; }
 
 .home #main {
   padding-top: 0;
