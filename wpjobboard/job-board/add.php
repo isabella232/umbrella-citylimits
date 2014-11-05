@@ -2,14 +2,13 @@
 
 /**
  * Add job form
- * 
+ *
  * Template displays add job form
- * 
- * 
+ *
  * @author Greg Winiarski
  * @package Templates
  * @subpackage JobBoard
- * 
+ *
  */
 
  /* @var $form Wpjb_Form_AddJob */
@@ -28,8 +27,8 @@
 
 			<?php echo $form->renderHidden() ?>
 			<?php foreach($form->getReordered() as $group): ?>
-			
-			<?php /* @var $group stdClass */ ?> 
+
+			<?php /* @var $group stdClass */ ?>
 			<fieldset class="wpjb-fieldset-<?php esc_attr_e($group->getName()) ?>">
 				<legend><?php esc_html_e($group->title) ?></legend>
 				<?php foreach($group->getReordered() as $name => $field): ?>
@@ -40,7 +39,7 @@
 						<?php esc_html_e($field->getLabel()) ?>
 						<?php if($field->isRequired()): ?><span class="wpjb-required">*</span><?php endif; ?>
 					</label>
-					
+
 					<div class="wpjb-field">
 						<?php wpjb_form_render_input($form, $field) ?>
 						<?php wpjb_form_input_hint($field) ?>
@@ -51,11 +50,11 @@
 				<?php endforeach; ?>
 			</fieldset>
 			<?php endforeach; ?>
-			
+
 			<fieldset>
 				<div>
 					<legend class="wpjb-empty"></legend>
-					
+
 					<?php if($show_pricing): ?>
 					<table id="wpjb_pricing">
 						<tbody>
@@ -74,13 +73,13 @@
 						</tbody>
 					</table>
 					<?php endif; ?>
-					
+
 					<input type="submit" class="wpjb-submit" name="wpjb_preview" id="wpjb_submit" value="<?php _e("Preview", "wpjobboard") ?>" />
 					<?php _e("or", "wpjobboard") ?>
 					<a href="<?php esc_attr_e(wpjb_link_to("step_reset")) ?>"><?php _e("Reset form", "wpjobboard") ?></a>
 				</div>
 			</fieldset>
-			
+
 		</form>
 		<?php endif; ?>
 

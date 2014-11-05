@@ -201,3 +201,12 @@ function largo_header() {
 	if ( of_get_option( 'logo_thumbnail_sq' ) )
 		echo '<meta itemprop="logo" content="' . esc_url( of_get_option( 'logo_thumbnail_sq' ) ) . '"/>';
 }
+
+/* Customize job add page title */
+function customize_job_add_page_title($arg) {
+	if (trim($arg) == 'Create Ad')
+		return 'Post a job';
+	else
+		return $arg;
+}
+add_filter("wpjb_set_title", 'customize_job_add_page_title');
