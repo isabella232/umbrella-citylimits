@@ -210,3 +210,8 @@ function customize_job_add_page_title($arg) {
 		return $arg;
 }
 add_filter("wpjb_set_title", 'customize_job_add_page_title');
+
+function cl_widgets() {
+	unregister_widget( 'TribeCountdownWidget' );
+}
+add_action( 'widgets_init', 'cl_widgets', 14 );
