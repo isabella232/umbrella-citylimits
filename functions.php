@@ -1,6 +1,7 @@
 <?php
 
 define('SHOW_STICKY_NAV', false);
+define('SHOW_CATEGORY_RELATED_TOPICS', false);
 
 /* Don't use WPJB css */
 add_action('wpjb_inject_media', function($media) {
