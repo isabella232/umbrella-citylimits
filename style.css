@@ -59,6 +59,16 @@ body.clean-read.single-post.classic #content {
   margin: 0 auto;
 }
 
+/* Homepage layouts */
+.home #dark-top h5.top-tag a {
+	color: #D41313;
+}
+.home #dark-top h5 a:hover {
+	color: #f61212;
+}
+.home #dark-top .side-featured article {
+	border-top: 3px solid #343434;
+}
 /* Homepage alert */
 .alert-wrapper {
   background-color: #f2dede;
