@@ -232,6 +232,11 @@ border: 1px solid #D41313;
 	margin: 0;
 }
 
+/* Job categories widget */
+.widget_wpjb-job-categories ul {
+  list-style-type: none;
+}
+
 /* User registration form */
 form .form-group {
 	margin: 10px 0;
