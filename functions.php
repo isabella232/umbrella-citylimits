@@ -71,7 +71,7 @@ function citylimits_custom_signup_fields_early($values) {
 ?>
 
 	<div class="form-group">
-		<label for="organization"><?php _e('Organization name', 'citylimits'); ?></label>
+		<label for="organization"><?php _e('Organization name (optional)', 'citylimits'); ?></label>
 		<input type="text" value="<?php if (!empty($organization)) { echo $organization; } ?>" name="organization">
 
 	<?php if ( $errmsg = $errors->get_error_message('organization') ) { ?>
