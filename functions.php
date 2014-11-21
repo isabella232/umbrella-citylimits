@@ -216,3 +216,23 @@ function cl_widgets() {
 	unregister_widget( 'TribeCountdownWidget' );
 }
 add_action( 'widgets_init', 'cl_widgets', 14 );
+
+/* Remove the largo logo from login page */
+add_action('init', function() {
+	remove_action('login_head', 'largo_custom_login_logo');
+});
+
+/* Show City Limits logo on login page */
+function citylimits_custom_login_logo() {
+	echo '
+		<style type="text/css">
+			.login h1 a {
+				background-image: url(' . get_stylesheet_directory_uri() . '/img/citylimits.png) !important;
+				background-size: 200px 200px;
+				height: 200px;
+				width: 200px;
+			}
+		</style>
+	';
+}
+add_action('login_head', 'citylimits_custom_login_logo');
