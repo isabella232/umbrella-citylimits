@@ -236,3 +236,11 @@ function citylimits_custom_login_logo() {
 	';
 }
 add_action('login_head', 'citylimits_custom_login_logo');
+
+function citylimits_login_redirect($redirect_to, $request, $user) {
+	if (isset($_GET['redirect_to']) || isset($_POST['redirect_to']))
+		return $redirect_to;
+	else
+		return home_url();
+}
+add_filter('login_redirect', 'citylimits_login_redirect', 10, 3);
