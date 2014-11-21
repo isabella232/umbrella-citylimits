@@ -84,6 +84,9 @@
 		<?php endif; ?>
 
 	<?php } else { ?>
-		<div class="wpjb-login-message">You must be logged in to create a job listing. <a href="<?php echo wp_login_url(site_url('/jobs/add/')); ?>">Click here to login</a>.</div>
+		<div class="wpjb-login-message">
+			<p>Before posting a job, you must <a href="/register">register</a>.</p>
+			<p>If you're already registered, you can <a href="<?php echo wp_login_url(site_url('/jobs/add/')); ?>">login here</a> to continue.</p>
+		</div>
 	<?php } ?>
 </div>
