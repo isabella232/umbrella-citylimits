@@ -244,3 +244,10 @@ function citylimits_login_redirect($redirect_to, $request, $user) {
 		return home_url();
 }
 add_filter('login_redirect', 'citylimits_login_redirect', 10, 3);
+
+function citylimits_job_query($select) {
+	$select->order(
+		"t1.is_featured DESC, t1.job_created_at DESC, t1.id DESC, IF(t1.company_url NOT LIKE '%indeed.com%', 1, 0) DESC, t1.id DESC");
+	return $select;
+}
+add_filter('wpjb_jobs_query', 'citylimits_job_query', 1, 10);
