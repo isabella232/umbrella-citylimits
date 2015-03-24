@@ -251,3 +251,8 @@ function citylimits_job_query($select) {
 	return $select;
 }
 add_filter('wpjb_jobs_query', 'citylimits_job_query', 1, 10);
+
+function citylimits_users_can_register($option) {
+	return true;
+}
+add_filter('pre_option_users_can_register', 'citylimits_users_can_register', 1, 10);
