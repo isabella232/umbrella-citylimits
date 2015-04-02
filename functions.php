@@ -3,6 +3,14 @@
 define('SHOW_STICKY_NAV', false);
 define('SHOW_CATEGORY_RELATED_TOPICS', false);
 
+/* re-enable the default WP RSS widget */
+function citylimits_widgets_init() {
+	register_widget('WP_Widget_RSS');
+}
+add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
+
+
+
 /* Don't use WPJB css */
 add_action('wpjb_inject_media', function($media) {
 	$media['css'] = false;
