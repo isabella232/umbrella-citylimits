@@ -86,9 +86,23 @@
     </form>
     <?php endif; ?>
   <?php } else { ?>
-    <div class="wpjb-login-message">
-      <p>Before posting a job, you must <a href="/register">register</a>.</p>
-      <p>If you're already registered, you can <a href="<?php echo wp_login_url(site_url('/jobs/add/')); ?>">login here</a> to continue.</p>
-    </div>
+	<div class="wpjb-login-message">
+		<p>Reach the most educated and engaged job candidates for your organization:</p>
+
+		<div class="cl-job-posting-types">
+			<p><strong>Standard Posting:</strong> 30 Days on the City Limits Job Board</p>
+			<p><strong>Premium Posting:</strong> 30 Day Featured Posting on the City Limits Job Board, plus featured listing in the Work Site section and the Weekly Reads Newsletter</p>
+		</div>
+
+		<p>Here's how to post:</p>
+
+		<ol>
+		<li>1) If you have an account, log in to post your job. If you don't have an account, you will quickly need to <a href="<?php echo home_url('/register'); ?>">register here</a>.</li>
+			<li>2) After you have registered, you will simply need to click on the Post a Job Link again to log-in</li>
+			<li>3) Once logged-in, simply input your job-posting into the form provided.</li>
+		</ol>
+
+		<p>If you need help, contact <a href="mailto:ashley@citylimits.org?Subject=Job%20Ad%20Question" target="_top">ashley@citylimits.org</a>. Thank you!</p>
+	</div>
   <?php } ?>
 </div>

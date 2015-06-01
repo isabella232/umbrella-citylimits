@@ -289,13 +289,22 @@ span#recaptcha_privacy { display: none; }
 }
 
 /* Job board */
-.wpjb-flash-error,
-.wpjb-login-message {
+.wpjb-flash-error {
 	font-size: 22px;
 	font-weight: bold;
 	background-color: transparent !important;
 	padding: 0 !important;
 	border: none !important;
+}
+
+body .wpjb .wpjb-login-message ol {
+  margin: 20px 0;
+}
+body .wpjb .wpjb-login-message ol li {
+  margin-left: 20px;
+}
+.wpjb-login-message .cl-job-posting-types {
+  margin: 20px 0;
 }
 
 .wpjb-login-message a {
