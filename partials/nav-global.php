@@ -30,14 +30,6 @@
 						</div>
 					</form>
 				</div>
-
-				<?php if (INN_MEMBER === TRUE) { ?>
-				<div class="org-logo">
-					<a href="http://investigativenewsnetwork.org/" target="_blank">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/inn-logo-80-55.jpg" height="55" alt="INN logo" />
-					</a>
-				</div>
-				<?php } ?>
 			</div>
 		</nav>
 	</div> <!-- /.global-nav -->
