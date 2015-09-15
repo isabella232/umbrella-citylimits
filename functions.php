@@ -3,11 +3,15 @@
 define('SHOW_STICKY_NAV', false);
 define('SHOW_CATEGORY_RELATED_TOPICS', false);
 
-/* re-enable the default WP RSS widget */
+
+/**
+ * re-enable the default WP RSS widget
+ */
 function citylimits_widgets_init() {
 	register_widget('WP_Widget_RSS');
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
+
 
 /**
  * Set the number of posts in the right-hand side of the Top Stories homepage template to 2.
@@ -21,6 +25,39 @@ function citylimits_featured_stories_count( $showstories ) {
 	return 2;
 }
 add_filter('largo_homepage_topstories_post_count', 'citylimits_featured_stories_count');
+
+
+/**
+ * Taboola code
+ */
+function citylimits_taboola_header() {
+?>
+	<script type="text/javascript">
+		window._taboola = window._taboola || [];
+		_taboola.push(
+		{article:'auto'}
+		);
+		!function (e, f, u)
+		{ e.async = 1; e.src = u; f.parentNode.insertBefore(e, f); }
+		(document.createElement('script'),
+		document.getElementsByTagName('script')[0],
+		'//cdn.taboola.com/libtrc/citylimit/loader.js');
+	</script>
+<?php	
+}
+add_action( 'wp_head', 'citylimits_taboola_header' );
+
+function citylimits_taboola_footer() {
+?>
+	<script type="text/javascript">
+		window._taboola = window._taboola || [];
+		_taboola.push(
+		{flush: true}
+		);
+	</script>
+<?php
+}
+add_action( 'wp_footer', 'citylimits_taboola_footer' );
 
 
 /* Don't use WPJB css */
