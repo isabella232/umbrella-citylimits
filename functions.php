@@ -9,6 +9,18 @@ function citylimits_widgets_init() {
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
+/**
+ * Set the number of posts in the right-hand side of the Top Stories homepage template to 2.
+ *
+ * Largo's default is 6. CityLimits does not want the "More headlines" area to appear, which appears if 4 or more posts are in the area.
+ *
+ * @return 2
+ * @param int $showstories
+ */
+function citylimits_featured_stories_count( $showstories ) {
+	return 2;
+}
+add_filter('largo_homepage_topstories_post_count', 'citylimits_featured_stories_count');
 
 
 /* Don't use WPJB css */
