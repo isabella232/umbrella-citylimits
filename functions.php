@@ -22,7 +22,7 @@ add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
  * @param int $showstories
  */
 function citylimits_featured_stories_count( $showstories ) {
-	return 2;
+	return 3;
 }
 add_filter('largo_homepage_topstories_post_count', 'citylimits_featured_stories_count');
 
