@@ -135,6 +135,10 @@ function citylimits_custom_signup_fields_early($values) {
 		<p class="alert alert-error"><?php echo $errmsg; ?></p>
 	<?php } ?>
 	</div>
+
+	<div class="form-group">
+		<label>Want to receive our free newsletter? <a href="https://app.getresponse.com/site2/citylimits?u=Btt5L&webforms_id=439505">Sign up here.</a></label>
+	</div>
 <?php
 }
 add_action('signup_extra_fields', 'citylimits_custom_signup_fields_early', 1, 2);
