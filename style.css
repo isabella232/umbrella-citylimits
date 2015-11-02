@@ -172,13 +172,6 @@ border: 1px solid #D41313;
 .home #content .widget .post-lead {
   margin-bottom: 26px;
 }
-.home #homepage-bottom .widget {
-  border-top: none;
-}
-.home #homepage-bottom .widgettitle {
-  color: #555;
-  font-size: 14px;
-}
 
 .TopStories #homepage-featured {
   border: none;
@@ -202,37 +195,6 @@ border: 1px solid #D41313;
 }
 .TopStories #homepage-featured .sub-stories .story p {
   font-size: 13px;
-}
-
-/* Largo related and recent posts */
-#sidebar .largo-related-posts .wp-post-image {
-  margin-bottom: 10px;
-  width: 120px;
-  height: 120px;
-}
-#sidebar .largo-related-posts li p {
-  margin-bottom: 0;
-}
-#sidebar .largo-related-posts li:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-#sidebar .largo-related-posts h4 {
-  font-size: 18px;
-}
-#sidebar .largo-related-posts .widgettitle {
-  margin-bottom: 8px;
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #000;
-  text-align: left;entry-date
-}
-#sidebar .largo-related-posts .entry-date,
-#sidebar .largo-related-posts .clean-read { display: none; }
-
-#sidebar .widget ul {
-	margin: 0;
 }
 
 /* Job categories widget */
