@@ -43,7 +43,7 @@ function citylimits_taboola_header() {
 		document.getElementsByTagName('script')[0],
 		'//cdn.taboola.com/libtrc/citylimit/loader.js');
 	</script>
-<?php	
+<?php
 }
 add_action( 'wp_head', 'citylimits_taboola_header' );
 
@@ -227,32 +227,6 @@ function citylimits_configure_dfp() {
 
 }
 add_action('dfw_setup', 'citylimits_configure_dfp');
-
-
-function largo_header() {
-	$header_tag = is_home() ? 'h1' : 'h2'; // use h1 for the homepage, h2 for internal pages
-
-	// if we're using the text only header, display the output, otherwise this is just replacement text for the banner image
-	$header_class = of_get_option( 'no_header_image' ) ? 'branding' : 'visuallyhidden';
-	$divider = $header_class == 'branding' ? '' : ' - ';
-
-	// print the text-only version of the site title
-	printf('<%1$s class="%2$s"><a itemprop="url" href="%3$s"><span itemprop="name">%4$s</span>%5$s<span class="tagline" itemprop="description">%6$s</span></a></%1$s>',
-		$header_tag,
-		$header_class,
-		esc_url( home_url( '/' ) ),
-		esc_attr( get_bloginfo('name') ),
-		$divider,
-		esc_attr( get_bloginfo('description') )
-	);
-
-	// add an image placeholder, the src is added by largo_header_js() in inc/enqueue.php
-	if ( $header_class != 'branding' )
-		echo '<a itemprop="url" href="' . esc_url( home_url( '/' ) ) . '"><img class="header_img" src="" alt="" /></a>';
-
-	if ( of_get_option( 'logo_thumbnail_sq' ) )
-		echo '<meta itemprop="logo" content="' . esc_url( of_get_option( 'logo_thumbnail_sq' ) ) . '"/>';
-}
 
 /* Customize job add page title */
 function customize_job_add_page_title($arg) {

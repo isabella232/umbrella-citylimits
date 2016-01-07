@@ -47,14 +47,6 @@ h6 a:hover, h6 a:active {
   background-color: #f61212;
 }
 
-#main { clear: both; }
-
-.home #main {
-  padding-top: 0;
-}
-
-#main-nav { clear: both; }
-
 body.clean-read.single-post.classic #content {
   margin: 0 auto;
 }
@@ -89,14 +81,12 @@ body.clean-read.single-post.classic #content {
 
 /* Header */
 #site-header {
-  float: left;
   text-align: center;
-  margin-bottom: 0;
   width: 33%;
   max-width: 410px;
 }
 #site-header img {
-  margin: 20px 0;
+  margin: 0;
   max-width: 100%;
   height: auto;
 }
@@ -136,30 +126,6 @@ body.clean-read #site-header {
 }
 .sticky-footer-holder h4 {
   color: #555;
-}
-
-/* Navbars */
-.navbar .btn-navbar {
-  margin-left: 8px;
-}
-.navbar .btn-navbar {
-  background-color: #343434;
-}
-.navbar .btn-navbar:hover {
-  background-color: #555555;
-}
-.navbar-inner {
-  background-color: #f61212;
-}
-.navbar .nav-shelf li.dropdown.open > a.dropdown-toggle,
-.navbar .active > a, .navbar .active > a:hover {
-  background-color: #343434;
-  color: white;
-}
-.navbar .open > a,
-html.no-touch .navbar li > a:hover {
-  background-color: #343434;
-  color: white;
 }
 
 /* Sticky posts */
@@ -294,7 +260,6 @@ body .wpjb .wpjb-login-message ol li {
   #site-header {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 0;
     text-align: center;
   }
   #site-header img {
@@ -344,39 +309,6 @@ body .wpjb .wpjb-login-message ol li {
   }
   #sidebar div[id^="div-gpt-ad"] {
     margin: 0 auto;
-  }
-
-  /* Navbar */
-  .home #site-header,
-  #site-header,
-  .home #main-nav,
-  #main-nav {
-    display: block;
-  }
-  #main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-  #page {
-    margin-top: 32px;
-  }
-  .navbar .nav-shelf a {
-    color: #343434;
-    margin-left: 8px;
-  }
-  .navbar .open > a {
-    font-size: 112%;
-  }
-  .navbar .nav-shelf li .caret {
-    margin-right: 15px;
-    background-color: #343434;
-  }
-  .navbar .nav-shelf li.dropdown.open > a.dropdown-toggle,
-  .navbar .active > a, .navbar .active > a:hover {
-    background-color: #343434;
-    color: white;
   }
 }
 
