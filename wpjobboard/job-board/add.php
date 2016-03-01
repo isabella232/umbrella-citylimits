@@ -13,7 +13,6 @@
  */
 
 /* @var $form Wpjb_Form_AddJob */
-/* @var $can_post boolean User has job posting priviledges */
 
 ?>
 
