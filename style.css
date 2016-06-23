@@ -73,6 +73,9 @@ body.clean-read.single-post.classic #content {
 #alert-container {
   color: #343434;
 }
+#alert-container a {
+  color: #D41313;
+}
 
 /* Homepage slider */
 #homepage-slider {
