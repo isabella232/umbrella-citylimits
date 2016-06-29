@@ -76,10 +76,6 @@ body.clean-read.single-post.classic #content {
 #alert-container a {
   color: #D41313;
 }
-/* Homepage slider */
-#homepage-slider {
-  padding-top: 18px;
-}
 
 /* Header */
 #site-header {
@@ -92,11 +88,6 @@ body.clean-read.single-post.classic #content {
   max-width: 100%;
   height: auto;
 }
-body.clean-read #site-header {
-  border-bottom: none;
-  margin: 0 auto;
-  max-width: none;
-}
 
 /* Leaderboard ad */
 .header-ad-zone {
@@ -107,6 +98,9 @@ body.clean-read #site-header {
 }
 .header-ad-zone div[id^="div-gpt-ad"] {
   margin: 0 auto;
+}
+.header-ad-zone .widget {
+  margin-bottom: 0;
 }
 
 /* Footer */
@@ -120,14 +114,6 @@ body.clean-read #site-header {
 #site-footer a.btn-primary {
   color: #ffffff;
   font-weight: bold;
-}
-
-/* Sticky footer */
-.sticky-footer-holder {
-  border-top: 1px solid #343434;
-}
-.sticky-footer-holder h4 {
-  color: #555;
 }
 
 /* Sticky posts */
@@ -154,6 +140,7 @@ border: 1px solid #D41313;
 }
 .TopStories #homepage-featured .top-story {
   padding: 0 10px 0 0;
+  margin-bottom: 1em;
 }
 .TopStories #homepage-featured .top-story p {
   font-size: 16px;
@@ -259,10 +246,14 @@ body .wpjb .wpjb-login-message ol li {
   .header-ad-zone div[id^="div-gpt-ad"] {
     margin: 0 auto;
   }
+  .header-ad-zone #header-ad-zone-container {
+    width: 100%;
+  }
   #site-header {
     width: 100%;
     max-width: 100%;
     text-align: center;
+    margin: 0;
   }
   #site-header img {
     max-width: 500px;
@@ -315,11 +306,10 @@ body .wpjb .wpjb-login-message ol li {
 }
 
 @media (max-width: 728px) {
-  .header-ad-zone { display: none; }
-}
-
-@media (max-width: 500px) {
-  #site-header img {
-    max-width: 100%;
+  .header-ad-zone {
+    text-align: center;
+  }
+  .header-ad-zone #header-ad-zone-container {
+    margin: 0 auto;
   }
 }
