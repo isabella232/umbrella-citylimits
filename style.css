@@ -94,7 +94,7 @@ body.clean-read.single-post.classic #content {
   float: right;
   text-align: center;
   position: relative;
-  top: 6px;
+  top: 30px;
 }
 .header-ad-zone div[id^="div-gpt-ad"] {
   margin: 0 auto;
@@ -242,6 +242,7 @@ body .wpjb .wpjb-login-message ol li {
   .header-ad-zone {
     float: none;
     text-align: left;
+    top: 5px;
   }
   .header-ad-zone div[id^="div-gpt-ad"] {
     margin: 0 auto;
@@ -311,5 +312,10 @@ body .wpjb .wpjb-login-message ol li {
   }
   .header-ad-zone #header-ad-zone-container {
     margin: 0 auto;
+  }
+}
+@media screen and (max-width: 480px) {
+  .home #main {
+    margin-top: 0;
   }
 }
