@@ -1,0 +1,9 @@
+[submodule "vendor/zackkatz/WP-Logging"]
+	path = vendor/zackkatz/WP-Logging
+	url = https://github.com/zackkatz/WP-Logging
+[submodule "vendor/10up/flexibility"]
+	path = vendor/10up/flexibility
+	url = https://github.com/10up/flexibility
+[submodule "vendor/constantcontact/constantcontact"]
+	path = vendor/constantcontact/constantcontact
+	url = https://github.com/constantcontact/php-sdk
