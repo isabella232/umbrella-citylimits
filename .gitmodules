@@ -1,0 +1,3 @@
+[submodule "themes/Largo"]
+	path = themes/Largo
+	url = https://github.com/INN/Largo.git
