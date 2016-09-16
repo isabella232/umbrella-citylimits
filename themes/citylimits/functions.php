@@ -3,6 +3,9 @@
 define('SHOW_STICKY_NAV', false);
 define('SHOW_CATEGORY_RELATED_TOPICS', false);
 
+// Setup some contants we'll need in various places
+define('LARGO_EXT_DIR', dirname(__FILE__));
+define('LARGO_EXT', __FILE__);
 
 /**
  * re-enable the default WP RSS widget
@@ -281,3 +284,44 @@ function citylimits_users_can_register($option) {
 	return true;
 }
 add_filter('pre_option_users_can_register', 'citylimits_users_can_register', 1, 10);
+
+
+function citylimits_google_analytics() {
+	if ( !is_user_logged_in() ) // don't track logged in users ?>
+		<script>
+			var _gaq = _gaq || [];
+		<?php if ( of_get_option( 'ga_id', true ) ) : // make sure the ga_id setting is defined ?>
+			_gaq.push(['_setAccount', '<?php echo of_get_option( "ga_id" ) ?>']);
+			_gaq.push(['_trackPageview']);
+		<?php endif; ?>
+			_gaq.push(
+				["inn._setAccount", "UA-17578670-2"],
+				["inn._setCustomVar", 1, "MemberName", "<?php bloginfo('name') ?>"],
+				["inn._trackPageview"]
+			);
+			_gaq.push(
+				["largo._setAccount", "UA-17578670-4"],
+				["largo._setCustomVar", 1, "SiteName", "<?php bloginfo('name') ?>"],
+				["largo._trackPageview"]
+			);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+		</script>
+	<?php }
+}
+if ( ! function_exists( 'largo_google_analytics' ) ) { 
+	add_action( 'wp_footer', 'largo_google_analytics' );
+}
+
+require_once( dirname( __FILE__ ) . '/inc/registration.php' );
+
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if ( is_plugin_active( 'wpjobboard/index.php' ) ) {
+	require_once( dirname( __FILE__ ) . '/inc/job-board.php' );
+} elseif ( is_plugin_active( 'gravityforms/gravityforms.php' ) ) {
+	require_once( dirname( __FILE__ ) . '/inc/gravityforms/events-calendar.php' );
+}
