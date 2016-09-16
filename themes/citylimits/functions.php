@@ -7,13 +7,13 @@ define( 'SHOW_CATEGORY_RELATED_TOPICS', false );
 define( 'LARGO_EXT_DIR', dirname( __FILE__ ) );
 define( 'LARGO_EXT', __FILE__ );
 
-/**
- * re-enable the default WP RSS widget
- */
+
+// re-enable the default WP RSS widget
 function citylimits_widgets_init() {
 	register_widget( 'WP_Widget_RSS' );
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
+
 
 /**
  * Set the number of posts in the right-hand side of the Top Stories homepage template to 2.
@@ -27,6 +27,7 @@ function citylimits_featured_stories_count( $showstories ) {
 	return 3;
 }
 add_filter( 'largo_homepage_topstories_post_count', 'citylimits_featured_stories_count' );
+
 
 /**
  * Taboola code
@@ -48,6 +49,7 @@ function citylimits_taboola_header() {
 }
 add_action( 'wp_head', 'citylimits_taboola_header' );
 
+
 function citylimits_taboola_footer() {
 	?>
 	<script type="text/javascript">
@@ -60,11 +62,13 @@ function citylimits_taboola_footer() {
 }
 add_action( 'wp_footer', 'citylimits_taboola_footer' );
 
+
 // Don't use WPJB css
 add_action( 'wpjb_inject_media', function( $media ) {
 	$media['css'] = false;
 	return $media;
 });
+
 
 // Utilities for loading default job types and categories
 function reset_job_categories_and_types() {
@@ -98,6 +102,7 @@ function reset_job_categories_and_types() {
 
 	return true;
 }
+
 
 function set_job_categories( $categories ) {
 	foreach ( $categories as $category_attrs ) {
@@ -145,6 +150,7 @@ function citylimits_custom_signup_fields_early( $values ) {
 }
 add_action( 'signup_extra_fields', 'citylimits_custom_signup_fields_early', 1, 2 );
 
+
 function citylimits_custom_signup_fields_late( $values ) {
 	extract( $values );
 	?>
@@ -161,6 +167,7 @@ function citylimits_custom_signup_fields_late( $values ) {
 	<?php
 }
 add_action('signup_extra_fields', 'citylimits_custom_signup_fields_late', 10, 2);
+
 
 /**
  * Verify citylimits custom signup fields applied above.
@@ -187,6 +194,7 @@ function citylimits_verify_custom_signup_fields( $result, $extras=null ) {
 }
 add_action( 'largo_validate_user_signup_extra_fields', 'citylimits_verify_custom_signup_fields' );
 
+
 function citylimits_user_profile_fields( $user ) {
 	$organization = get_user_meta( $user->ID, 'organization', true );
 	$mailing_id = get_user_meta( $user->ID, 'mailing_id', true );
@@ -205,6 +213,7 @@ function citylimits_user_profile_fields( $user ) {
 	<?php
 }
 add_action( 'show_user_profile',  'citylimits_user_profile_fields' );
+
 
 function citylimits_save_user_profile_fields( $user_id ) {
 	if ( ! empty( $_POST ) ) {
@@ -231,6 +240,7 @@ function citylimits_configure_dfp() {
 }
 add_action( 'dfw_setup', 'citylimits_configure_dfp' );
 
+
 /* Customize job add page title */
 function customize_job_add_page_title( $arg ) {
 	if ( trim( $arg ) == 'Create Ad')
@@ -240,15 +250,18 @@ function customize_job_add_page_title( $arg ) {
 }
 add_filter( 'wpjb_set_title', 'customize_job_add_page_title' );
 
+
 function cl_widgets() {
 	unregister_widget( 'TribeCountdownWidget' );
 }
 add_action( 'widgets_init', 'cl_widgets', 14 );
 
+
 /* Remove the largo logo from login page */
 add_action( 'init', function() {
 	remove_action( 'login_head', 'largo_custom_login_logo' );
 });
+
 
 /* Show City Limits logo on login page */
 function citylimits_custom_login_logo() {
@@ -263,6 +276,7 @@ function citylimits_custom_login_logo() {
 }
 add_action('login_head', 'citylimits_custom_login_logo');
 
+
 function citylimits_login_redirect( $redirect_to, $request, $user ) {
 	if ( isset( $_GET['redirect_to'] ) || isset( $_POST['redirect_to'] ) ) {
 		return $redirect_to;
@@ -272,11 +286,13 @@ function citylimits_login_redirect( $redirect_to, $request, $user ) {
 }
 add_filter( 'login_redirect', 'citylimits_login_redirect', 10, 3 );
 
+
 function citylimits_job_query( $select ) {
 	$select->order("t1.is_featured DESC, t1.job_created_at DESC, t1.id DESC, IF(t1.company_url NOT LIKE '%indeed.com%', 1, 0) DESC, t1.id DESC");
 	return $select;
 }
 add_filter( 'wpjb_jobs_query', 'citylimits_job_query', 1, 10 );
+
 
 function citylimits_users_can_register( $option ) {
 	return true;
@@ -315,6 +331,7 @@ if ( ! function_exists( 'largo_google_analytics' ) ) {
 	add_action( 'wp_footer', 'largo_google_analytics' );
 }
 
+
 require_once( dirname( __FILE__ ) . '/inc/registration.php' );
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -324,12 +341,14 @@ if ( is_plugin_active( 'wpjobboard/index.php' ) ) {
 	require_once( dirname( __FILE__ ) . '/inc/gravityforms/events-calendar.php' );
 }
 
+
 function remove_cc_registration_filter() {
 	global $pagenow;
 	if ( $pagenow == 'user-new.php' )
 		remove_filter( 'wpmu_signup_user_notification', 'constant_contact_register_post_multisite', 10 );
 }
 add_action( 'plugins_loaded', 'remove_cc_registration_filter', 2 );
+
 
 function create_neighborhoods_taxonomy() {
 
