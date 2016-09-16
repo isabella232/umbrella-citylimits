@@ -333,3 +333,32 @@ function remove_cc_registration_filter() {
 		remove_filter('wpmu_signup_user_notification', 'constant_contact_register_post_multisite', 10);
 }
 add_action('plugins_loaded', 'remove_cc_registration_filter', 2);
+
+function create_neighborhoods_taxonomy() {
+
+	$labels = array(
+		'name'                       => _x( 'Neighborhoods', 'Taxonomy General Name', 'citylimits' ),
+		'singular_name'              => _x( 'Neighborhood', 'Taxonomy Singular Name', 'citylimits' ),
+		'menu_name'                  => __( 'Neighborhoods', 'citylimits' ),
+		'all_items'                  => __( 'All Neighborhoods', 'citylimits' ),
+		'parent_item'                => __( 'Parent Neighborhood', 'citylimits' ),
+		'parent_item_colon'          => __( 'Parent Neighborhood:', 'citylimits' ),
+		'new_item_name'              => __( 'New Neighborhood', 'citylimits' ),
+		'add_new_item'               => __( 'Add New Neighborhood', 'citylimits' ),
+		'edit_item'                  => __( 'Edit Neighborhood', 'citylimits' ),
+		'update_item'                => __( 'Update Neighborhood', 'citylimits' ),
+		'view_item'                  => __( 'View Neighborhood', 'citylimits' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'neighborhoods', array( 'post' ), $args );
+
+}
+add_action( 'init', 'create_neighborhoods_taxonomy', 0 );
