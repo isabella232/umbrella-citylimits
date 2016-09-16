@@ -325,3 +325,11 @@ if ( is_plugin_active( 'wpjobboard/index.php' ) ) {
 } elseif ( is_plugin_active( 'gravityforms/gravityforms.php' ) ) {
 	require_once( dirname( __FILE__ ) . '/inc/gravityforms/events-calendar.php' );
 }
+
+function remove_cc_registration_filter() {
+	global $pagenow;
+
+	if ($pagenow == 'user-new.php')
+		remove_filter('wpmu_signup_user_notification', 'constant_contact_register_post_multisite', 10);
+}
+add_action('plugins_loaded', 'remove_cc_registration_filter', 2);
