@@ -1,0 +1,321 @@
+/*
+Theme Name:     City Limits
+Theme URI:      http://largoproject.org
+Description:    A child theme for City Limits based on the Project Largo parent theme.
+Author:         INN
+Author URI:     http://largoproject.org
+Template:       Largo
+Version:        1.0
+*/
+
+a {
+  color: #D41313;
+  text-decoration: none;
+}
+a:hover, a:active {
+  color: #f61212;
+  text-decoration: underline;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: #343434;
+  text-decoration: none;
+}
+h1 a:hover, h1 a:active,
+h2 a:hover, h2 a:active,
+h3 a:hover, h3 a:active,
+h4 a:hover, h4 a:active,
+h5 a:hover, h5 a:active,
+h6 a:hover, h6 a:active {
+  color: #666;
+  text-decoration: none;
+}
+
+.btn-primary {
+  color: #eee;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #D41313;
+  border: 1px solid #D41313;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #f61212;
+}
+
+body.clean-read.single-post.classic #content {
+  margin: 0 auto;
+}
+
+/* Homepage layouts */
+.home #dark-top h5.top-tag a {
+	color: #D41313;
+}
+.home #dark-top h5 a:hover {
+	color: #f61212;
+}
+.home #dark-top .side-featured article {
+	border-top: 3px solid #343434;
+}
+/* Homepage alert */
+.alert-wrapper {
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  color: #a94442;
+}
+#alert-container .widgettitle {
+  color: #a94442;
+}
+#alert-container {
+  color: #343434;
+}
+#alert-container a {
+  color: #D41313;
+}
+
+/* Header */
+#site-header {
+  text-align: center;
+  width: 33%;
+  max-width: 410px;
+}
+#site-header img {
+  margin: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Leaderboard ad */
+.header-ad-zone {
+  float: right;
+  text-align: center;
+  position: relative;
+  top: 30px;
+}
+.header-ad-zone div[id^="div-gpt-ad"] {
+  margin: 0 auto;
+}
+.header-ad-zone .widget {
+  margin-bottom: 0;
+}
+
+/* Footer */
+#site-footer a {
+  color: #cccccc;
+}
+#site-footer a:hover,
+#site-footer a:active {
+  color: #f1f1f1;
+}
+#site-footer a.btn-primary {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Sticky posts */
+.sticky-related, .sticky-solo {
+background-color: #f61212;
+border: 1px solid #D41313;
+}
+
+/* Homepage */
+.home #content .widget .post-lead {
+  margin-bottom: 26px;
+}
+
+.TopStories #homepage-featured {
+  border: none;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 0;
+  border-radius: 0;
+  margin-top: 22px;
+}
+.TopStories #homepage-featured .sub-stories .story:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.TopStories #homepage-featured .top-story {
+  padding: 0 10px 0 0;
+  margin-bottom: 1em;
+}
+.TopStories #homepage-featured .top-story p {
+  font-size: 16px;
+}
+.TopStories #homepage-featured .sub-stories {
+  padding: 0 10px 10px 0;
+}
+.TopStories #homepage-featured .sub-stories .story p {
+  font-size: 13px;
+}
+
+/* Job categories widget */
+.widget_wpjb-job-categories ul {
+  list-style-type: none;
+}
+
+/* User registration form */
+form .form-group {
+	margin: 10px 0;
+}
+form label {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	margin: 10px 0;
+}
+form input {
+	margin: 0 0 18px 0;
+}
+form input[type="checkbox"],
+form input[type="radio"] {
+	margin: 0 10px 0 0;
+}
+form .alert-error {
+	color: #b94a48;
+	font-size: 14px;
+}
+span#recaptcha_privacy { display: none; }
+
+#largo-user-logged-in-message,
+#largo-registration-success-msg {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#largo-user-logged-in-message a,
+#largo-registration-success-msg a {
+	text-decoration: underline;
+}
+
+/* Events */
+.tribe-events-user-recurrence-toggle input {
+	margin-right: 10px;
+}
+
+.tribe-events-calendar td.tribe-events-present div[id*="tribe-events-daynum-"],
+.tribe-events-calendar td.tribe-events-present div[id*="tribe-events-daynum-"]>a,
+#tribe_events_filters_wrapper input[type=submit],
+.tribe-events-button,
+#tribe-events .tribe-events-button,
+.tribe-events-button.tribe-inactive,
+#tribe-events .tribe-events-button:hover,
+.tribe-events-button:hover,
+.tribe-events-button.tribe-active:hover {
+	background-color: #f61212;
+}
+
+/* Job board */
+.wpjb-flash-error {
+	font-size: 22px;
+	font-weight: bold;
+	background-color: transparent !important;
+	padding: 0 !important;
+	border: none !important;
+}
+
+body .wpjb .wpjb-login-message ol {
+  margin: 20px 0;
+}
+body .wpjb .wpjb-login-message ol li {
+  margin-left: 20px;
+}
+.wpjb-login-message .cl-job-posting-types {
+  margin: 20px 0;
+}
+
+.wpjb-login-message a {
+	text-decoration: underline;
+}
+
+/* Media queries */
+@media (max-width: 1200px) {
+  .global-nav .nav-right ul#header-social.visible-desktop {
+    display: none;
+  }
+}
+
+@media (max-width: 1160px) {
+  .header-ad-zone {
+    float: none;
+    text-align: left;
+    top: 5px;
+  }
+  .header-ad-zone div[id^="div-gpt-ad"] {
+    margin: 0 auto;
+  }
+  .header-ad-zone #header-ad-zone-container {
+    width: 100%;
+  }
+  #site-header {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+  #site-header img {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 980px) {
+  .home #content .widget {
+    border-top: none;
+    margin-top: 10px;
+    padding: 0;
+    width: 46%;
+  }
+}
+
+@media (max-width: 980px) {
+  .global-nav ul {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .TopStories #homepage-featured .sub-stories {
+    padding: 20px 0 10px 0;
+  }
+  .TopStories #homepage-featured .sub-stories .story p {
+    font-size: 16px;
+  }
+  .TopStories .sub-stories img {
+    float: left;
+    max-width: 35%;
+    margin: 0 10px 0 0;
+  }
+  .TopStories #homepage-featured .sub-stories h3 {
+    font-size: 18px;
+  }
+  .home #content .widget {
+    width: 95%;
+    padding: 0;
+  }
+
+  /* Single post page */
+  .single-post.classic #sidebar {
+    margin-left: 0;
+    width: 100%;
+  }
+  #sidebar div[id^="div-gpt-ad"] {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 728px) {
+  .header-ad-zone {
+    text-align: center;
+  }
+  .header-ad-zone #header-ad-zone-container {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 480px) {
+  .home #main {
+    margin-top: 0;
+  }
+}
