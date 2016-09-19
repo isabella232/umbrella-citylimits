@@ -24,7 +24,6 @@ module.exports = function(grunt) {
       compile: {
         options: {
           paths: ['less'],
-          sourceMap: true,
           outputSourceFiles: true,
           sourceMapBasepath: path,
         },
