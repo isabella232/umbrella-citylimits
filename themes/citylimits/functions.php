@@ -301,7 +301,7 @@ add_filter( 'pre_option_users_can_register', 'citylimits_users_can_register', 1,
 
 
 function citylimits_google_analytics() {
-	if ( ! is_user_logged_in() ) // don't track logged in users ?>
+	if ( ! is_user_logged_in() ) { // don't track logged in users ?>
 		<script>
 			var _gaq = _gaq || [];
 		<?php if ( of_get_option( 'ga_id', true ) ) : // make sure the ga_id setting is defined ?>
