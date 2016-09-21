@@ -337,7 +337,8 @@ require_once( dirname( __FILE__ ) . '/inc/registration.php' );
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if ( is_plugin_active( 'wpjobboard/index.php' ) ) {
 	require_once( dirname( __FILE__ ) . '/inc/job-board.php' );
-} elseif ( is_plugin_active( 'gravityforms/gravityforms.php' ) ) {
+}
+if ( is_plugin_active( 'gravityforms/gravityforms.php' ) ) {
 	require_once( dirname( __FILE__ ) . '/inc/gravityforms/events-calendar.php' );
 }
 
