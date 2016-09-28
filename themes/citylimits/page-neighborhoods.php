@@ -2,7 +2,7 @@
 /**
  * Page Template: The Future of NYC Neighborhoods
  * Template Name: Rezone Project
- * Description: Custom landing page for the ReZone project with the /neighborhoods/ slug 
+ * Description: Custom landing page for the ReZone project with the /neighborhoods/ slug
  */
 
 global $shown_ids;
@@ -31,38 +31,41 @@ get_header();
 		</div>
 	</div>
 </div>
-<section class="rezone-overview">
-	<div class="row-fluid">
-		<div class="span12">
-			<?php the_content(); ?>
-		</div>
-	</div>
 
-	<?php
-	$args = array(
-	    'posts_per_page' => 3,
-	    'order'          => 'DESC',
-	    'post_parent'    => $post->ID,
-	    'post_type'      => 'page'
-	    );
-	 
-	$get_children_array = get_children( $args,ARRAY_A );  //returns Array ( [$image_ID].
-	?>
-
-	<?php if ( count( $get_children_array ) > 0 ) : ?>
+<?php while ( have_posts() ) : the_post(); ?>
+	<section class="rezone-overview">
 		<div class="row-fluid">
-			<?php foreach ( $get_children_array as $child ) : ?>
-				<?php setup_postdata( get_post( $child['ID'] ) ); ?>
-				<div class="span4">
-					<h3><?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '">' .  get_the_title( $child['ID'] ) . '</a>'; ?></h3>
-					<p><?php echo get_the_excerpt( $child['ID'] ); ?></p>
-					<?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '">Read More ></a>'; ?>
-				</div>
-			<?php endforeach; ?>
+			<div class="span12">
+					<?php the_content(); ?>
+			</div>
 		</div>
-	<?php endif; ?>
-	<?php rewind_posts(); ?>
-</section>
+
+		<?php
+		$args = array(
+		    'posts_per_page' => 3,
+		    'order'          => 'DESC',
+		    'post_parent'    => $post->ID,
+		    'post_type'      => 'page'
+		    );
+
+		$get_children_array = get_children( $args,ARRAY_A );  //returns Array ( [$image_ID].
+		?>
+
+		<?php if ( count( $get_children_array ) > 0 ) : ?>
+			<div class="row-fluid">
+				<?php foreach ( $get_children_array as $child ) : ?>
+					<?php setup_postdata( get_post( $child['ID'] ) ); ?>
+					<div class="span4">
+						<h3><?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '">' .  get_the_title( $child['ID'] ) . '</a>'; ?></h3>
+						<p><?php echo get_the_excerpt( $child['ID'] ); ?></p>
+						<?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '">Read More ></a>'; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+		<?php rewind_posts(); ?>
+	</section>
+<?php endwhile; ?>
 
 <section>
 	<div class="row-fluid">
@@ -77,7 +80,7 @@ get_header();
 	<div class="row-fluid">
 		<div class="span12">
 			<h3>Rezone Plan Status</h3>
-			
+
 		</div>
 	</div>
 </section>
@@ -106,22 +109,22 @@ get_header();
 <div class="bottom-ctas">
 	<div class="span3">
 		<h5 class="btn">Get Involved</h5>
-	</div>	
+	</div>
 	<div class="span3">
 		<h5 class="btn">Share Your Views</h5>
-	</div>	
+	</div>
 	<div class="span3">
 		<h5 class="btn">Events Calendar</h5>
-	</div>	
+	</div>
 	<div class="span3">
 		<h5 class="btn">Get the Newsletter</h5>
 		<a href="#" class="btn more">More News</a>
-	</div>	
+	</div>
 </div>
 
 <section class="commentary">
 	<div class="span4">
-		<?php // @TODO Commentary posts ?> 
+		<?php // @TODO Commentary posts ?>
 		<a href="#" class="btn more">More Commentary</a>
 	</div>
 	<div class="span8">
