@@ -308,11 +308,7 @@ body .wpjb .wpjb-login-message ol li {
 body.page-template-page-neighborhoods h1.entry-title {
   font-size: 1.5em;
 }
-body.page-template-page-neighborhoods h1 a,
-body.page-template-page-neighborhoods h2 a,
-body.page-template-page-neighborhoods h3 a,
-body.page-template-page-neighborhoods h4 a,
-body.page-template-page-neighborhoods h5 a {
+body.page-template-page-neighborhoods h2 {
   color: #d41313;
 }
 body.page-template-page-neighborhoods h3 {
@@ -333,6 +329,9 @@ body.page-template-page-neighborhoods section.rezone-101 p {
   font-size: 1.5em;
   margin-bottom: .5em;
 }
+body.page-template-page-neighborhoods section.map h3 a {
+  color: #d41313;
+}
 body.page-template-page-neighborhoods section.map .plan-status {
   padding-top: 2em;
 }
@@ -344,6 +343,26 @@ body.page-template-page-neighborhoods .bottom-ctas .span3 h5.btn {
   color: #fff;
   padding: 1em 2em;
   font-size: 1.25em;
+}
+body.page-template-page-neighborhoods section.news h3 {
+  margin-bottom: .25em;
+}
+body.page-template-page-neighborhoods section.news h3,
+body.page-template-page-neighborhoods section.news h3 a,
+body.page-template-page-neighborhoods section.news h5 {
+  color: #000;
+}
+body.page-template-page-neighborhoods section.news .news-feature {
+  background: #ccc;
+  padding: 1em;
+}
+body.page-template-page-neighborhoods section.news h3,
+body.page-template-page-neighborhoods section.commentary h3 {
+  margin-bottom: .25em;
+}
+body.page-template-page-neighborhoods section.commentary .form {
+  background: #ccc;
+  padding: 1em;
 }
 body.page-template-page-neighborhoods section.documents {
   padding-bottom: 2em;

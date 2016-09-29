@@ -70,7 +70,7 @@ get_header();
 </section>
 
 <section class="map">
-	<h3>Proposed Rezoning</h3>
+	<h2>Proposed Rezoning</h2>
 	<div class="row-fluid">
 		<div class="span8">
 			<?php
@@ -86,33 +86,33 @@ get_header();
 			<?php // @TODO How do we want to pull in Mayor de Blasio's Plan? Used the quick/dirty post_id method here for now ?>
 			<h5><a href="<?php echo get_permalink( '891922' ); ?>" title="<?php echo get_the_title( '891922' ); ?>"><?php echo get_the_title( '891922' ); ?></a></h5>
 			<?php
-			$deblasios_plan = get_post( '891922' ); 
-			$content = apply_filters( 'the_content', wpautop( $deblasios_plan->post_content ) ); 
+			$deblasios_plan = get_post( '891922' );
+			$content = apply_filters( 'the_content', wpautop( $deblasios_plan->post_content ) );
 			echo '<p>' . wp_trim_words( $content, 75 ) . '</p>';
 			echo '<p><a href="' . get_permalink( '891922' ) . '" title="Read More of ' . get_the_title( '891922' ) . '">Read More ></a></p>';
 
 			/**
 			 * @TODO Review
-			 * wp_trim_words() removes whitespace added by wpautop(). 
+			 * wp_trim_words() removes whitespace added by wpautop().
 			 * If we want to trim to word length, but still have paragraph breaks, we'll need an alternate method.
 			 */
 			?>
 		</div>
 	</div>
 	<div class="plan-status">
-		<h3>Rezone Plan Status</h3>
+		<h2>Rezone Plan Status</h2>
 		<?php
 		$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
 		$count = 0;
 		?>
-		<?php foreach ( $neighborhoods as $neighborhood ) : ?> 
-			<?php if ( 0 == $count%4 ) : ?> 
+		<?php foreach ( $neighborhoods as $neighborhood ) : ?>
+			<?php if ( 0 == $count%4 ) : ?>
 				<div class="row-fluid">
 			<?php endif; ?>
 				<div class="span3">
 					<h5><?php echo $neighborhood->name; ?><div class="circle green"></div></h5>
 				</div>
-			<?php if ( 3 == $count%4 ) : ?> 
+			<?php if ( 3 == $count%4 ) : ?>
 				</div>
 			<?php endif; ?>
 			<?php $count++; ?>
@@ -121,24 +121,87 @@ get_header();
 </section>
 
 <section class="news">
-	<h3>Latest News</h3>
+	<h2>Latest News</h2>
 	<div class="row-fluid">
-		<div class="span8">
-
-		</div>
-		<div class="span4">
-
-			<a href="#" class="btn more">More News</a>
-		</div>
+		<?php
+		$args = array (
+			'posts_per_page' => '3',
+			'post__not_in' 	 => $shown_ids
+		);
+		$recent_posts = new WP_Query( $args );
+		if ( $recent_posts->have_posts() ) :
+			$count = 0;
+			while ( $recent_posts->have_posts() ) : $recent_posts->the_post(); $shown_ids[] = get_the_id();
+			?>
+				<?php if ( 0 == $count ) : ?>
+					<div class="news-feature span8">
+						<div class="span6">
+							<?php the_post_thumbnail( 'full' ); ?>
+						</div>
+						<div class="span6">
+							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+							<p><?php the_excerpt(); ?></p>
+							<a href="<?php the_permalink(); ?>">Read More ></a>
+						</div>
+					</div>
+				<?php elseif ( 1 == $count ) : ?>
+					<div class="span4">
+						<div <?php post_class( 'story' ); ?> >
+							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+						</div>
+				<?php elseif ( 3 == $count ) : ?>
+						<div <?php post_class( 'story' ); ?> >
+							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+						</div>
+						<a href="<?php // @TODO ?>" class="btn more">More News</a>
+					</div>
+				<?php else : ?>
+						<div <?php post_class( 'story' ); ?> >
+							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+						</div>
+				<?php endif; ?>
+			<?php $count++; ?>
+			<?php endwhile; ?>
+		<?php endif; // end more featured posts ?>
 	</div>
 </section>
 
 <section class="videos">
-	<h3>Videos</h3>
+	<h2>Videos</h2>
 	<div class="row-fluid">
-		<div class="span4">
+		<?php
+		$args = array (
+			'tax_query' => array(
+				array(
+					'taxonomy' 	=> 'category',
+					'field' 	=> 'slug',
+					'terms' 	=> array( 'video' )
+				)
+			),
+			'posts_per_page' => '3',
+			'post__not_in' 	 => $shown_ids
 
-		</div>
+		);
+		$videos = new WP_Query( $args );
+		?>
+		<?php if ( $videos->have_posts() ) : ?>
+			<?php $count = 0; ?>
+			<?php while ( $videos->have_posts() ) : $videos->the_post(); $shown_ids[] = get_the_id(); ?>
+				<div class="span4">
+					<?php the_post_thumbnail( 'full' ); ?>
+					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+					<?php if ( 2 == $count ) : ?>
+						<a href="<?php // @TODO ?>" class="btn more">More News</a>
+					<?php endif; ?>
+				</div>
+				<?php $count++; ?>
+			<?php endwhile; ?>
+		<?php endif; ?>
 	</div>
 </section>
 
@@ -158,30 +221,75 @@ get_header();
 </div>
 
 <section class="commentary">
-	<h3>Commentary</h3>
+	<h2>Commentary</h2>
 	<div class="row-fluid">
 		<div class="span4">
-			<?php // @TODO Commentary posts ?>
-			<a href="#" class="btn more">More Commentary</a>
+			<?php
+			$args = array (
+				'tax_query' => array(
+					array(
+						'taxonomy' 	=> 'category',
+						'field' 	=> 'slug',
+						'terms' 	=> array( 'video' ) // @TODO - change to appropriate tag
+					)
+				),
+				'posts_per_page' => '3',
+				'post__not_in' 	 => $shown_ids
+
+			);
+			$commentary = new WP_Query( $args );
+			?>
+			<?php if ( $commentary->have_posts() ) : ?>
+				<?php $count = 0; ?>
+				<?php while ( $commentary->have_posts() ) : $commentary->the_post(); $shown_ids[] = get_the_id(); ?>
+					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+				<?php endwhile; ?>
+			<?php endif; ?>
+			<a href="<?php // @TODO ?>" class="btn more">More Commentary</a>
 		</div>
-		<div class="span8">
+		<div class="span8 form">
 			<?php // @TODO Make Your Voice Heard form ?>
 		</div>
 	</div>
 </section>
 
 <section class="documents">
-	<h3>Documents</h3>
+	<h2>Documents</h2>
 	<div class="row-fluid">
-		<div class="span4">
+		<?php
+		$args = array (
+			'tax_query' => array(
+				array(
+					'taxonomy' 	=> 'category',
+					'field' 	=> 'slug',
+					'terms' 	=> array( 'video' ) // @TODO - change to appropriate tag
+				)
+			),
+			'posts_per_page' => '9',
+			'post__not_in' 	 => $shown_ids
 
-		</div>
-		<div class="span4">
-
-		</div>
-		<div class="span4">
-
-			<a href="#" class="btn more">More Documents</a>
+		);
+		$documents = new WP_Query( $args );
+		?>
+		<?php if ( $documents->have_posts() ) : ?>
+			<?php $count = 0; ?>
+			<?php while ( $documents->have_posts() ) : $documents->the_post(); $shown_ids[] = get_the_id(); ?>
+				<?php if ( 0 == $count%3 ) : ?>
+					<div class="row-fluid">
+				<?php endif; ?>
+					<div class="span4">
+						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<?php if ( 8 == $count ) : ?>
+						<a href="<?php // @TODO ?>" class="btn more">More Documents</a>
+					<?php endif; ?>
+					</div>
+				<?php if ( 2 == $count%3 ) : ?>
+					</div>
+				<?php endif; ?>
+				<?php $count++; ?>
+			<?php endwhile; ?>
+		<?php endif; ?>
 		</div>
 	</div>
 </sections>
