@@ -8,6 +8,8 @@ Template:       Largo
 Version:        1.0
 */
 
+@red: #D41313;
+
 a {
   color: #D41313;
   text-decoration: none;
@@ -317,5 +319,71 @@ body .wpjb .wpjb-login-message ol li {
 @media screen and (max-width: 480px) {
   .home #main {
     margin-top: 0;
+  }
+}
+
+/**
+ * Rezone Project
+ */
+body.page-template-page-neighborhoods {
+  h1.entry-title {
+    font-size: 1.5em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    a {
+      color: @red;
+    }
+  }
+
+  h3 {
+    font-size: 1.5em;
+    color: @red;
+  }
+
+  section.rezone-overview .span12 p {
+    font-size: 1.9em;
+  }
+
+  section,
+  .bottom-ctas {
+    padding-top: 2em;
+    margin-top: 2em;
+    border-top: solid 2px #ccc;
+  }
+
+  section.rezone-101 {
+    h3,
+    p {
+      font-size: 1.5em;
+      margin-bottom: .5em;
+    }
+  }
+
+  section.map {
+    .plan-status {
+      padding-top: 2em;
+    }
+  } 
+
+  .bottom-ctas {
+    .span3 {
+      text-align: center;
+
+      h5.btn {
+        background: @red;
+	color: #fff;
+	padding: 1em 2em;
+	font-size: 1.25em;
+      }
+    }
+  }
+
+  section.documents {
+    padding-bottom: 2em;
   }
 }

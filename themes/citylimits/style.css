@@ -4,7 +4,7 @@ Theme URI:      http://largoproject.org
 Description:    A child theme for City Limits based on the Project Largo parent theme.
 Author:         INN
 Author URI:     http://largoproject.org
-Template:       largo-dev
+Template:       Largo
 Version:        1.0
 */
 a {
@@ -301,4 +301,50 @@ body .wpjb .wpjb-login-message ol li {
   .home #main {
     margin-top: 0;
   }
+}
+/**
+ * Rezone Project
+ */
+body.page-template-page-neighborhoods h1.entry-title {
+  font-size: 1.5em;
+}
+body.page-template-page-neighborhoods h1 a,
+body.page-template-page-neighborhoods h2 a,
+body.page-template-page-neighborhoods h3 a,
+body.page-template-page-neighborhoods h4 a,
+body.page-template-page-neighborhoods h5 a {
+  color: #d41313;
+}
+body.page-template-page-neighborhoods h3 {
+  font-size: 1.5em;
+  color: #d41313;
+}
+body.page-template-page-neighborhoods section.rezone-overview .span12 p {
+  font-size: 1.9em;
+}
+body.page-template-page-neighborhoods section,
+body.page-template-page-neighborhoods .bottom-ctas {
+  padding-top: 2em;
+  margin-top: 2em;
+  border-top: solid 2px #ccc;
+}
+body.page-template-page-neighborhoods section.rezone-101 h3,
+body.page-template-page-neighborhoods section.rezone-101 p {
+  font-size: 1.5em;
+  margin-bottom: .5em;
+}
+body.page-template-page-neighborhoods section.map .plan-status {
+  padding-top: 2em;
+}
+body.page-template-page-neighborhoods .bottom-ctas .span3 {
+  text-align: center;
+}
+body.page-template-page-neighborhoods .bottom-ctas .span3 h5.btn {
+  background: #d41313;
+  color: #fff;
+  padding: 1em 2em;
+  font-size: 1.25em;
+}
+body.page-template-page-neighborhoods section.documents {
+  padding-bottom: 2em;
 }

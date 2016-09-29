@@ -15,7 +15,7 @@ add_filter('body_class', function($classes) {
 get_header();
 ?>
 
-<div id="rezone-header">
+<div class="rezone-header">
 	<div class="row-fluid">
 		<div class="span6">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
@@ -26,7 +26,7 @@ get_header();
 	</div>
 	<div class="row-fluid">
 		<div class="span12">
-			<?php // @TODO Rezone Header Img ?>
+			<img src="/wp-content/themes/citylimits/img/rezone-logo.jpg" alt="Rezone Project Logo" width="100%" />
 			<?php // @TODO Rezone Menu ?>
 		</div>
 	</div>
@@ -40,7 +40,9 @@ get_header();
 			<?php endwhile; ?>
 		</div>
 	</div>
+</section>
 
+<section class="rezone-101">
 	<?php
 	$args = array(
 	    'posts_per_page' => 3,
@@ -67,25 +69,52 @@ get_header();
 	<?php rewind_posts(); ?>
 </section>
 
-<section>
+<section class="map">
+	<h3>Proposed Rezoning</h3>
 	<div class="row-fluid">
 		<div class="span8">
-			<h3>Proposed Rezoning</h3>
-			<?php // @TODO Map ?>
+			<?php // @TODO Add Map ?>
+			<div style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div>
 		</div>
 		<div class="span4">
-			<?php // @TODO Mayor de Blasio's Plan ?>
+			<?php // @TODO How do we want to pull in Mayor de Blasio's Plan? Used the quick/dirty post_id method here for now ?>
+			<h5><a href="<?php echo get_permalink( '891922' ); ?>" title="<?php echo get_the_title( '891922' ); ?>"><?php echo get_the_title( '891922' ); ?></a></h5>
+			<?php
+			$deblasios_plan = get_post( '891922' ); 
+			$content = apply_filters( 'the_content', wpautop( $deblasios_plan->post_content ) ); 
+			echo '<p>' . wp_trim_words( $content, 75 ) . '</p>';
+			echo '<p><a href="' . get_permalink( '891922' ) . '" title="Read More of ' . get_the_title( '891922' ) . '">Read More ></a></p>';
+
+			/**
+			 * @TODO Review
+			 * wp_trim_words() removes whitespace added by wpautop(). 
+			 * If we want to trim to word length, but still have paragraph breaks, we'll need an alternate method.
+			 */
+			?>
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span12">
-			<h3>Rezone Plan Status</h3>
-
-		</div>
+	<div class="plan-status">
+		<h3>Rezone Plan Status</h3>
+		<?php
+		$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
+		$count = 0;
+		?>
+		<?php foreach ( $neighborhoods as $neighborhood ) : ?> 
+			<?php if ( 0 == $count%4 ) : ?> 
+				<div class="row-fluid">
+			<?php endif; ?>
+				<div class="span3">
+					<h5><?php echo $neighborhood->name; ?></h5>
+				</div>
+			<?php if ( 3 == $count%4 ) : ?> 
+				</div>
+			<?php endif; ?>
+			<?php $count++; ?>
+		<?php endforeach; ?>
 	</div>
 </section>
 
-<section>
+<section class="news">
 	<h3>Latest News</h3>
 	<div class="row-fluid">
 		<div class="span8">
@@ -93,11 +122,12 @@ get_header();
 		</div>
 		<div class="span4">
 
+			<a href="#" class="btn more">More News</a>
 		</div>
 	</div>
 </section>
 
-<section>
+<section class="videos">
 	<h3>Videos</h3>
 	<div class="row-fluid">
 		<div class="span4">
@@ -106,7 +136,7 @@ get_header();
 	</div>
 </section>
 
-<div class="bottom-ctas">
+<div class="bottom-ctas row-fluid">
 	<div class="span3">
 		<h5 class="btn">Get Involved</h5>
 	</div>
@@ -118,30 +148,35 @@ get_header();
 	</div>
 	<div class="span3">
 		<h5 class="btn">Get the Newsletter</h5>
-		<a href="#" class="btn more">More News</a>
 	</div>
 </div>
 
 <section class="commentary">
-	<div class="span4">
-		<?php // @TODO Commentary posts ?>
-		<a href="#" class="btn more">More Commentary</a>
-	</div>
-	<div class="span8">
-		<?php // @TODO Make Your Voice Heard form ?>
+	<h3>Commentary</h3>
+	<div class="row-fluid">
+		<div class="span4">
+			<?php // @TODO Commentary posts ?>
+			<a href="#" class="btn more">More Commentary</a>
+		</div>
+		<div class="span8">
+			<?php // @TODO Make Your Voice Heard form ?>
+		</div>
 	</div>
 </section>
 
 <section class="documents">
-	<div class="span4">
+	<h3>Documents</h3>
+	<div class="row-fluid">
+		<div class="span4">
 
-	</div>
-	<div class="span4">
+		</div>
+		<div class="span4">
 
-	</div>
-	<div class="span4">
+		</div>
+		<div class="span4">
 
-		<a href="#" class="btn more">More Documents</a>
+			<a href="#" class="btn more">More Documents</a>
+		</div>
 	</div>
 </sections>
 
