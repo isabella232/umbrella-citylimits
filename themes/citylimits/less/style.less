@@ -386,4 +386,19 @@ body.page-template-page-neighborhoods {
   section.documents {
     padding-bottom: 2em;
   }
+
+  .circle {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    border-radius: 1em;
+    margin-left: .5em;
+    position: relative;
+    top: .125em;
+
+    &.green { background: green; }
+    &.yellow { background: yellow; }
+    &.red { background: @red; }
+
+  }
 }

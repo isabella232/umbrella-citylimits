@@ -73,7 +73,13 @@ get_header();
 	<h3>Proposed Rezoning</h3>
 	<div class="row-fluid">
 		<div class="span8">
-			<?php // @TODO Add Map ?>
+			<?php
+			/**
+			 *  @TODO Add Map
+			 *  Google Map Wizard has some styles that will work really well here - https://mapstyle.withgoogle.com
+			 *  We'll need an API key for this
+			 */
+			?>
 			<div style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div>
 		</div>
 		<div class="span4">
@@ -104,7 +110,7 @@ get_header();
 				<div class="row-fluid">
 			<?php endif; ?>
 				<div class="span3">
-					<h5><?php echo $neighborhood->name; ?></h5>
+					<h5><?php echo $neighborhood->name; ?><div class="circle green"></div></h5>
 				</div>
 			<?php if ( 3 == $count%4 ) : ?> 
 				</div>
