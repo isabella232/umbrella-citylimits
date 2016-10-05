@@ -21,4 +21,17 @@ At this point, your repository will be very confused. From the point of view of 
 
 Change back to the `/` root of the WordPress install.
 
+```sh
+mv wp-content/.gi* .
+mv wp-content/docs .
+mv wp-content/README.md .
+mv wp-content/wp-content/ ./content
+mv content/* wp-content/
+```
 
+And that should get you most of the way back to a working wordpress install. What you did was:
+
+- move the .git directory from `/wp-content/` to `/`, so that the root directory is tracked
+- move some miscellaneous files back to their proper positions relative to the git root
+- move the themes and plugins back to their proper positions relative to the git root
+- not mess up the location of the uploads directory
