@@ -223,24 +223,6 @@ function citylimits_save_user_profile_fields( $user_id ) {
 add_action( 'personal_options_update', 'citylimits_save_user_profile_fields' );
 
 
-/**
- * Configuration for DFP plugin
- */
-function citylimits_configure_dfp() {
-
-    global $DoubleClick;
-
-    $DoubleClick->networkCode = "1291657";
-
-    /* breakpoints */
-    $DoubleClick->register_breakpoint( 'phone', array( 'minWidth'=>0, 'maxWidth'=>769 ) );
-    $DoubleClick->register_breakpoint( 'tablet', array( 'minWidth'=>769, 'maxWidth'=>980 ) );
-    $DoubleClick->register_breakpoint( 'desktop', array( 'minWidth'=>980, 'maxWidth'=>9999 ) );
-
-}
-add_action( 'dfw_setup', 'citylimits_configure_dfp' );
-
-
 /* Customize job add page title */
 function customize_job_add_page_title( $arg ) {
 	if ( trim( $arg ) == 'Create Ad')
@@ -379,3 +361,20 @@ function create_neighborhoods_taxonomy() {
 
 }
 add_action( 'init', 'create_neighborhoods_taxonomy', 0 );
+
+/**
+ * Configuration for DFP plugin
+ */
+function citylimits_configure_dfp() {
+
+    global $DoubleClick;
+
+    $DoubleClick->networkCode = "1291657";
+
+    /* breakpoints */
+    $DoubleClick->register_breakpoint( 'phone', array( 'minWidth'=>0, 'maxWidth'=>769 ) );
+    $DoubleClick->register_breakpoint( 'tablet', array( 'minWidth'=>769, 'maxWidth'=>980 ) );
+    $DoubleClick->register_breakpoint( 'desktop', array( 'minWidth'=>980, 'maxWidth'=>9999 ) );
+
+}
+// add_action( 'dfw_setup', 'citylimits_configure_dfp' );
