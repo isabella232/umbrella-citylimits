@@ -5,6 +5,7 @@ wp-content/themes/twenty*
 data/*
 files/*
 wp-scripts/*
+wp-content/themes/citylimits/node_modules/*
 
 *~
 .DS_Store

@@ -162,7 +162,7 @@ function citylimits_custom_signup_fields_late( $values ) {
 		echo recaptcha_get_html( RECAPCHA_PUBLIC_KEY );
 		if ( $errmsg = $errors->get_error_message( 'recaptcha' ) ) : ?>
 			<p class="alert alert-error"><?php echo $errmsg; ?></p>
-		<? endif; ?>
+		<?php endif; ?>
 	</div>
 	<?php
 }
