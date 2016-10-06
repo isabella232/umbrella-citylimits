@@ -42,6 +42,41 @@ get_header();
 	</div>
 </section>
 
+<section class="map">
+	<h2>Proposed Rezoning</h2>
+	<div class="row-fluid">
+		<div class="span12">
+			<?php
+			/**
+			 *  @TODO Add Map
+			 *  Google Map Wizard has some styles that will work really well here - https://mapstyle.withgoogle.com
+			 *  We'll need an API key for this
+			 */
+			?>
+			<div style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div>
+		</div>
+	</div>
+	<div class="plan-status">
+		<h2>Rezone Plan Status</h2>
+		<?php
+		$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
+		$count = 0;
+		?>
+		<?php foreach ( $neighborhoods as $neighborhood ) : ?>
+			<?php if ( 0 == $count%4 ) : ?>
+				<div class="row-fluid">
+			<?php endif; ?>
+				<div class="span3">
+					<h5><?php echo $neighborhood->name; ?><div class="circle green"></div></h5>
+				</div>
+			<?php if ( 3 == $count%4 ) : ?>
+				</div>
+			<?php endif; ?>
+			<?php $count++; ?>
+		<?php endforeach; ?>
+	</div>
+</section>
+
 <section class="rezone-101">
 	<?php
 	$args = array(
@@ -67,57 +102,6 @@ get_header();
 		</div>
 	<?php endif; ?>
 	<?php rewind_posts(); ?>
-</section>
-
-<section class="map">
-	<h2>Proposed Rezoning</h2>
-	<div class="row-fluid">
-		<div class="span8">
-			<?php
-			/**
-			 *  @TODO Add Map
-			 *  Google Map Wizard has some styles that will work really well here - https://mapstyle.withgoogle.com
-			 *  We'll need an API key for this
-			 */
-			?>
-			<div style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div>
-		</div>
-		<div class="span4">
-			<?php // @TODO How do we want to pull in Mayor de Blasio's Plan? Used the quick/dirty post_id method here for now ?>
-			<h5><a href="<?php echo get_permalink( '891922' ); ?>" title="<?php echo get_the_title( '891922' ); ?>"><?php echo get_the_title( '891922' ); ?></a></h5>
-			<?php
-			$deblasios_plan = get_post( '891922' );
-			$content = apply_filters( 'the_content', wpautop( $deblasios_plan->post_content ) );
-			echo '<p>' . wp_trim_words( $content, 75 ) . '</p>';
-			echo '<p><a href="' . get_permalink( '891922' ) . '" title="Read More of ' . get_the_title( '891922' ) . '">Read More ></a></p>';
-
-			/**
-			 * @TODO Review
-			 * wp_trim_words() removes whitespace added by wpautop().
-			 * If we want to trim to word length, but still have paragraph breaks, we'll need an alternate method.
-			 */
-			?>
-		</div>
-	</div>
-	<div class="plan-status">
-		<h2>Rezone Plan Status</h2>
-		<?php
-		$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
-		$count = 0;
-		?>
-		<?php foreach ( $neighborhoods as $neighborhood ) : ?>
-			<?php if ( 0 == $count%4 ) : ?>
-				<div class="row-fluid">
-			<?php endif; ?>
-				<div class="span3">
-					<h5><?php echo $neighborhood->name; ?><div class="circle green"></div></h5>
-				</div>
-			<?php if ( 3 == $count%4 ) : ?>
-				</div>
-			<?php endif; ?>
-			<?php $count++; ?>
-		<?php endforeach; ?>
-	</div>
 </section>
 
 <section class="news">
