@@ -323,9 +323,92 @@ body .wpjb .wpjb-login-message ol li {
 }
 
 /**
- * Rezone Project
+ * Rezone / ZoneIn Project 
  */
 body.page-template-page-neighborhoods {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  * {
+    box-sizing:border-box;
+  }
+
+  .sticky-nav-wrapper,
+  .header-ad-zone,
+  #site-header,
+  #main-nav {
+    display:none;
+  }
+
+  .rezone-header {
+    margin-top: 2em;
+  }
+
+  ul#menu-zone-in {
+    list-style: none;
+    margin:0;
+    border-top:4px solid @red;
+    border-bottom: 1px solid black;
+
+    >.menu-item {
+      display:inline-block;
+      position:relative;
+      min-width: 10%;
+      max-width: 18%;
+      margin-bottom:0;
+
+      &.menu-item-has-children {
+
+        >a:after {
+          content:'▼';
+          padding-left:.333em;
+          font-size:.8em;
+        }
+
+        &:hover {
+          >a {
+            background-color:black;
+            color:white;
+          }
+
+          ul.sub-menu {
+            display:block;
+          }
+        }
+      }
+
+      a {
+        display: block;
+        padding:1.25em 2em;
+        color:black;
+        font-weight:bold;
+
+        &:hover {
+          background-color:black;
+          color:white;
+          text-decoration: none;
+        }
+      }
+    }
+
+    ul.sub-menu {
+      list-style: none;
+      margin:0;
+      position:absolute;
+      border:1px solid black;
+      background-color:white;
+      display:none;
+
+      >.menu-item {
+        white-space: nowrap;
+        margin-bottom:0;
+
+        a {
+          padding:.75em 2em;
+        }
+      }
+    }
+  }
+
   h1.entry-title {
     font-size: 1.5em;
   }
@@ -340,14 +423,21 @@ body.page-template-page-neighborhoods {
   }
 
   section.rezone-overview .span12 p {
-    font-size: 1.9em;
+    font-size: 1.825em;
+    line-height:1.75;
+    margin-bottom:0
   }
 
   section,
   .bottom-ctas {
     padding-top: 2em;
     margin-top: 2em;
-    border-top: solid 2px #ccc;
+    border-top: solid 1px #ccc;
+  }
+
+  .rezone-overview {
+    border-top:0;
+    margin-top:0;
   }
 
   section.rezone-101 {
