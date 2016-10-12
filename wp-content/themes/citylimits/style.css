@@ -303,8 +303,13 @@ body .wpjb .wpjb-login-message ol li {
   }
 }
 /**
- * Rezone Project
+ * Rezone / ZoneIn Project 
  */
+body.page-template-page-neighborhoods .sticky-nav-wrapper,
+body.page-template-page-neighborhoods .header-ad-zone,
+body.page-template-page-neighborhoods #site-header {
+  display: none;
+}
 body.page-template-page-neighborhoods h1.entry-title {
   font-size: 1.5em;
 }
