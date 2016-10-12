@@ -28,6 +28,7 @@ get_header();
 		<div class="span12">
 			<img src="/wp-content/themes/citylimits/img/zonein-logo.jpg" alt="ZoneIn Project Logo" width="100%" />
 			<?php // @TODO Rezone Menu ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'zonein-menu' ) ); ?>
 		</div>
 	</div>
 </div>

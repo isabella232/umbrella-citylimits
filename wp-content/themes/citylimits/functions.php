@@ -379,3 +379,8 @@ function create_neighborhoods_taxonomy() {
 
 }
 add_action( 'init', 'create_neighborhoods_taxonomy', 0 );
+
+function register_zonein_menu() {
+  register_nav_menu('zonein-menu',__( 'Zone In Menu' ));
+}
+add_action( 'init', 'register_zonein_menu' );
