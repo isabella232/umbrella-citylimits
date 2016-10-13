@@ -17,16 +17,16 @@ get_header();
 
 <div class="rezone-header">
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span8">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 		</div>
-		<div class="span6">
+		<div class="span4">
 			<?php // @TODO ReZone Newsletter Code Here ?>
 		</div>
 	</div>
 	<div class="row-fluid">
 		<div class="span12">
-			<img src="/wp-content/themes/citylimits/img/zonein-logo.jpg" alt="ZoneIn Project Logo" width="100%" />
+			<a href="/zone-in/"><img src="/wp-content/themes/citylimits/img/zonein-logo.jpg" alt="ZoneIn Project Logo" width="100%" /></a>
 			<?php // @TODO Rezone Menu ?>
 			<?php wp_nav_menu( array( 'theme_location' => 'zonein-menu' ) ); ?>
 		</div>
@@ -46,7 +46,7 @@ get_header();
 <section class="map">
 	<h2>Proposed Rezoning</h2>
 	<div class="row-fluid">
-		<div class="span12">
+		<div class="span8">
 			<?php
 			/**
 			 *  @TODO Add Map
@@ -54,27 +54,22 @@ get_header();
 			 *  We'll need an API key for this
 			 */
 			?>
-			<div style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div>
+			<!-- <div id="map" style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div> -->
+			<p class="instruction">Select a pin to learn more about proposed rezoning.</p>
+			<iframe id="map" width="100%" height="420" scrolling="no" frameborder="no" scollwheel="false" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1nVqV-VWkMF3sQfs3XUCsYfqcB6bAUJz2bXQl_-GV&amp;viz=MAP&amp;h=false&amp;lat=40.75&amp;lng=-73.8455445810547&amp;t=1&amp;z=10&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
 		</div>
-	</div>
-	<div class="plan-status">
-		<h2>Rezone Plan Status</h2>
-		<?php
-		$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
-		$count = 0;
-		?>
-		<?php foreach ( $neighborhoods as $neighborhood ) : ?>
-			<?php if ( 0 == $count%4 ) : ?>
-				<div class="row-fluid">
-			<?php endif; ?>
-				<div class="span3">
-					<h5><?php echo $neighborhood->name; ?><div class="circle green"></div></h5>
-				</div>
-			<?php if ( 3 == $count%4 ) : ?>
-				</div>
-			<?php endif; ?>
-			<?php $count++; ?>
-		<?php endforeach; ?>
+		<div class="span4 plan-status">
+			<h2>Rezone Plan Status</h2>
+			<?php
+			$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
+			$count = 0;
+			?>
+			<div class="row-fluid">	
+				<?php foreach ( $neighborhoods as $neighborhood ) : ?>			
+					<div class="zone-w-status"><h5><div class="circle green"></div><?php echo $neighborhood->name; ?></h5></div>
+				<?php endforeach; ?>
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -97,7 +92,7 @@ get_header();
 				<div class="span4">
 					<h3><?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '">' .  get_the_title( $child['ID'] ) . '</a>'; ?></h3>
 					<p><?php echo get_the_excerpt( $child['ID'] ); ?></p>
-					<?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '">Read More ></a>'; ?>
+					<?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '" class="read-more">Read more ></a>'; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
@@ -126,8 +121,8 @@ get_header();
 						<div class="span6">
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
-							<p><?php the_excerpt(); ?></p>
-							<a href="<?php the_permalink(); ?>">Read More ></a>
+							<?php the_excerpt(); ?>
+							<a href="<?php the_permalink(); ?>" class="read-more">Read more ></a>
 						</div>
 					</div>
 				<?php elseif ( 1 == $count ) : ?>
@@ -141,7 +136,6 @@ get_header();
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
 						</div>
-						<a href="<?php // @TODO ?>" class="btn more">More News</a>
 					</div>
 				<?php else : ?>
 						<div <?php post_class( 'story' ); ?> >
@@ -153,6 +147,7 @@ get_header();
 			<?php endwhile; ?>
 		<?php endif; // end more featured posts ?>
 	</div>
+	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More News</a></div>
 </section>
 
 <section class="videos">
@@ -177,31 +172,29 @@ get_header();
 			<?php $count = 0; ?>
 			<?php while ( $videos->have_posts() ) : $videos->the_post(); $shown_ids[] = get_the_id(); ?>
 				<div class="span4">
-					<?php the_post_thumbnail( 'full' ); ?>
+					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'full' ); ?></a>
 					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 					<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
-					<?php if ( 2 == $count ) : ?>
-						<a href="<?php // @TODO ?>" class="btn more">More News</a>
-					<?php endif; ?>
 				</div>
 				<?php $count++; ?>
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</div>
+	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Videos</a></div>
 </section>
 
 <div class="bottom-ctas row-fluid">
 	<div class="span3">
-		<h5 class="btn">Get Involved</h5>
+		<a class="btn">Get Involved</a>
 	</div>
 	<div class="span3">
-		<h5 class="btn">Share Your Views</h5>
+		<a class="btn">Share Your Views</a>
 	</div>
 	<div class="span3">
-		<h5 class="btn">Events Calendar</h5>
+		<a class="btn">Events Calendar</a>
 	</div>
 	<div class="span3">
-		<h5 class="btn">Get the Newsletter</h5>
+		<a class="btn">Get the Newsletter</a>
 	</div>
 </div>
 
@@ -215,7 +208,7 @@ get_header();
 					array(
 						'taxonomy' 	=> 'category',
 						'field' 	=> 'slug',
-						'terms' 	=> array( 'video' ) // @TODO - change to appropriate tag
+						'terms' 	=> array( 'opinion' ) // @TODO - change to appropriate tag
 					)
 				),
 				'posts_per_page' => '3',
@@ -227,15 +220,17 @@ get_header();
 			<?php if ( $commentary->have_posts() ) : ?>
 				<?php $count = 0; ?>
 				<?php while ( $commentary->have_posts() ) : $commentary->the_post(); $shown_ids[] = get_the_id(); ?>
-					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-					<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+					<div class="story">
+						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+						<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+					</div>
 				<?php endwhile; ?>
 			<?php endif; ?>
-			<a href="<?php // @TODO ?>" class="btn more">More Commentary</a>
 		</div>
 		<div class="span8 form">
 			<?php // @TODO Make Your Voice Heard form ?>
 		</div>
+	<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Commentary</a></div>
 	</div>
 </section>
 
@@ -261,13 +256,10 @@ get_header();
 			<?php $count = 0; ?>
 			<?php while ( $documents->have_posts() ) : $documents->the_post(); $shown_ids[] = get_the_id(); ?>
 				<?php if ( 0 == $count%3 ) : ?>
-					<div class="row-fluid">
-				<?php endif; ?>
 					<div class="span4">
+				<?php endif; ?>
+					<div class="doc">
 						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-					<?php if ( 8 == $count ) : ?>
-						<a href="<?php // @TODO ?>" class="btn more">More Documents</a>
-					<?php endif; ?>
 					</div>
 				<?php if ( 2 == $count%3 ) : ?>
 					</div>
@@ -275,8 +267,8 @@ get_header();
 				<?php $count++; ?>
 			<?php endwhile; ?>
 		<?php endif; ?>
-		</div>
 	</div>
-</sections>
+	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Documents</a></div>
+</section>
 
 <?php get_footer();
