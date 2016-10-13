@@ -5,14 +5,30 @@
  * Description: Custom landing page for the ReZone project with the /neighborhoods/ slug
  */
 
-global $shown_ids;
+global $shown_ids, $post;
 
+// Add the .neighborhoods-lp class
 add_filter('body_class', function($classes) {
 	$classes[] = 'neighborhoods-lp';
 	return $classes;
 });
 
+/*
+ * Establish some common query parameters
+ */
+$features = get_the_terms( $post->ID, 'series' );
+// we're going to assume that the series landing page is in no more than one series, because that's how you're *supposed* to do it.
+$series = $features[0];
+$project_tax_query = array(
+		'taxonomy' => 'series',
+		'terms' => $series->term_id,
+		'field' => 'ID',
+	);
+
+// begin the page rendering
+
 get_header();
+
 ?>
 
 <div class="rezone-header">
@@ -79,9 +95,9 @@ get_header();
 	    'posts_per_page' => 3,
 	    'order'          => 'DESC',
 	    'post_parent'    => $post->ID,
-	    'post_type'      => 'page'
+	    'post_type'      => 'page',
+		'tax_query'      => array( $project_tax_query )
 	    );
-
 	$get_children_array = get_children( $args,ARRAY_A );  //returns Array ( [$image_ID].
 	?>
 
@@ -106,7 +122,8 @@ get_header();
 		<?php
 		$args = array (
 			'posts_per_page' => '3',
-			'post__not_in' 	 => $shown_ids
+			'post__not_in' 	 => $shown_ids,
+			'tax_query'      => array( $project_tax_query )
 		);
 		$recent_posts = new WP_Query( $args );
 		if ( $recent_posts->have_posts() ) :
@@ -160,7 +177,9 @@ get_header();
 					'taxonomy' 	=> 'category',
 					'field' 	=> 'slug',
 					'terms' 	=> array( 'video' )
-				)
+				),
+				$project_tax_query,
+				'relation' => 'AND'
 			),
 			'posts_per_page' => '3',
 			'post__not_in' 	 => $shown_ids
@@ -206,10 +225,12 @@ get_header();
 			$args = array (
 				'tax_query' => array(
 					array(
-						'taxonomy' 	=> 'category',
-						'field' 	=> 'slug',
-						'terms' 	=> array( 'opinion' ) // @TODO - change to appropriate tag
-					)
+						'taxonomy'  => 'post-type',
+						'field'     => 'slug',
+						'terms'     => array( 'commentary' )
+					),
+					$project_tax_query,
+					'relation' => 'AND'
 				),
 				'posts_per_page' => '3',
 				'post__not_in' 	 => $shown_ids
@@ -241,9 +262,9 @@ get_header();
 		$args = array (
 			'tax_query' => array(
 				array(
-					'taxonomy' 	=> 'category',
-					'field' 	=> 'slug',
-					'terms' 	=> array( 'video' ) // @TODO - change to appropriate tag
+					'taxonomy'  => 'post-type',
+					'field'     => 'slug',
+					'terms'     => array( 'documents' ) // @TODO - change to appropriate tag
 				)
 			),
 			'posts_per_page' => '9',
