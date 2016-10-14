@@ -27,7 +27,8 @@ $project_tax_query = array(
 
 // begin the page rendering
 
-get_header();
+// This is the rezone-specific header, /header-rezone.php
+get_header( 'rezone' );
 
 ?>
 
