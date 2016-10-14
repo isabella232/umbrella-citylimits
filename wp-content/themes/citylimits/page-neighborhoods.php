@@ -44,8 +44,7 @@ get_header( 'rezone' );
 	<div class="row-fluid">
 		<div class="span12">
 			<a href="/zone-in/"><img src="/wp-content/themes/citylimits/img/zonein-logo.jpg" alt="ZoneIn Project Logo" width="100%" /></a>
-			<?php // @TODO Rezone Menu ?>
-			<?php wp_nav_menu( array( 'theme_location' => 'zonein-menu' ) ); ?>
+			<?php get_template_part( 'partials/nav', 'rezone' ); ?>
 		</div>
 	</div>
 </div>
