@@ -339,9 +339,6 @@ body.neighborhoods-lp * {
     display: block;
   }
 }
-body.neighborhoods-lp.tax-neighborhoods #main {
-  margin-top: 72px;
-}
 body.neighborhoods-lp .rezone-header {
   margin-top: 72px;
 }

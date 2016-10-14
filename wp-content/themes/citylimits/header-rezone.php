@@ -93,3 +93,21 @@ add_filter('body_class', function($classes) {
 		 * @since 0.4
 		 */
 		do_action( 'largo_main_top' );
+		?>
+
+		<div class="rezone-header">
+			<div class="row-fluid">
+				<div class="span8">
+					<h1 class="entry-title"><?php _e( 'The Future of NYC Neighborhoods', 'citylimits'); ?></h1>
+				</div>
+				<div class="span4">
+					<?php // @TODO ReZone Newsletter Code Here ?>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<a href="/zone-in/"><img src="/wp-content/themes/citylimits/img/zonein-logo.jpg" alt="ZoneIn Project Logo" width="100%" /></a>
+					<?php get_template_part( 'partials/nav', 'rezone' ); ?>
+				</div>
+			</div>
+		</div>
