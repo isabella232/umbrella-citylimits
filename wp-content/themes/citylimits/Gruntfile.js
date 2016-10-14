@@ -38,7 +38,6 @@ module.exports = function(grunt) {
         ],
         tasks: [
           'less:compile',
-          'cssmin'
         ]
       }
     },

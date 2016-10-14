@@ -8,6 +8,8 @@ Template:       Largo
 Version:        1.0
 */
 
+@import "_variables.less";
+
 a {
   color: #D41313;
   text-decoration: none;
@@ -17,6 +19,23 @@ a:hover, a:active {
   text-decoration: underline;
 }
 
+/**
+ * MIXINS
+*/
+.flex {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.flexwrap {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+/**
+ * GENERAL STYLES
+ */
 h1 a,
 h2 a,
 h3 a,
@@ -317,5 +336,349 @@ body .wpjb .wpjb-login-message ol li {
 @media screen and (max-width: 480px) {
   .home #main {
     margin-top: 0;
+  }
+}
+
+/**
+ * Rezone / ZoneIn Project 
+ */
+//body.page-template-page-neighborhoods,
+body.neighborhoods-lp {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  * {
+    box-sizing:border-box;
+    letter-spacing:.0125em;
+    transition: all .05s ease-in-out;
+   -moz-transition: all .05s ease-in-out;
+   -webkit-transition: all .05s ease-in-out;
+  }
+
+  .rezone-header {
+    margin-top: @navbarHeight + 32px;
+  }
+
+  ul#menu-zone-in {
+    list-style: none;
+    margin:0;
+    border-top:4px solid @red;
+    border-bottom: 1px solid @black;
+
+    >.menu-item {
+      display:inline-block;
+      min-width: 10%;
+      max-width: 18%;
+      margin-bottom:0;
+
+      &:not(.menu-item-has-children){
+        text-align: center;
+      }
+
+      &.menu-item-has-children {
+
+        >a:after {
+          content:'▼';
+          padding-left:.333em;
+          font-size:.8em;
+        }
+
+        &:hover {
+          >a {
+            background-color:@black;
+            color:@white;
+          }
+
+          ul.sub-menu {
+            display:block;
+          }
+        }
+      }
+
+      a {
+        display: block;
+        padding:1.25em 1.75em;
+        color:black;
+        font-weight:bold;
+
+        &:hover {
+          background-color:@black;
+          color:@white;
+          text-decoration: none;
+        }
+      }
+    }
+
+    ul.sub-menu {
+      list-style: none;
+      margin:0;
+      position:absolute;
+      border:1px solid @black;
+      background-color:@white;
+      z-index:9999999;
+      display:none;
+
+      >.menu-item {
+        white-space: nowrap;
+        margin-bottom:0;
+
+        a {
+          padding:.75em 2em;
+        }
+      }
+    }
+  }
+
+  h1.entry-title {
+    font-size: 1.25em;
+    clear:both;
+  }
+
+  h2 {
+    color: @red;
+    font-size:1.25em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+    color: @red;
+  }
+
+  p {
+    font-size:1em;
+    margin-bottom: .5em;
+    letter-spacing: 0;
+  }
+  
+  .read-more {
+    font-size:.85em;
+    font-weight:bold;
+  }
+
+  section.rezone-overview .span12 p {
+    font-size: 1.75em;
+    line-height:1.75;
+    padding: .25em 0;
+    margin-bottom:0;
+    color:@black;
+
+    * {
+      letter-spacing: 0;
+    }
+  }
+
+  section,
+  .bottom-ctas {
+    padding-top: 2em;
+    margin-top: 2em;
+    border-top: solid 1px @grey1;
+  }
+
+  .rezone-overview {
+    border-top:0;
+    margin-top:0;
+  }
+
+  section.rezone-101 {
+    h3 {
+      margin-bottom: .5em;
+      >a {
+        color:@black;
+
+        &:hover{
+          color:@red;
+        }
+      }
+    }
+  }
+
+  section.map {
+
+    #map {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+    
+    h3 a {
+      color: @red;
+    }
+
+    h5 {
+      font-size:1.125em;
+    }
+
+    .zone-w-status {
+      text-indent: -1.7em;
+      margin-left: 1.7em;
+      color:@black;
+    }
+
+    .plan-status {
+    }
+  } 
+
+  .bottom-ctas {
+    .flex;
+    .flexwrap;
+
+    .span3 {
+      text-align: center;
+      width:23%;
+      margin:0;
+      margin:0 1%;
+      background: @red;
+
+
+      a.btn {
+        width:100%;
+      	color: @white;
+        background:transparent;
+      	padding: 1em 2em;
+      	font-size: 1.125em;
+        font-weight:bold;
+      }
+
+      &:hover {
+        background: saturate(@red,30%);
+      }
+    }
+  }
+
+  section.news,
+  section.videos,
+  section.commentary {
+    h3 {
+      margin-bottom: .25em;
+      font-size:1.125em;
+    }
+
+    h3,
+    h3 a,
+    h5 {
+      color: @black;
+    }
+
+    .span4 .story {
+      margin-bottom:1.5em;
+    }
+  }
+
+  section.news {
+    .news-feature {
+      background: @grey2;
+      padding: 1em;
+
+      h3 {
+        font-size:1.75em;
+      }
+    }
+  }
+
+  section.videos {
+
+    .span4>a {
+      position: relative;
+      display: block;
+
+      &:before {
+        content: ' ';
+        background-color: rgba(0,0,0,.25);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      &:after {
+        content: '\25B6';
+        color: @white;
+        font-size: 40px;
+        line-height: 0;
+        width: 36px;
+        max-height: 48px;
+        box-sizing: border-box;
+        background-color: @black;
+        padding: 32px 45px 32px 18px;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+      }
+
+      &:hover {
+        &:after {
+          background-color: @red;
+        }
+      }
+    }
+  }
+
+  section.commentary {
+    .form {
+      background: @grey2;
+      padding: 1em;
+    }
+  }
+
+  section.documents {
+    padding-bottom: 2em;
+
+    h3 {
+      font-size:1.125em;
+      font-weight:normal;
+      letter-spacing: 0;
+
+      a {
+        color:@black;
+        &:hover {
+          color:@red;
+        }
+      }
+    }
+  }
+
+  .circle {
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    border-radius: 1em;
+    margin-right: .5em;
+    position: relative;
+    top: .125em;
+
+    &.green { background: green; }
+    &.yellow { background: yellow; }
+    &.red { background: @red; }
+
+  }
+
+  .zonein-more {
+    width:100%;
+    text-align: right;
+
+    &.left {
+      text-align: left;
+    }
+
+    a.btn.more {
+      width:31.914893614%;
+      text-align: center;
+      font-weight: bold;
+      background-color: @black;
+      color: @white;
+      border: 1px solid @black;
+      line-height: 2;
+
+      &:hover {
+        background-color: @white;
+        color: @black;
+        border: 1px solid @black;
+      }
+    }
   }
 }

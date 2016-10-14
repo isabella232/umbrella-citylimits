@@ -4,9 +4,12 @@ Theme URI:      http://largoproject.org
 Description:    A child theme for City Limits based on the Project Largo parent theme.
 Author:         INN
 Author URI:     http://largoproject.org
-Template:       largo-dev 
+Template:       Largo
 Version:        1.0
 */
+/**
+ * VARIABLES
+ */
 a {
   color: #D41313;
   text-decoration: none;
@@ -16,6 +19,22 @@ a:active {
   color: #f61212;
   text-decoration: underline;
 }
+/**
+ * MIXINS
+*/
+.flex {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.flexwrap {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+/**
+ * GENERAL STYLES
+ */
 h1 a,
 h2 a,
 h3 a,
@@ -301,4 +320,287 @@ body .wpjb .wpjb-login-message ol li {
   .home #main {
     margin-top: 0;
   }
+}
+/**
+ * Rezone / ZoneIn Project 
+ */
+body.neighborhoods-lp {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body.neighborhoods-lp * {
+  box-sizing: border-box;
+  letter-spacing: .0125em;
+  transition: all 0.05s ease-in-out;
+  -moz-transition: all 0.05s ease-in-out;
+  -webkit-transition: all 0.05s ease-in-out;
+}
+body.neighborhoods-lp .rezone-header {
+  margin-top: 72px;
+}
+body.neighborhoods-lp ul#menu-zone-in {
+  list-style: none;
+  margin: 0;
+  border-top: 4px solid #d41313;
+  border-bottom: 1px solid #000000;
+}
+body.neighborhoods-lp ul#menu-zone-in > .menu-item {
+  display: inline-block;
+  min-width: 10%;
+  max-width: 18%;
+  margin-bottom: 0;
+}
+body.neighborhoods-lp ul#menu-zone-in > .menu-item:not(.menu-item-has-children) {
+  text-align: center;
+}
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a:after {
+  content: '▼';
+  padding-left: .333em;
+  font-size: .8em;
+}
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children:hover > a {
+  background-color: #000000;
+  color: #ffffff;
+}
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children:hover ul.sub-menu {
+  display: block;
+}
+body.neighborhoods-lp ul#menu-zone-in > .menu-item a {
+  display: block;
+  padding: 1.25em 1.75em;
+  color: black;
+  font-weight: bold;
+}
+body.neighborhoods-lp ul#menu-zone-in > .menu-item a:hover {
+  background-color: #000000;
+  color: #ffffff;
+  text-decoration: none;
+}
+body.neighborhoods-lp ul#menu-zone-in ul.sub-menu {
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  z-index: 9999999;
+  display: none;
+}
+body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item {
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item a {
+  padding: .75em 2em;
+}
+body.neighborhoods-lp h1.entry-title {
+  font-size: 1.25em;
+  clear: both;
+}
+body.neighborhoods-lp h2 {
+  color: #d41313;
+  font-size: 1.25em;
+}
+body.neighborhoods-lp h3 {
+  font-size: 1.25em;
+  color: #d41313;
+}
+body.neighborhoods-lp p {
+  font-size: 1em;
+  margin-bottom: .5em;
+  letter-spacing: 0;
+}
+body.neighborhoods-lp .read-more {
+  font-size: .85em;
+  font-weight: bold;
+}
+body.neighborhoods-lp section.rezone-overview .span12 p {
+  font-size: 1.75em;
+  line-height: 1.75;
+  padding: .25em 0;
+  margin-bottom: 0;
+  color: #000000;
+}
+body.neighborhoods-lp section.rezone-overview .span12 p * {
+  letter-spacing: 0;
+}
+body.neighborhoods-lp section,
+body.neighborhoods-lp .bottom-ctas {
+  padding-top: 2em;
+  margin-top: 2em;
+  border-top: solid 1px #c3c3c3;
+}
+body.neighborhoods-lp .rezone-overview {
+  border-top: 0;
+  margin-top: 0;
+}
+body.neighborhoods-lp section.rezone-101 h3 {
+  margin-bottom: .5em;
+}
+body.neighborhoods-lp section.rezone-101 h3 > a {
+  color: #000000;
+}
+body.neighborhoods-lp section.rezone-101 h3 > a:hover {
+  color: #d41313;
+}
+body.neighborhoods-lp section.map #map {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+body.neighborhoods-lp section.map h3 a {
+  color: #d41313;
+}
+body.neighborhoods-lp section.map h5 {
+  font-size: 1.125em;
+}
+body.neighborhoods-lp section.map .zone-w-status {
+  text-indent: -1.7em;
+  margin-left: 1.7em;
+  color: #000000;
+}
+body.neighborhoods-lp .bottom-ctas {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+body.neighborhoods-lp .bottom-ctas .span3 {
+  text-align: center;
+  width: 23%;
+  margin: 0;
+  margin: 0 1%;
+  background: #d41313;
+}
+body.neighborhoods-lp .bottom-ctas .span3 a.btn {
+  width: 100%;
+  color: #ffffff;
+  background: transparent;
+  padding: 1em 2em;
+  font-size: 1.125em;
+  font-weight: bold;
+}
+body.neighborhoods-lp .bottom-ctas .span3:hover {
+  background: #e70000;
+}
+body.neighborhoods-lp section.news h3,
+body.neighborhoods-lp section.videos h3,
+body.neighborhoods-lp section.commentary h3 {
+  margin-bottom: .25em;
+  font-size: 1.125em;
+}
+body.neighborhoods-lp section.news h3,
+body.neighborhoods-lp section.videos h3,
+body.neighborhoods-lp section.commentary h3,
+body.neighborhoods-lp section.news h3 a,
+body.neighborhoods-lp section.videos h3 a,
+body.neighborhoods-lp section.commentary h3 a,
+body.neighborhoods-lp section.news h5,
+body.neighborhoods-lp section.videos h5,
+body.neighborhoods-lp section.commentary h5 {
+  color: #000000;
+}
+body.neighborhoods-lp section.news .span4 .story,
+body.neighborhoods-lp section.videos .span4 .story,
+body.neighborhoods-lp section.commentary .span4 .story {
+  margin-bottom: 1.5em;
+}
+body.neighborhoods-lp section.news .news-feature {
+  background: #e2e2e2;
+  padding: 1em;
+}
+body.neighborhoods-lp section.news .news-feature h3 {
+  font-size: 1.75em;
+}
+body.neighborhoods-lp section.videos .span4 > a {
+  position: relative;
+  display: block;
+}
+body.neighborhoods-lp section.videos .span4 > a:before {
+  content: ' ';
+  background-color: rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+body.neighborhoods-lp section.videos .span4 > a:after {
+  content: '\25B6';
+  color: #ffffff;
+  font-size: 40px;
+  line-height: 0;
+  width: 36px;
+  max-height: 48px;
+  box-sizing: border-box;
+  background-color: #000000;
+  padding: 32px 45px 32px 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+body.neighborhoods-lp section.videos .span4 > a:hover:after {
+  background-color: #d41313;
+}
+body.neighborhoods-lp section.commentary .form {
+  background: #e2e2e2;
+  padding: 1em;
+}
+body.neighborhoods-lp section.documents {
+  padding-bottom: 2em;
+}
+body.neighborhoods-lp section.documents h3 {
+  font-size: 1.125em;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+body.neighborhoods-lp section.documents h3 a {
+  color: #000000;
+}
+body.neighborhoods-lp section.documents h3 a:hover {
+  color: #d41313;
+}
+body.neighborhoods-lp .circle {
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  border-radius: 1em;
+  margin-right: .5em;
+  position: relative;
+  top: .125em;
+}
+body.neighborhoods-lp .circle.green {
+  background: green;
+}
+body.neighborhoods-lp .circle.yellow {
+  background: yellow;
+}
+body.neighborhoods-lp .circle.red {
+  background: #d41313;
+}
+body.neighborhoods-lp .zonein-more {
+  width: 100%;
+  text-align: right;
+}
+body.neighborhoods-lp .zonein-more.left {
+  text-align: left;
+}
+body.neighborhoods-lp .zonein-more a.btn.more {
+  width: 31.914893614%;
+  text-align: center;
+  font-weight: bold;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  line-height: 2;
+}
+body.neighborhoods-lp .zonein-more a.btn.more:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
 }

@@ -14,6 +14,42 @@ function citylimits_widgets_init() {
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
+/**
+ * Include theme files
+ *
+ * Based off of how Largo loads files: https://github.com/INN/Largo/blob/master/functions.php#L358
+ *
+ * 1. hook function Largo() on after_setup_theme
+ * 2. function Largo() runs Largo::get_instance()
+ * 3. Largo::get_instance() runs Largo::require_files()
+ *
+ * This function is intended to be easily copied between child themes, and for that reason is not prefixed with this child theme's normal prefix.
+ *
+ * @link https://github.com/INN/Largo/blob/master/functions.php#L145
+ */
+function largo_child_require_files() {
+	$includes = array(
+		'/inc/registration.php',
+		'/inc/term-meta.php',
+		'/inc/enqueue.php',
+	);
+
+	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+	if ( is_plugin_active( 'wpjobboard/index.php' ) ) {
+		$includes[] =  '/inc/job-board.php';
+	}
+	if ( is_plugin_active( 'gravityforms/gravityforms.php' ) ) {
+		$includes[] = '/inc/gravityforms/events-calendar.php';
+	}
+
+	foreach ($includes as $include ) {
+		require_once( get_stylesheet_directory() . $include );
+	}
+
+}
+add_action( 'after_setup_theme', 'largo_child_require_files' );
+
 
 /**
  * Set the number of posts in the right-hand side of the Top Stories homepage template to 2.
@@ -162,7 +198,7 @@ function citylimits_custom_signup_fields_late( $values ) {
 		echo recaptcha_get_html( RECAPCHA_PUBLIC_KEY );
 		if ( $errmsg = $errors->get_error_message( 'recaptcha' ) ) : ?>
 			<p class="alert alert-error"><?php echo $errmsg; ?></p>
-		<? endif; ?>
+		<?php endif; ?>
 	</div>
 	<?php
 }
@@ -314,17 +350,6 @@ if ( ! function_exists( 'largo_google_analytics' ) ) {
 }
 
 
-require_once( dirname( __FILE__ ) . '/inc/registration.php' );
-
-include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-if ( is_plugin_active( 'wpjobboard/index.php' ) ) {
-	require_once( dirname( __FILE__ ) . '/inc/job-board.php' );
-}
-if ( is_plugin_active( 'gravityforms/gravityforms.php' ) ) {
-	require_once( dirname( __FILE__ ) . '/inc/gravityforms/events-calendar.php' );
-}
-
-
 function remove_cc_registration_filter() {
 	global $pagenow;
 	if ( $pagenow == 'user-new.php' )
@@ -378,3 +403,8 @@ function citylimits_configure_dfp() {
 
 }
 // add_action( 'dfw_setup', 'citylimits_configure_dfp' );
+
+function register_zonein_menu() {
+  register_nav_menu('zonein-menu',__( 'Zone In Menu' ));
+}
+add_action( 'init', 'register_zonein_menu' );
