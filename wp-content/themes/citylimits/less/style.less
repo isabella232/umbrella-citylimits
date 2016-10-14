@@ -354,6 +354,21 @@ body.neighborhoods-lp {
    -webkit-transition: all .05s ease-in-out;
   }
 
+  // so the sticky nav appears as it should
+  @media ( min-width: 769px ) {
+    .sticky-nav-holder.show {
+      display: block;
+    }
+  }
+
+  // For the neighborhods taxonomy template
+  &.tax-neighborhoods {
+    #main {
+      margin-top: @navbarHeight + 32px;
+
+    }
+  }
+
   .rezone-header {
     margin-top: @navbarHeight + 32px;
   }

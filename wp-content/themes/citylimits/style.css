@@ -334,6 +334,14 @@ body.neighborhoods-lp * {
   -moz-transition: all 0.05s ease-in-out;
   -webkit-transition: all 0.05s ease-in-out;
 }
+@media (min-width: 769px) {
+  body.neighborhoods-lp .sticky-nav-holder.show {
+    display: block;
+  }
+}
+body.neighborhoods-lp.tax-neighborhoods #main {
+  margin-top: 72px;
+}
 body.neighborhoods-lp .rezone-header {
   margin-top: 72px;
 }
