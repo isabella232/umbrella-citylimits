@@ -23,50 +23,13 @@ $queried_object = get_queried_object();
 			 * depending on what type of archive page we're looking at
 			 */
 
-			if ( is_author() ) {
-				$rss_link = get_author_feed_link( get_the_author_meta( 'ID' ) );
-			} elseif ( is_tag() ) {
-				$title = single_tag_title( '', false );
-				$description = tag_description();
-				$rss_link =  get_tag_feed_link( get_queried_object_id() );
-			} elseif ( is_tax() ) {
-				$title = single_term_title( '', false );
-				$description = term_description();
+			$title = single_term_title( '', false );
+			$description = term_description();
 
-				// rss links for custom taxonomies are a little tricky
-				$term_id = intval( $queried_object->term_id );
-				$tax = $queried_object->taxonomy;
-				$rss_link = get_term_feed_link( $term_id, $tax );
-			} elseif ( is_date() ) {
-				$description = __( 'Select a different month:', 'largo' );
-				if ( is_month() ) {
-					$title = sprintf( __( 'Monthly Archives: <span>%s</span>', 'largo' ), get_the_date( 'F Y' ) );
-				} elseif ( is_year() ) {
-					$title = sprintf( __( 'Yearly Archives: <span>%s</span>', 'largo' ), get_the_date( 'Y' ) );
-				} else {
-					$title = _e( 'Blog Archives', 'largo' );
-				}
-			} elseif ( is_post_type_archive() )  {
-				$post_type = $wp_query->query_vars['post_type'];
-				/**
-				 * Make the title of the post_type archive filterable
-				 * @param string $title The title of the archive page
-				 * @since 0.5.4
-				 */
-				$title = apply_filters(
-					'largo_archive_' . $post_type . '_title',
-					__( post_type_archive_title( '', false ), 'largo' )
-				);
-				/**
-				 * Make the feed url of the post_type archive filterable
-				 * @param string $title The title of the archive page
-				 * @since 0.5.5
-				 */
-				$rss_link = apply_filters(
-					'largo_archive_' . $post_type . '_feed',
-					site_url('/feed/?post_type=' . urlencode($post_type))
-				);
-			}
+			// rss links for custom taxonomies are a little tricky
+			$term_id = intval( $queried_object->term_id );
+			$tax = $queried_object->taxonomy;
+			$rss_link = get_term_feed_link( $term_id, $tax );
 		?>
 
 		<header class="archive-background clearfix">
