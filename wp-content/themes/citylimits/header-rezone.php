@@ -63,7 +63,7 @@
 
 		<?php
 
-			get_template_part( 'partials/nav', 'sticky' );
+			get_template_part( 'partials/nav', 'sticky-rezone' );
 
 			/**
 			 * Fires after the Largo navigation content.
