@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<?php
+
+
+
+// Add the .neighborhoods-lp class
+add_filter('body_class', function($classes) {
+	$classes[] = 'neighborhoods-lp';
+	return $classes;
+});
+?><!DOCTYPE html>
 <!--[if lt IE 7]> <html <?php language_attributes(); ?> class="no-js ie6"> <![endif]-->
 <!--[if IE 7]>    <html <?php language_attributes(); ?> class="no-js ie7"> <![endif]-->
 <!--[if IE 8]>    <html <?php language_attributes(); ?> class="no-js ie8"> <![endif]-->

@@ -7,12 +7,6 @@
 
 global $shown_ids, $post;
 
-// Add the .neighborhoods-lp class
-add_filter('body_class', function($classes) {
-	$classes[] = 'neighborhoods-lp';
-	return $classes;
-});
-
 /*
  * Establish some common query parameters
  */
