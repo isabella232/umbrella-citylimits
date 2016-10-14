@@ -61,37 +61,9 @@
 
 	<div id="page" class="hfeed clearfix">
 
-		<?php 
-			
-			get_template_part( 'partials/nav', 'sticky' ); 
-			
-			if ( of_get_option( 'leaderboard_enabled' ) == TRUE ) {
-				get_template_part( 'partials/header-ad-zone' );
-			}
+		<?php
 
-			/**
-			 * Fires before the Largo header content.
-			 *
-			 * @since 0.4
-			 */
-			do_action( 'largo_before_header' );
-
-			get_template_part( 'partials/largo-header' );
-
-			/**
-			 * Fires after the Largo header content.
-			 *
-			 * @since 0.4
-			 */
-			do_action( 'largo_after_header' );
-	
-			get_template_part( 'partials/nav', 'main' );
-
-			if ( SHOW_SECONDARY_NAV === TRUE ) {
-				get_template_part( 'partials/nav', 'secondary' );
-			}
-
-			get_template_part('partials/homepage-alert'); 
+			get_template_part( 'partials/nav', 'sticky' );
 
 			/**
 			 * Fires after the Largo navigation content.

@@ -334,14 +334,8 @@ body.neighborhoods-lp * {
   -moz-transition: all 0.05s ease-in-out;
   -webkit-transition: all 0.05s ease-in-out;
 }
-body.neighborhoods-lp .sticky-nav-wrapper,
-body.neighborhoods-lp .header-ad-zone,
-body.neighborhoods-lp #site-header,
-body.neighborhoods-lp #main-nav {
-  display: none;
-}
 body.neighborhoods-lp .rezone-header {
-  margin-top: 2em;
+  margin-top: 72px;
 }
 body.neighborhoods-lp ul#menu-zone-in {
   list-style: none;

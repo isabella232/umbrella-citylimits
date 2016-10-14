@@ -8,15 +8,7 @@ Template:       Largo
 Version:        1.0
 */
 
-
-/**
- * VARIABLES
- */
-@red: #D41313;
-@black: black;
-@white: white;
-@grey1: #c3c3c3;
-@grey2: #e2e2e2;
+@import "_variables.less";
 
 a {
   color: #D41313;
@@ -362,15 +354,8 @@ body.neighborhoods-lp {
    -webkit-transition: all .05s ease-in-out;
   }
 
-  .sticky-nav-wrapper,
-  .header-ad-zone,
-  #site-header,
-  #main-nav {
-    display:none;
-  }
-
   .rezone-header {
-    margin-top: 2em;
+    margin-top: @navbarHeight + 32px;
   }
 
   ul#menu-zone-in {

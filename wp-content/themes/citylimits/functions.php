@@ -31,6 +31,7 @@ function largo_child_require_files() {
 	$includes = array(
 		'/inc/registration.php',
 		'/inc/term-meta.php',
+		'/inc/enqueue.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
