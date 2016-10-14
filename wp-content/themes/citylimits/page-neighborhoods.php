@@ -96,7 +96,6 @@ get_header( 'rezone' );
 	    'order'          => 'DESC',
 	    'post_parent'    => $post->ID,
 	    'post_type'      => 'page',
-		'tax_query'      => array( $project_tax_query )
 	    );
 	$get_children_array = get_children( $args,ARRAY_A );  //returns Array ( [$image_ID].
 	?>
