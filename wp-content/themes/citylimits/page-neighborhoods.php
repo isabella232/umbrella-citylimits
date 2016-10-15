@@ -70,7 +70,6 @@ get_header( 'rezone' );
 <section class="rezone-101">
 	<?php
 	$args = array(
-		'posts_per_page' => 3,
 		'order'          => 'DESC',
 		'post_type'      => 'page',
 		'post__in'       => array(
@@ -81,22 +80,22 @@ get_header( 'rezone' );
 		),
 		'ignore_sticky_posts' => true
 	);
-	$get_children_array = get_children( $args,ARRAY_A );  //returns Array ( [$image_ID].
+	$get_children_array = get_posts( $args );  //returns Array ( [$image_ID].
 	?>
 
 	<?php if ( count( $get_children_array ) > 0 ) : ?>
 		<div class="row-fluid">
 			<?php foreach ( $get_children_array as $child ) : ?>
-				<?php setup_postdata( get_post( $child['ID'] ) ); ?>
+				<?php setup_postdata( get_post( $child ) ); ?>
 				<div class="span4">
-					<h3><?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '">' .  get_the_title( $child['ID'] ) . '</a>'; ?></h3>
-					<p><?php echo get_the_excerpt( $child['ID'] ); ?></p>
-					<?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '" class="read-more">Read more ></a>'; ?>
+					<h3><?php echo '<a href="' . get_permalink( $child->ID ) . '" title="' . get_the_title( $child->ID ) . '">' .  get_the_title( $child->ID ) . '</a>'; ?></h3>
+					<p><?php echo get_the_excerpt( $child->ID ); ?></p>
+					<?php echo '<a href="' . get_permalink( $child->ID ) . '" title="' . get_the_title( $child->ID ) . '" class="read-more">Read more ></a>'; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
 	<?php endif; ?>
-	<?php rewind_posts(); ?>
+	<?php wp_reset_postdata(); ?>
 </section>
 
 <section class="news">
