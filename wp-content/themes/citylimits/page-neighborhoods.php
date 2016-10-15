@@ -70,11 +70,17 @@ get_header( 'rezone' );
 <section class="rezone-101">
 	<?php
 	$args = array(
-	    'posts_per_page' => 3,
-	    'order'          => 'DESC',
-	    'post_parent'    => $post->ID,
-	    'post_type'      => 'page',
-	    );
+		'posts_per_page' => 3,
+		'order'          => 'DESC',
+		'post_type'      => 'page',
+		'post__in'       => array(
+			// these are the pages on Staging
+			891921,
+			891920,
+			891919
+		),
+		'ignore_sticky_posts' => true
+	);
 	$get_children_array = get_children( $args,ARRAY_A );  //returns Array ( [$image_ID].
 	?>
 
