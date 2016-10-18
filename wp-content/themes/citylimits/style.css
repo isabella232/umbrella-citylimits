@@ -347,26 +347,31 @@ body.neighborhoods-lp ul#menu-zone-in {
   margin: 0;
   border-top: 4px solid #d41313;
   border-bottom: 1px solid #000000;
+  font-size: 0;
 }
 body.neighborhoods-lp ul#menu-zone-in > .menu-item {
   display: inline-block;
   min-width: 10%;
   max-width: 18%;
   margin-bottom: 0;
+  font-size: initial;
 }
 body.neighborhoods-lp ul#menu-zone-in > .menu-item:not(.menu-item-has-children) {
   text-align: center;
+}
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children {
+  position: relative;
 }
 body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a:after {
   content: '▼';
   padding-left: .333em;
   font-size: .8em;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children:hover > a {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children.zones-active > a {
   background-color: #000000;
   color: #ffffff;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children:hover ul.sub-menu {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children.zones-active ul.sub-menu {
   display: block;
 }
 body.neighborhoods-lp ul#menu-zone-in > .menu-item a {
@@ -480,9 +485,21 @@ body.neighborhoods-lp .bottom-ctas .span3 a.btn {
   width: 100%;
   color: #ffffff;
   background: transparent;
-  padding: 1em 2em;
+  padding: 2.5em;
   font-size: 1.125em;
   font-weight: bold;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+}
+body.neighborhoods-lp .bottom-ctas .span3 a.btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 1em;
 }
 body.neighborhoods-lp .bottom-ctas .span3:hover {
   background: #e70000;
@@ -608,4 +625,78 @@ body.neighborhoods-lp .zonein-more a.btn.more:hover {
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #000000;
+}
+@media (max-width: 900px) {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item a {
+    padding: .75em;
+    font-size: .9em;
+  }
+}
+@media (max-width: 650px) {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item {
+    min-width: 20%;
+    max-width: 20%;
+  }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children {
+    min-width: 100%;
+    max-width: 100%;
+    background-color: #d41313;
+    text-align: right;
+  }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a {
+    color: #ffffff;
+    padding-right: 1em;
+  }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children ul.sub-menu {
+    min-width: 100%;
+    text-align: center;
+  }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item > a {
+    padding: 1em .5em;
+  }
+  body.neighborhoods-lp .rezone-overview {
+    font-size: .8em;
+  }
+  body.neighborhoods-lp .map .span8 {
+    min-width: 100%;
+  }
+  body.neighborhoods-lp .map .plan-status {
+    min-width: 100%;
+    margin-left: 0;
+    margin-top: 1em;
+  }
+  body.neighborhoods-lp .map .plan-status .zone-w-status {
+    min-width: 42%;
+    display: inline-block;
+  }
+  body.neighborhoods-lp .bottom-ctas .span3 {
+    text-align: center;
+    width: 48%;
+    margin: 1%;
+    background: #d41313;
+  }
+}
+@media (max-width: 550px) {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item {
+    min-width: 33.333%;
+    max-width: 33.333%;
+  }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item:not(.menu-item-has-children) {
+    text-align: left;
+  }
+  body.neighborhoods-lp .rezone-101 .span4 {
+    min-width: 100%;
+    margin: 0 0 1.5em 0;
+  }
+  body.neighborhoods-lp .rezone-101 .span4:last-of-type {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 480px) {
+  body.neighborhoods-lp .map .plan-status .zone-w-status {
+    min-width: auto;
+    display: inline-block;
+    font-size: .8em;
+    margin-right: 1.5em;
+  }
 }

@@ -186,16 +186,16 @@ get_header( 'rezone' );
 
 <div class="bottom-ctas row-fluid">
 	<div class="span3">
-		<a class="btn">Get Involved</a>
+		<a class="btn"><span>Get Involved</span></a>
 	</div>
 	<div class="span3">
-		<a class="btn">Share Your Views</a>
+		<a class="btn"><span>Share Your Views</span></a>
 	</div>
 	<div class="span3">
-		<a class="btn">Events Calendar</a>
+		<a class="btn"><span>Events Calendar</span></a>
 	</div>
 	<div class="span3">
-		<a class="btn">Get the Newsletter</a>
+		<a class="btn"><span>Get the Newsletter</span></a>
 	</div>
 </div>
 
