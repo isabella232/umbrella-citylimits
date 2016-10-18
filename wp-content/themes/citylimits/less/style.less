@@ -27,10 +27,83 @@ a:hover, a:active {
   display: -webkit-flex;
   display: flex;
 }
+
 .flexwrap {
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+}
+
+.video-identifier {
+  position: relative;
+  display: block;
+  margin-bottom: .5em;
+
+  &:before {
+    content: ' ';
+    background-color: rgba(0,0,0,.25);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &:after {
+    content: '\25B6';
+    color: @white;
+    font-size: 40px;
+    line-height: 0;
+    width: 36px;
+    max-height: 48px;
+    box-sizing: border-box;
+    background-color: @black;
+    padding: 32px 45px 32px 18px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+  }
+
+  &:hover {
+    &:after {
+      background-color: @red;
+    }
+  }
+}
+
+.zone-a-btn {
+  a.btn {
+    width:100%;
+    color: @white;
+    background:@red;
+    padding: 2.5em;
+    font-size: 1.125em;
+    font-weight:bold;
+    position:relative;
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100%;
+      padding:0 1em;
+    }
+
+    &:hover {
+      background: saturate(@red,30%);
+    }
+  }
+
+  &:hover {
+    background: saturate(@red,30%);
+  }
 }
 
 /**
@@ -374,18 +447,21 @@ body.neighborhoods-lp {
     margin:0;
     border-top:4px solid @red;
     border-bottom: 1px solid @black;
+    font-size:0; //hack for inline block items
 
     >.menu-item {
       display:inline-block;
       min-width: 10%;
       max-width: 18%;
       margin-bottom:0;
+      font-size:initial;
 
       &:not(.menu-item-has-children){
         text-align: center;
       }
 
       &.menu-item-has-children {
+        position:relative;
 
         >a:after {
           content:'▼';
@@ -393,7 +469,7 @@ body.neighborhoods-lp {
           font-size:.8em;
         }
 
-        &:hover {
+        &.zones-active {
           >a {
             background-color:@black;
             color:@white;
@@ -408,7 +484,7 @@ body.neighborhoods-lp {
       a {
         display: block;
         padding:1.25em 1.75em;
-        color:black;
+        color:@black;
         font-weight:bold;
 
         &:hover {
@@ -538,18 +614,11 @@ body.neighborhoods-lp {
       margin:0 1%;
       background: @red;
 
+      .zone-a-btn;
 
       a.btn {
-        width:100%;
-      	color: @white;
         background:transparent;
-      	padding: 1em 2em;
-      	font-size: 1.125em;
-        font-weight:bold;
-      }
-
-      &:hover {
-        background: saturate(@red,30%);
+        .flex;
       }
     }
   }
@@ -587,45 +656,7 @@ body.neighborhoods-lp {
   section.videos {
 
     .span4>a {
-      position: relative;
-      display: block;
-
-      &:before {
-        content: ' ';
-        background-color: rgba(0,0,0,.25);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
-
-      &:after {
-        content: '\25B6';
-        color: @white;
-        font-size: 40px;
-        line-height: 0;
-        width: 36px;
-        max-height: 48px;
-        box-sizing: border-box;
-        background-color: @black;
-        padding: 32px 45px 32px 18px;
-        border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%,-50%);
-        -moz-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-        -o-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
-      }
-
-      &:hover {
-        &:after {
-          background-color: @red;
-        }
-      }
+      .video-identifier;
     }
   }
 
@@ -674,6 +705,7 @@ body.neighborhoods-lp {
 
     &.left {
       text-align: left;
+      margin:0;
     }
 
     a.btn.more {
@@ -692,4 +724,265 @@ body.neighborhoods-lp {
       }
     }
   }
+
+  @media (max-width: 900px) { 
+    ul#menu-zone-in {
+
+      >.menu-item {
+        a {
+          padding: .75em;
+          font-size: .9em;
+        }
+      }
+    }
+
+    .bottom-ctas {
+      .span3 {
+        //font-size:.8em;
+      }
+    }
+
+    .news {
+      .news-feature {
+        .span6 {
+          min-width: 100%;
+          margin:0;
+
+          img {
+            margin-bottom:1em;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 650px) { 
+    ul#menu-zone-in {
+      //border:1px solid black;
+
+      >.menu-item {
+        min-width: 20%;
+        max-width: 20%;
+
+        &.menu-item-has-children {
+          min-width:100%;
+          max-width:100%;
+          background-color:@red;
+          text-align:right;
+
+          >a {
+            color:@white;
+            padding-right: 1em;
+          }
+
+          ul.sub-menu {
+            min-width:100%;
+            text-align:center;
+          }
+        }
+        
+        >a {
+          padding: 1em .5em;
+        }
+      }
+    }
+
+    .rezone-overview {
+      font-size: .8em;
+    }
+
+    .map {
+      .span8 {
+        min-width: 100%;
+      }
+      .plan-status {
+        min-width: 100%;
+        margin-left: 0;
+        margin-top:1em;
+
+        .zone-w-status {
+          min-width: 42%;
+          display: inline-block;
+        }
+      }
+    }
+
+    .bottom-ctas {
+      .span3 {
+        text-align: center;
+        width: 48%;
+        margin: 1%;
+        background: #d41313;
+        //font-size:1em;
+      }
+    }
+
+    .news {
+      .news-feature {
+        min-width:100%;
+      }
+      .span4 {
+        min-width: 100%;
+        margin: 2em 0 0 0;
+      }
+    }
+
+    .commentary {
+      .span8 {
+        min-width:100%;
+        margin: 2em 0 0 0;
+      }
+      .span4 {
+        min-width: 100%;
+      }
+    }
+
+    .zonein-more a.btn.more {
+      min-width:100%;
+    }
+
+  }
+
+  @media (max-width: 550px) { 
+    ul#menu-zone-in {
+      //border:1px solid black;
+
+      >.menu-item {
+        min-width: 33.333%;
+        max-width: 33.333%;
+        //border:1px solid black;
+
+        &:not(.menu-item-has-children) {
+          text-align:left;
+        }
+      }
+    }
+
+    .rezone-101 {
+      .span4 {
+        min-width:100%;
+        margin:0 0 1.5em 0;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .videos {
+      .span4 {
+        min-width: 100%;
+        margin: 0 0 1em 0;
+
+        &:last-of-type {
+          margin-bottom:0;
+        }
+      }
+    }
+
+    .documents {
+      .span4 {
+        min-width: 100%;
+        margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 480px) { 
+    .map {
+      .plan-status {
+        .zone-w-status {
+          min-width: auto;
+          display: inline-block;
+          font-size: .8em;
+          margin-right: 1.5em;
+        }
+      }
+    }
+  }
+
+
+  // zone/neighborhood detail pages
+  &.tax-neighborhoods {
+    .rezone-header {
+      margin-bottom: 2em;
+    }
+
+    header {
+      h1 {
+        margin:0;
+        line-height: 1em;
+        border-bottom: 1px solid @grey1;
+        padding-bottom: .5em;
+      }
+      .zone-w-status {
+        margin: 1.5em 0 1em 0;
+      }
+    }
+
+    section.photos {
+      margin-top:0;
+      border-top:0;
+    }
+
+    section.news {
+      >.row-fluid {
+        margin-bottom: 2.5em;
+      }
+
+      h3 {
+        font-size:1.5em;
+      }
+    }
+
+    section.videos {
+      >.row-fluid {
+        >a {
+          .video-identifier;
+        }
+
+        h5 {
+          margin-bottom: 1.5em;
+        }
+      }
+    }
+
+    section.commentary {
+      margin-bottom:2em;
+      padding-bottom:2em;
+      border-bottom:1px solid @grey1;
+    }
+
+    .sidebar-ctas {
+      .zone-a-btn;
+    }
+
+    .zonein-more a.btn.more {
+      min-width: 100%;
+    }
+
+    .bottom-ctas {
+      float:left;
+      margin-top:2em;
+    }
+
+    .form {
+      background-color: @grey2;
+      padding: 1em;
+
+      h3 {
+        color:@black;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .stories+.span4 {
+        min-width: 100%;
+        margin: 0;
+      }
+    }
+
+  }
+
 }
+

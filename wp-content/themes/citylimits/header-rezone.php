@@ -51,6 +51,29 @@ add_filter('body_class', function($classes) {
 
 	wp_head();
 ?>
+
+<script>
+	//Zone-In Menu (necessary for touch devices)
+	jQuery(document).ready(function($){
+		var menu = '#menu-zone-in > .menu-item.menu-item-has-children';
+		var active = 'zones-active';
+
+		$(menu).hover(function(){
+			$(this).addClass(active);
+		}, function(){
+			$(this).removeClass(active);
+		})
+		$(menu).click(function(){
+			$(this).toggleClass(active);
+		});
+
+		$('body').click(function(e) {
+		    if ($(e.target).closest(menu).length === 0) {
+				$(menu).removeClass(active);
+			}
+		});
+	});
+</script>
 </head>
 
 <body <?php body_class(); ?>>
