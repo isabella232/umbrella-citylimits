@@ -30,6 +30,9 @@ $queried_object = get_queried_object();
 			$term_id = intval( $queried_object->term_id );
 			$tax = $queried_object->taxonomy;
 			$rss_link = get_term_feed_link( $term_id, $tax );
+
+			$post_id = largo_get_term_meta_post( $tax, $term_id );
+			$featured = largo_get_featured_media( $post_id );
 		?>
 
 
@@ -55,15 +58,7 @@ $queried_object = get_queried_object();
 
 				<section class="map">
 					<h2>Proposed Action Area</h2>
-						<?php
-						/**
-						 *  @TODO Add Map
-						 *  Google Map Wizard has some styles that will work really well here - https://mapstyle.withgoogle.com
-						 *  We'll need an API key for this
-						 */
-						?>
-						<!-- <div id="map" style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div> -->
-						<iframe id="map" width="100%" height="420" scrolling="no" frameborder="no" scollwheel="false" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1nVqV-VWkMF3sQfs3XUCsYfqcB6bAUJz2bXQl_-GV&amp;viz=MAP&amp;h=false&amp;lat=40.75&amp;lng=-73.8455445810547&amp;t=1&amp;z=10&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
+					<?php echo wp_get_attachment_image( $featured['attachment'], 'full' ); ?>
 				</section>
 
 				<section class="photos">
@@ -73,12 +68,12 @@ $queried_object = get_queried_object();
 
 				<section class="news">
 					<h2>News</h2>
-<?php
+						<?php
 						// and finally wind the posts back so we can go through the loop as usual
 						rewind_posts();
 						$counter = 1;
 						while ( have_posts() ) : the_post();
-?>
+						?>
 							<div class="row-fluid">
 								<div class="span3">
 									<?php the_post_thumbnail( 'medium' ); ?>
@@ -90,7 +85,7 @@ $queried_object = get_queried_object();
 									<a href="<?php the_permalink(); ?>" class="read-more">Read more ></a>
 								</div>
 							</div>
-<?php
+							<?php
 							$post_type = get_post_type();
 							$partial = largo_get_partial_by_post_type( 'archive', $post_type, 'archive' );
 							$counter++;
