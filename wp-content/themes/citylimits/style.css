@@ -689,6 +689,13 @@ body.neighborhoods-lp .zonein-more a.btn.more:hover {
     min-width: 100%;
     margin: 2em 0 0 0;
   }
+  body.neighborhoods-lp .commentary .span8 {
+    min-width: 100%;
+    margin: 2em 0 0 0;
+  }
+  body.neighborhoods-lp .commentary .span4 {
+    min-width: 100%;
+  }
   body.neighborhoods-lp .zonein-more a.btn.more {
     min-width: 100%;
   }
@@ -707,6 +714,17 @@ body.neighborhoods-lp .zonein-more a.btn.more:hover {
   }
   body.neighborhoods-lp .rezone-101 .span4:last-of-type {
     margin-bottom: 0;
+  }
+  body.neighborhoods-lp .videos .span4 {
+    min-width: 100%;
+    margin: 0 0 1em 0;
+  }
+  body.neighborhoods-lp .videos .span4:last-of-type {
+    margin-bottom: 0;
+  }
+  body.neighborhoods-lp .documents .span4 {
+    min-width: 100%;
+    margin: 0;
   }
 }
 @media (max-width: 480px) {
