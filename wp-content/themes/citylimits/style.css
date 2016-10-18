@@ -32,6 +32,66 @@ a:active {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+.video-identifier {
+  position: relative;
+  display: block;
+  margin-bottom: .5em;
+}
+.video-identifier:before {
+  content: ' ';
+  background-color: rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.video-identifier:after {
+  content: '\25B6';
+  color: #ffffff;
+  font-size: 40px;
+  line-height: 0;
+  width: 36px;
+  max-height: 48px;
+  box-sizing: border-box;
+  background-color: #000000;
+  padding: 32px 45px 32px 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.video-identifier:hover:after {
+  background-color: #d41313;
+}
+.zone-a-btn a.btn {
+  width: 100%;
+  color: #ffffff;
+  background: #d41313;
+  padding: 2.5em;
+  font-size: 1.125em;
+  font-weight: bold;
+  position: relative;
+}
+.zone-a-btn a.btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 1em;
+}
+.zone-a-btn a.btn:hover {
+  background: #e70000;
+}
+.zone-a-btn:hover {
+  background: #e70000;
+}
 /**
  * GENERAL STYLES
  */
@@ -377,7 +437,7 @@ body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children.zones-
 body.neighborhoods-lp ul#menu-zone-in > .menu-item a {
   display: block;
   padding: 1.25em 1.75em;
-  color: black;
+  color: #000000;
   font-weight: bold;
 }
 body.neighborhoods-lp ul#menu-zone-in > .menu-item a:hover {
@@ -484,13 +544,10 @@ body.neighborhoods-lp .bottom-ctas .span3 {
 body.neighborhoods-lp .bottom-ctas .span3 a.btn {
   width: 100%;
   color: #ffffff;
-  background: transparent;
+  background: #d41313;
   padding: 2.5em;
   font-size: 1.125em;
   font-weight: bold;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
   position: relative;
 }
 body.neighborhoods-lp .bottom-ctas .span3 a.btn span {
@@ -501,8 +558,17 @@ body.neighborhoods-lp .bottom-ctas .span3 a.btn span {
   width: 100%;
   padding: 0 1em;
 }
+body.neighborhoods-lp .bottom-ctas .span3 a.btn:hover {
+  background: #e70000;
+}
 body.neighborhoods-lp .bottom-ctas .span3:hover {
   background: #e70000;
+}
+body.neighborhoods-lp .bottom-ctas .span3 a.btn {
+  background: transparent;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 }
 body.neighborhoods-lp section.news h3,
 body.neighborhoods-lp section.videos h3,
@@ -536,6 +602,7 @@ body.neighborhoods-lp section.news .news-feature h3 {
 body.neighborhoods-lp section.videos .span4 > a {
   position: relative;
   display: block;
+  margin-bottom: .5em;
 }
 body.neighborhoods-lp section.videos .span4 > a:before {
   content: ' ';
@@ -611,6 +678,7 @@ body.neighborhoods-lp .zonein-more {
 }
 body.neighborhoods-lp .zonein-more.left {
   text-align: left;
+  margin: 0;
 }
 body.neighborhoods-lp .zonein-more a.btn.more {
   width: 31.914893614%;
@@ -733,5 +801,115 @@ body.neighborhoods-lp .zonein-more a.btn.more:hover {
     display: inline-block;
     font-size: .8em;
     margin-right: 1.5em;
+  }
+}
+body.neighborhoods-lp.tax-neighborhoods .rezone-header {
+  margin-bottom: 2em;
+}
+body.neighborhoods-lp.tax-neighborhoods header h1 {
+  margin: 0;
+  line-height: 1em;
+  border-bottom: 1px solid #c3c3c3;
+  padding-bottom: .5em;
+}
+body.neighborhoods-lp.tax-neighborhoods header .zone-w-status {
+  margin: 1.5em 0 1em 0;
+}
+body.neighborhoods-lp.tax-neighborhoods section.photos {
+  margin-top: 0;
+  border-top: 0;
+}
+body.neighborhoods-lp.tax-neighborhoods section.news > .row-fluid {
+  margin-bottom: 2.5em;
+}
+body.neighborhoods-lp.tax-neighborhoods section.news h3 {
+  font-size: 1.5em;
+}
+body.neighborhoods-lp.tax-neighborhoods section.videos > .row-fluid > a {
+  position: relative;
+  display: block;
+  margin-bottom: .5em;
+}
+body.neighborhoods-lp.tax-neighborhoods section.videos > .row-fluid > a:before {
+  content: ' ';
+  background-color: rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+body.neighborhoods-lp.tax-neighborhoods section.videos > .row-fluid > a:after {
+  content: '\25B6';
+  color: #ffffff;
+  font-size: 40px;
+  line-height: 0;
+  width: 36px;
+  max-height: 48px;
+  box-sizing: border-box;
+  background-color: #000000;
+  padding: 32px 45px 32px 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+body.neighborhoods-lp.tax-neighborhoods section.videos > .row-fluid > a:hover:after {
+  background-color: #d41313;
+}
+body.neighborhoods-lp.tax-neighborhoods section.videos > .row-fluid h5 {
+  margin-bottom: 1.5em;
+}
+body.neighborhoods-lp.tax-neighborhoods section.commentary {
+  margin-bottom: 2em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #c3c3c3;
+}
+body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas a.btn {
+  width: 100%;
+  color: #ffffff;
+  background: #d41313;
+  padding: 2.5em;
+  font-size: 1.125em;
+  font-weight: bold;
+  position: relative;
+}
+body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas a.btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 1em;
+}
+body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas a.btn:hover {
+  background: #e70000;
+}
+body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas:hover {
+  background: #e70000;
+}
+body.neighborhoods-lp.tax-neighborhoods .zonein-more a.btn.more {
+  min-width: 100%;
+}
+body.neighborhoods-lp.tax-neighborhoods .bottom-ctas {
+  float: left;
+  margin-top: 2em;
+}
+body.neighborhoods-lp.tax-neighborhoods .form {
+  background-color: #e2e2e2;
+  padding: 1em;
+}
+body.neighborhoods-lp.tax-neighborhoods .form h3 {
+  color: #000000;
+}
+@media (max-width: 768px) {
+  body.neighborhoods-lp.tax-neighborhoods .stories + .span4 {
+    min-width: 100%;
+    margin: 0;
   }
 }
