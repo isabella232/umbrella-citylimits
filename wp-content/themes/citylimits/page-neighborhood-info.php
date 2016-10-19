@@ -32,6 +32,13 @@ get_header( 'rezone' );
 		<div class="span8">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<h1><?php the_title(); ?></h1>
+				<?php
+					do_action('largo_after_post_header');
+
+					largo_hero(null,'span12');
+
+					do_action('largo_after_hero');
+				?>
 				<?php the_content(); ?>
 			<?php endwhile; ?>
 		</div>

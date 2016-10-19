@@ -746,6 +746,9 @@ body.neighborhoods-lp #rezone-footer .zone-w-status h5 {
 body.neighborhoods-lp.page-template-page-neighborhood-info p {
   font-size: 19.552px;
 }
+body.neighborhoods-lp.page-template-page-neighborhood-info .hero.span12 {
+  margin: 0 0 1em 0;
+}
 body.neighborhoods-lp input[type=submit].gform_button.button {
   width: 100%!important;
   background-color: #d41313;

@@ -79,7 +79,7 @@ $queried_object = get_queried_object();
 						$project_tax_query,
 						'relation' => 'AND'
 					),
-					'posts_per_page' => '4',
+					'posts_per_page' => '3',
 					'post__not_in' 	 => $shown_ids
 
 				);
@@ -90,15 +90,15 @@ $queried_object = get_queried_object();
 						<h2>Photos</h2>
 						<?php $count = 0; ?>
 						<?php while ( $photos->have_posts() ) : $photos->the_post(); $shown_ids[] = get_the_id(); ?>
-							<?php if ( 0 == $count || 0 == $count%2 ) : ?>
+							<?php if ( 0 == $count || 0 == $count%3 ) : ?>
 								<div class="row-fluid">
 							<?php endif; ?>
 
-								<div class="span6">
+								<div class="span4">
 									<?php the_post_thumbnail( 'medium' ); ?>
 								</div>
 
-							<?php if ( 1 == $count%2 ) : ?>
+							<?php if ( 1 == $count%3 ) : ?>
 								</div>
 							<?php endif; ?>
 							<?php $count++; ?>
