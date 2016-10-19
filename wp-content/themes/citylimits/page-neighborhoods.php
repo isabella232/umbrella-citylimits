@@ -237,7 +237,8 @@ get_header( 'rezone' );
 			<?php endif; ?>
 		</div>
 		<div class="span8 form">
-			<?php gravity_form( 23, false, true, false, true );?>
+			<h3>Make Your Voice Heard</h3>
+			<?php gravity_form( 24, false, true, false, true );?>
 		</div>
 	<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Commentary</a></div>
 	</div>
