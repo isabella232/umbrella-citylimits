@@ -21,7 +21,8 @@
 				?>
 				<div class="row-fluid">	
 					<?php foreach ( $neighborhoods as $neighborhood ) : ?>			
-						<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>"><div class="circle green"></div><?php echo $neighborhood->name; ?></a></h5></div>
+						<?php $status = get_term_meta( $neighborhood->term_id, 'neighborhood-status', true ); ?>
+						<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>"><div class="circle <?php echo $status; ?>"></div><?php echo $neighborhood->name; ?></a></h5></div>
 					<?php endforeach; ?>
 				</div>
 			</div>
