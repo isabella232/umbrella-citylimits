@@ -60,7 +60,7 @@ get_header( 'rezone' );
 			?>
 			<div class="row-fluid">	
 				<?php foreach ( $neighborhoods as $neighborhood ) : ?>			
-					<div class="zone-w-status"><h5><div class="circle green"></div><?php echo $neighborhood->name; ?></h5></div>
+					<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>"><div class="circle green"></div><?php echo $neighborhood->name; ?></a></h5></div>
 				<?php endforeach; ?>
 			</div>
 		</div>
