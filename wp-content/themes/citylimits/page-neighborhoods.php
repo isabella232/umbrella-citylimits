@@ -192,16 +192,16 @@ get_header( 'rezone' );
 
 <div class="bottom-ctas row-fluid">
 	<div class="span3">
-		<a class="btn"><span>Get Involved</span></a>
+		<a href="/get-involved/" class="btn"><span>Get Involved</span></a>
 	</div>
 	<div class="span3">
-		<a class="btn"><span>Share Your Views</span></a>
+		<a href="/share-your-views/" class="btn"><span>Share Your Views</span></a>
 	</div>
 	<div class="span3">
-		<a class="btn"><span>Events Calendar</span></a>
+		<a href="/post-type/events/" class="btn"><span>Events Calendar</span></a>
 	</div>
 	<div class="span3">
-		<a class="btn"><span>Get the Newsletter</span></a>
+		<a href="https://visitor.r20.constantcontact.com/manage/optin?v=001zxpjLyMMmAo1Y-WQNhg7iyT04D-FOREjm0-ANydGbm8w104RXMOiQFjO6VGBAzXRgotexijmxL7Om3KrcmFJQa9bYLRea0IxMyj1AdQ62z6kf2UgI6bkBnJESDGhczS53WMNhwsTFmaLjpQEEmfrnc8nLycrIsrSHNt87avSEmJbuO7EKGWEvtpptS4qzlrVwaLsxeI8UlSHyoSPcB9--xgihfk8jZON" class="btn"><span>Get the Newsletter</span></a>
 	</div>
 </div>
 
