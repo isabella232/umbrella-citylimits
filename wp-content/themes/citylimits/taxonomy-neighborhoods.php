@@ -48,7 +48,7 @@ $queried_object = get_queried_object();
 						<h1 class="page-title"><?php echo $title; ?></h1>
 					<?php endif; ?>
 
-					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo $status; ?></div>
+					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo ucfirst( $status ); ?></div>
 
 					<?php if ( isset( $description ) ) : ?>
 						<div class="archive-description"><?php echo $description; ?></div>
