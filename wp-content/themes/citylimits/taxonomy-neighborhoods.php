@@ -231,4 +231,6 @@ $queried_object = get_queried_object();
 	?>
 </div>
 
+<?php get_template_part( 'partials/rezone-footer' ); ?>
+
 <?php get_footer();
