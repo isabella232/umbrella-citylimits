@@ -907,9 +907,9 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
   body.neighborhoods-lp .zonein-more a.btn.more {
     min-width: 100%;
   }
-  body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .top-label li:last-of-type {
-    position: static;
-    min-width: 100%;
+  body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper li:last-of-type {
+    position: static!important;
+    min-width: 100%!important;
   }
 }
 @media (max-width: 550px) {
