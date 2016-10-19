@@ -67,27 +67,27 @@ $queried_object = get_queried_object();
 					<?php echo wp_get_attachment_image( $featured['attachment'], 'full' ); ?>
 				</section>
 
-				<section class="photos">
-					<h2>Photos</h2>
-					<?php
-					$args = array (
-						'tax_query' => array(
-							array(
-								'taxonomy' => 'post-type',
-								'field'    => 'slug',
-								'terms'    => array( 'photos' ),
-								'operator' => 'IN',
-							),
-							$project_tax_query,
-							'relation' => 'AND'
+				<?php
+				$args = array (
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'post-type',
+							'field'    => 'slug',
+							'terms'    => array( 'photos' ),
+							'operator' => 'IN',
 						),
-						'posts_per_page' => '4',
-						'post__not_in' 	 => $shown_ids
+						$project_tax_query,
+						'relation' => 'AND'
+					),
+					'posts_per_page' => '4',
+					'post__not_in' 	 => $shown_ids
 
-					);
-					$photos = new WP_Query( $args );
-					?>
-					<?php if ( $photos->have_posts() ) : ?>
+				);
+				$photos = new WP_Query( $args );
+				?>
+				<?php if ( $photos->have_posts() ) : ?>
+					<section class="photos">
+						<h2>Photos</h2>
 						<?php $count = 0; ?>
 						<?php while ( $photos->have_posts() ) : $photos->the_post(); $shown_ids[] = get_the_id(); ?>
 							<?php if ( 0 == $count || 0 == $count%2 ) : ?>
@@ -103,46 +103,47 @@ $queried_object = get_queried_object();
 							<?php endif; ?>
 							<?php $count++; ?>
 						<?php endwhile; ?>
-					<?php endif; ?>
-				</section>
+					</section>
+				<?php endif; ?>
 
-				<section class="news">
-					<h2>News</h2>
-						<?php
-						$args = array (
-							'tax_query' => array(
-								array(
-									'taxonomy' => 'post-type',
-									'field'    => 'slug',
-									'terms'    => array( 'events', 'commentary', 'documents', 'photos', 'videos' ),
-									'operator' => 'NOT IN',
-								),
-								$project_tax_query,
-								'relation' => 'AND'
-							),
-							'posts_per_page' => '4',
-							'post__not_in' 	 => $shown_ids
+				<?php
+				$args = array (
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'post-type',
+							'field'    => 'slug',
+							'terms'    => array( 'events', 'commentary', 'documents', 'photos', 'videos' ),
+							'operator' => 'NOT IN',
+						),
+						$project_tax_query,
+						'relation' => 'AND'
+					),
+					'posts_per_page' => '4',
+					'post__not_in' 	 => $shown_ids
 
-						);
-						$news = new WP_Query( $args );
-						?>
-						<?php if ( $news->have_posts() ) : ?>
-							<?php while ( $news->have_posts() ) : $news->the_post(); $shown_ids[] = get_the_id(); ?>
-								<div class="row-fluid">
-									<div class="span3">
-										<?php the_post_thumbnail( 'medium' ); ?>
-									</div>
-									<div class="span9">
-										<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-										<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
-										<?php the_excerpt(); ?>
-										<a href="<?php the_permalink(); ?>" class="read-more">Read more ></a>
-									</div>
+				);
+				$news = new WP_Query( $args );
+				?>
+
+				<?php if ( $news->have_posts() ) : ?>
+					<section class="news">
+						<h2>News</h2>
+						<?php while ( $news->have_posts() ) : $news->the_post(); $shown_ids[] = get_the_id(); ?>
+							<div class="row-fluid">
+								<div class="span3">
+									<?php the_post_thumbnail( 'medium' ); ?>
 								</div>
-							<?php endwhile; ?>
-						<?php endif; ?>
+								<div class="span9">
+									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+									<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+									<?php the_excerpt(); ?>
+									<a href="<?php the_permalink(); ?>" class="read-more">Read more ></a>
+								</div>
+							</div>
+						<?php endwhile; ?>
 						<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More News</a></div>
-				</section>
+					</section>
+				<?php endif; ?>
 
 			</div><!-- end content -->
 			<div class="span4">
@@ -151,27 +152,27 @@ $queried_object = get_queried_object();
 					<?php gravity_form( 23, false, true, false, true );?>
 				</div>
 
-				<section class="commentary">
-					<h2>Commentary</h2>
-					<div class="row-fluid">
-						<?php
-						$args = array (
-							'tax_query' => array(
-								array(
-									'taxonomy'  => 'post-type',
-									'field'     => 'slug',
-									'terms'     => array( 'commentary' )
-								),
-								$project_tax_query,
-								'relation' => 'AND'
-							),
-							'posts_per_page' => '2',
-							'post__not_in' 	 => $shown_ids
+				<?php
+				$args = array (
+					'tax_query' => array(
+						array(
+							'taxonomy'  => 'post-type',
+							'field'     => 'slug',
+							'terms'     => array( 'commentary' )
+						),
+						$project_tax_query,
+						'relation' => 'AND'
+					),
+					'posts_per_page' => '2',
+					'post__not_in' 	 => $shown_ids
 
-						);
-						$commentary = new WP_Query( $args );
-						?>
-						<?php if ( $commentary->have_posts() ) : ?>
+				);
+				$commentary = new WP_Query( $args );
+				?>
+				<?php if ( $commentary->have_posts() ) : ?>
+					<section class="commentary">
+						<h2>Commentary</h2>
+						<div class="row-fluid">
 							<?php $count = 0; ?>
 							<?php while ( $commentary->have_posts() ) : $commentary->the_post(); $shown_ids[] = get_the_id(); ?>
 								<div class="story">
@@ -179,36 +180,36 @@ $queried_object = get_queried_object();
 									<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
 								</div>
 							<?php endwhile; ?>
-						<?php endif; ?>
-						<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
-					</div>
-				</section>
+							<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
+						</div>
+					</section>
+				<?php endif; ?>
 
 				<div class="sidebar-ctas row-fluid">
 					<a class="btn">Get Involved</a>
 				</div>
 
-				<section class="events">
-					<h2>Upcoming Events</h2>
-					<div class="row-fluid">
-						<?php
-						$args = array (
-							'tax_query' => array(
-								array(
-									'taxonomy'  => 'post-type',
-									'field'     => 'slug',
-									'terms'     => array( 'events' )
-								),
-								$project_tax_query,
-								'relation' => 'AND'
-							),
-							'posts_per_page' => '2',
-							'post__not_in' 	 => $shown_ids
+				<?php
+				$args = array (
+					'tax_query' => array(
+						array(
+							'taxonomy'  => 'post-type',
+							'field'     => 'slug',
+							'terms'     => array( 'events' )
+						),
+						$project_tax_query,
+						'relation' => 'AND'
+					),
+					'posts_per_page' => '2',
+					'post__not_in' 	 => $shown_ids
 
-						);
-						$commentary = new WP_Query( $args );
-						?>
-						<?php if ( $commentary->have_posts() ) : ?>
+				);
+				$commentary = new WP_Query( $args );
+				?>
+				<?php if ( $commentary->have_posts() ) : ?>
+					<section class="events">
+						<h2>Upcoming Events</h2>
+						<div class="row-fluid">
 							<?php $count = 0; ?>
 							<?php while ( $commentary->have_posts() ) : $commentary->the_post(); $shown_ids[] = get_the_id(); ?>
 								<div class="story">
@@ -216,32 +217,32 @@ $queried_object = get_queried_object();
 
 								</div>
 							<?php endwhile; ?>
-						<?php endif; ?>
-						<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
-					</div>
-				</section>
+							<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
+						</div>
+					</section>
+				<?php endif; ?>
 
-				<section class="videos">
-					<h2>Videos</h2>
-					<div class="row-fluid">
-						<?php
-						$args = array (
-							'tax_query' => array(
-								array(
-									'taxonomy' 	=> 'post-type',
-									'field' 	=> 'slug',
-									'terms' 	=> array( 'video' )
-								),
-								$project_tax_query,
-								'relation' => 'AND'
-							),
-							'posts_per_page' => '1',
-							'post__not_in' 	 => $shown_ids
+				<?php
+				$args = array (
+					'tax_query' => array(
+						array(
+							'taxonomy' 	=> 'post-type',
+							'field' 	=> 'slug',
+							'terms' 	=> array( 'video' )
+						),
+						$project_tax_query,
+						'relation' => 'AND'
+					),
+					'posts_per_page' => '1',
+					'post__not_in' 	 => $shown_ids
 
-						);
-						$videos = new WP_Query( $args );
-						?>
-						<?php if ( $videos->have_posts() ) : ?>
+				);
+				$videos = new WP_Query( $args );
+				?>
+				<?php if ( $videos->have_posts() ) : ?>
+					<section class="videos">
+						<h2>Videos</h2>
+						<div class="row-fluid">
 							<?php $count = 0; ?>
 							<?php while ( $videos->have_posts() ) : $videos->the_post(); $shown_ids[] = get_the_id(); ?>
 								<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'full' ); ?></a>
@@ -249,41 +250,41 @@ $queried_object = get_queried_object();
 								<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
 								<?php $count++; ?>
 							<?php endwhile; ?>
-						<?php endif; ?>
-					</div>
-					<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Zone Videos</a></div>
-				</section>
+						</div>
+						<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Zone Videos</a></div>
+					</section>
+				<?php endif; ?>
 
-				<section class="documents">
-					<h2>Documents</h2>
-					<div class="row-fluid">
-						<?php
-						$args = array (
-							'tax_query' => array(
-								array(
-									'taxonomy'  => 'post-type',
-									'field'     => 'slug',
-									'terms'     => array( 'documents' )
-								),
-								$project_tax_query,
-								'relation' => 'AND'
-							),
-							'posts_per_page' => '3',
-							'post__not_in' 	 => $shown_ids
+				<?php
+				$args = array (
+					'tax_query' => array(
+						array(
+							'taxonomy'  => 'post-type',
+							'field'     => 'slug',
+							'terms'     => array( 'documents' )
+						),
+						$project_tax_query,
+						'relation' => 'AND'
+					),
+					'posts_per_page' => '3',
+					'post__not_in' 	 => $shown_ids
 
-						);
-						$documents = new WP_Query( $args );
-						?>
-						<?php if ( $documents->have_posts() ) : ?>
+				);
+				$documents = new WP_Query( $args );
+				?>
+				<?php if ( $documents->have_posts() ) : ?>
+					<section class="documents">
+						<h2>Documents</h2>
+						<div class="row-fluid">
 							<?php while ( $documents->have_posts() ) : $documents->the_post(); $shown_ids[] = get_the_id(); ?>
 								<div class="doc">
 									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 								</div>
 							<?php endwhile; ?>
-						<?php endif; ?>
-					</div>
-					<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Zone Documents</a></div>
-				</section>
+						</div>
+						<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Zone Documents</a></div>
+					</section>
+				<?php endif; ?>
 
 			</div>
 
