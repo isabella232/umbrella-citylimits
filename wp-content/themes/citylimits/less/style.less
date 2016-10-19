@@ -34,6 +34,18 @@ a:hover, a:active {
   flex-wrap: wrap;
 }
 
+.flexaround {
+  -webkit-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+}
+
+.flexbetween {
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+
 .video-identifier {
   position: relative;
   display: block;
@@ -605,14 +617,12 @@ body.neighborhoods-lp {
 
   .bottom-ctas {
     .flex;
-    .flexwrap;
 
     .span3 {
       text-align: center;
       width:23%;
-      margin:0;
-      margin:0 1%;
       background: @red;
+      margin:0 1%;
 
       .zone-a-btn;
 
@@ -808,11 +818,14 @@ body.neighborhoods-lp {
     }
 
     .bottom-ctas {
+
+      display:block;
+
       .span3 {
         text-align: center;
         width: 48%;
-        margin: 1%;
         background: #d41313;
+        margin:1%;
         //font-size:1em;
       }
     }

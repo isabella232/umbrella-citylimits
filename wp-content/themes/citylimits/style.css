@@ -32,6 +32,16 @@ a:active {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+.flexaround {
+  -webkit-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+}
+.flexbetween {
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
 .video-identifier {
   position: relative;
   display: block;
@@ -530,16 +540,12 @@ body.neighborhoods-lp .bottom-ctas {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
 }
 body.neighborhoods-lp .bottom-ctas .span3 {
   text-align: center;
   width: 23%;
-  margin: 0;
-  margin: 0 1%;
   background: #d41313;
+  margin: 0 1%;
 }
 body.neighborhoods-lp .bottom-ctas .span3 a.btn {
   width: 100%;
@@ -744,11 +750,14 @@ body.neighborhoods-lp .zonein-more a.btn.more:hover {
     min-width: 42%;
     display: inline-block;
   }
+  body.neighborhoods-lp .bottom-ctas {
+    display: block;
+  }
   body.neighborhoods-lp .bottom-ctas .span3 {
     text-align: center;
     width: 48%;
-    margin: 1%;
     background: #d41313;
+    margin: 1%;
   }
   body.neighborhoods-lp .news .news-feature {
     min-width: 100%;
