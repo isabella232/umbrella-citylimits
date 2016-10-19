@@ -22,6 +22,14 @@ a:hover, a:active {
 /**
  * MIXINS
 */
+.a11y {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
 .flex {
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -780,6 +788,34 @@ body.neighborhoods-lp {
   &.page-template-page-neighborhood-info {
     p {
       font-size:19.552px;
+    }
+  }
+
+  input[type=submit].gform_button.button {
+    width: 100%!important;
+    background-color: @red;
+    color: @white;
+    border: none;
+    padding: .5em;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .gform_wrapper {
+    margin: 0!important;
+
+    .top_label .gfield_label,
+    .field_sublabel_below .ginput_complex.ginput_container label {
+      .a11y;
+    }
+
+    form li, 
+    li {
+      margin: 0!important;
+    }
+
+    .gform_footer {
+      margin: .5em 0!important;
+      padding: 0!important;
     }
   }
 
