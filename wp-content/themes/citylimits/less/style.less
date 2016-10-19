@@ -798,10 +798,19 @@ body.neighborhoods-lp {
     border: none;
     padding: .5em;
     font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+
+    &:hover {
+      background: saturate(@red,30%);
+    }
   }
 
   .gform_wrapper {
     margin: 0!important;
+
+    .top_label li.gfield.gf_right_half {
+      float: right!important;
+    }
 
     .top_label .gfield_label,
     .field_sublabel_below .ginput_complex.ginput_container label {
@@ -818,6 +827,15 @@ body.neighborhoods-lp {
       padding: 0!important;
     }
   }
+
+  .single-cftl-tax-landing .gform_wrapper .gform_footer {
+    margin: .5em 0!important;
+    padding: 0!important;
+    width: 50%;
+    float: right;
+    padding-left: 16px!important;
+  }
+
 
   // this is to undo some largo weirdness
   @media (max-width: 979px) and (min-width: 769px) {

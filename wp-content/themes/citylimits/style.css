@@ -753,9 +753,16 @@ body.neighborhoods-lp input[type=submit].gform_button.button {
   border: none;
   padding: .5em;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+body.neighborhoods-lp input[type=submit].gform_button.button:hover {
+  background: #e70000;
 }
 body.neighborhoods-lp .gform_wrapper {
   margin: 0!important;
+}
+body.neighborhoods-lp .gform_wrapper .top_label li.gfield.gf_right_half {
+  float: right!important;
 }
 body.neighborhoods-lp .gform_wrapper .top_label .gfield_label,
 body.neighborhoods-lp .gform_wrapper .field_sublabel_below .ginput_complex.ginput_container label {
@@ -773,6 +780,13 @@ body.neighborhoods-lp .gform_wrapper li {
 body.neighborhoods-lp .gform_wrapper .gform_footer {
   margin: .5em 0!important;
   padding: 0!important;
+}
+body.neighborhoods-lp .single-cftl-tax-landing .gform_wrapper .gform_footer {
+  margin: .5em 0!important;
+  padding: 0!important;
+  width: 50%;
+  float: right;
+  padding-left: 16px!important;
 }
 @media (max-width: 979px) and (min-width: 769px) {
   body.neighborhoods-lp .global-nav,
