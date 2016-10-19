@@ -180,7 +180,7 @@ $queried_object = get_queried_object();
 								</div>
 							<?php endwhile; ?>
 						<?php endif; ?>
-						<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
+						<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Commentary</a></div>
 					</div>
 				</section>
 
@@ -217,7 +217,7 @@ $queried_object = get_queried_object();
 								</div>
 							<?php endwhile; ?>
 						<?php endif; ?>
-						<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
+						<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Commentary</a></div>
 					</div>
 				</section>
 
@@ -251,7 +251,7 @@ $queried_object = get_queried_object();
 							<?php endwhile; ?>
 						<?php endif; ?>
 					</div>
-					<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Zone Videos</a></div>
+					<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Videos</a></div>
 				</section>
 
 				<section class="documents">
@@ -282,7 +282,7 @@ $queried_object = get_queried_object();
 							<?php endwhile; ?>
 						<?php endif; ?>
 					</div>
-					<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Zone Documents</a></div>
+					<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Documents</a></div>
 				</section>
 
 			</div>
