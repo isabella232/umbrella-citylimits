@@ -781,9 +781,6 @@ body.neighborhoods-lp .gform_wrapper form li,
 body.neighborhoods-lp .gform_wrapper li {
   margin: 0!important;
 }
-body.neighborhoods-lp .gform_wrapper textarea {
-  max-height: 144px;
-}
 body.neighborhoods-lp .gform_wrapper .gform_footer {
   margin: .5em 0!important;
   padding: 0!important;
@@ -794,10 +791,10 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .top_label li:last-
   right: 0;
 }
 body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .top_label li:last-of-type div.ginput_container {
-  margin-top: 0;
+  margin-top: 2px;
 }
 body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .top_label li:last-of-type textarea {
-  max-height: 130px;
+  max-height: 142px;
 }
 body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
   margin: .5em 0!important;
