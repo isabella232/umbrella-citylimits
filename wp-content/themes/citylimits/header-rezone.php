@@ -55,16 +55,33 @@ add_filter('body_class', function($classes) {
 <script>
 	//Zone-In Menu (necessary for touch devices)
 	jQuery(document).ready(function($){
+		
+
+		var $items = $('#menu-zone-in > .menu-item:not(.menu-item-has-children)');
+		$('#menu-zone-in').append('<li id="more-zonein" class="menu-item menu-item-has-children"><a>More</a><ul class="sub-menu"></ul></li>');
+		var $clones = $items.clone();
+		$('#more-zonein .sub-menu').append($clones);
+		$items.addClass('menu-hide');
+
+
 		var menu = '#menu-zone-in > .menu-item.menu-item-has-children';
 		var active = 'zones-active';
 
-		$(menu).hover(function(){
-			$(this).addClass(active);
-		}, function(){
-			$(this).removeClass(active);
-		})
+		if ($('html').hasClass('no-touch')){
+			$(menu).hover(function(){
+				$(this).addClass(active);
+			}, function(){
+				$(this).removeClass(active);
+			})
+		}
 		$(menu).click(function(){
-			$(this).toggleClass(active);
+			var $this = $(this);
+			if ($this.hasClass(active)){
+				$(menu).removeClass(active);
+			} else {
+				$(menu).removeClass(active);
+				$this.addClass(active);
+			}
 		});
 
 		$('body').click(function(e) {

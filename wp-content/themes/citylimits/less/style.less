@@ -22,6 +22,14 @@ a:hover, a:active {
 /**
  * MIXINS
 */
+.a11y {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
 .flex {
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -525,6 +533,10 @@ body.neighborhoods-lp {
         }
       }
     }
+
+    #more-zonein {
+      display:none;
+    }
   }
 
   h1.entry-title {
@@ -702,9 +714,10 @@ body.neighborhoods-lp {
     margin-right: .5em;
     position: relative;
     top: .125em;
+    background-color: @grey1;
 
-    &.green { background: green; }
-    &.yellow { background: yellow; }
+    &.green { background: #10a139; }
+    &.yellow { background: #fac409; }
     &.red { background: @red; }
 
   }
@@ -778,6 +791,34 @@ body.neighborhoods-lp {
     }
   }
 
+  input[type=submit].gform_button.button {
+    width: 100%!important;
+    background-color: @red;
+    color: @white;
+    border: none;
+    padding: .5em;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .gform_wrapper {
+    margin: 0!important;
+
+    .top_label .gfield_label,
+    .field_sublabel_below .ginput_complex.ginput_container label {
+      .a11y;
+    }
+
+    form li, 
+    li {
+      margin: 0!important;
+    }
+
+    .gform_footer {
+      margin: .5em 0!important;
+      padding: 0!important;
+    }
+  }
+
   // this is to undo some largo weirdness
   @media (max-width: 979px) and (min-width: 769px) {
     .global-nav, #page, #site-footer, #footer-logos {
@@ -790,7 +831,7 @@ body.neighborhoods-lp {
 
       >.menu-item {
         a {
-          padding: .75em;
+          padding: 1em;
           font-size: .9em;
         }
       }
@@ -824,32 +865,49 @@ body.neighborhoods-lp {
 
   @media (max-width: 650px) { 
     ul#menu-zone-in {
-      //border:1px solid black;
+      border-bottom:none;
 
       >.menu-item {
         min-width: 20%;
         max-width: 20%;
 
         &.menu-item-has-children {
-          min-width:100%;
-          max-width:100%;
-          background-color:@red;
-          text-align:right;
+          min-width:50%;
+          max-width:50%;
+          background-color:@black;
+          text-align:center;
+
+          &:first-of-type {
+            border-right:1px solid @white;
+          }
 
           >a {
             color:@white;
             padding-right: 1em;
+            padding-left: 1em;
+
+            &:hover {
+              background-color:@red;
+            }
           }
 
           ul.sub-menu {
             min-width:100%;
             text-align:center;
+            border-top:none;
           }
         }
         
         >a {
           padding: 1em .5em;
         }
+      }
+
+      #more-zonein {
+        display:inline-block;
+      }
+      .menu-hide {
+        display:none;
       }
     }
 
@@ -915,14 +973,23 @@ body.neighborhoods-lp {
   @media (max-width: 550px) { 
     ul#menu-zone-in {
       //border:1px solid black;
+      position:relative;
 
       >.menu-item {
         min-width: 33.333%;
         max-width: 33.333%;
         //border:1px solid black;
 
+        &.menu-item-has-children {
+          position:static;
+        }
+
         &:not(.menu-item-has-children) {
           text-align:left;
+        }
+
+        .sub-menu {
+          left:0;
         }
       }
     }
