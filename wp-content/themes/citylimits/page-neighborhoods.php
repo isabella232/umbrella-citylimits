@@ -62,9 +62,9 @@ get_header( 'rezone' );
 				<?php foreach ( $neighborhoods as $neighborhood ) : ?>			
 					<?php $status = get_term_meta( $neighborhood->term_id, 'neighborhood-status', true ); ?>
 
-					<?php if ( isset( $title ) ) : ?>
+					<!-- <?php if ( isset( $title ) ) : ?>
 						<h1 class="page-title"><?php echo $title; ?></h1>
-					<?php endif; ?>
+					<?php endif; ?> -->
 
 					<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>"><div class="circle <?php echo $status; ?>"></div><?php echo $neighborhood->name; ?></a></h5></div>
 				<?php endforeach; ?>
