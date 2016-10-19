@@ -91,7 +91,7 @@ $queried_object = get_queried_object();
 						<div class="row-fluid">
 						<?php while ( $photos->have_posts() ) : $photos->the_post(); $shown_ids[] = get_the_id(); ?>
 							<div class="span4">
-								<a href=" <?php echo the_post_thumbnail_url( 'full' ); ?> "><?php the_post_thumbnail( 'medium' ); ?></a>
+								<a href=" <?php echo the_post_thumbnail_url( 'full' ); ?> " target="_blank"><?php the_post_thumbnail( 'medium' ); ?></a>
 							</div>
 						<?php endwhile; ?>
 							</div>
