@@ -95,7 +95,7 @@ $queried_object = get_queried_object();
 							<?php endif; ?>
 
 								<div class="span4">
-									<?php the_post_thumbnail( 'medium' ); ?>
+									<a href=" <?php echo the_post_thumbnail_url( 'full' ); ?> "><?php the_post_thumbnail( 'medium' ); ?></a>
 								</div>
 
 							<?php if ( 1 == $count%3 ) : ?>
