@@ -41,14 +41,14 @@ $queried_object = get_queried_object();
 				<header class="archive-background clearfix">
 					<?php
 						$post_id = largo_get_term_meta_post( $queried_object->taxonomy, $queried_object->term_id );
-						$status = 'Passed'; // @TODO update to meta variable
+						$status = get_term_meta( $term_id, 'neighborhood-status', true );
 					?>
 
 					<?php if ( isset( $title ) ) : ?>
 						<h1 class="page-title"><?php echo $title; ?></h1>
 					<?php endif; ?>
 
-					<div class="zone-w-status"><div class="circle green"></div><?php echo $status; ?></div>
+					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo $status; ?></div>
 
 					<?php if ( isset( $description ) ) : ?>
 						<div class="archive-description"><?php echo $description; ?></div>
