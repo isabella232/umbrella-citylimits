@@ -808,18 +808,31 @@ body.neighborhoods-lp {
   .gform_wrapper {
     margin: 0!important;
 
-    .top_label li.gfield.gf_right_half {
-      float: right!important;
+    .gform_body {
+      position:relative;
     }
+
+    // .top_label li.gfield.gf_right_half {
+    //   float: right!important;
+    // }
 
     .top_label .gfield_label,
     .field_sublabel_below .ginput_complex.ginput_container label {
       .a11y;
     }
+    
+    .top_label li.gfield.gf_left_half, 
+    .top_label li.gfield.gf_right_half {
+      display:block;
+    }
 
     form li, 
     li {
       margin: 0!important;
+    }
+
+    textarea {
+      max-height:144px;
     }
 
     .gform_footer {
@@ -828,12 +841,28 @@ body.neighborhoods-lp {
     }
   }
 
-  .single-cftl-tax-landing .gform_wrapper .gform_footer {
-    margin: .5em 0!important;
-    padding: 0!important;
-    width: 50%;
-    float: right;
-    padding-left: 16px!important;
+  &.single-cftl-tax-landing .gform_wrapper {
+    li:last-of-type {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      .top_label div.ginput_container {
+        margin-top:0;
+      }
+
+      textarea {
+        max-height:130px;
+      }
+    }
+
+    .gform_footer {
+      margin: .5em 0!important;
+      padding: 0!important;
+      width: 50%;
+      float: right;
+      padding: 0 8px!important;
+    }
   }
 
 
@@ -984,6 +1013,13 @@ body.neighborhoods-lp {
 
     .zonein-more a.btn.more {
       min-width:100%;
+    }
+
+    &.single-cftl-tax-landing .gform_wrapper {
+      li:last-of-type {
+        position: static;
+        min-width: 100%;
+      }
     }
 
   }
