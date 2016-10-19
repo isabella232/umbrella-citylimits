@@ -471,6 +471,9 @@ body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item {
 body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item a {
   padding: .75em 2em;
 }
+body.neighborhoods-lp ul#menu-zone-in #more-zonein {
+  display: none;
+}
 body.neighborhoods-lp h1.entry-title {
   font-size: 1.25em;
   clear: both;
@@ -744,7 +747,7 @@ body.neighborhoods-lp.page-template-page-neighborhood-info p {
 }
 @media (max-width: 900px) {
   body.neighborhoods-lp ul#menu-zone-in > .menu-item a {
-    padding: .75em;
+    padding: 1em;
     font-size: .9em;
   }
   body.neighborhoods-lp .news .news-feature .span6 {
@@ -759,26 +762,43 @@ body.neighborhoods-lp.page-template-page-neighborhood-info p {
   }
 }
 @media (max-width: 650px) {
+  body.neighborhoods-lp ul#menu-zone-in {
+    border-bottom: none;
+  }
   body.neighborhoods-lp ul#menu-zone-in > .menu-item {
     min-width: 20%;
     max-width: 20%;
   }
   body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children {
-    min-width: 100%;
-    max-width: 100%;
-    background-color: #d41313;
-    text-align: right;
+    min-width: 50%;
+    max-width: 50%;
+    background-color: #000000;
+    text-align: center;
+  }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children:first-of-type {
+    border-right: 1px solid #ffffff;
   }
   body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a {
     color: #ffffff;
     padding-right: 1em;
+    padding-left: 1em;
+  }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a:hover {
+    background-color: #d41313;
   }
   body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children ul.sub-menu {
     min-width: 100%;
     text-align: center;
+    border-top: none;
   }
   body.neighborhoods-lp ul#menu-zone-in > .menu-item > a {
     padding: 1em .5em;
+  }
+  body.neighborhoods-lp ul#menu-zone-in #more-zonein {
+    display: inline-block;
+  }
+  body.neighborhoods-lp ul#menu-zone-in .menu-hide {
+    display: none;
   }
   body.neighborhoods-lp .rezone-overview {
     font-size: .8em;
@@ -823,12 +843,21 @@ body.neighborhoods-lp.page-template-page-neighborhood-info p {
   }
 }
 @media (max-width: 550px) {
+  body.neighborhoods-lp ul#menu-zone-in {
+    position: relative;
+  }
   body.neighborhoods-lp ul#menu-zone-in > .menu-item {
     min-width: 33.333%;
     max-width: 33.333%;
   }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children {
+    position: static;
+  }
   body.neighborhoods-lp ul#menu-zone-in > .menu-item:not(.menu-item-has-children) {
     text-align: left;
+  }
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item .sub-menu {
+    left: 0;
   }
   body.neighborhoods-lp .rezone-101 .span4 {
     min-width: 100%;

@@ -525,6 +525,10 @@ body.neighborhoods-lp {
         }
       }
     }
+
+    #more-zonein {
+      display:none;
+    }
   }
 
   h1.entry-title {
@@ -790,7 +794,7 @@ body.neighborhoods-lp {
 
       >.menu-item {
         a {
-          padding: .75em;
+          padding: 1em;
           font-size: .9em;
         }
       }
@@ -824,32 +828,49 @@ body.neighborhoods-lp {
 
   @media (max-width: 650px) { 
     ul#menu-zone-in {
-      //border:1px solid black;
+      border-bottom:none;
 
       >.menu-item {
         min-width: 20%;
         max-width: 20%;
 
         &.menu-item-has-children {
-          min-width:100%;
-          max-width:100%;
-          background-color:@red;
-          text-align:right;
+          min-width:50%;
+          max-width:50%;
+          background-color:@black;
+          text-align:center;
+
+          &:first-of-type {
+            border-right:1px solid @white;
+          }
 
           >a {
             color:@white;
             padding-right: 1em;
+            padding-left: 1em;
+
+            &:hover {
+              background-color:@red;
+            }
           }
 
           ul.sub-menu {
             min-width:100%;
             text-align:center;
+            border-top:none;
           }
         }
         
         >a {
           padding: 1em .5em;
         }
+      }
+
+      #more-zonein {
+        display:inline-block;
+      }
+      .menu-hide {
+        display:none;
       }
     }
 
@@ -915,14 +936,23 @@ body.neighborhoods-lp {
   @media (max-width: 550px) { 
     ul#menu-zone-in {
       //border:1px solid black;
+      position:relative;
 
       >.menu-item {
         min-width: 33.333%;
         max-width: 33.333%;
         //border:1px solid black;
 
+        &.menu-item-has-children {
+          position:static;
+        }
+
         &:not(.menu-item-has-children) {
           text-align:left;
+        }
+
+        .sub-menu {
+          left:0;
         }
       }
     }
