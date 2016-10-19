@@ -788,15 +788,15 @@ body.neighborhoods-lp .gform_wrapper .gform_footer {
   margin: .5em 0!important;
   padding: 0!important;
 }
-body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper li:last-of-type {
+body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .top_label li:last-of-type {
   position: absolute;
   top: 0;
   right: 0;
 }
-body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper li:last-of-type .top_label div.ginput_container {
+body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .top_label li:last-of-type div.ginput_container {
   margin-top: 0;
 }
-body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper li:last-of-type textarea {
+body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .top_label li:last-of-type textarea {
   max-height: 130px;
 }
 body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
