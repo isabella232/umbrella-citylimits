@@ -70,10 +70,14 @@ function cl_status_get_statuses() {
 	return $temporary_statuses;
 }
 
-function citylimits_update_project_status( $term_id, $tt_id ){
-	if ( isset( $_POST['neighborhood-status'] ) && '' !== $_POST['neighborhood-status'] ) {
-		$group = sanitize_title( $_POST['neighborhood-status'] );
-		update_term_meta( $term_id, 'neighborhood-status', $group );
+function citylimits_update_project_status( $term_id, $tt_id ) {
+	if ( isset( $_POST['neighborhood-status'] ) ) {
+		if ( '' !== $_POST['neighborhood-status'] ) {
+			$group = sanitize_title( $_POST['neighborhood-status'] );
+			update_term_meta( $term_id, 'neighborhood-status', $group );
+		} else {	
+			delete_term_meta( $term_id, 'neighborhood-status' );
+		}
 	}
 }
 add_action( 'edited_neighborhoods', 'citylimits_update_project_status', 10, 2 );
