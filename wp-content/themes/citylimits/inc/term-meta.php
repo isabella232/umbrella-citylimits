@@ -21,12 +21,13 @@ function cl_status_edit_status_form( $tag, $taxonomy ) {
 				<label for="neighborhood-status"><?php _e('Neighborhood Zoning Status', 'citylimits'); ?></label>
 			</th>
 			<td>
+
 				<select class="postform" id="neighborhood-status" name="neighborhood-status">
 					<option value=''><?php _e("No status set", 'citylimits'); ?></option>
 					<?php 
 						foreach ( $statuses as $id => $values ) {
 							printf(
-								'<option value="%1$s">%2$s</option>',
+								'<option value="%1$s" ' . selected( $current_status, $id ) . '>%2$s</option>',
 								$id,
 								__( $values['color'], 'citylimits' )
 							);
@@ -43,7 +44,7 @@ function cl_status_edit_status_form( $tag, $taxonomy ) {
  * Get the status for a neighborhood
  */
 function cl_status_get_status( $term, $taxonomy ) {
-	return '';
+	return get_term_meta( $term->term_id, 'neighborhood-status', true );
 }
 
 /**
@@ -69,14 +70,14 @@ function cl_status_get_statuses() {
 	return $temporary_statuses;
 }
 
-/**
- * List of things yet to do here:
- *
- * @todo The save action
- * @todo the delete action
- * @todo the get_status function
- *
- * @link http://themehybrid.com/weblog/introduction-to-wordpress-term-meta
- * @link https://www.smashingmagazine.com/2015/12/how-to-use-term-meta-data-in-wordpress/
- *
- */
+function citylimits_update_project_status( $term_id, $tt_id ) {
+	if ( isset( $_POST['neighborhood-status'] ) ) {
+		if ( '' !== $_POST['neighborhood-status'] ) {
+			$group = sanitize_title( $_POST['neighborhood-status'] );
+			update_term_meta( $term_id, 'neighborhood-status', $group );
+		} else {	
+			delete_term_meta( $term_id, 'neighborhood-status' );
+		}
+	}
+}
+add_action( 'edited_neighborhoods', 'citylimits_update_project_status', 10, 2 );

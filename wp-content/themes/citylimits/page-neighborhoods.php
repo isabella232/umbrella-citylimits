@@ -60,7 +60,13 @@ get_header( 'rezone' );
 			?>
 			<div class="row-fluid">	
 				<?php foreach ( $neighborhoods as $neighborhood ) : ?>			
-					<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>"><div class="circle green"></div><?php echo $neighborhood->name; ?></a></h5></div>
+					<?php $status = get_term_meta( $neighborhood->term_id, 'neighborhood-status', true ); ?>
+
+					<?php if ( isset( $title ) ) : ?>
+						<h1 class="page-title"><?php echo $title; ?></h1>
+					<?php endif; ?>
+
+					<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>"><div class="circle <?php echo $status; ?>"></div><?php echo $neighborhood->name; ?></a></h5></div>
 				<?php endforeach; ?>
 			</div>
 		</div>
@@ -231,7 +237,7 @@ get_header( 'rezone' );
 			<?php endif; ?>
 		</div>
 		<div class="span8 form">
-			<?php // @TODO Make Your Voice Heard form ?>
+			<?php gravity_form( 23, false, true, false, true );?>
 		</div>
 	<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Commentary</a></div>
 	</div>

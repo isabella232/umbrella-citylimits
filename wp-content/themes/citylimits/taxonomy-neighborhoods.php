@@ -41,14 +41,14 @@ $queried_object = get_queried_object();
 				<header class="archive-background clearfix">
 					<?php
 						$post_id = largo_get_term_meta_post( $queried_object->taxonomy, $queried_object->term_id );
-						$status = 'Passed'; // @TODO update to meta variable
+						$status = get_term_meta( $term_id, 'neighborhood-status', true );
 					?>
 
 					<?php if ( isset( $title ) ) : ?>
 						<h1 class="page-title"><?php echo $title; ?></h1>
 					<?php endif; ?>
 
-					<div class="zone-w-status"><div class="circle green"></div><?php echo $status; ?></div>
+					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo ucfirst( $status ); ?></div>
 
 					<?php if ( isset( $description ) ) : ?>
 						<div class="archive-description"><?php echo $description; ?></div>
@@ -99,8 +99,7 @@ $queried_object = get_queried_object();
 			<div class="span4">
 				<div class="form">
 					<h3>Make Your Voice Heard</h3>
-					<p>Submit a question, commend, or idea for the ReZone project.</p>
-					<?php // @TODO Make Your Voice Heard form ?>
+					<?php gravity_form( 23, false, true, false, true );?>
 				</div>
 
 				<section class="commentary">
