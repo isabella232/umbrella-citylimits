@@ -479,6 +479,9 @@ body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item a {
 body.neighborhoods-lp ul#menu-zone-in #more-zonein {
   display: none;
 }
+body.neighborhoods-lp header.archive-background {
+  margin: 2em 0 .5em 0;
+}
 body.neighborhoods-lp h1.entry-title {
   font-size: 1.25em;
   clear: both;
