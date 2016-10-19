@@ -671,12 +671,13 @@ body.neighborhoods-lp .circle {
   margin-right: .5em;
   position: relative;
   top: .125em;
+  background-color: #c3c3c3;
 }
 body.neighborhoods-lp .circle.green {
-  background: green;
+  background: #10a139;
 }
 body.neighborhoods-lp .circle.yellow {
-  background: yellow;
+  background: #fac409;
 }
 body.neighborhoods-lp .circle.red {
   background: #d41313;
