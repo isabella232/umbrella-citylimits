@@ -180,7 +180,7 @@ $queried_object = get_queried_object();
 									<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
 								</div>
 							<?php endwhile; ?>
-							<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
+							<div class="zonein-more left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Zone Commentary</a></div>
 						</div>
 					</section>
 				<?php endif; ?>
@@ -217,7 +217,7 @@ $queried_object = get_queried_object();
 
 								</div>
 							<?php endwhile; ?>
-							<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
+							<div class="zonein-more left"><a href="<?php echo get_term_link( 'events', 'post-type' ); ?>" class="btn more">More Zone Events</a></div>
 						</div>
 					</section>
 				<?php endif; ?>
@@ -251,7 +251,7 @@ $queried_object = get_queried_object();
 								<?php $count++; ?>
 							<?php endwhile; ?>
 						</div>
-						<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Zone Videos</a></div>
+						<div class="zonein-more"><a href="<?php echo get_term_link( 'videos', 'post-type' ); ?>" class="btn more">More Zone Videos</a></div>
 					</section>
 				<?php endif; ?>
 
@@ -282,7 +282,7 @@ $queried_object = get_queried_object();
 								</div>
 							<?php endwhile; ?>
 						</div>
-						<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Zone Documents</a></div>
+						<div class="zonein-more"><a href="<?php echo get_term_link( 'documents', 'post-type' ); ?>" class="btn more">More Zone Documents</a></div>
 					</section>
 				<?php endif; ?>
 
