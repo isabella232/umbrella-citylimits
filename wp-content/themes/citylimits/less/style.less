@@ -735,6 +735,56 @@ body.neighborhoods-lp {
     }
   }
 
+  #rezone-footer {
+    background-color:@grey2;
+
+    >div {
+      max-width: 1170px;
+      padding: 2em 2.5%;
+      margin:0 auto;
+    }
+
+    h2 {
+      margin-bottom: .75em;
+    }
+
+    .rezone-overview {
+      padding-top:0;
+      margin-bottom:2em;
+
+      .span12 p {
+        margin:0;
+        font-size:1.5em;
+
+        b, strong {
+          font-weight:normal;
+        }
+      }
+    }
+    .zone-w-status {
+      display: inline-block;
+      margin-right: 2.5em;
+      min-width:20%;
+
+      h5 {
+        font-size:1.25em;
+      }
+    }
+  }
+
+  &.page-template-page-neighborhood-info {
+    p {
+      font-size:19.552px;
+    }
+  }
+
+  // this is to undo some largo weirdness
+  @media (max-width: 979px) and (min-width: 769px) {
+    .global-nav, #page, #site-footer, #footer-logos {
+      padding: 18px;
+    }
+  }
+
   @media (max-width: 900px) { 
     ul#menu-zone-in {
 
@@ -762,6 +812,12 @@ body.neighborhoods-lp {
             margin-bottom:1em;
           }
         }
+      }
+    }
+
+    &.page-template-page-neighborhood-info { 
+      .span8 {
+        min-width:100%;
       }
     }
   }
