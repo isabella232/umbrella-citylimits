@@ -121,9 +121,9 @@ a:hover, a:active {
     }
   }
 
-  &:hover {
-    background: saturate(@red,30%);
-  }
+  // &:hover {
+  //   background: saturate(@red,30%);
+  // }
 }
 
 /**
@@ -472,7 +472,7 @@ body.neighborhoods-lp {
     >.menu-item {
       display:inline-block;
       min-width: 10%;
-      max-width: 18%;
+      max-width: 22%;
       margin-bottom:0;
       font-size:initial;
 
@@ -578,7 +578,8 @@ body.neighborhoods-lp {
   }
 
   section,
-  .bottom-ctas {
+  .bottom-ctas,
+  .sidebar-ctas {
     padding-top: 2em;
     margin-top: 2em;
     border-top: solid 1px @grey1;
@@ -788,6 +789,7 @@ body.neighborhoods-lp {
   &.page-template-page-neighborhood-info {
     p {
       font-size:19.552px;
+      margin-bottom: 1.25em;
     }
     .hero.span12 {
       margin: 0 0 1em 0;
@@ -912,6 +914,19 @@ body.neighborhoods-lp {
   }
 
   @media (max-width: 650px) { 
+    .rezone-header {
+      margin-top:0;
+
+      .span8 {
+        min-width:100%;
+      }
+
+      .span4 {
+        display:none;
+      }
+
+    }
+
     ul#menu-zone-in {
       border-bottom:none;
 
@@ -1005,7 +1020,7 @@ body.neighborhoods-lp {
     .commentary {
       .span8 {
         min-width:100%;
-        margin: 2em 0 0 0;
+        margin: 2em 0;
       }
       .span4 {
         min-width: 100%;
@@ -1026,6 +1041,7 @@ body.neighborhoods-lp {
   }
 
   @media (max-width: 550px) { 
+
     ul#menu-zone-in {
       //border:1px solid black;
       position:relative;
@@ -1138,11 +1154,11 @@ body.neighborhoods-lp {
       }
     }
 
-    section.commentary {
-      margin-bottom:2em;
-      padding-bottom:2em;
-      border-bottom:1px solid @grey1;
-    }
+    // section.commentary {
+    //   margin-bottom:2em;
+    //   padding-bottom:2em;
+    //   border-bottom:1px solid @grey1;
+    // }
 
     .sidebar-ctas {
       .zone-a-btn;
@@ -1167,9 +1183,27 @@ body.neighborhoods-lp {
     }
 
     @media (max-width: 768px) {
+      #page {
+        padding-bottom: 2em;
+      }
       .stories+.span4 {
         min-width: 100%;
         margin: 0;
+      }
+      section.news {
+        margin-bottom:2em;
+        padding-bottom:2em;
+        border-bottom:1px solid @grey1;
+      }
+    }
+
+    @media (max-width:550px){
+      section.news .span3, 
+      section.news .span3 img, 
+      section.news .span9 {
+        min-width: 100%;
+        margin-bottom: .5em;
+        margin-left:0;
       }
     }
 
