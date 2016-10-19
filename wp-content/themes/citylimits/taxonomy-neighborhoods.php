@@ -26,6 +26,12 @@ $queried_object = get_queried_object();
 			$title = single_term_title( '', false );
 			$description = term_description();
 
+			$project_tax_query = array(
+				'taxonomy'  => 'neighborhoods',
+				'field'     => 'slug',
+				'terms'     => $title
+			);
+
 			// rss links for custom taxonomies are a little tricky
 			$term_id = intval( $queried_object->term_id );
 			$tax = $queried_object->taxonomy;
@@ -63,36 +69,79 @@ $queried_object = get_queried_object();
 
 				<section class="photos">
 					<h2>Photos</h2>
-					<?php // @TODO add photos ?>
+					<?php
+					$args = array (
+						'tax_query' => array(
+							array(
+								'taxonomy' => 'post-type',
+								'field'    => 'slug',
+								'terms'    => array( 'photos' ),
+								'operator' => 'IN',
+							),
+							$project_tax_query,
+							'relation' => 'AND'
+						),
+						'posts_per_page' => '4',
+						'post__not_in' 	 => $shown_ids
+
+					);
+					$photos = new WP_Query( $args );
+					?>
+					<?php if ( $photos->have_posts() ) : ?>
+						<?php $count = 0; ?>
+						<?php while ( $photos->have_posts() ) : $photos->the_post(); $shown_ids[] = get_the_id(); ?>
+							<?php if ( 0 == $count || 0 == $count%2 ) : ?>
+								<div class="row-fluid">
+							<?php endif; ?>
+
+								<div class="span6">
+									<?php the_post_thumbnail( 'medium' ); ?>
+								</div>
+
+							<?php if ( 1 == $count%2 ) : ?>
+								</div>
+							<?php endif; ?>
+							<?php $count++; ?>
+						<?php endwhile; ?>
+					<?php endif; ?>
 				</section>
 
 				<section class="news">
 					<h2>News</h2>
 						<?php
-						// and finally wind the posts back so we can go through the loop as usual
-						rewind_posts();
-						$counter = 1;
-						while ( have_posts() ) : the_post();
+						$args = array (
+							'tax_query' => array(
+								array(
+									'taxonomy' => 'post-type',
+									'field'    => 'slug',
+									'terms'    => array( 'events', 'commentary', 'documents', 'photos', 'videos' ),
+									'operator' => 'NOT IN',
+								),
+								$project_tax_query,
+								'relation' => 'AND'
+							),
+							'posts_per_page' => '4',
+							'post__not_in' 	 => $shown_ids
+
+						);
+						$news = new WP_Query( $args );
 						?>
-							<div class="row-fluid">
-								<div class="span3">
-									<?php the_post_thumbnail( 'medium' ); ?>
+						<?php if ( $news->have_posts() ) : ?>
+							<?php while ( $news->have_posts() ) : $news->the_post(); $shown_ids[] = get_the_id(); ?>
+								<div class="row-fluid">
+									<div class="span3">
+										<?php the_post_thumbnail( 'medium' ); ?>
+									</div>
+									<div class="span9">
+										<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+										<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+										<?php the_excerpt(); ?>
+										<a href="<?php the_permalink(); ?>" class="read-more">Read more ></a>
+									</div>
 								</div>
-								<div class="span9">
-									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-									<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
-									<?php the_excerpt(); ?>
-									<a href="<?php the_permalink(); ?>" class="read-more">Read more ></a>
-								</div>
-							</div>
-							<?php
-							$post_type = get_post_type();
-							$partial = largo_get_partial_by_post_type( 'archive', $post_type, 'archive' );
-							$counter++;
-						endwhile;
-// @TODO limit to 4 items, then more link. Where does more link go if this is the archive page?
-					?>
-					<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More News</a></div>
+							<?php endwhile; ?>
+						<?php endif; ?>
+						<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More News</a></div>
 				</section>
 
 			</div><!-- end content -->
@@ -116,7 +165,7 @@ $queried_object = get_queried_object();
 								$project_tax_query,
 								'relation' => 'AND'
 							),
-							'posts_per_page' => '3',
+							'posts_per_page' => '2',
 							'post__not_in' 	 => $shown_ids
 
 						);
@@ -141,7 +190,35 @@ $queried_object = get_queried_object();
 
 				<section class="events">
 					<h2>Upcoming Events</h2>
-					<?php // @TODO query ?>
+					<div class="row-fluid">
+						<?php
+						$args = array (
+							'tax_query' => array(
+								array(
+									'taxonomy'  => 'post-type',
+									'field'     => 'slug',
+									'terms'     => array( 'events' )
+								),
+								$project_tax_query,
+								'relation' => 'AND'
+							),
+							'posts_per_page' => '2',
+							'post__not_in' 	 => $shown_ids
+
+						);
+						$commentary = new WP_Query( $args );
+						?>
+						<?php if ( $commentary->have_posts() ) : ?>
+							<?php $count = 0; ?>
+							<?php while ( $commentary->have_posts() ) : $commentary->the_post(); $shown_ids[] = get_the_id(); ?>
+								<div class="story">
+									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+
+								</div>
+							<?php endwhile; ?>
+						<?php endif; ?>
+						<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Zone Commentary</a></div>
+					</div>
 				</section>
 
 				<section class="videos">
@@ -151,14 +228,14 @@ $queried_object = get_queried_object();
 						$args = array (
 							'tax_query' => array(
 								array(
-									'taxonomy' 	=> 'category',
+									'taxonomy' 	=> 'post-type',
 									'field' 	=> 'slug',
 									'terms' 	=> array( 'video' )
 								),
 								$project_tax_query,
 								'relation' => 'AND'
 							),
-							'posts_per_page' => '3',
+							'posts_per_page' => '1',
 							'post__not_in' 	 => $shown_ids
 
 						);
@@ -186,10 +263,12 @@ $queried_object = get_queried_object();
 								array(
 									'taxonomy'  => 'post-type',
 									'field'     => 'slug',
-									'terms'     => array( 'documents' ) // @TODO - change to appropriate tag
-								)
+									'terms'     => array( 'documents' )
+								),
+								$project_tax_query,
+								'relation' => 'AND'
 							),
-							'posts_per_page' => '9',
+							'posts_per_page' => '3',
 							'post__not_in' 	 => $shown_ids
 
 						);
