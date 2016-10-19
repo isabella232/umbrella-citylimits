@@ -100,7 +100,7 @@ $queried_object = get_queried_object();
 				<div class="form">
 					<h3>Make Your Voice Heard</h3>
 					<p>Submit a question, commend, or idea for the ReZone project.</p>
-					<?php // @TODO Make Your Voice Heard form ?>
+					<?php gravity_form( 23, false, true, false, true );?>
 				</div>
 
 				<section class="commentary">
