@@ -109,6 +109,11 @@ $queried_object = get_queried_object();
 				while ( have_posts() ) : the_post();
 					$post_type = get_post_type();
 					$partial = largo_get_partial_by_post_type( 'archive', $post_type, 'archive' );
+					?>
+					<?php $date = get_post_meta( get_the_ID(), 'rezone_event_datetime', true ); ?>
+					<span class="time"><?php echo date( 'g:ia', $date ); ?></span>
+					<span class="date"><?php echo date( 'F d, Y', $date ); ?></span>
+					<?php
 					get_template_part( 'partials/content', $partial );
 					do_action( 'largo_loop_after_post_x', $counter, $context = 'archive' );
 					$counter++;
