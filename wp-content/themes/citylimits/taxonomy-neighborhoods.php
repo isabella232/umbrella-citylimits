@@ -104,8 +104,8 @@ $queried_object = get_queried_object();
 						array(
 							'taxonomy' => 'post-type',
 							'field'    => 'slug',
-							'terms'    => array( 'events', 'commentary', 'documents', 'photos', 'videos' ),
-							'operator' => 'NOT IN',
+							'terms'    => array( 'news' ),
+							'operator' => 'IN',
 						),
 						$project_tax_query,
 						'relation' => 'AND'
@@ -133,7 +133,7 @@ $queried_object = get_queried_object();
 								</div>
 							</div>
 						<?php endwhile; ?>
-						<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More News</a></div>
+						<div class="zonein-more"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
 					</section>
 				<?php endif; ?>
 

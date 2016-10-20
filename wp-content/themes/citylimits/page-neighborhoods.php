@@ -41,14 +41,6 @@ get_header( 'rezone' );
 	<h2>Proposed Rezoning</h2>
 	<div class="row-fluid">
 		<div class="span8">
-			<?php
-			/**
-			 *  @TODO Add Map
-			 *  Google Map Wizard has some styles that will work really well here - https://mapstyle.withgoogle.com
-			 *  We'll need an API key for this
-			 */
-			?>
-			<!-- <div id="map" style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div> -->
 			<p class="instruction">Select a pin to learn more about proposed rezoning.</p>
 			<iframe id="map" width="100%" height="420" scrolling="no" frameborder="no" scollwheel="false" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1nVqV-VWkMF3sQfs3XUCsYfqcB6bAUJz2bXQl_-GV&amp;viz=MAP&amp;h=false&amp;lat=40.75&amp;lng=-73.8455445810547&amp;t=1&amp;z=10&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
 		</div>
@@ -109,9 +101,17 @@ get_header( 'rezone' );
 	<div class="row-fluid">
 		<?php
 		$args = array (
+			'tax_query' => array(
+				array(
+					'taxonomy' 	=> 'category',
+					'field' 	=> 'slug',
+					'terms' 	=> array( 'news' )
+				),
+				$project_tax_query,
+				'relation' => 'AND'
+			),
 			'posts_per_page' => '3',
 			'post__not_in' 	 => $shown_ids,
-			'tax_query'      => array( $project_tax_query )
 		);
 		$recent_posts = new WP_Query( $args );
 		if ( $recent_posts->have_posts() ) :
@@ -152,7 +152,7 @@ get_header( 'rezone' );
 			<?php endwhile; ?>
 		<?php endif; // end more featured posts ?>
 	</div>
-	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More News</a></div>
+	<div class="zonein-more"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
 </section>
 
 <section class="videos">
@@ -162,16 +162,15 @@ get_header( 'rezone' );
 		$args = array (
 			'tax_query' => array(
 				array(
-					'taxonomy' 	=> 'category',
-					'field' 	=> 'slug',
-					'terms' 	=> array( 'video' )
+					'taxonomy'      => 'category',
+					'field'         => 'slug',
+					'terms'         => array( 'video' )
 				),
 				$project_tax_query,
 				'relation' => 'AND'
 			),
 			'posts_per_page' => '3',
-			'post__not_in' 	 => $shown_ids
-
+			'post__not_in'   => $shown_ids
 		);
 		$videos = new WP_Query( $args );
 		?>
@@ -187,7 +186,7 @@ get_header( 'rezone' );
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</div>
-	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Videos</a></div>
+	<div class="zonein-more"><a href="<?php echo get_term_link( 'videos', 'post-type' ); ?>" class="btn more">More Videos</a></div>
 </section>
 
 <div class="bottom-ctas row-fluid">
@@ -240,7 +239,7 @@ get_header( 'rezone' );
 			<h3>Make Your Voice Heard</h3>
 			<?php gravity_form( 24, false, true, false, true );?>
 		</div>
-	<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Commentary</a></div>
+	<div class="zonein-more left"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More Commentary</a></div>
 	</div>
 </section>
 
@@ -253,7 +252,7 @@ get_header( 'rezone' );
 				array(
 					'taxonomy'  => 'post-type',
 					'field'     => 'slug',
-					'terms'     => array( 'documents' ) // @TODO - change to appropriate tag
+					'terms'     => array( 'documents' )
 				)
 			),
 			'posts_per_page' => '9',
@@ -278,7 +277,7 @@ get_header( 'rezone' );
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</div>
-	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Documents</a></div>
+	<div class="zonein-more"><a href="<?php echo get_term_link( 'documents', 'post-type' ); ?>" class="btn more">More Documents</a></div>
 </section>
 
 <?php get_footer();
