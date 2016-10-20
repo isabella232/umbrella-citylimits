@@ -107,9 +107,6 @@ a:active {
 .zone-a-btn a.btn:hover {
   background: #e70000;
 }
-.zone-a-btn:hover {
-  background: #e70000;
-}
 /**
  * GENERAL STYLES
  */
@@ -430,7 +427,7 @@ body.neighborhoods-lp ul#menu-zone-in {
 body.neighborhoods-lp ul#menu-zone-in > .menu-item {
   display: inline-block;
   min-width: 10%;
-  max-width: 18%;
+  max-width: 22%;
   margin-bottom: 0;
   font-size: initial;
 }
@@ -482,6 +479,9 @@ body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item a {
 body.neighborhoods-lp ul#menu-zone-in #more-zonein {
   display: none;
 }
+body.neighborhoods-lp header.archive-background {
+  margin: 2em 0 .5em 0;
+}
 body.neighborhoods-lp h1.entry-title {
   font-size: 1.25em;
   clear: both;
@@ -514,7 +514,8 @@ body.neighborhoods-lp section.rezone-overview .span12 p * {
   letter-spacing: 0;
 }
 body.neighborhoods-lp section,
-body.neighborhoods-lp .bottom-ctas {
+body.neighborhoods-lp .bottom-ctas,
+body.neighborhoods-lp .sidebar-ctas {
   padding-top: 2em;
   margin-top: 2em;
   border-top: solid 1px #c3c3c3;
@@ -576,9 +577,6 @@ body.neighborhoods-lp .bottom-ctas .span3 a.btn span {
   padding: 0 1em;
 }
 body.neighborhoods-lp .bottom-ctas .span3 a.btn:hover {
-  background: #e70000;
-}
-body.neighborhoods-lp .bottom-ctas .span3:hover {
   background: #e70000;
 }
 body.neighborhoods-lp .bottom-ctas .span3 a.btn {
@@ -745,6 +743,10 @@ body.neighborhoods-lp #rezone-footer .zone-w-status h5 {
 }
 body.neighborhoods-lp.page-template-page-neighborhood-info p {
   font-size: 19.552px;
+  margin-bottom: 1.25em;
+}
+body.neighborhoods-lp.page-template-page-neighborhood-info .hero.span12 {
+  margin: 0 0 1em 0;
 }
 body.neighborhoods-lp input[type=submit].gform_button.button {
   width: 100%!important;
@@ -828,6 +830,15 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
   }
 }
 @media (max-width: 650px) {
+  body.neighborhoods-lp .rezone-header {
+    margin-top: 0;
+  }
+  body.neighborhoods-lp .rezone-header .span8 {
+    min-width: 100%;
+  }
+  body.neighborhoods-lp .rezone-header .span4 {
+    display: none;
+  }
   body.neighborhoods-lp ul#menu-zone-in {
     border-bottom: none;
   }
@@ -899,7 +910,7 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
   }
   body.neighborhoods-lp .commentary .span8 {
     min-width: 100%;
-    margin: 2em 0 0 0;
+    margin: 2em 0;
   }
   body.neighborhoods-lp .commentary .span4 {
     min-width: 100%;
@@ -1018,11 +1029,6 @@ body.neighborhoods-lp.tax-neighborhoods section.videos > .row-fluid > a:hover:af
 body.neighborhoods-lp.tax-neighborhoods section.videos > .row-fluid h5 {
   margin-bottom: 1.5em;
 }
-body.neighborhoods-lp.tax-neighborhoods section.commentary {
-  margin-bottom: 2em;
-  padding-bottom: 2em;
-  border-bottom: 1px solid #c3c3c3;
-}
 body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas a.btn {
   width: 100%;
   color: #ffffff;
@@ -1043,9 +1049,6 @@ body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas a.btn span {
 body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas a.btn:hover {
   background: #e70000;
 }
-body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas:hover {
-  background: #e70000;
-}
 body.neighborhoods-lp.tax-neighborhoods .zonein-more a.btn.more {
   min-width: 100%;
 }
@@ -1061,8 +1064,25 @@ body.neighborhoods-lp.tax-neighborhoods .form h3 {
   color: #000000;
 }
 @media (max-width: 768px) {
+  body.neighborhoods-lp.tax-neighborhoods #page {
+    padding-bottom: 2em;
+  }
   body.neighborhoods-lp.tax-neighborhoods .stories + .span4 {
     min-width: 100%;
     margin: 0;
+  }
+  body.neighborhoods-lp.tax-neighborhoods section.news {
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #c3c3c3;
+  }
+}
+@media (max-width: 550px) {
+  body.neighborhoods-lp.tax-neighborhoods section.news .span3,
+  body.neighborhoods-lp.tax-neighborhoods section.news .span3 img,
+  body.neighborhoods-lp.tax-neighborhoods section.news .span9 {
+    min-width: 100%;
+    margin-bottom: .5em;
+    margin-left: 0;
   }
 }
