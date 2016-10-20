@@ -228,7 +228,7 @@ $queried_object = get_queried_object();
 						array(
 							'taxonomy' 	=> 'post-type',
 							'field' 	=> 'slug',
-							'terms' 	=> array( 'video' )
+							'terms' 	=> array( 'videos' )
 						),
 						$project_tax_query,
 						'relation' => 'AND'
