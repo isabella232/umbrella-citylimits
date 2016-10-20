@@ -535,7 +535,7 @@ body.neighborhoods-lp {
     }
   }
 
-  header.archive-background {
+  &.tax-post-type header.archive-background {
     margin: 2em 0 .5em 0;
   }
 
@@ -871,8 +871,11 @@ body.neighborhoods-lp {
 
   // this is to undo some largo weirdness
   @media (max-width: 979px) and (min-width: 769px) {
-    .global-nav, #page, #site-footer, #footer-logos {
+    .global-nav, #site-footer, #footer-logos {
       padding: 18px;
+    }
+    #page {
+      padding-bottom:2em;
     }
   }
 

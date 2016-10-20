@@ -479,7 +479,7 @@ body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item a {
 body.neighborhoods-lp ul#menu-zone-in #more-zonein {
   display: none;
 }
-body.neighborhoods-lp header.archive-background {
+body.neighborhoods-lp.tax-post-type header.archive-background {
   margin: 2em 0 .5em 0;
 }
 body.neighborhoods-lp h1.entry-title {
@@ -807,10 +807,12 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
 }
 @media (max-width: 979px) and (min-width: 769px) {
   body.neighborhoods-lp .global-nav,
-  body.neighborhoods-lp #page,
   body.neighborhoods-lp #site-footer,
   body.neighborhoods-lp #footer-logos {
     padding: 18px;
+  }
+  body.neighborhoods-lp #page {
+    padding-bottom: 2em;
   }
 }
 @media (max-width: 900px) {

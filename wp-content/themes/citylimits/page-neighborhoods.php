@@ -239,7 +239,7 @@ get_header( 'rezone' );
 			<h3>Make Your Voice Heard</h3>
 			<?php gravity_form( 24, false, true, false, true );?>
 		</div>
-	<div class="zonein-more left"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More Commentary</a></div>
+	<div class="zonein-more left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Commentary</a></div>
 	</div>
 </section>
 
