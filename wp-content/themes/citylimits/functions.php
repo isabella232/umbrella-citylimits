@@ -409,3 +409,80 @@ function register_zonein_menu() {
   register_nav_menu('zonein-menu',__( 'Zone In Menu' ));
 }
 add_action( 'init', 'register_zonein_menu' );
+
+// Register Custom Post Type
+function create_rezone_events_post_type() {
+
+	$labels = array(
+		'name'                  => 'Rezone Events',
+		'singular_name'         => 'Rezone Event',
+		'menu_name'             => 'ReZone Events',
+		'name_admin_bar'        => 'ReZone Events',
+		'archives'              => 'ReZone Events Archives',
+		'all_items'             => 'All ReZone Events',
+		'add_new_item'          => 'Add New ReZone Event',
+	);
+	$rewrite = array(
+		'slug'                  => 'rezone-events',
+		'with_front'            => true,
+		'pages'                 => true,
+		'feeds'                 => true,
+	);
+	$args = array(
+		'label'                 => 'Rezone Event',
+		'description'           => 'Events for the Rezone Series',
+		'labels'                => $labels,
+		'supports'              => array( ),
+		'taxonomies'            => array( 'neighborhoods' ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'		=> 'dashicons-calendar',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => false,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'rewrite'               => $rewrite,
+		'capability_type'       => 'page',
+	);
+	register_post_type( 'rezone_events', $args );
+
+}
+add_action( 'init', 'create_rezone_events_post_type', 0 );
+
+// Install CMB2 to be used on ReZone Events
+if ( file_exists(  __DIR__ . '/cmb2/init.php' ) ) {
+	  require_once  __DIR__ . '/cmb2/init.php';
+} elseif ( file_exists(  __DIR__ . '/CMB2/init.php' ) ) {
+	  require_once  __DIR__ . '/CMB2/init.php';
+}
+
+add_action( 'cmb2_admin_init', 'create_rezone_event_metabox' );
+/**
+ * Define the metabox and field configurations.
+ */
+function create_rezone_event_metabox() {
+
+	/**
+	* Initiate the metabox
+	*/
+	$cmb = new_cmb2_box( array(
+		'id'            => 'rezone_events_metabox',
+		'title'         => __( 'Event Information', 'cmb2' ),
+		'object_types'  => array( 'rezone_events', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'high',
+		'show_names'    => true, // Show field names on the left
+	) );
+
+	// Date & Time Fields
+	$cmb->add_field( array(
+		'name' => 'Date & Time',
+		'id'   => 'rezone_event_datetime',
+		'type' => 'text_datetime_timestamp',
+	) );
+}

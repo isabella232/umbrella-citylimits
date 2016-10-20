@@ -183,14 +183,9 @@ $queried_object = get_queried_object();
 
 				<?php
 				$args = array (
+					'post_type' => 'rezone_events',
 					'tax_query' => array(
-						array(
-							'taxonomy'  => 'post-type',
-							'field'     => 'slug',
-							'terms'     => array( 'events' )
-						),
 						$project_tax_query,
-						'relation' => 'AND'
 					),
 					'posts_per_page' => '2',
 					'post__not_in' 	 => $shown_ids
@@ -206,10 +201,12 @@ $queried_object = get_queried_object();
 							<?php while ( $commentary->have_posts() ) : $commentary->the_post(); $shown_ids[] = get_the_id(); ?>
 								<div class="story">
 									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-
+									<?php $date = get_post_meta( get_the_ID(), 'rezone_event_datetime', true ); ?>
+									<span class="time"><?php echo date( 'g:ia', $date ); ?></span>
+									<span class="date"><?php echo date( 'F d, Y', $date ); ?></span>
 								</div>
 							<?php endwhile; ?>
-							<div class="zonein-more left"><a href="<?php echo get_term_link( 'events', 'post-type' ); ?>" class="btn more">More Events</a></div>
+							<div class="zonein-more left"><a href="/rezone-events/" class="btn more">More Events</a></div>
 						</div>
 					</section>
 				<?php endif; ?>
