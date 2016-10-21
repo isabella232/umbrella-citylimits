@@ -126,7 +126,7 @@ get_header( 'rezone' );
 				$project_tax_query,
 				'relation' => 'AND'
 			),
-			'posts_per_page' => '3',
+			'posts_per_page' => '5',
 			'post__not_in' 	 => $shown_ids,
 		);
 		$recent_posts = new WP_Query( $args );
@@ -152,7 +152,7 @@ get_header( 'rezone' );
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
 						</div>
-				<?php elseif ( 3 == $count ) : ?>
+				<?php elseif ( 4 == $count ) : ?>
 						<div <?php post_class( 'story' ); ?> >
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
