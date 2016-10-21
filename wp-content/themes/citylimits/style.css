@@ -460,6 +460,10 @@ body.neighborhoods-lp ul#menu-zone-in > .menu-item a:hover {
   color: #ffffff;
   text-decoration: none;
 }
+body.neighborhoods-lp ul#menu-zone-in > .menu-item:nth-last-child(2) a {
+  background-color: #d41313;
+  color: #ffffff;
+}
 body.neighborhoods-lp ul#menu-zone-in ul.sub-menu {
   list-style: none;
   margin: 0;
