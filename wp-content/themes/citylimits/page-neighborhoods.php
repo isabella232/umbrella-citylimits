@@ -38,14 +38,14 @@ get_header( 'rezone' );
 </section>
 
 <section class="map">
-	<h2>Proposed Rezoning</h2>
+	<h2>The Neighborhoods</h2>
 	<div class="row-fluid">
 		<div class="span8">
-			<p class="instruction">Select a pin to learn more about proposed rezoning.</p>
+			<p class="instruction">Click on a neighborhood to get news, documents, opinions and videos about that community.</p>
 			<iframe id="map" width="100%" height="420" scrolling="no" frameborder="no" scollwheel="false" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1nVqV-VWkMF3sQfs3XUCsYfqcB6bAUJz2bXQl_-GV&amp;viz=MAP&amp;h=false&amp;lat=40.75&amp;lng=-73.8455445810547&amp;t=1&amp;z=10&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
 		</div>
 		<div class="span4 plan-status">
-			<h2>Rezone Plan Status</h2>
+			<h2>Rezoning Status</h2>
 			<?php
 			$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
 			$count = 0;
