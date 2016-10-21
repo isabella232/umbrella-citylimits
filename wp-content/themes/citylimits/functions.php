@@ -486,3 +486,12 @@ function create_rezone_event_metabox() {
 		'type' => 'text_datetime_timestamp',
 	) );
 }
+
+function citylimits_print_event_time() {
+	if ( 'rezone_events' == get_post_type() ) {
+		$date = get_post_meta( get_the_ID(), 'rezone_event_datetime', true );
+		echo '<span class="time">' . date( 'g:ia', $date ) . '</span> ';
+		echo '<span class="date">' . date( 'F d, Y', $date ) . '</span>';
+	}
+}
+add_action( 'largo_after_post_header', 'citylimits_print_event_time' );
