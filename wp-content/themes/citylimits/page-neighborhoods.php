@@ -205,21 +205,6 @@ get_header( 'rezone' );
 	<div class="zonein-more"><a href="<?php echo get_term_link( 'videos', 'post-type' ); ?>" class="btn more">More Videos</a></div>
 </section>
 
-<div class="bottom-ctas row-fluid">
-	<div class="span3">
-		<a href="/get-involved/" class="btn"><span>Get Involved</span></a>
-	</div>
-	<div class="span3">
-		<a href="/share-your-views/" class="btn"><span>Share Your Views</span></a>
-	</div>
-	<div class="span3">
-		<a href="/post-type/events/" class="btn"><span>Events Calendar</span></a>
-	</div>
-	<div class="span3">
-		<a href="https://visitor.r20.constantcontact.com/manage/optin?v=001zxpjLyMMmAo1Y-WQNhg7iyT04D-FOREjm0-ANydGbm8w104RXMOiQFjO6VGBAzXRgotexijmxL7Om3KrcmFJQa9bYLRea0IxMyj1AdQ62z6kf2UgI6bkBnJESDGhczS53WMNhwsTFmaLjpQEEmfrnc8nLycrIsrSHNt87avSEmJbuO7EKGWEvtpptS4qzlrVwaLsxeI8UlSHyoSPcB9--xgihfk8jZON" class="btn"><span>Get the Newsletter</span></a>
-	</div>
-</div>
-
 <section class="commentary">
 	<h2>Commentary</h2>
 	<div class="row-fluid">
@@ -295,5 +280,20 @@ get_header( 'rezone' );
 	</div>
 	<div class="zonein-more"><a href="<?php echo get_term_link( 'documents', 'post-type' ); ?>" class="btn more">More Documents</a></div>
 </section>
+
+<div class="bottom-ctas row-fluid">
+	<div class="span3">
+		<a href="/get-involved/" class="btn"><span>Get Involved</span></a>
+	</div>
+	<div class="span3">
+		<a href="/share-your-views/" class="btn"><span>Share Your Views</span></a>
+	</div>
+	<div class="span3">
+		<a href="/post-type/events/" class="btn"><span>Events Calendar</span></a>
+	</div>
+	<div class="span3">
+		<a href="https://visitor.r20.constantcontact.com/manage/optin?v=001zxpjLyMMmAo1Y-WQNhg7iyT04D-FOREjm0-ANydGbm8w104RXMOiQFjO6VGBAzXRgotexijmxL7Om3KrcmFJQa9bYLRea0IxMyj1AdQ62z6kf2UgI6bkBnJESDGhczS53WMNhwsTFmaLjpQEEmfrnc8nLycrIsrSHNt87avSEmJbuO7EKGWEvtpptS4qzlrVwaLsxeI8UlSHyoSPcB9--xgihfk8jZON" class="btn"><span>Get the Newsletter</span></a>
+	</div>
+</div>
 
 <?php get_footer();
