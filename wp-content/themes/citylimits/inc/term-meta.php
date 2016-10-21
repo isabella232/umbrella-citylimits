@@ -55,15 +55,15 @@ function cl_status_get_statuses() {
 	$temporary_statuses = array(
 		'red' => array(
 			'color' => 'red',
-			'label' => 'Red'
+			'label' => 'Proposal Anticipated or on Hold'
 		),
 		'yellow' => array(
 			'color' => 'yellow',
-			'label' => 'Yellow'
+			'label' => 'Proposal is in the Approval Process'
 		),
 		'green' => array(
 			'color' => 'green',
-			'label' => 'Green',
+			'label' => 'Proposal Approved',
 		)
 	);
 
