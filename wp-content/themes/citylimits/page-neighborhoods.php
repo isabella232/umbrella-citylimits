@@ -52,13 +52,29 @@ get_header( 'rezone' );
 			?>
 			<div class="row-fluid">	
 				<?php foreach ( $neighborhoods as $neighborhood ) : ?>			
-					<?php $status = get_term_meta( $neighborhood->term_id, 'neighborhood-status', true ); ?>
+					<?php
+					$status = get_term_meta( $neighborhood->term_id, 'neighborhood-status', true ); 
+					switch ( $status ) {
+						case 'red':
+							$status_label = 'Proposal Anticipated or on Hold';
+							break;
+						case 'yellow':
+							$status_label = 'Proposal is in the Approval Process';
+							break;
+						case 'green':
+							$status_label = 'Proposal Approved';
+							break;	
+						default:
+							$status_label = '';
+							break;
+					}
+					?>
 
 					<!-- <?php if ( isset( $title ) ) : ?>
 						<h1 class="page-title"><?php echo $title; ?></h1>
 					<?php endif; ?> -->
 
-					<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>"><div class="circle <?php echo $status; ?>"></div><?php echo $neighborhood->name; ?></a></h5></div>
+					<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>" title="<?php echo $status_label; ?>"><div class="circle <?php echo $status; ?>"></div><?php echo $neighborhood->name; ?></a></h5></div>
 				<?php endforeach; ?>
 			</div>
 		</div>
