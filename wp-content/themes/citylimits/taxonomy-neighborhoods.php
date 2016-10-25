@@ -139,7 +139,6 @@ $queried_object = get_queried_object();
 
 			</div><!-- end content -->
 			<div class="span4">
-
 				<?php dynamic_sidebar( 'rezone-neighborhoods-sidebar' ); ?>
 
 				<div class="form">

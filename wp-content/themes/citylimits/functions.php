@@ -8,12 +8,6 @@ define( 'LARGO_EXT_DIR', dirname( __FILE__ ) );
 define( 'LARGO_EXT', __FILE__ );
 
 
-// re-enable the default WP RSS widget
-function citylimits_widgets_init() {
-	register_widget( 'WP_Widget_RSS' );
-}
-add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
-
 /**
  * Include theme files
  *
@@ -33,6 +27,7 @@ function largo_child_require_files() {
 		'/inc/term-meta.php',
 		'/inc/metaboxes.php',
 		'/inc/enqueue.php',
+		'/inc/widgets/neighborhood-content.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -51,6 +46,12 @@ function largo_child_require_files() {
 }
 add_action( 'after_setup_theme', 'largo_child_require_files' );
 
+// re-enable the default WP RSS widget
+function citylimits_widgets_init() {
+	register_widget( 'WP_Widget_RSS' );
+	register_widget( 'Neighborhood_Content' );
+}
+add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
 /**
  * Set the number of posts in the right-hand side of the Top Stories homepage template to 2.
