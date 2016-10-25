@@ -31,6 +31,7 @@ function largo_child_require_files() {
 	$includes = array(
 		'/inc/registration.php',
 		'/inc/term-meta.php',
+		'/inc/metaboxes.php',
 		'/inc/enqueue.php',
 	);
 
@@ -453,39 +454,6 @@ function create_rezone_events_post_type() {
 
 }
 add_action( 'init', 'create_rezone_events_post_type', 0 );
-
-// Install CMB2 to be used on ReZone Events
-if ( file_exists(  __DIR__ . '/cmb2/init.php' ) ) {
-	  require_once  __DIR__ . '/cmb2/init.php';
-} elseif ( file_exists(  __DIR__ . '/CMB2/init.php' ) ) {
-	  require_once  __DIR__ . '/CMB2/init.php';
-}
-
-add_action( 'cmb2_admin_init', 'create_rezone_event_metabox' );
-/**
- * Define the metabox and field configurations.
- */
-function create_rezone_event_metabox() {
-
-	/**
-	* Initiate the metabox
-	*/
-	$cmb = new_cmb2_box( array(
-		'id'            => 'rezone_events_metabox',
-		'title'         => __( 'Event Information', 'cmb2' ),
-		'object_types'  => array( 'rezone_events', ), // Post type
-		'context'       => 'normal',
-		'priority'      => 'high',
-		'show_names'    => true, // Show field names on the left
-	) );
-
-	// Date & Time Fields
-	$cmb->add_field( array(
-		'name' => 'Date & Time',
-		'id'   => 'rezone_event_datetime',
-		'type' => 'text_datetime_timestamp',
-	) );
-}
 
 function citylimits_print_event_time() {
 	if ( 'rezone_events' == get_post_type() ) {
