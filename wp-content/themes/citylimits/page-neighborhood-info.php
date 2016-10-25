@@ -42,6 +42,9 @@ get_header( 'rezone' );
 				<?php the_content(); ?>
 			<?php endwhile; ?>
 		</div>
+		<div class="span4">
+			<?php dynamic_sidebar( 'rezone-subpage-sidebar' ); ?>
+		</div>
 	</div>
 </section>
 

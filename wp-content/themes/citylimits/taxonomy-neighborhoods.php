@@ -139,6 +139,9 @@ $queried_object = get_queried_object();
 
 			</div><!-- end content -->
 			<div class="span4">
+
+				<?php dynamic_sidebar( 'rezone-neighborhoods-sidebar' ); ?>
+
 				<div class="form">
 					<h3>Make Your Voice Heard</h3>
 					<?php gravity_form( 23, false, true, false, true );?>
@@ -201,9 +204,11 @@ $queried_object = get_queried_object();
 							<?php while ( $commentary->have_posts() ) : $commentary->the_post(); $shown_ids[] = get_the_id(); ?>
 								<div class="story">
 									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-									<?php $date = get_post_meta( get_the_ID(), 'rezone_event_datetime', true ); ?>
-									<span class="time"><?php echo date( 'g:ia', $date ); ?></span>
-									<span class="date"><?php echo date( 'F d, Y', $date ); ?></span>
+									<?php $date = get_post_meta( get_the_ID(), 'event_information_date_time', true ); ?>
+									<?php if ( $date ) : ?>
+										<span class="time"><?php echo date( 'g:ia', $date ); ?></span>
+										<span class="date"><?php echo date( 'F d, Y', $date ); ?></span>
+									<?php endif; ?>
 								</div>
 							<?php endwhile; ?>
 							<div class="zonein-more left"><a href="/rezone-events/" class="btn more">More Events</a></div>

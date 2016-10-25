@@ -411,6 +411,29 @@ function register_zonein_menu() {
 }
 add_action( 'init', 'register_zonein_menu' );
 
+function register_neighborhood_sidebars() {
+	register_sidebar( array(
+		'name'		=> __( 'Neighborhoods Taxonomy Sidebar', 'citylimits' ),
+		'id'		=> 'rezone-neighborhoods-sidebar',
+		'description'	=> __( 'Widgets in this area will be shown on all neighborhood taxonomy pages' ),
+		'before_widget'	=> '<li id="%1$s" class="widget %2$s">',
+		'after_widget'	=> '</li>',
+		'before_title'	=> '<h3 class="widgettitle">',
+		'after_title'	=> '</h3>'
+	) );
+
+	register_sidebar( array(
+		'name'		=> __( 'Rezone Subpage', 'citylimits' ),
+		'id'		=> 'rezone-subpage-sidebar',
+		'description'	=> __( 'Widgets in this area will be shown on all neighborhood taxonomy pages' ),
+		'before_widget'	=> '<li id="%1$s" class="widget %2$s">',
+		'after_widget'	=> '</li>',
+		'before_title'	=> '<h3 class="widgettitle">',
+		'after_title'	=> '</h3>'
+	) );
+}
+add_action( 'widgets_init', 'register_neighborhood_sidebars' );
+
 // Register Custom Post Type
 function create_rezone_events_post_type() {
 
