@@ -2,7 +2,7 @@
 /**
  * Functions related to term metadata
  *
- * This file contains the "Status" term meta for the 'neighborhoods' taxonomy
+ * This file contains the "Status" and "Location" (latitude and longitude) term meta for the 'neighborhoods' taxonomy
  * It does not do it in a Largo way, but in a post-Wordpress-4.4 Wordpress way.
  */
 
@@ -81,3 +81,53 @@ function citylimits_update_project_status( $term_id, $tt_id ) {
 	}
 }
 add_action( 'edited_neighborhoods', 'citylimits_update_project_status', 10, 2 );
+
+
+
+add_action( 'neighborhoods_edit_form_fields', 'cl_latlon_edit_latlon_form', 10, 2 );
+
+/**
+ * The form for the "latlon" term meta of neightborhoods
+ */
+function cl_latlon_edit_latlon_form( $tag, $taxonomy ) {
+	$current_status = cl_latlon_get_latlon( $tag, $taxonomy );
+
+	?>
+		<tr class="form-field term-group">
+			<th scope="row">
+				<label for="neighborhood-latlon"><?php _e('Neighborhood Location (latitute, longitude)', 'citylimits'); ?></label>
+			</th>
+			<td>
+
+				
+				<?php if ($current_status != '') {
+					print '<input type="text" class="postform" id="neighborhood-latlon" name="neighborhood-latlon" value="' . $current_status . '"></input>';
+				} else {
+					print '<input type="text" class="postform" id="neighborhood-latlon" name="neighborhood-latlon"></input>';
+				} ?>
+				
+
+			</td>
+		</tr>
+
+	<?php
+}
+
+/**
+ * Get the latlon for a neighborhood
+ */
+function cl_latlon_get_latlon( $term, $taxonomy ) {
+	return get_term_meta( $term->term_id, 'neighborhood-latlon', true );
+}
+
+function citylimits_update_project_latlon( $term_id, $tt_id ) {
+	if ( isset( $_POST['neighborhood-latlon'] ) ) {
+		if ( '' !== $_POST['neighborhood-latlon'] ) {
+			$location = $_POST['neighborhood-latlon'];
+			update_term_meta( $term_id, 'neighborhood-latlon', $location );
+		} else {	
+			delete_term_meta( $term_id, 'neighborhood-latlon' );
+		}
+	}
+}
+add_action( 'edited_neighborhoods', 'citylimits_update_project_latlon', 10, 2 );

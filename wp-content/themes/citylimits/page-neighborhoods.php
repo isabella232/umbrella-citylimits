@@ -26,6 +26,88 @@ get_header( 'rezone' );
 
 ?>
 
+<!-- FUSION TABLES API QUERY: https://www.googleapis.com/fusiontables/v2/query?sql=SELECT * FROM 1QfRFD6FGEhH1x4lZ9_3CJr0tyrPu778KRcq8VgqJ&key=AIzaSyCdCx_APtwGdE0m33WCFbKB73kfWaxbCHo -->
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdCx_APtwGdE0m33WCFbKB73kfWaxbCHo&callback=initMap">
+</script>
+<script>
+	function initMap(data){
+		var $ = jQuery;
+
+		//make list of data attributes
+		var zones = $('.zone-w-status');
+		var data = [];
+
+		for (var i=0; i<zones.length; i++){
+			var zone = $(zones[i]);
+
+			var name = zone.find('a').text();
+			var status = zone.data('status');
+			var latlon = zone.data('latlon').replace(/ /g,'').split(',');
+			var lat = parseFloat(latlon[0]);
+			var lon = parseFloat(latlon[1]);
+			var url = zone.find('a').attr('href');
+
+			var color = '#c3c3c3';
+			var color_name = zone.data('color');
+			if (color_name == 'yellow') {
+				color = '#fac409';
+			} else if (color_name == 'red') {
+				color = '#D41313';
+			} else if (color_name == 'green') {
+				color = '#10a139';
+			}
+
+			var zone_data = [name, status, color, lat, lon, url];
+
+			data.push(zone_data);
+		}
+
+		console.log(data);
+
+		//NYC
+		var mainLatLng = {lat: 40.75086427976074, lng: -73.89803823007811};
+
+		var styledMapType = new google.maps.StyledMapType(
+
+			[{"elementType":"geometry","stylers":[{"color":"#f5f5f5"}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#f5f5f5"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.fill","stylers":[{"color":"#bdbdbd"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#eeeeee"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#e5e5e5"}]},{"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"color":"#757575"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#dadada"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#616161"}]},{"featureType":"road.local","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"color":"#e5e5e5"}]},{"featureType":"transit.station","elementType":"geometry","stylers":[{"color":"#eeeeee"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#c9c9c9"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#9e9e9e"}]}],
+			{name: 'Styled Map'});
+
+	    var map = new google.maps.Map(document.getElementById('googft-mapCanvas'), {
+	      zoom: 10,
+	      center: mainLatLng
+	    });
+
+	    map.mapTypes.set('styled_map', styledMapType);
+	    map.setMapTypeId('styled_map');
+
+	    for (var i=0; i<data.length; i++){
+	    	var zone = data[i];
+	    	var latlon = {lat: zone[3], lng: zone[4]};
+
+	    	var marker = new google.maps.Marker({
+	    		icon: {
+					path: google.maps.SymbolPath.CIRCLE,
+					scale: 10,
+					strokeColor: 'black',
+					strokeWeight: 2,
+					fillColor: zone[2],
+					fillOpacity: 1
+				},
+				position: latlon,
+				map: map,
+				url: zone[5]
+			});
+
+			google.maps.event.addListener(marker, 'click', function() {
+			    window.location.href = this.url;
+			});
+	    }
+	}
+</script>
+</head>
+
 
 <section class="rezone-overview">
 	<div class="row-fluid">
@@ -42,7 +124,7 @@ get_header( 'rezone' );
 	<div class="row-fluid">
 		<div class="span8">
 			<p class="instruction">Click on a neighborhood to get news, documents, opinions and videos about that community.</p>
-			<iframe id="map" width="100%" height="420" scrolling="no" frameborder="no" scollwheel="false" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1nVqV-VWkMF3sQfs3XUCsYfqcB6bAUJz2bXQl_-GV&amp;viz=MAP&amp;h=false&amp;lat=40.75&amp;lng=-73.8455445810547&amp;t=1&amp;z=10&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
+			<div id="googft-mapCanvas"></div>
 		</div>
 		<div class="span4 plan-status">
 			<h2>Rezoning Status</h2>
@@ -68,13 +150,14 @@ get_header( 'rezone' );
 							$status_label = '';
 							break;
 					}
+					$status_latlon = get_term_meta( $neighborhood->term_id, 'neighborhood-latlon', true ); 
 					?>
 
 					<!-- <?php if ( isset( $title ) ) : ?>
 						<h1 class="page-title"><?php echo $title; ?></h1>
 					<?php endif; ?> -->
 
-					<div class="zone-w-status"><h5><a href="<?php echo get_term_link($neighborhood); ?>" title="<?php echo $status_label; ?>"><div class="circle <?php echo $status; ?>"></div><?php echo $neighborhood->name; ?></a></h5></div>
+					<div class="zone-w-status" data-status="<?php echo $status_label; ?>" data-color="<?php echo $status; ?>" data-latlon="<?php echo $status_latlon; ?>"><h5><a href="<?php echo get_term_link($neighborhood); ?>" title="<?php echo $status_label; ?>"><div class="circle <?php echo $status; ?>"></div><?php echo $neighborhood->name; ?></a></h5></div>
 				<?php endforeach; ?>
 			</div>
 		</div>
