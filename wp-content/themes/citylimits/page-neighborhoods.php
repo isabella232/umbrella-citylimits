@@ -277,7 +277,7 @@ get_header( 'rezone' );
 			<?php endwhile; ?>
 		<?php endif; // end more featured posts ?>
 	</div>
-	<div class="zonein-more"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
+	<div class="morelink"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
 </section>
 
 <section class="commentary">
@@ -315,7 +315,7 @@ get_header( 'rezone' );
 			<h3>Make Your Voice Heard</h3>
 			<?php gravity_form( 24, false, true, false, true );?>
 		</div>
-	<div class="zonein-more left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Commentary</a><a href="https://twitter.com/search?q=%23zonein" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
+	<div class="morelink left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Commentary</a><a href="https://twitter.com/search?q=%23zonein" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
 	</div>
 </section>
 
@@ -350,7 +350,7 @@ get_header( 'rezone' );
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</div>
-	<div class="zonein-more"><a href="<?php echo get_term_link( 'videos', 'post-type' ); ?>" class="btn more">More Videos</a></div>
+	<div class="morelink"><a href="<?php echo get_term_link( 'videos', 'post-type' ); ?>" class="btn more">More Videos</a></div>
 </section>
 
 <section class="documents">
@@ -387,7 +387,7 @@ get_header( 'rezone' );
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</div>
-	<div class="zonein-more"><a href="<?php echo get_term_link( 'documents', 'post-type' ); ?>" class="btn more">More Documents</a></div>
+	<div class="morelink"><a href="<?php echo get_term_link( 'documents', 'post-type' ); ?>" class="btn more">More Documents</a></div>
 </section>
 
 <div class="bottom-ctas row-fluid">

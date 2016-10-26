@@ -552,12 +552,12 @@ body.neighborhoods-lp {
   h2 {
     color: @red;
     font-size:1.25em;
+    text-transform: none;
   }
 
   h3 {
     font-size: 1.25em;
     color: @red;
-    text-transform: none;
   }
 
   p {
@@ -1167,19 +1167,19 @@ body.neighborhoods-lp {
       }
     }
 
-    section.map {
+    section .map {
       border-top: none;
       margin-top: 0;
     }
 
-    section.photos {
+    section .photos {
 
       >.row-fluid {
         margin-bottom: 2.5em;
       }
     }
 
-    section.news {
+    section .news {
       >.row-fluid {
         margin-bottom: 2.5em;
       }
@@ -1200,12 +1200,6 @@ body.neighborhoods-lp {
         }
       }
     }
-
-    // section.commentary {
-    //   margin-bottom:2em;
-    //   padding-bottom:2em;
-    //   border-bottom:1px solid @grey1;
-    // }
 
     .sidebar-ctas {
       .zone-a-btn;
@@ -1237,7 +1231,7 @@ body.neighborhoods-lp {
         min-width: 100%;
         margin: 0;
       }
-      section.news {
+      section .news {
         margin-bottom:2em;
         padding-bottom:2em;
         border-bottom:1px solid @grey1;
@@ -1245,9 +1239,9 @@ body.neighborhoods-lp {
     }
 
     @media (max-width:550px){
-      section.news .span3, 
-      section.news .span3 img, 
-      section.news .span9 {
+      section .news .span3, 
+      section .news .span3 img, 
+      section .news .span9 {
         min-width: 100%;
         margin-bottom: .5em;
         margin-left:0;
