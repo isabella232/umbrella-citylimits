@@ -678,12 +678,16 @@ body.neighborhoods-lp .commentary .form {
 }
 body.neighborhoods-lp .commentary a.btn.zonein-twitter {
   border: none;
-  padding: 5px 10px;
+  padding: 6px 10px;
   line-height: 2;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   float: right;
-  min-height: 100%;
+  width: 65.957446802%;
+  background-color: #e2e2e2;
+  color: #000;
+}
+body.neighborhoods-lp .commentary a.btn.zonein-twitter:hover {
+  background-color: #c3c3c3;
 }
 body.neighborhoods-lp .documents {
   padding-bottom: 2em;
@@ -734,12 +738,14 @@ body.neighborhoods-lp .morelink a {
   color: #ffffff;
   border: 1px solid #000000;
   line-height: 2;
-  display: block;
+  padding: 5px 10px;
+  display: inline-block;
 }
 body.neighborhoods-lp .morelink a:hover {
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #000000;
+  text-decoration: none;
 }
 body.neighborhoods-lp #rezone-footer {
   background-color: #e2e2e2;
@@ -1014,14 +1020,15 @@ body.neighborhoods-lp.tax-neighborhoods header h1 {
 body.neighborhoods-lp.tax-neighborhoods header .zone-w-status {
   margin: 0 0 1em 0;
 }
-body.neighborhoods-lp.tax-neighborhoods section .map {
+body.neighborhoods-lp.tax-neighborhoods section .map,
+body.neighborhoods-lp.tax-neighborhoods section.gform_widget {
   border-top: none;
   margin-top: 0;
 }
 body.neighborhoods-lp.tax-neighborhoods section .photos > .row-fluid {
   margin-bottom: 2.5em;
 }
-body.neighborhoods-lp.tax-neighborhoods section .news > .row-fluid {
+body.neighborhoods-lp.tax-neighborhoods section .news .row-fluid {
   margin-bottom: 2.5em;
 }
 body.neighborhoods-lp.tax-neighborhoods section .news h3 {
@@ -1064,8 +1071,8 @@ body.neighborhoods-lp.tax-neighborhoods section .videos li > a:after {
 body.neighborhoods-lp.tax-neighborhoods section .videos li > a:hover:after {
   background-color: #d41313;
 }
-body.neighborhoods-lp.tax-neighborhoods section .videos li h5 {
-  margin-bottom: 1.5em;
+body.neighborhoods-lp.tax-neighborhoods section .videos li .byline {
+  display: none;
 }
 body.neighborhoods-lp.tax-neighborhoods .sidebar-ctas a.btn {
   width: 100%;

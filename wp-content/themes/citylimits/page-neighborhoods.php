@@ -76,7 +76,8 @@ get_header( 'rezone' );
 
 	    var map = new google.maps.Map(document.getElementById('googft-mapCanvas'), {
 	      zoom: 10,
-	      center: mainLatLng
+	      center: mainLatLng,
+	      scrollwheel: false
 	    });
 
 	    map.mapTypes.set('styled_map', styledMapType);
@@ -235,7 +236,7 @@ get_header( 'rezone' );
 				$project_tax_query,
 				'relation' => 'AND'
 			),
-			'posts_per_page' => '5',
+			'posts_per_page' => '4',
 			'post__not_in' 	 => $shown_ids,
 		);
 		$recent_posts = new WP_Query( $args );
@@ -261,7 +262,7 @@ get_header( 'rezone' );
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
 						</div>
-				<?php elseif ( 4 == $count ) : ?>
+				<?php elseif ( 3 == $count ) : ?>
 						<div <?php post_class( 'story' ); ?> >
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
