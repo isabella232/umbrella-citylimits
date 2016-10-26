@@ -537,11 +537,24 @@ body.neighborhoods-lp section.rezone-101 h3 > a {
 body.neighborhoods-lp section.rezone-101 h3 > a:hover {
   color: #d41313;
 }
+body.neighborhoods-lp section.map #map-container {
+  position: relative;
+}
 body.neighborhoods-lp section.map #googft-mapCanvas {
   height: 500px;
   margin: 0;
   padding: 0;
   width: 100%;
+}
+body.neighborhoods-lp section.map #map-tooltip {
+  position: absolute;
+  border: 2px solid #000000;
+  background-color: #ffffff;
+  padding: .5em 1em;
+  display: none;
+}
+body.neighborhoods-lp section.map #map-tooltip.active {
+  display: block;
 }
 body.neighborhoods-lp section.map h3 a {
   color: #d41313;
