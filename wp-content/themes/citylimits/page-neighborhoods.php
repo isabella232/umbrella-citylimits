@@ -254,40 +254,6 @@ get_header( 'rezone' );
 	<div class="zonein-more"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
 </section>
 
-<section class="videos">
-	<h2>Videos</h2>
-	<div class="row-fluid">
-		<?php
-		$args = array (
-			'tax_query' => array(
-				array(
-					'taxonomy'      => 'category',
-					'field'         => 'slug',
-					'terms'         => array( 'video' )
-				),
-				$project_tax_query,
-				'relation' => 'AND'
-			),
-			'posts_per_page' => '3',
-			'post__not_in'   => $shown_ids
-		);
-		$videos = new WP_Query( $args );
-		?>
-		<?php if ( $videos->have_posts() ) : ?>
-			<?php $count = 0; ?>
-			<?php while ( $videos->have_posts() ) : $videos->the_post(); $shown_ids[] = get_the_id(); ?>
-				<div class="span4">
-					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'full' ); ?></a>
-					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-					<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
-				</div>
-				<?php $count++; ?>
-			<?php endwhile; ?>
-		<?php endif; ?>
-	</div>
-	<div class="zonein-more"><a href="<?php echo get_term_link( 'videos', 'post-type' ); ?>" class="btn more">More Videos</a></div>
-</section>
-
 <section class="commentary">
 	<h2>Commentary</h2>
 	<div class="row-fluid">
@@ -323,8 +289,42 @@ get_header( 'rezone' );
 			<h3>Make Your Voice Heard</h3>
 			<?php gravity_form( 24, false, true, false, true );?>
 		</div>
-	<div class="zonein-more left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Commentary</a></div>
+	<div class="zonein-more left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Commentary</a><a href="https://twitter.com/search?q=%23zonein" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
 	</div>
+</section>
+
+<section class="videos">
+	<h2>Videos</h2>
+	<div class="row-fluid">
+		<?php
+		$args = array (
+			'tax_query' => array(
+				array(
+					'taxonomy'      => 'category',
+					'field'         => 'slug',
+					'terms'         => array( 'video' )
+				),
+				$project_tax_query,
+				'relation' => 'AND'
+			),
+			'posts_per_page' => '3',
+			'post__not_in'   => $shown_ids
+		);
+		$videos = new WP_Query( $args );
+		?>
+		<?php if ( $videos->have_posts() ) : ?>
+			<?php $count = 0; ?>
+			<?php while ( $videos->have_posts() ) : $videos->the_post(); $shown_ids[] = get_the_id(); ?>
+				<div class="span4">
+					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'full' ); ?></a>
+					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+				</div>
+				<?php $count++; ?>
+			<?php endwhile; ?>
+		<?php endif; ?>
+	</div>
+	<div class="zonein-more"><a href="<?php echo get_term_link( 'videos', 'post-type' ); ?>" class="btn more">More Videos</a></div>
 </section>
 
 <section class="documents">
