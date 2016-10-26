@@ -3,7 +3,7 @@
 /**
  * Neighborhood Content 
  */
-class neighborhood_content extends WP_Widget {
+class rezone_events extends WP_Widget {
 
 	/**
 	 * Register widget with WordPress.
@@ -11,12 +11,12 @@ class neighborhood_content extends WP_Widget {
 	function __construct() {
 
 		$widget_ops = array(
-			'classname' => 'neighborhood-content',
-			'description' => __( 'A flexible widget to display recent posts (optionally limited by category, author, tag or taxonomy) in various formats', 'largo' )
+			'classname' => 'rezone-events',
+			'description' => __( 'Dynamic widget to display rezone events', 'citylimits' )
 		);
 		parent::__construct(
-			'neighborhood-content-widget', // Base ID
-			__( 'Neighborhood Content', 'citylimits' ), // Name
+			'rezone-events-widget', // Base ID
+			__( 'Rezone Events', 'citylimits' ), // Name
 			$widget_ops // Args
 		);
 
@@ -42,10 +42,8 @@ class neighborhood_content extends WP_Widget {
 
 		extract( $args );
 
-		$posts_term = of_get_option( 'posts_term_plural', 'Posts' );
-
 		// Add the link to the title.
-		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Recent ' . $posts_term, 'largo' ) : $instance['title'], $instance, $this->id_base );
+		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Upcoming Events' , 'largo' ) : $instance['title'], $instance, $this->id_base );
 	
 		$queried_object = get_queried_object();	
 
@@ -59,13 +57,15 @@ class neighborhood_content extends WP_Widget {
 		$query_args = array (
 			'post__not_in' 	=> get_option( 'sticky_posts' ),
 			'showposts' 	=> $instance['num_posts'],
-			'post_status'	=> 'publish'
-		);
-
-		$project_tax_query = array(
-			'taxonomy'  => 'neighborhoods',
-			'field'     => 'slug',
-			'terms'     => $queried_object->slug
+			'post_status'	=> 'publish',
+			'post_type'	=> 'rezone_events',
+			'tax_query'	=> array (
+				array (
+					'taxonomy'  => 'neighborhoods',
+					'field'     => 'slug',
+					'terms'     => $queried_object->slug
+				)
+			)
 		);
 
 		if ( isset( $instance['avoid_duplicates'] ) && $instance['avoid_duplicates'] === 1 ) {
@@ -79,17 +79,6 @@ class neighborhood_content extends WP_Widget {
 		if ( $instance['cat'] != '' ) $query_args['cat'] = $instance['cat'];
 		if ( $instance['tag'] != '') $query_args['tag'] = $instance['tag'];
 		if ( $instance['author'] != '') $query_args['author'] = $instance['author'];
-		if ( $instance['taxonomy'] != '') {
-			$query_args['tax_query'] = array(
-				array(
-					'taxonomy'	=> $instance['taxonomy'],
-					'field' 	=> 'slug',
-					'terms' 	=> $instance['term']
-				),
-				$project_tax_query,
-				'relation' => 'AND'
-			);
-		}
 
 		echo '<ul class="' . $queried_object->slug . '">';
 
@@ -153,7 +142,6 @@ class neighborhood_content extends WP_Widget {
 		$instance['show_icon'] = ! empty($new_instance['show_icon']);
 		$instance['cat'] = intval( $new_instance['cat'] );
 		$instance['tag'] = sanitize_text_field( $new_instance['tag'] );
-		$instance['taxonomy'] = sanitize_text_field( $new_instance['taxonomy'] );
 		$instance['term'] = sanitize_text_field( $new_instance['term'] );
 		$instance['author'] = intval( $new_instance['author'] );
 		$instance['linktext'] = sanitize_text_field( $new_instance['linktext'] );
@@ -175,7 +163,6 @@ class neighborhood_content extends WP_Widget {
 			'show_icon' => '',
 			'cat' => 0,
 			'tag' => '',
-			'taxonomy' => '',
 			'term' => '',
 			'author' => '',
 			'linktext' => '',
@@ -243,17 +230,6 @@ class neighborhood_content extends WP_Widget {
 			<input class="checkbox" type="checkbox" <?php echo $show_top_term; ?> id="<?php echo $this->get_field_id( 'show_top_term' ); ?>" name="<?php echo $this->get_field_name( 'show_top_term' ); ?>" /> <label for="<?php echo $this->get_field_id( 'show_top_term' ); ?>"><?php _e( 'Show the top term on posts?', 'largo' ); ?></label>
 		</p>
 
-		<?php 
-			// only show this admin if the "Post Types" taxonomy is enabled.
-			if ( taxonomy_exists('post-type') && of_get_option('post_types_enabled') ) {
-		?>
-		<p>
-			<input class="checkbox" type="checkbox" <?php echo $show_icon; ?> id="<?php echo $this->get_field_id( 'show_icon' ); ?>" name="<?php echo $this->get_field_name( 'show_icon' ); ?>" /> <label for="<?php echo $this->get_field_id( 'show_icon' ); ?>"><?php _e( 'Show the post type icon?', 'largo' ); ?></label>
-		</p>
-		<?php
-			}
-		?>
-
 		<p><strong><?php _e( 'Limit by Author, Categories or Tags', 'largo' ); ?></strong><br /><small><?php _e( 'Select an author or category from the dropdown menus or enter post tags separated by commas (\'cat,dog\')', 'largo' ); ?></small></p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'author' ); ?>"><?php _e( 'Limit to author: ', 'largo' ); ?><br />
@@ -267,16 +243,6 @@ class neighborhood_content extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'tag' ); ?>"><?php _e( 'Limit to tags:', 'largo' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'tag' ); ?>" name="<?php echo $this->get_field_name( 'tag' ); ?>" type="text" value="<?php echo $instance['tag']; ?>" />
-		</p>
-
-		<p><strong><?php _e( 'Limit by Custom Taxonomy', 'largo' ); ?></strong><br /><small><?php _e( 'Enter the slug for the custom taxonomy you want to query and the term within that taxonomy to display', 'largo' ); ?></small></p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'taxonomy' ); ?>"><?php _e( 'Taxonomy:', 'largo' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'taxonomy' ); ?>" name="<?php echo $this->get_field_name( 'taxonomy' ); ?>" type="text" value="<?php echo $instance['taxonomy']; ?>" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'term' ); ?>"><?php _e( 'Term:', 'largo' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'term' ); ?>" name="<?php echo $this->get_field_name( 'term' ); ?>" type="text" value="<?php echo $instance['term']; ?>" />
 		</p>
 
 		<p><strong><?php _e( 'More Link', 'largo' ); ?></strong><br /><small><?php _e( 'If you would like to add a more link at the bottom of the widget, add the link text and url here.', 'largo' ); ?></small></p>
