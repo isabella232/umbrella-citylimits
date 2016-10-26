@@ -50,8 +50,6 @@ $queried_object = get_queried_object();
 						$status = get_term_meta( $term_id, 'neighborhood-status', true );
 					?>
 
-					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo ucfirst( $status ); ?></div>
-
 					<?php if ( isset( $title ) ) : ?>
 						<h1 class="page-title">
 							<?php echo $title; ?>		
@@ -59,6 +57,8 @@ $queried_object = get_queried_object();
 					<?php endif; ?>
 
 					<?php largo_post_social_links(); ?>
+
+					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo ucfirst( $status ); ?></div>
 
 					<?php if ( isset( $description ) ) : ?>
 						<div class="archive-description"><?php echo $description; ?></div>

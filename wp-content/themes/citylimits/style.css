@@ -460,7 +460,7 @@ body.neighborhoods-lp ul#menu-zone-in > .menu-item a:hover {
   color: #ffffff;
   text-decoration: none;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item:nth-last-child(2) a {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.cta a {
   background-color: #d41313;
   color: #ffffff;
 }
@@ -663,10 +663,9 @@ body.neighborhoods-lp section.commentary .form {
   margin-bottom: .5em;
 }
 body.neighborhoods-lp section.commentary a.btn.zonein-twitter {
-  background-color: #d41313;
-  color: #ffffff;
   border: none;
-  padding: .5em;
+  padding: 5px 10px;
+  line-height: 2;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   float: right;
@@ -931,6 +930,9 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
     min-width: 100%;
     margin: 2em 0;
   }
+  body.neighborhoods-lp .commentary a.btn.zonein-twitter.span8 {
+    margin: .5em 0 0;
+  }
   body.neighborhoods-lp .commentary .span4 {
     min-width: 100%;
   }
@@ -997,9 +999,9 @@ body.neighborhoods-lp.tax-neighborhoods header h1 {
 body.neighborhoods-lp.tax-neighborhoods header .zone-w-status {
   margin: 0 0 1em 0;
 }
-body.neighborhoods-lp.tax-neighborhoods section.photos {
+body.neighborhoods-lp.tax-neighborhoods section.map {
+  border-top: none;
   margin-top: 0;
-  border-top: 0;
 }
 body.neighborhoods-lp.tax-neighborhoods section.photos > .row-fluid {
   margin-bottom: 2.5em;

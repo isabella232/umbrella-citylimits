@@ -510,7 +510,7 @@ body.neighborhoods-lp {
         }
       }
 
-      &:nth-last-child(2) a {
+      &.cta a {
         background-color: @red;
         color: @white;
       }
@@ -697,10 +697,9 @@ body.neighborhoods-lp {
       margin-bottom:.5em;
     }
     a.btn.zonein-twitter {
-      background-color: #d41313;
-      color: #ffffff;
       border: none;
-      padding: .5em;
+      padding: 5px 10px;
+      line-height: 2;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-weight: bold;
       float: right;
@@ -1043,6 +1042,9 @@ body.neighborhoods-lp {
         min-width:100%;
         margin: 2em 0;
       }
+      a.btn.zonein-twitter.span8 {
+        margin: .5em 0 0;
+      }
       .span4 {
         min-width: 100%;
       }
@@ -1148,9 +1150,12 @@ body.neighborhoods-lp {
       }
     }
 
+    section.map {
+      border-top: none;
+      margin-top: 0;
+    }
+
     section.photos {
-      margin-top:0;
-      border-top:0;
 
       >.row-fluid {
         margin-bottom: 2.5em;
