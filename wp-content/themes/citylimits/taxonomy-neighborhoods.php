@@ -138,7 +138,7 @@ $queried_object = get_queried_object();
 								</div>
 							</div>
 						<?php endwhile; ?>
-						<div class="zonein-more"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
+						<div class="morelink"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
 					</section>
 				<?php endif; ?>
 
