@@ -28,6 +28,7 @@ function largo_child_require_files() {
 		'/inc/metaboxes.php',
 		'/inc/enqueue.php',
 		'/inc/widgets/neighborhood-content.php',
+		'/inc/widgets/rezone-events.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -49,7 +50,8 @@ add_action( 'after_setup_theme', 'largo_child_require_files' );
 // re-enable the default WP RSS widget
 function citylimits_widgets_init() {
 	register_widget( 'WP_Widget_RSS' );
-	register_widget( 'Neighborhood_Content' );
+	register_widget( 'neighborhood_content' );
+	register_widget( 'rezone_events' );
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
