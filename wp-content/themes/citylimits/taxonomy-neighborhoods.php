@@ -50,22 +50,27 @@ $queried_object = get_queried_object();
 						$status = get_term_meta( $term_id, 'neighborhood-status', true );
 					?>
 
+					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo ucfirst( $status ); ?></div>
+
 					<?php if ( isset( $title ) ) : ?>
-						<h1 class="page-title"><?php echo $title; ?></h1>
+						<h1 class="page-title">
+							<?php echo $title; ?>		
+						</h1>
 					<?php endif; ?>
 
-					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo ucfirst( $status ); ?></div>
+					<?php largo_post_social_links(); ?>
 
 					<?php if ( isset( $description ) ) : ?>
 						<div class="archive-description"><?php echo $description; ?></div>
 					<?php endif; ?>
 
+					<section class="map">
+						<?php echo wp_get_attachment_image( $featured['attachment'], 'full' ); ?>
+					</section>
+
 				</header>
 
-				<section class="map">
-					<h2>Proposed Action Area</h2>
-					<?php echo wp_get_attachment_image( $featured['attachment'], 'full' ); ?>
-				</section>
+				
 
 				<?php
 				$args = array (

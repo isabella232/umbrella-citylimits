@@ -660,6 +660,17 @@ body.neighborhoods-lp section.videos .span4 > a:hover:after {
 body.neighborhoods-lp section.commentary .form {
   background: #e2e2e2;
   padding: 1em;
+  margin-bottom: .5em;
+}
+body.neighborhoods-lp section.commentary a.btn.zonein-twitter {
+  background-color: #d41313;
+  color: #ffffff;
+  border: none;
+  padding: .5em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  float: right;
+  min-height: 100%;
 }
 body.neighborhoods-lp section.documents {
   padding-bottom: 2em;
@@ -981,11 +992,10 @@ body.neighborhoods-lp.tax-neighborhoods .rezone-header {
 body.neighborhoods-lp.tax-neighborhoods header h1 {
   margin: 0;
   line-height: 1em;
-  border-bottom: 1px solid #c3c3c3;
   padding-bottom: .5em;
 }
 body.neighborhoods-lp.tax-neighborhoods header .zone-w-status {
-  margin: 1.5em 0 1em 0;
+  margin: 0 0 1em 0;
 }
 body.neighborhoods-lp.tax-neighborhoods section.photos {
   margin-top: 0;

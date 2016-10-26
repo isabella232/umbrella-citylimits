@@ -32,6 +32,7 @@ get_header( 'rezone' );
 		<div class="span8">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<h1><?php the_title(); ?></h1>
+				<?php largo_post_social_links(); ?>
 				<?php
 					do_action('largo_after_post_header');
 
