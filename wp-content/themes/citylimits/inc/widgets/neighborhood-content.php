@@ -91,7 +91,7 @@ class neighborhood_content extends WP_Widget {
 			);
 		}
 
-		echo '<ul class="' . $queried_object->slug . '">';
+		echo '<ul class="' . $instance['term'] . '">';
 
 		$my_query = new WP_Query( $query_args );
 

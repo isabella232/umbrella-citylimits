@@ -419,10 +419,10 @@ function register_neighborhood_sidebars() {
 		'name'		=> __( 'Neighborhoods Taxonomy Sidebar', 'citylimits' ),
 		'id'		=> 'rezone-neighborhoods-sidebar',
 		'description'	=> __( 'Widgets in this area will be shown on all neighborhood taxonomy pages' ),
-		'before_widget'	=> '<li id="%1$s" class="widget %2$s">',
-		'after_widget'	=> '</li>',
-		'before_title'	=> '<h3 class="widgettitle">',
-		'after_title'	=> '</h3>'
+		'before_widget'	=> '<section id="%1$s" class="widget %2$s">',
+		'after_widget'	=> '</section>',
+		'before_title'	=> '<h2 class="widgettitle">',
+		'after_title'	=> '</h2>'
 	) );
 
 	register_sidebar( array(
@@ -431,8 +431,8 @@ function register_neighborhood_sidebars() {
 		'description'	=> __( 'Widgets in this area will be shown on all neighborhood taxonomy pages' ),
 		'before_widget'	=> '<li id="%1$s" class="widget %2$s">',
 		'after_widget'	=> '</li>',
-		'before_title'	=> '<h3 class="widgettitle">',
-		'after_title'	=> '</h3>'
+		'before_title'	=> '<h2 class="widgettitle">',
+		'after_title'	=> '</h2>'
 	) );
 }
 add_action( 'widgets_init', 'register_neighborhood_sidebars' );

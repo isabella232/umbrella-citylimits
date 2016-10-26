@@ -557,6 +557,7 @@ body.neighborhoods-lp {
   h3 {
     font-size: 1.25em;
     color: @red;
+    text-transform: none;
   }
 
   p {
@@ -683,14 +684,14 @@ body.neighborhoods-lp {
     }
   }
 
-  section.videos {
+  .videos {
 
     .span4>a {
       .video-identifier;
     }
   }
 
-  section.commentary {
+  .commentary {
     .form {
       background: @grey2;
       padding: 1em;
@@ -707,10 +708,10 @@ body.neighborhoods-lp {
     }
   }
 
-  section.documents {
+  .documents {
     padding-bottom: 2em;
 
-    h3 {
+    h5 {
       font-size:1.125em;
       font-weight:normal;
       letter-spacing: 0;
@@ -740,7 +741,7 @@ body.neighborhoods-lp {
 
   }
 
-  .zonein-more {
+  .morelink {
     width:100%;
     text-align: right;
 
@@ -749,7 +750,7 @@ body.neighborhoods-lp {
       margin:0;
     }
 
-    a.btn.more {
+    a {
       width:31.914893614%;
       text-align: center;
       font-weight: bold;
@@ -757,6 +758,7 @@ body.neighborhoods-lp {
       color: @white;
       border: 1px solid @black;
       line-height: 2;
+      display: block;
 
       &:hover {
         background-color: @white;
@@ -1050,7 +1052,7 @@ body.neighborhoods-lp {
       }
     }
 
-    .zonein-more a.btn.more {
+    .morelink a {
       min-width:100%;
     }
 
@@ -1172,8 +1174,8 @@ body.neighborhoods-lp {
       }
     }
 
-    section.videos {
-      >.row-fluid {
+    section .videos {
+      li {
         >a {
           .video-identifier;
         }
@@ -1194,7 +1196,7 @@ body.neighborhoods-lp {
       .zone-a-btn;
     }
 
-    .zonein-more a.btn.more {
+    .morelink a {
       min-width: 100%;
     }
 
@@ -1203,7 +1205,7 @@ body.neighborhoods-lp {
       margin-top:2em;
     }
 
-    .form {
+    .gform_widget {
       background-color: @grey2;
       padding: 1em;
 
