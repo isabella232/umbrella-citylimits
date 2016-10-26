@@ -611,11 +611,26 @@ body.neighborhoods-lp {
 
   section.map {
 
+    #map-container {
+      position:relative;
+    }
+
     #googft-mapCanvas {
       height: 500px;
       margin: 0;
       padding: 0;
       width: 100%;
+    }
+
+    #map-tooltip {
+      position:absolute;
+      border:2px solid @black;
+      background-color: @white;
+      padding:.5em 1em;
+      display:none;
+      &.active{
+        display:block;
+      }
     }
     
     h3 a {

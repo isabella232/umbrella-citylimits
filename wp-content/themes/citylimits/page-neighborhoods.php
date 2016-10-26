@@ -97,11 +97,34 @@ get_header( 'rezone' );
 				},
 				position: latlon,
 				map: map,
-				url: zone[5]
+				url: zone[5],
+				name: zone[0]
 			});
 
 			google.maps.event.addListener(marker, 'click', function() {
 			    window.location.href = this.url;
+			});
+
+			var tooltip = $('#map-tooltip');
+			var overlay = new google.maps.OverlayView();
+
+			overlay.draw = function() {};
+			overlay.setMap(map); 
+
+			google.maps.event.addListener(marker, 'mouseover', function(e) {
+				var projection = overlay.getProjection(); 
+    			var pixel = projection.fromLatLngToContainerPixel(this.getPosition());
+
+				tooltip.text(this.name);
+				tooltip.css({
+					'left': pixel.x + 8,
+					'top': pixel.y + 8
+				})
+				tooltip.addClass('active');
+			});
+
+			google.maps.event.addListener(marker, 'mouseout', function(e) {
+				tooltip.removeClass('active');
 			});
 	    }
 	}
@@ -124,7 +147,10 @@ get_header( 'rezone' );
 	<div class="row-fluid">
 		<div class="span8">
 			<p class="instruction">Click on a neighborhood to get news, documents, opinions and videos about that community.</p>
-			<div id="googft-mapCanvas"></div>
+			<div id="map-container">
+				<div id="googft-mapCanvas"></div>
+				<div id="map-tooltip"></div>
+			</div>			
 		</div>
 		<div class="span4 plan-status">
 			<h2>Rezoning Status</h2>
