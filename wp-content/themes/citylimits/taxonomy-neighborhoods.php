@@ -93,13 +93,15 @@ $queried_object = get_queried_object();
 				<?php if ( $photos->have_posts() ) : ?>
 					<section class="photos">
 						<h2>Photos</h2>
-						<div class="row-fluid">
 						<?php while ( $photos->have_posts() ) : $photos->the_post(); $shown_ids[] = get_the_id(); ?>
-							<div class="span4">
+							<!-- <div class="span4">
 								<a href=" <?php echo the_post_thumbnail_url( 'full' ); ?> " target="_blank"><?php the_post_thumbnail( 'medium' ); ?></a>
-							</div>
+							</div> -->
+
+							<?php largo_featured_gallery_hero(); ?>
 						<?php endwhile; ?>
-							</div>
+						<div class="row-fluid">
+						</div>
 					</section>
 				<?php endif; ?>
 
@@ -168,6 +170,76 @@ $queried_object = get_queried_object();
 		}
 	?>
 </div>
+
+<script>
+	jQuery(document).ready(function($){
+		var slides = $('section.photos .featured-gallery img');
+
+		//get first three slides in photos post
+		for (var i=0; i<3; i++) {
+			var $slide = $(slides[i]);
+			var img = $slide.data('lazy');
+
+			$('section.photos .row-fluid').append('<div class="span4"><img src="' + img + '" />');
+		}
+
+		var $displayed = $('section.photos .span4 img');
+
+		for (var i = 0, len = $displayed.length; i < len; i++){
+
+		    (function(index){
+				$($displayed[i]).click(function(){
+					var img_num = index;
+					var $slider = $('.navis-slideshow');
+
+					expandSlider($slider);
+
+					$($('.slick-dots button')[img_num]).click();
+				});
+			})(i);
+
+		}
+
+		// below functions from: https://github.com/INN/Largo/blob/24146c45839121bc3f8520f1c73cc88ffadd74c8/lib/navis-slideshows/js/navis-slideshows.js
+		// closeFull() was modified
+
+		function addCloseX($slider){
+	        $slider.prepend('<span class="navis-before">X</span>');
+	        $('.navis-before').click(function(){
+	            closeFull($slider);
+	        });
+	    }
+
+	    function expandSlider($slider){
+	        var full = 'navis-full';
+
+	        if (!$slider.hasClass(full)){
+	            $slider.addClass(full);
+	            $slider.slick('setPosition');
+
+	            addCloseX($slider);
+	        }
+	    };
+
+	    function closeFull($slider){
+	        $('.navis-before').remove();
+	        $('.navis-full').removeClass('navis-full');
+	    }
+
+	    $(document).keyup(function(e) {
+	        var $slider = $('.navis-full');
+
+	        if (e.keyCode == 27) { // escape
+	            if ($slider.length > 0) {
+	                closeFull($slider);
+	            }
+	        }
+   		});
+
+	});
+
+
+</script>
 
 <?php get_template_part( 'partials/rezone-footer' ); ?>
 
