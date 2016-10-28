@@ -178,9 +178,11 @@ $queried_object = get_queried_object();
 		//get first three slides in photos post
 		for (var i=0; i<3; i++) {
 			var $slide = $(slides[i]);
-			var img = $slide.data('lazy');
-
-			$('section.photos .row-fluid').append('<div class="span4"><img src="' + img + '" />');
+			
+			if ($slide.length > 0) {
+				var img = $slide.data('lazy');
+				$('section.photos .row-fluid').append('<div class="span4"><img src="' + img + '" />');
+			}
 		}
 
 		var $displayed = $('section.photos .span4 img');

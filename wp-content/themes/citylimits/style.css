@@ -1028,6 +1028,9 @@ body.neighborhoods-lp.tax-neighborhoods section.gform_widget {
 body.neighborhoods-lp.tax-neighborhoods section.photos > .row-fluid {
   margin-bottom: 2.5em;
 }
+body.neighborhoods-lp.tax-neighborhoods section.photos > .row-fluid img:hover {
+  cursor: pointer;
+}
 body.neighborhoods-lp.tax-neighborhoods.archive .hero {
   /**** FULL SIZE ***/
   /**** FULL SIZE ***/
@@ -1409,6 +1412,9 @@ body.neighborhoods-lp.tax-neighborhoods.archive .hero .navis-slideshow {
   display: none;
 }
 body.neighborhoods-lp.tax-neighborhoods.archive .hero .navis-slideshow.navis-full {
+  display: block;
+}
+body.neighborhoods-lp.tax-neighborhoods.archive .hero .navis-slideshow.navis-full .wp-caption-text {
   display: block;
 }
 body.neighborhoods-lp.tax-neighborhoods section.news .row-fluid {
