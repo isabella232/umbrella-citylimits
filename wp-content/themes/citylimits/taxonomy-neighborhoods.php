@@ -84,7 +84,7 @@ $queried_object = get_queried_object();
 						$project_tax_query,
 						'relation' => 'AND'
 					),
-					'posts_per_page' => '3',
+					'posts_per_page' => '1',
 					'post__not_in' 	 => $shown_ids
 
 				);
@@ -93,15 +93,16 @@ $queried_object = get_queried_object();
 				<?php if ( $photos->have_posts() ) : ?>
 					<section class="photos">
 						<h2>Photos</h2>
+						<div class="row-fluid">
+						</div>
 						<?php while ( $photos->have_posts() ) : $photos->the_post(); $shown_ids[] = get_the_id(); ?>
 							<!-- <div class="span4">
 								<a href=" <?php echo the_post_thumbnail_url( 'full' ); ?> " target="_blank"><?php the_post_thumbnail( 'medium' ); ?></a>
 							</div> -->
 
 							<?php largo_featured_gallery_hero(); ?>
+							<div class="morelink"><a href="<?php echo get_post_permalink(); ?>" class="btn more">More Photos</a></div>
 						<?php endwhile; ?>
-						<div class="row-fluid">
-						</div>
 					</section>
 				<?php endif; ?>
 
