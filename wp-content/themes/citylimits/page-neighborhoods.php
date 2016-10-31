@@ -336,7 +336,7 @@ get_header( 'rezone' );
 		</div>
 		<div class="span8 form">
 			<h3>Make Your Voice Heard</h3>
-			<?php gravity_form( 24, false, true, false, true );?>
+			<?php gravity_form( 23, false, true, false, true );?>
 		</div>
 	<div class="morelink left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Commentary</a><a href="https://twitter.com/search?q=%23zonein" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
 	</div>
