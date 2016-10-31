@@ -220,9 +220,9 @@ get_header( 'rezone' );
 		'post_type'      => 'page',
 		'post__in'       => array(
 			// these are the pages on Staging
-			891921,
-			891920,
-			891919
+			989818,
+			989821,
+			989822
 		),
 		'ignore_sticky_posts' => true
 	);
