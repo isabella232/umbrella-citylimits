@@ -64,7 +64,7 @@ get_header( 'rezone' );
 			data.push(zone_data);
 		}
 
-		console.log(data);
+		//console.log(data);
 
 		//NYC
 		var mainLatLng = {lat: 40.75086427976074, lng: -73.89803823007811};
@@ -82,6 +82,8 @@ get_header( 'rezone' );
 
 	    map.mapTypes.set('styled_map', styledMapType);
 	    map.setMapTypeId('styled_map');
+
+	    var all_markers = [];
 
 	    for (var i=0; i<data.length; i++){
 	    	var zone = data[i];
@@ -101,6 +103,7 @@ get_header( 'rezone' );
 				url: zone[5],
 				name: zone[0]
 			});
+			all_markers.push( marker );
 
 			google.maps.event.addListener(marker, 'click', function() {
 			    window.location.href = this.url;
@@ -128,6 +131,25 @@ get_header( 'rezone' );
 				tooltip.removeClass('active');
 			});
 	    }
+
+	    //map hovers over neighborhood name trigger map hovers
+	    $('.zone-w-status a').hover(function(){
+	    	var name = $(this).text();
+	    	for(var i=0;i<all_markers.length;i++){
+			    if (all_markers[i].name === name){
+			        google.maps.event.trigger(all_markers[i],'mouseover');
+			        break;
+			    }
+			}
+	    }, function(){
+	    	var name = $(this).text();
+	    	for(var i=0;i<all_markers.length;i++){
+			    if (all_markers[i].name === name){
+			        google.maps.event.trigger(all_markers[i],'mouseout');
+			        break;
+			    }
+			}
+	    });
 	}
 </script>
 </head>
