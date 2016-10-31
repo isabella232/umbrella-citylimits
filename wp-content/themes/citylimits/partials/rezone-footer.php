@@ -7,7 +7,7 @@
 		
 		<section class="rezone-overview row-fluid">
 			<div class="span12">
-				<?php $series_id = 891916;
+				<?php $series_id = 989786;
 					  echo apply_filters('the_content', get_post_field('post_content', $series_id)); 
 				?>
 			</div>
