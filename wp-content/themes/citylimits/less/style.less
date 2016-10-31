@@ -22,15 +22,108 @@ a:hover, a:active {
 /**
  * MIXINS
 */
+.a11y {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
 .flex {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
 }
+
 .flexwrap {
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+}
+
+.flexaround {
+  -webkit-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+}
+
+.flexbetween {
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.video-identifier {
+  position: relative;
+  display: block;
+  margin-bottom: .5em;
+
+  &:before {
+    content: ' ';
+    background-color: rgba(0,0,0,.25);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &:after {
+    content: '\25B6';
+    color: @white;
+    font-size: 40px;
+    line-height: 0;
+    width: 36px;
+    max-height: 48px;
+    box-sizing: border-box;
+    background-color: @black;
+    padding: 32px 45px 32px 18px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+  }
+
+  &:hover {
+    &:after {
+      background-color: @red;
+    }
+  }
+}
+
+.zone-a-btn {
+  a.btn {
+    width:100%;
+    color: @white;
+    background:@red;
+    padding: 2.5em;
+    font-size: 1.125em;
+    font-weight:bold;
+    position:relative;
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100%;
+      padding:0 1em;
+    }
+
+    &:hover {
+      background: saturate(@red,30%);
+    }
+  }
+
+  // &:hover {
+  //   background: saturate(@red,30%);
+  // }
 }
 
 /**
@@ -354,6 +447,13 @@ body.neighborhoods-lp {
    -webkit-transition: all .05s ease-in-out;
   }
 
+  // so the sticky nav appears as it should
+  @media ( min-width: 769px ) {
+    .sticky-nav-holder.show {
+      display: block;
+    }
+  }
+
   .rezone-header {
     margin-top: @navbarHeight + 32px;
   }
@@ -363,18 +463,21 @@ body.neighborhoods-lp {
     margin:0;
     border-top:4px solid @red;
     border-bottom: 1px solid @black;
+    font-size:0; //hack for inline block items
 
     >.menu-item {
       display:inline-block;
       min-width: 10%;
-      max-width: 18%;
+      max-width: 22%;
       margin-bottom:0;
+      font-size:initial;
 
       &:not(.menu-item-has-children){
         text-align: center;
       }
 
       &.menu-item-has-children {
+        position:relative;
 
         >a:after {
           content:'▼';
@@ -382,7 +485,7 @@ body.neighborhoods-lp {
           font-size:.8em;
         }
 
-        &:hover {
+        &.zones-active {
           >a {
             background-color:@black;
             color:@white;
@@ -397,7 +500,7 @@ body.neighborhoods-lp {
       a {
         display: block;
         padding:1.25em 1.75em;
-        color:black;
+        color:@black;
         font-weight:bold;
 
         &:hover {
@@ -405,6 +508,11 @@ body.neighborhoods-lp {
           color:@white;
           text-decoration: none;
         }
+      }
+
+      &.cta a {
+        background-color: @red;
+        color: @white;
       }
     }
 
@@ -426,6 +534,14 @@ body.neighborhoods-lp {
         }
       }
     }
+
+    #more-zonein {
+      display:none;
+    }
+  }
+
+  &.tax-post-type header.archive-background {
+    margin: 2em 0 .5em 0;
   }
 
   h1.entry-title {
@@ -436,6 +552,7 @@ body.neighborhoods-lp {
   h2 {
     color: @red;
     font-size:1.25em;
+    text-transform: none;
   }
 
   h3 {
@@ -455,7 +572,7 @@ body.neighborhoods-lp {
   }
 
   section.rezone-overview .span12 p {
-    font-size: 1.75em;
+    font-size: 1.5em;
     line-height:1.75;
     padding: .25em 0;
     margin-bottom:0;
@@ -467,7 +584,8 @@ body.neighborhoods-lp {
   }
 
   section,
-  .bottom-ctas {
+  .bottom-ctas,
+  .sidebar-ctas {
     padding-top: 2em;
     margin-top: 2em;
     border-top: solid 1px @grey1;
@@ -493,9 +611,26 @@ body.neighborhoods-lp {
 
   section.map {
 
-    #map {
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
+    #map-container {
+      position:relative;
+    }
+
+    #googft-mapCanvas {
+      height: 500px;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    #map-tooltip {
+      position:absolute;
+      border:2px solid @black;
+      background-color: @white;
+      padding:.5em 1em;
+      display:none;
+      &.active{
+        display:block;
+      }
     }
     
     h3 a {
@@ -518,27 +653,18 @@ body.neighborhoods-lp {
 
   .bottom-ctas {
     .flex;
-    .flexwrap;
 
     .span3 {
       text-align: center;
       width:23%;
-      margin:0;
-      margin:0 1%;
       background: @red;
+      margin:0 1%;
 
+      .zone-a-btn;
 
       a.btn {
-        width:100%;
-      	color: @white;
         background:transparent;
-      	padding: 1em 2em;
-      	font-size: 1.125em;
-        font-weight:bold;
-      }
-
-      &:hover {
-        background: saturate(@red,30%);
+        .flex;
       }
     }
   }
@@ -573,62 +699,39 @@ body.neighborhoods-lp {
     }
   }
 
-  section.videos {
+  .videos {
 
     .span4>a {
-      position: relative;
-      display: block;
-
-      &:before {
-        content: ' ';
-        background-color: rgba(0,0,0,.25);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
-
-      &:after {
-        content: '\25B6';
-        color: @white;
-        font-size: 40px;
-        line-height: 0;
-        width: 36px;
-        max-height: 48px;
-        box-sizing: border-box;
-        background-color: @black;
-        padding: 32px 45px 32px 18px;
-        border-radius: 50%;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%,-50%);
-        -moz-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-        -o-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
-      }
-
-      &:hover {
-        &:after {
-          background-color: @red;
-        }
-      }
+      .video-identifier;
     }
   }
 
-  section.commentary {
+  .commentary {
     .form {
       background: @grey2;
       padding: 1em;
+      margin-bottom:.5em;
+    }
+    a.btn.zonein-twitter {
+      border: none;
+      padding: 6px 10px;
+      line-height: 2;
+      font-weight: bold;
+      float: right;
+      width: 65.957446802%;
+      background-color: @grey2;
+      color: #000;
+
+      &:hover {
+        background-color: @grey1;
+      }
     }
   }
 
-  section.documents {
+  .documents {
     padding-bottom: 2em;
 
-    h3 {
+    h5 {
       font-size:1.125em;
       font-weight:normal;
       letter-spacing: 0;
@@ -650,22 +753,24 @@ body.neighborhoods-lp {
     margin-right: .5em;
     position: relative;
     top: .125em;
+    background-color: @grey1;
 
-    &.green { background: green; }
-    &.yellow { background: yellow; }
+    &.green { background: #10a139; }
+    &.yellow { background: #fac409; }
     &.red { background: @red; }
 
   }
 
-  .zonein-more {
+  .morelink {
     width:100%;
     text-align: right;
 
     &.left {
       text-align: left;
+      margin:0;
     }
 
-    a.btn.more {
+    a {
       width:31.914893614%;
       text-align: center;
       font-weight: bold;
@@ -673,12 +778,508 @@ body.neighborhoods-lp {
       color: @white;
       border: 1px solid @black;
       line-height: 2;
+      padding:5px 10px;
+      display: inline-block;
 
       &:hover {
         background-color: @white;
         color: @black;
         border: 1px solid @black;
+        text-decoration: none;
       }
     }
   }
+
+  #rezone-footer {
+    background-color:@grey2;
+
+    >div {
+      max-width: 1170px;
+      padding: 2em 2.5%;
+      margin:0 auto;
+    }
+
+    h2 {
+      margin-bottom: .75em;
+    }
+
+    .rezone-overview {
+      padding-top:0;
+      margin-bottom:2em;
+
+      .span12 p {
+        margin:0;
+        font-size:1.5em;
+
+        b, strong {
+          font-weight:normal;
+        }
+      }
+    }
+    .zone-w-status {
+      display: inline-block;
+      margin-right: 2.5em;
+      min-width:20%;
+
+      h5 {
+        font-size:1.25em;
+      }
+    }
+  }
+
+  &.page-template-page-neighborhood-info {
+    p {
+      font-size:19.552px;
+      margin-bottom: 1.25em;
+    }
+    .hero.span12 {
+      margin: 0 0 1em 0;
+    }
+  }
+
+  input[type=submit].gform_button.button {
+    width: 100%!important;
+    background-color: @red;
+    color: @white;
+    border: none;
+    padding: .5em;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+
+    &:hover {
+      background: saturate(@red,30%);
+    }
+  }
+
+  .gform_wrapper {
+    margin: 0!important;
+
+    .gform_body {
+      position:relative;
+    }
+
+    // .top_label li.gfield.gf_right_half {
+    //   float: right!important;
+    // }
+
+    .top_label .gfield_label,
+    .field_sublabel_below .ginput_complex.ginput_container label {
+      .a11y;
+    }
+    
+    .top_label li.gfield.gf_left_half, 
+    .top_label li.gfield.gf_right_half {
+      display:block;
+    }
+
+    form li, 
+    li {
+      margin: 0!important;
+    }
+
+    .gform_footer {
+      margin: .5em 0!important;
+      padding: 0!important;
+    }
+  }
+
+  &.single-cftl-tax-landing .gform_wrapper {
+    .top_label {
+      li:last-of-type {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        div.ginput_container {
+          margin-top:2px;
+        }
+
+        textarea {
+          max-height:142px;
+        }
+      }
+    }
+
+    .gform_footer {
+      margin: .5em 0!important;
+      padding: 0!important;
+      width: 50%;
+      float: right;
+      padding: 0 8px!important;
+    }
+  }
+
+
+  // this is to undo some largo weirdness
+  @media (max-width: 979px) and (min-width: 769px) {
+    .global-nav, #site-footer, #footer-logos {
+      padding: 18px;
+    }
+    #page {
+      padding-bottom:2em;
+    }
+  }
+
+  @media (max-width: 900px) { 
+    ul#menu-zone-in {
+
+      >.menu-item {
+        a {
+          padding: 1em;
+          font-size: .9em;
+        }
+      }
+    }
+
+    .bottom-ctas {
+      .span3 {
+        //font-size:.8em;
+      }
+    }
+
+    .news {
+      .news-feature {
+        .span6 {
+          min-width: 100%;
+          margin:0;
+
+          img {
+            margin-bottom:1em;
+          }
+        }
+      }
+    }
+
+    &.page-template-page-neighborhood-info { 
+      .span8 {
+        min-width:100%;
+      }
+    }
+  }
+
+  @media (max-width: 650px) { 
+    .rezone-header {
+      margin-top:0;
+
+      .span8 {
+        min-width:100%;
+      }
+
+      .span4 {
+        display:none;
+      }
+
+    }
+
+    ul#menu-zone-in {
+      border-bottom:none;
+
+      >.menu-item {
+        min-width: 20%;
+        max-width: 20%;
+
+        &.menu-item-has-children {
+          min-width:50%;
+          max-width:50%;
+          background-color:@black;
+          text-align:center;
+
+          &:first-of-type {
+            border-right:1px solid @white;
+          }
+
+          >a {
+            color:@white;
+            padding-right: 1em;
+            padding-left: 1em;
+
+            &:hover {
+              background-color:@red;
+            }
+          }
+
+          ul.sub-menu {
+            min-width:100%;
+            text-align:center;
+            border-top:none;
+          }
+        }
+        
+        >a {
+          padding: 1em .5em;
+        }
+      }
+
+      #more-zonein {
+        display:inline-block;
+      }
+      .menu-hide {
+        display:none;
+      }
+    }
+
+    .rezone-overview {
+      font-size: .8em;
+    }
+
+    .map {
+      .span8 {
+        min-width: 100%;
+      }
+      .plan-status {
+        min-width: 100%;
+        margin-left: 0;
+        margin-top:1em;
+
+        .zone-w-status {
+          min-width: 42%;
+          display: inline-block;
+        }
+      }
+    }
+
+    .bottom-ctas {
+
+      display:block;
+
+      .span3 {
+        text-align: center;
+        width: 48%;
+        background: #d41313;
+        margin:1%;
+        //font-size:1em;
+      }
+    }
+
+    .news {
+      .news-feature {
+        min-width:100%;
+      }
+      .span4 {
+        min-width: 100%;
+        margin: 2em 0 0 0;
+      }
+    }
+
+    .commentary {
+      .span8 {
+        min-width:100%;
+        margin: 2em 0;
+      }
+      a.btn.zonein-twitter.span8 {
+        margin: .5em 0 0;
+      }
+      .span4 {
+        min-width: 100%;
+      }
+    }
+
+    .morelink a {
+      min-width:100%;
+    }
+
+    &.single-cftl-tax-landing .gform_wrapper {
+      li:last-of-type {
+        position: static!important;
+        min-width: 100%!important;
+      }
+    }
+
+  }
+
+  @media (max-width: 550px) { 
+
+    ul#menu-zone-in {
+      //border:1px solid black;
+      position:relative;
+
+      >.menu-item {
+        min-width: 33.333%;
+        max-width: 33.333%;
+        //border:1px solid black;
+
+        &.menu-item-has-children {
+          position:static;
+        }
+
+        &:not(.menu-item-has-children) {
+          text-align:left;
+        }
+
+        .sub-menu {
+          left:0;
+        }
+      }
+    }
+
+    .rezone-101 {
+      .span4 {
+        min-width:100%;
+        margin:0 0 1.5em 0;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .videos {
+      .span4 {
+        min-width: 100%;
+        margin: 0 0 1em 0;
+
+        &:last-of-type {
+          margin-bottom:0;
+        }
+      }
+    }
+
+    .documents {
+      .span4 {
+        min-width: 100%;
+        margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 480px) { 
+    .map {
+      .plan-status {
+        .zone-w-status {
+          min-width: auto;
+          display: inline-block;
+          font-size: .8em;
+          margin-right: 1.5em;
+        }
+      }
+    }
+  }
+
+
+  // zone/neighborhood detail pages
+  &.tax-neighborhoods {
+    .rezone-header {
+      margin-bottom: 2em;
+    }
+
+    header {
+      h1 {
+        margin:0;
+        line-height: 1em;
+        //border-bottom: 1px solid @grey1;
+        padding-bottom: .5em;
+      }
+      .zone-w-status {
+        margin: 0 0 1em 0;
+      }
+    }
+
+    section .map,
+    section.gform_widget {
+      border-top: none;
+      margin-top: 0;
+    }
+
+    section.photos {
+
+      >.row-fluid {
+        margin-bottom: 2.5em;
+
+        img:hover {
+          cursor:pointer;
+        }
+      }
+    }
+
+    &.archive .hero {
+
+      @import "_gallery.less";
+
+      .navis-slideshow {
+          display:none;
+      }
+
+      /**** FULL SIZE ***/
+      .navis-slideshow.navis-full {
+          display:block;
+
+          .wp-caption-text {
+            display:block;
+          }
+      }
+
+    }
+
+    section.news {
+      .row-fluid {
+        margin-bottom: 2.5em;
+      }
+
+      h3 {
+        font-size:1.5em;
+      }
+    }
+
+    section .videos {
+      li {
+        >a {
+          .video-identifier;
+        }
+
+        .byline {
+          display:none;
+        }
+      }
+    }
+
+    .sidebar-ctas {
+      .zone-a-btn;
+    }
+
+    .morelink a {
+      min-width: 100%;
+    }
+
+    .bottom-ctas {
+      float:left;
+      margin-top:2em;
+    }
+
+    .gform_widget {
+      background-color: @grey2;
+      padding: 1em;
+
+      h3 {
+        color:@black;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #page {
+        padding-bottom: 2em;
+      }
+      .stories+.span4 {
+        min-width: 100%;
+        margin: 0;
+      }
+      section .news {
+        margin-bottom:2em;
+        padding-bottom:2em;
+        border-bottom:1px solid @grey1;
+      }
+    }
+
+    @media (max-width:550px){
+      section .news .span3, 
+      section .news .span3 img, 
+      section .news .span9 {
+        min-width: 100%;
+        margin-bottom: .5em;
+        margin-left:0;
+      }
+    }
+
+  }
+
 }
+

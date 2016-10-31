@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<?php
+
+
+
+// Add the .neighborhoods-lp class
+add_filter('body_class', function($classes) {
+	$classes[] = 'neighborhoods-lp';
+	return $classes;
+});
+?><!DOCTYPE html>
 <!--[if lt IE 7]> <html <?php language_attributes(); ?> class="no-js ie6"> <![endif]-->
 <!--[if IE 7]>    <html <?php language_attributes(); ?> class="no-js ie7"> <![endif]-->
 <!--[if IE 8]>    <html <?php language_attributes(); ?> class="no-js ie8"> <![endif]-->
@@ -42,6 +51,46 @@
 
 	wp_head();
 ?>
+
+<script>
+	//Zone-In Menu (necessary for touch devices)
+	jQuery(document).ready(function($){
+		
+
+		var $items = $('#menu-zone-in > .menu-item:not(.menu-item-has-children)');
+		$('#menu-zone-in').append('<li id="more-zonein" class="menu-item menu-item-has-children"><a>More</a><ul class="sub-menu"></ul></li>');
+		var $clones = $items.clone();
+		$('#more-zonein .sub-menu').append($clones);
+		$items.addClass('menu-hide');
+
+
+		var menu = '#menu-zone-in > .menu-item.menu-item-has-children';
+		var active = 'zones-active';
+
+		if ($('html').hasClass('no-touch')){
+			$(menu).hover(function(){
+				$(this).addClass(active);
+			}, function(){
+				$(this).removeClass(active);
+			})
+		}
+		$(menu).click(function(){
+			var $this = $(this);
+			if ($this.hasClass(active)){
+				$(menu).removeClass(active);
+			} else {
+				$(menu).removeClass(active);
+				$this.addClass(active);
+			}
+		});
+
+		$('body').click(function(e) {
+		    if ($(e.target).closest(menu).length === 0) {
+				$(menu).removeClass(active);
+			}
+		});
+	});
+</script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -84,3 +133,21 @@
 		 * @since 0.4
 		 */
 		do_action( 'largo_main_top' );
+		?>
+
+		<div class="rezone-header">
+			<div class="row-fluid">
+				<div class="span8">
+					<h1 class="entry-title"><?php _e( 'The Future of NYC Neighborhoods', 'citylimits'); ?></h1>
+				</div>
+				<div class="span4">
+					<?php // @TODO ReZone Newsletter Code Here ?>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
+					<a href="/series/rezone/"><img src="/wp-content/themes/citylimits/img/zonein-logo.jpg" alt="ZoneIn Project Logo" width="100%" /></a>
+					<?php get_template_part( 'partials/nav', 'rezone' ); ?>
+				</div>
+			</div>
+		</div>
