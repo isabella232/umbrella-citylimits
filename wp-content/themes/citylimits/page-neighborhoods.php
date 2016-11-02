@@ -338,7 +338,7 @@ get_header( 'rezone' );
 			<h3>Make Your Voice Heard</h3>
 			<?php gravity_form( 23, false, true, false, true );?>
 		</div>
-	<div class="morelink left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Commentary</a><a href="https://twitter.com/search?q=%23zonein" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
+	<div class="morelink left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Commentary</a><a href="https://twitter.com/search?q=%23zoneinnyc" class="btn zonein-twitter span8">Follow the #ZoneInNYC conversation on Twitter</a></div>
 	</div>
 </section>
 
@@ -415,10 +415,10 @@ get_header( 'rezone' );
 
 <div class="bottom-ctas row-fluid">
 	<div class="span3">
-		<a href="/get-involved/" class="btn"><span>Get Involved</span></a>
+		<a href="/zonein/get-involved/" class="btn"><span>Get Involved</span></a>
 	</div>
 	<div class="span3">
-		<a href="/share-your-views/" class="btn"><span>Share Your Views</span></a>
+		<a href="/zonein/share-your-views/" class="btn"><span>Share Your Views</span></a>
 	</div>
 	<div class="span3">
 		<a href="/post-type/events/" class="btn"><span>Events Calendar</span></a>
