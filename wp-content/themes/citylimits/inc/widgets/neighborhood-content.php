@@ -49,10 +49,6 @@ class neighborhood_content extends WP_Widget {
 	
 		$queried_object = get_queried_object();	
 
-		echo $before_widget;
-
-		if ( $title ) echo $before_title . $title . $after_title;
-
 		$thumb = isset( $instance['thumbnail_display'] ) ? $instance['thumbnail_display'] : 'small';
 		$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
 
@@ -91,11 +87,14 @@ class neighborhood_content extends WP_Widget {
 			);
 		}
 
-		echo '<ul class="' . $instance['term'] . '">';
-
 		$my_query = new WP_Query( $query_args );
 
 		if ( $my_query->have_posts() ) {
+			echo $before_widget;
+
+			if ( $title ) echo $before_title . $title . $after_title;
+
+			echo '<ul class="' . $instance['term'] . '">';
 
 			$output = '';
 
@@ -122,17 +121,15 @@ class neighborhood_content extends WP_Widget {
 			// print all of the items
 			echo $output;
 
-		} else {
-			printf( __( '<p class="error"><strong>You don\'t have any recent %s.</strong></p>', 'largo' ), strtolower( $posts_term ) );
+			// close the ul if we're just showing a list of headlines
+			if ( $excerpt == 'none' ) echo '</ul>';
+
+			if( $instance['linkurl'] !='' ) {
+				echo '<p class="morelink"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
+			}
+			echo $after_widget;
+
 		} // end more featured posts
-
-		// close the ul if we're just showing a list of headlines
-		if ( $excerpt == 'none' ) echo '</ul>';
-
-		if( $instance['linkurl'] !='' ) {
-			echo '<p class="morelink"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
-		}
-		echo $after_widget;
 
 		// Restore global $post
 		wp_reset_postdata();
