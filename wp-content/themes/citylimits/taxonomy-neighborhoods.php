@@ -161,7 +161,7 @@ $queried_object = get_queried_object();
 					<a href="/zonein-events/" class="btn"><span>Events Calendar</span></a>
 				</div>
 				<div class="span3">
-					<a href="https://visitor.r20.constantcontact.com/manage/optin?v=001zxpjLyMMmAo1Y-WQNhg7iyT04D-FOREjm0-ANydGbm8w104RXMOiQFjO6VGBAzXRgotexijmxL7Om3KrcmFJQa9bYLRea0IxMyj1AdQ62z6kf2UgI6bkBnJESDGhczS53WMNhwsTFmaLjpQEEmfrnc8nLycrIsrSHNt87avSEmJbuO7EKGWEvtpptS4qzlrVwaLsxeI8UlSHyoSPcB9--xgihfk8jZON" class="btn"><span>Get the Newsletter</span></a>
+					<a href="/get-neighborhood-newsletters/" class="btn"><span>Get the Newsletter</span></a>
 				</div>
 			</div>
 
