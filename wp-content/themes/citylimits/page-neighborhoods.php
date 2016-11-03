@@ -220,9 +220,9 @@ get_header( 'rezone' );
 		'post_type'      => 'page',
 		'post__in'       => array(
 			// these are the pages on Staging
-			891921,
-			891920,
-			891919
+			989818,
+			989821,
+			989822
 		),
 		'ignore_sticky_posts' => true
 	);
@@ -336,7 +336,7 @@ get_header( 'rezone' );
 		</div>
 		<div class="span8 form">
 			<h3>Make Your Voice Heard</h3>
-			<?php gravity_form( 24, false, true, false, true );?>
+			<?php gravity_form( 23, false, true, false, true );?>
 		</div>
 	<div class="morelink left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Opinions</a><a href="https://twitter.com/search?q=%23zonein" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
 	</div>
@@ -415,10 +415,10 @@ get_header( 'rezone' );
 
 <div class="bottom-ctas row-fluid">
 	<div class="span3">
-		<a href="/get-involved/" class="btn"><span>Get Involved</span></a>
+		<a href="/zonein/get-involved/" class="btn"><span>Get Involved</span></a>
 	</div>
 	<div class="span3">
-		<a href="/share-your-views/" class="btn"><span>Share Your Views</span></a>
+		<a href="/zonein/share-your-views/" class="btn"><span>Share Your Views</span></a>
 	</div>
 	<div class="span3">
 		<a href="/zonein-events/" class="btn"><span>Events Calendar</span></a>
