@@ -47,10 +47,6 @@ class zonein_events extends WP_Widget {
 	
 		$queried_object = get_queried_object();	
 
-		echo $before_widget;
-
-		if ( $title ) echo $before_title . $title . $after_title;
-
 		$thumb = isset( $instance['thumbnail_display'] ) ? $instance['thumbnail_display'] : 'small';
 		$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
 
@@ -72,10 +68,15 @@ class zonein_events extends WP_Widget {
 		if ( $instance['tag'] != '') $query_args['tag'] = $instance['tag'];
 		if ( $instance['author'] != '') $query_args['author'] = $instance['author'];
 
-		echo '<ul class="' . $queried_object->slug . '">';
 		$my_query = new WP_Query( $query_args );
 
 		if ( $my_query->have_posts() ) {
+			echo $before_widget;
+
+			if ( $title ) echo $before_title . $title . $after_title;
+
+			echo '<ul class="' . $queried_object->slug . '">';
+
 			$output = '';
 
 			while ( $my_query->have_posts() ) : $my_query->the_post(); $shown_ids[] = get_the_ID();
@@ -100,17 +101,15 @@ class zonein_events extends WP_Widget {
 			// print all of the items
 			echo $output;
 
-		} else {
-			printf( __( '<p class="error"><strong>You don\'t have any recent events.</strong></p>', 'largo' ), strtolower( $posts_term ) );
+			// close the ul if we're just showing a list of headlines
+			if ( $excerpt == 'none' ) echo '</ul>';
+
+			if( $instance['linkurl'] !='' ) {
+				echo '<p class="morelink"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
+			}
+			echo $after_widget;
 		} // end more featured posts
 
-		// close the ul if we're just showing a list of headlines
-		if ( $excerpt == 'none' ) echo '</ul>';
-
-		if( $instance['linkurl'] !='' ) {
-			echo '<p class="morelink"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
-		}
-		echo $after_widget;
 
 		// Restore global $post
 		wp_reset_postdata();
