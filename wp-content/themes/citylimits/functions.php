@@ -8,12 +8,6 @@ define( 'LARGO_EXT_DIR', dirname( __FILE__ ) );
 define( 'LARGO_EXT', __FILE__ );
 
 
-// re-enable the default WP RSS widget
-function citylimits_widgets_init() {
-	register_widget( 'WP_Widget_RSS' );
-}
-add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
-
 /**
  * Include theme files
  *
@@ -31,7 +25,10 @@ function largo_child_require_files() {
 	$includes = array(
 		'/inc/registration.php',
 		'/inc/term-meta.php',
+		'/inc/metaboxes.php',
 		'/inc/enqueue.php',
+		'/inc/widgets/neighborhood-content.php',
+		'/inc/widgets/zonein-events.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -50,6 +47,13 @@ function largo_child_require_files() {
 }
 add_action( 'after_setup_theme', 'largo_child_require_files' );
 
+// re-enable the default WP RSS widget
+function citylimits_widgets_init() {
+	register_widget( 'WP_Widget_RSS' );
+	register_widget( 'neighborhood_content' );
+	register_widget( 'zonein_events' );
+}
+add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
 /**
  * Set the number of posts in the right-hand side of the Top Stories homepage template to 2.
@@ -408,3 +412,81 @@ function register_zonein_menu() {
   register_nav_menu('zonein-menu',__( 'Zone In Menu' ));
 }
 add_action( 'init', 'register_zonein_menu' );
+
+function register_neighborhood_sidebars() {
+	register_sidebar( array(
+		'name'		=> __( 'Neighborhoods Taxonomy Sidebar', 'citylimits' ),
+		'id'		=> 'rezone-neighborhoods-sidebar',
+		'description'	=> __( 'Widgets in this area will be shown on all neighborhood taxonomy pages' ),
+		'before_widget'	=> '<section id="%1$s" class="widget %2$s">',
+		'after_widget'	=> '</section>',
+		'before_title'	=> '<h2 class="widgettitle">',
+		'after_title'	=> '</h2>'
+	) );
+
+	register_sidebar( array(
+		'name'		=> __( 'Rezone Subpage', 'citylimits' ),
+		'id'		=> 'rezone-subpage-sidebar',
+		'description'	=> __( 'Widgets in this area will be shown on all neighborhood taxonomy pages' ),
+		'before_widget'	=> '<li id="%1$s" class="widget %2$s">',
+		'after_widget'	=> '</li>',
+		'before_title'	=> '<h2 class="widgettitle">',
+		'after_title'	=> '</h2>'
+	) );
+}
+add_action( 'widgets_init', 'register_neighborhood_sidebars' );
+
+// Register Custom Post Type
+function create_zonein_events_post_type() {
+
+	$labels = array(
+		'name'                  => 'ZoneIn Events',
+		'singular_name'         => 'ZoneIn Event',
+		'menu_name'             => 'ZoneIn Events',
+		'name_admin_bar'        => 'ZoneIn Events',
+		'archives'              => 'ZoneIn Events Archives',
+		'all_items'             => 'All ZoneIn Events',
+		'add_new_item'          => 'Add New ZoneIn Event',
+	);
+	$rewrite = array(
+		'slug'                  => 'zonein-events',
+		'with_front'            => true,
+		'pages'                 => true,
+		'feeds'                 => true,
+	);
+	$args = array(
+		'label'                 => 'ZoneIn Event',
+		'description'           => 'Events for the ZoneIn Series',
+		'labels'                => $labels,
+		'supports'              => array( ),
+		'taxonomies'            => array( 'neighborhoods' ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'		=> 'dashicons-calendar',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => false,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'rewrite'               => $rewrite,
+		'capability_type'       => 'page',
+	);
+	register_post_type( 'zonein_events', $args );
+
+}
+add_action( 'init', 'create_zonein_events_post_type', 0 );
+
+function citylimits_print_event_time() {
+	if ( 'zonein_events' == get_post_type() ) {
+		$date = get_post_meta( get_the_ID(), 'event_information_date_time', true );
+		if ( $date ) {
+			echo '<span class="date">' . date( 'F d, Y', $date ) . '</span>';
+			echo '<span class="time">' . date( 'g:ia', $date ) . '</span> ';
+		}	
+	}
+}
+add_action( 'largo_after_post_header', 'citylimits_print_event_time' );

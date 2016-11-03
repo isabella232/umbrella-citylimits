@@ -1,17 +1,11 @@
 <?php
 /**
  * Page Template: The Future of NYC Neighborhoods
- * Template Name: Rezone Project
+ * Template Name: Rezone Project - Series Home
  * Description: Custom landing page for the ReZone project with the /neighborhoods/ slug
  */
 
 global $shown_ids, $post;
-
-// Add the .neighborhoods-lp class
-add_filter('body_class', function($classes) {
-	$classes[] = 'neighborhoods-lp';
-	return $classes;
-});
 
 /*
  * Establish some common query parameters
@@ -32,22 +26,134 @@ get_header( 'rezone' );
 
 ?>
 
-<div class="rezone-header">
-	<div class="row-fluid">
-		<div class="span8">
-			<h1 class="entry-title"><?php the_title(); ?></h1>
-		</div>
-		<div class="span4">
-			<?php // @TODO ReZone Newsletter Code Here ?>
-		</div>
-	</div>
-	<div class="row-fluid">
-		<div class="span12">
-			<a href="/zone-in/"><img src="/wp-content/themes/citylimits/img/zonein-logo.jpg" alt="ZoneIn Project Logo" width="100%" /></a>
-			<?php get_template_part( 'partials/nav', 'rezone' ); ?>
-		</div>
-	</div>
-</div>
+<!-- FUSION TABLES API QUERY: https://www.googleapis.com/fusiontables/v2/query?sql=SELECT * FROM 1QfRFD6FGEhH1x4lZ9_3CJr0tyrPu778KRcq8VgqJ&key=AIzaSyCdCx_APtwGdE0m33WCFbKB73kfWaxbCHo -->
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdCx_APtwGdE0m33WCFbKB73kfWaxbCHo&callback=initMap">
+</script>
+<script>
+	function initMap(data){
+		var $ = jQuery;
+
+		//make list of data attributes
+		var zones = $('.zone-w-status');
+		var data = [];
+
+		for (var i=0; i<zones.length; i++){
+			var zone = $(zones[i]);
+
+			var name = zone.find('a').text();
+			var status = zone.data('status');
+			var latlon = zone.data('latlon').replace(/ /g,'').split(',');
+			var lat = parseFloat(latlon[0]);
+			var lon = parseFloat(latlon[1]);
+			var url = zone.find('a').attr('href');
+
+			var color = '#c3c3c3';
+			var color_name = zone.data('color');
+			if (color_name == 'yellow') {
+				color = '#fac409';
+			} else if (color_name == 'red') {
+				color = '#D41313';
+			} else if (color_name == 'green') {
+				color = '#10a139';
+			}
+
+			var zone_data = [name, status, color, lat, lon, url];
+
+			data.push(zone_data);
+		}
+
+		//console.log(data);
+
+		//NYC
+		var mainLatLng = {lat: 40.75086427976074, lng: -73.89803823007811};
+
+		var styledMapType = new google.maps.StyledMapType(
+
+			[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"administrative.country","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry.fill","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.locality","elementType":"labels","stylers":[{"hue":"#ffe500"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"},{"visibility":"on"}]},{"featureType":"landscape.natural","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry.stroke","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels.text.stroke","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"labels.icon","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.attraction","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.place_of_worship","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.school","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"transit.station.airport","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#bfd3d8"},{"visibility":"on"}]}],
+			{name: 'Styled Map'});
+
+	    var map = new google.maps.Map(document.getElementById('googft-mapCanvas'), {
+	      zoom: 10,
+	      center: mainLatLng,
+	      scrollwheel: false
+	    });
+
+	    map.mapTypes.set('styled_map', styledMapType);
+	    map.setMapTypeId('styled_map');
+
+	    var all_markers = [];
+
+	    for (var i=0; i<data.length; i++){
+	    	var zone = data[i];
+	    	var latlon = {lat: zone[3], lng: zone[4]};
+
+	    	var marker = new google.maps.Marker({
+	    		icon: {
+					path: google.maps.SymbolPath.CIRCLE,
+					scale: 10,
+					strokeColor: 'black',
+					strokeWeight: 2,
+					fillColor: zone[2],
+					fillOpacity: 1
+				},
+				position: latlon,
+				map: map,
+				url: zone[5],
+				name: zone[0]
+			});
+			all_markers.push( marker );
+
+			google.maps.event.addListener(marker, 'click', function() {
+			    window.location.href = this.url;
+			});
+
+			var tooltip = $('#map-tooltip');
+			var overlay = new google.maps.OverlayView();
+
+			overlay.draw = function() {};
+			overlay.setMap(map); 
+
+			google.maps.event.addListener(marker, 'mouseover', function(e) {
+				var projection = overlay.getProjection(); 
+    			var pixel = projection.fromLatLngToContainerPixel(this.getPosition());
+
+				tooltip.text(this.name);
+				tooltip.css({
+					'left': pixel.x + 8,
+					'top': pixel.y + 8
+				})
+				tooltip.addClass('active');
+			});
+
+			google.maps.event.addListener(marker, 'mouseout', function(e) {
+				tooltip.removeClass('active');
+			});
+	    }
+
+	    //map hovers over neighborhood name trigger map hovers
+	    $('.zone-w-status a').hover(function(){
+	    	var name = $(this).text();
+	    	for(var i=0;i<all_markers.length;i++){
+			    if (all_markers[i].name === name){
+			        google.maps.event.trigger(all_markers[i],'mouseover');
+			        break;
+			    }
+			}
+	    }, function(){
+	    	var name = $(this).text();
+	    	for(var i=0;i<all_markers.length;i++){
+			    if (all_markers[i].name === name){
+			        google.maps.event.trigger(all_markers[i],'mouseout');
+			        break;
+			    }
+			}
+	    });
+	}
+</script>
+</head>
+
 
 <section class="rezone-overview">
 	<div class="row-fluid">
@@ -60,29 +166,47 @@ get_header( 'rezone' );
 </section>
 
 <section class="map">
-	<h2>Proposed Rezoning</h2>
+	<h2>The Neighborhoods</h2>
 	<div class="row-fluid">
 		<div class="span8">
-			<?php
-			/**
-			 *  @TODO Add Map
-			 *  Google Map Wizard has some styles that will work really well here - https://mapstyle.withgoogle.com
-			 *  We'll need an API key for this
-			 */
-			?>
-			<!-- <div id="map" style="width:100%;background:#ccc;text-align:center;padding:12em 0;">Map</div> -->
-			<p class="instruction">Select a pin to learn more about proposed rezoning.</p>
-			<iframe id="map" width="100%" height="420" scrolling="no" frameborder="no" scollwheel="false" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1nVqV-VWkMF3sQfs3XUCsYfqcB6bAUJz2bXQl_-GV&amp;viz=MAP&amp;h=false&amp;lat=40.75&amp;lng=-73.8455445810547&amp;t=1&amp;z=10&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
+			<p class="instruction">Click on a neighborhood to get news, documents, opinions and videos about that community.</p>
+			<div id="map-container">
+				<div id="googft-mapCanvas"></div>
+				<div id="map-tooltip"></div>
+			</div>			
 		</div>
 		<div class="span4 plan-status">
-			<h2>Rezone Plan Status</h2>
+			<h2>Rezoning Status</h2>
 			<?php
 			$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
 			$count = 0;
 			?>
 			<div class="row-fluid">	
 				<?php foreach ( $neighborhoods as $neighborhood ) : ?>			
-					<div class="zone-w-status"><h5><div class="circle green"></div><?php echo $neighborhood->name; ?></h5></div>
+					<?php
+					$status = get_term_meta( $neighborhood->term_id, 'neighborhood-status', true ); 
+					switch ( $status ) {
+						case 'red':
+							$status_label = 'Proposal Anticipated or on Hold';
+							break;
+						case 'yellow':
+							$status_label = 'Proposal is in the Approval Process';
+							break;
+						case 'green':
+							$status_label = 'Proposal Approved';
+							break;	
+						default:
+							$status_label = '';
+							break;
+					}
+					$status_latlon = get_term_meta( $neighborhood->term_id, 'neighborhood-latlon', true ); 
+					?>
+
+					<!-- <?php if ( isset( $title ) ) : ?>
+						<h1 class="page-title"><?php echo $title; ?></h1>
+					<?php endif; ?> -->
+
+					<div class="zone-w-status" data-status="<?php echo $status_label; ?>" data-color="<?php echo $status; ?>" data-latlon="<?php echo $status_latlon; ?>"><h5><a href="<?php echo get_term_link($neighborhood); ?>" title="<?php echo $status_label; ?>"><div class="circle <?php echo $status; ?>"></div><?php echo $neighborhood->name; ?></a></h5></div>
 				<?php endforeach; ?>
 			</div>
 		</div>
@@ -92,27 +216,32 @@ get_header( 'rezone' );
 <section class="rezone-101">
 	<?php
 	$args = array(
-	    'posts_per_page' => 3,
-	    'order'          => 'DESC',
-	    'post_parent'    => $post->ID,
-	    'post_type'      => 'page',
-	    );
-	$get_children_array = get_children( $args,ARRAY_A );  //returns Array ( [$image_ID].
+		'order'          => 'DESC',
+		'post_type'      => 'page',
+		'post__in'       => array(
+			// these are the pages on Staging
+			891921,
+			891920,
+			891919
+		),
+		'ignore_sticky_posts' => true
+	);
+	$get_children_array = get_posts( $args );  //returns Array ( [$image_ID].
 	?>
 
 	<?php if ( count( $get_children_array ) > 0 ) : ?>
 		<div class="row-fluid">
 			<?php foreach ( $get_children_array as $child ) : ?>
-				<?php setup_postdata( get_post( $child['ID'] ) ); ?>
+				<?php setup_postdata( get_post( $child ) ); ?>
 				<div class="span4">
-					<h3><?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '">' .  get_the_title( $child['ID'] ) . '</a>'; ?></h3>
-					<p><?php echo get_the_excerpt( $child['ID'] ); ?></p>
-					<?php echo '<a href="' . get_permalink( $child['ID'] ) . '" title="' . get_the_title( $child['ID'] ) . '" class="read-more">Read more ></a>'; ?>
+					<h3><?php echo '<a href="' . get_permalink( $child->ID ) . '" title="' . get_the_title( $child->ID ) . '">' .  get_the_title( $child->ID ) . '</a>'; ?></h3>
+					<p><?php echo get_the_excerpt( $child->ID ); ?></p>
+					<?php echo '<a href="' . get_permalink( $child->ID ) . '" title="' . get_the_title( $child->ID ) . '" class="read-more">Read more ></a>'; ?>
 				</div>
 			<?php endforeach; ?>
 		</div>
 	<?php endif; ?>
-	<?php rewind_posts(); ?>
+	<?php wp_reset_postdata(); ?>
 </section>
 
 <section class="news">
@@ -120,9 +249,17 @@ get_header( 'rezone' );
 	<div class="row-fluid">
 		<?php
 		$args = array (
-			'posts_per_page' => '3',
+			'tax_query' => array(
+				array(
+					'taxonomy' 	=> 'category',
+					'field' 	=> 'slug',
+					'terms' 	=> array( 'news' )
+				),
+				$project_tax_query,
+				'relation' => 'AND'
+			),
+			'posts_per_page' => '4',
 			'post__not_in' 	 => $shown_ids,
-			'tax_query'      => array( $project_tax_query )
 		);
 		$recent_posts = new WP_Query( $args );
 		if ( $recent_posts->have_posts() ) :
@@ -163,61 +300,11 @@ get_header( 'rezone' );
 			<?php endwhile; ?>
 		<?php endif; // end more featured posts ?>
 	</div>
-	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More News</a></div>
+	<div class="morelink"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
 </section>
-
-<section class="videos">
-	<h2>Videos</h2>
-	<div class="row-fluid">
-		<?php
-		$args = array (
-			'tax_query' => array(
-				array(
-					'taxonomy' 	=> 'category',
-					'field' 	=> 'slug',
-					'terms' 	=> array( 'video' )
-				),
-				$project_tax_query,
-				'relation' => 'AND'
-			),
-			'posts_per_page' => '3',
-			'post__not_in' 	 => $shown_ids
-
-		);
-		$videos = new WP_Query( $args );
-		?>
-		<?php if ( $videos->have_posts() ) : ?>
-			<?php $count = 0; ?>
-			<?php while ( $videos->have_posts() ) : $videos->the_post(); $shown_ids[] = get_the_id(); ?>
-				<div class="span4">
-					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'full' ); ?></a>
-					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-					<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
-				</div>
-				<?php $count++; ?>
-			<?php endwhile; ?>
-		<?php endif; ?>
-	</div>
-	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Videos</a></div>
-</section>
-
-<div class="bottom-ctas row-fluid">
-	<div class="span3">
-		<a class="btn">Get Involved</a>
-	</div>
-	<div class="span3">
-		<a class="btn">Share Your Views</a>
-	</div>
-	<div class="span3">
-		<a class="btn">Events Calendar</a>
-	</div>
-	<div class="span3">
-		<a class="btn">Get the Newsletter</a>
-	</div>
-</div>
 
 <section class="commentary">
-	<h2>Commentary</h2>
+	<h2>Opinions</h2>
 	<div class="row-fluid">
 		<div class="span4">
 			<?php
@@ -248,10 +335,45 @@ get_header( 'rezone' );
 			<?php endif; ?>
 		</div>
 		<div class="span8 form">
-			<?php // @TODO Make Your Voice Heard form ?>
+			<h3>Make Your Voice Heard</h3>
+			<?php gravity_form( 24, false, true, false, true );?>
 		</div>
-	<div class="zonein-more left"><a href="<?php // @TODO ?>" class="btn more">More Commentary</a></div>
+	<div class="morelink left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Opinions</a><a href="https://twitter.com/search?q=%23zonein" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
 	</div>
+</section>
+
+<section class="videos">
+	<h2>Videos</h2>
+	<div class="row-fluid">
+		<?php
+		$args = array (
+			'tax_query' => array(
+				array(
+					'taxonomy'      => 'category',
+					'field'         => 'slug',
+					'terms'         => array( 'video' )
+				),
+				$project_tax_query,
+				'relation' => 'AND'
+			),
+			'posts_per_page' => '3',
+			'post__not_in'   => $shown_ids
+		);
+		$videos = new WP_Query( $args );
+		?>
+		<?php if ( $videos->have_posts() ) : ?>
+			<?php $count = 0; ?>
+			<?php while ( $videos->have_posts() ) : $videos->the_post(); $shown_ids[] = get_the_id(); ?>
+				<div class="span4">
+					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'full' ); ?></a>
+					<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+					<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+				</div>
+				<?php $count++; ?>
+			<?php endwhile; ?>
+		<?php endif; ?>
+	</div>
+	<div class="morelink"><a href="<?php echo get_term_link( 'videos', 'post-type' ); ?>" class="btn more">More Videos</a></div>
 </section>
 
 <section class="documents">
@@ -263,7 +385,7 @@ get_header( 'rezone' );
 				array(
 					'taxonomy'  => 'post-type',
 					'field'     => 'slug',
-					'terms'     => array( 'documents' ) // @TODO - change to appropriate tag
+					'terms'     => array( 'documents' )
 				)
 			),
 			'posts_per_page' => '9',
@@ -288,7 +410,22 @@ get_header( 'rezone' );
 			<?php endwhile; ?>
 		<?php endif; ?>
 	</div>
-	<div class="zonein-more"><a href="<?php // @TODO ?>" class="btn more">More Documents</a></div>
+	<div class="morelink"><a href="<?php echo get_term_link( 'documents', 'post-type' ); ?>" class="btn more">More Documents</a></div>
 </section>
+
+<div class="bottom-ctas row-fluid">
+	<div class="span3">
+		<a href="/get-involved/" class="btn"><span>Get Involved</span></a>
+	</div>
+	<div class="span3">
+		<a href="/share-your-views/" class="btn"><span>Share Your Views</span></a>
+	</div>
+	<div class="span3">
+		<a href="/zonein-events/" class="btn"><span>Events Calendar</span></a>
+	</div>
+	<div class="span3">
+		<a href="/get-neighborhood-newsletters/" class="btn"><span>Get the Newsletter</span></a>
+	</div>
+</div>
 
 <?php get_footer();
