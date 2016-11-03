@@ -3,7 +3,7 @@
 /**
  * Neighborhood Content 
  */
-class rezone_events extends WP_Widget {
+class zonein_events extends WP_Widget {
 
 	/**
 	 * Register widget with WordPress.
@@ -11,12 +11,12 @@ class rezone_events extends WP_Widget {
 	function __construct() {
 
 		$widget_ops = array(
-			'classname' => 'rezone-events',
-			'description' => __( 'Dynamic widget to display rezone events', 'citylimits' )
+			'classname' => 'zonein-events',
+			'description' => __( 'Dynamic widget to display zonein events', 'citylimits' )
 		);
 		parent::__construct(
-			'rezone-events-widget', // Base ID
-			__( 'Rezone Events', 'citylimits' ), // Name
+			'zonein-events-widget', // Base ID
+			__( 'ZoneIn Events', 'citylimits' ), // Name
 			$widget_ops // Args
 		);
 
@@ -58,7 +58,7 @@ class rezone_events extends WP_Widget {
 			'post__not_in' 	=> get_option( 'sticky_posts' ),
 			'showposts' 	=> $instance['num_posts'],
 			'post_status'	=> 'publish',
-			'post_type'	=> 'rezone_events',
+			'post_type'	=> 'zonein_events',
 			'tax_query'	=> array (
 				array (
 					'taxonomy'  => 'neighborhoods',

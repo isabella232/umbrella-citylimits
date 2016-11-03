@@ -28,7 +28,7 @@ function largo_child_require_files() {
 		'/inc/metaboxes.php',
 		'/inc/enqueue.php',
 		'/inc/widgets/neighborhood-content.php',
-		'/inc/widgets/rezone-events.php',
+		'/inc/widgets/zonein-events.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -51,7 +51,7 @@ add_action( 'after_setup_theme', 'largo_child_require_files' );
 function citylimits_widgets_init() {
 	register_widget( 'WP_Widget_RSS' );
 	register_widget( 'neighborhood_content' );
-	register_widget( 'rezone_events' );
+	register_widget( 'zonein_events' );
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
@@ -438,26 +438,26 @@ function register_neighborhood_sidebars() {
 add_action( 'widgets_init', 'register_neighborhood_sidebars' );
 
 // Register Custom Post Type
-function create_rezone_events_post_type() {
+function create_zonein_events_post_type() {
 
 	$labels = array(
-		'name'                  => 'Rezone Events',
-		'singular_name'         => 'Rezone Event',
-		'menu_name'             => 'ReZone Events',
-		'name_admin_bar'        => 'ReZone Events',
-		'archives'              => 'ReZone Events Archives',
-		'all_items'             => 'All ReZone Events',
-		'add_new_item'          => 'Add New ReZone Event',
+		'name'                  => 'ZoneIn Events',
+		'singular_name'         => 'ZoneIn Event',
+		'menu_name'             => 'ZoneIn Events',
+		'name_admin_bar'        => 'ZoneIn Events',
+		'archives'              => 'ZoneIn Events Archives',
+		'all_items'             => 'All ZoneIn Events',
+		'add_new_item'          => 'Add New ZoneIn Event',
 	);
 	$rewrite = array(
-		'slug'                  => 'rezone-events',
+		'slug'                  => 'zonein-events',
 		'with_front'            => true,
 		'pages'                 => true,
 		'feeds'                 => true,
 	);
 	$args = array(
-		'label'                 => 'Rezone Event',
-		'description'           => 'Events for the Rezone Series',
+		'label'                 => 'ZoneIn Event',
+		'description'           => 'Events for the ZoneIn Series',
 		'labels'                => $labels,
 		'supports'              => array( ),
 		'taxonomies'            => array( 'neighborhoods' ),
@@ -476,14 +476,14 @@ function create_rezone_events_post_type() {
 		'rewrite'               => $rewrite,
 		'capability_type'       => 'page',
 	);
-	register_post_type( 'rezone_events', $args );
+	register_post_type( 'zonein_events', $args );
 
 }
-add_action( 'init', 'create_rezone_events_post_type', 0 );
+add_action( 'init', 'create_zonein_events_post_type', 0 );
 
 function citylimits_print_event_time() {
-	if ( 'rezone_events' == get_post_type() ) {
-		$date = get_post_meta( get_the_ID(), 'rezone_event_datetime', true );
+	if ( 'zonein_events' == get_post_type() ) {
+		$date = get_post_meta( get_the_ID(), 'zonein_event_datetime', true );
 		echo '<span class="time">' . date( 'g:ia', $date ) . '</span> ';
 		echo '<span class="date">' . date( 'F d, Y', $date ) . '</span>';
 	}
