@@ -68,28 +68,17 @@ class zonein_events extends WP_Widget {
 			)
 		);
 
-		if ( isset( $instance['avoid_duplicates'] ) && $instance['avoid_duplicates'] === 1 ) {
-			// Create a temporary array and fill it with posts from $shown_ids and from the page's original query
-			$duplicates = (array) $shown_ids;
-			foreach( $wp_query->posts as $post ) {
-				$duplicates[] = $post->ID;
-			}
-			$query_args['post__not_in'] = $duplicates;
-		}
 		if ( $instance['cat'] != '' ) $query_args['cat'] = $instance['cat'];
 		if ( $instance['tag'] != '') $query_args['tag'] = $instance['tag'];
 		if ( $instance['author'] != '') $query_args['author'] = $instance['author'];
 
 		echo '<ul class="' . $queried_object->slug . '">';
-
 		$my_query = new WP_Query( $query_args );
 
 		if ( $my_query->have_posts() ) {
-
 			$output = '';
 
 			while ( $my_query->have_posts() ) : $my_query->the_post(); $shown_ids[] = get_the_ID();
-
 				// wrap the items in li's.
 				$output .= '<li>';
 
@@ -112,7 +101,7 @@ class zonein_events extends WP_Widget {
 			echo $output;
 
 		} else {
-			printf( __( '<p class="error"><strong>You don\'t have any recent %s.</strong></p>', 'largo' ), strtolower( $posts_term ) );
+			printf( __( '<p class="error"><strong>You don\'t have any recent events.</strong></p>', 'largo' ), strtolower( $posts_term ) );
 		} // end more featured posts
 
 		// close the ul if we're just showing a list of headlines
@@ -132,7 +121,6 @@ class zonein_events extends WP_Widget {
 		$instance = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['num_posts'] = intval( $new_instance['num_posts'] );
-		$instance['avoid_duplicates'] = ! empty( $new_instance['avoid_duplicates'] ) ? 1 : 0;
 		$instance['thumbnail_display'] = sanitize_key( $new_instance['thumbnail_display'] );
 		$instance['image_align'] = sanitize_key( $new_instance['image_align'] );
 		$instance['excerpt_display'] = sanitize_key( $new_instance['excerpt_display'] );
@@ -153,7 +141,6 @@ class zonein_events extends WP_Widget {
 		$defaults = array(
 			'title' => __( 'Recent ' . of_get_option( 'posts_term_plural', 'Posts' ), 'largo' ),
 			'num_posts' => 5,
-			'avoid_duplicates' => '',
 			'thumbnail_display' => 'small',
 			'image_align' => 'left',
 			'excerpt_display' => 'num_sentences',
@@ -169,7 +156,6 @@ class zonein_events extends WP_Widget {
 			'linkurl' => ''
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
-		$duplicates = $instance['avoid_duplicates'] ? 'checked="checked"' : '';
 		$showbyline = $instance['show_byline'] ? 'checked="checked"' : '';
 		$show_top_term = $instance['show_top_term'] ? 'checked="checked"' : '';
 		$show_icon = $instance['show_icon'] ? 'checked="checked"' : '';
@@ -183,10 +169,6 @@ class zonein_events extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id( 'num_posts' ); ?>"><?php _e('Number of posts to show:', 'largo'); ?></label>
 			<input id="<?php echo $this->get_field_id( 'num_posts' ); ?>" name="<?php echo $this->get_field_name( 'num_posts' ); ?>" value="<?php echo $instance['num_posts']; ?>" style="width:90%;" />
-		</p>
-
-		<p>
-			<input class="checkbox" type="checkbox" <?php echo $duplicates; ?> id="<?php echo $this->get_field_id( 'avoid_duplicates' ); ?>" name="<?php echo $this->get_field_name( 'avoid_duplicates' ); ?>" /> <label for="<?php echo $this->get_field_id( 'avoid_duplicates' ); ?>"><?php _e( 'Avoid Duplicate Posts?', 'largo' ); ?></label>
 		</p>
 
 		<p>

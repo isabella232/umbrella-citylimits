@@ -4,7 +4,7 @@
  */
 class CityLimits_Create_Meta_Boxes {
 	private $screens = array(
-		'rezone_events',
+		'zonein_events',
 	);
 	private $fields = array(
 		array(

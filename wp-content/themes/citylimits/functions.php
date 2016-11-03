@@ -483,9 +483,11 @@ add_action( 'init', 'create_zonein_events_post_type', 0 );
 
 function citylimits_print_event_time() {
 	if ( 'zonein_events' == get_post_type() ) {
-		$date = get_post_meta( get_the_ID(), 'zonein_event_datetime', true );
-		echo '<span class="time">' . date( 'g:ia', $date ) . '</span> ';
-		echo '<span class="date">' . date( 'F d, Y', $date ) . '</span>';
+		$date = get_post_meta( get_the_ID(), 'event_information_date_time', true );
+		if ( $date ) {
+			echo '<span class="date">' . date( 'F d, Y', $date ) . '</span>';
+			echo '<span class="time">' . date( 'g:ia', $date ) . '</span> ';
+		}	
 	}
 }
 add_action( 'largo_after_post_header', 'citylimits_print_event_time' );
