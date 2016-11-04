@@ -41,8 +41,8 @@ if ( isset( $instance['show_byline'] ) && $instance['show_byline'] == true) { ?>
 
 $date = get_post_meta( get_the_ID(), 'event_information_date_time', true );
 if ( $date ) : ?>
-	<span class="time"><?php echo date( 'g:ia', $date ); ?></span>
 	<span class="date"><?php echo date( 'F d, Y', $date ); ?></span>
+	<span class="time"><?php echo date( 'g:ia', $date ); ?></span>
 	<?php
 endif;
 

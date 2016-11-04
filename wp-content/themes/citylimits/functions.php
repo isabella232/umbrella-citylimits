@@ -484,7 +484,7 @@ function citylimits_print_event_time() {
 	if ( 'zonein_events' == get_post_type() ) {
 		$date = get_post_meta( get_the_ID(), 'event_information_date_time', true );
 		if ( $date ) {
-			echo '<span class="date">' . date( 'F d, Y', $date ) . '</span>';
+			echo '<span class="date">' . date( 'F d, Y', $date ) . '</span> ';
 			echo '<span class="time">' . date( 'g:ia', $date ) . '</span> ';
 		}	
 	}
