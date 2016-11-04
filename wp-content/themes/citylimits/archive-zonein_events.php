@@ -6,7 +6,7 @@
  * @since 0.1
  * @filter largo_partial_by_post_type
  */
-get_header();
+get_header( 'rezone' );
 $queried_object = get_queried_object();
 ?>
 
