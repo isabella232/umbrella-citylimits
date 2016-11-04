@@ -40,7 +40,7 @@ function largo_child_require_files() {
 		$includes[] = '/inc/gravityforms/events-calendar.php';
 	}
 
-	foreach ($includes as $include ) {
+	foreach ( $includes as $include ) {
 		require_once( get_stylesheet_directory() . $include );
 	}
 
