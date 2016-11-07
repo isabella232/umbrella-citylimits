@@ -165,7 +165,9 @@ get_header( 'rezone' );
 	</div>
 </section>
 
+
 <section class="map">
+	<?php largo_post_social_links(); ?>
 	<h2>The Neighborhoods</h2>
 	<div class="row-fluid">
 		<div class="span8">
@@ -173,6 +175,12 @@ get_header( 'rezone' );
 			<div id="map-container">
 				<div id="googft-mapCanvas"></div>
 				<div id="map-tooltip"></div>
+				<div id="map-key">
+					<h3>Key</h3>
+					<div class="circle green"><span>Proposal Approved</span></div>
+					<div class="circle yellow"><span>Proposal in Approval Process</span></div>
+					<div class="circle red"><span>Proposal Anticipated or On Hold</span></div>
+				</div>
 			</div>			
 		</div>
 		<div class="span4 plan-status">
