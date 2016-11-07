@@ -346,7 +346,7 @@ get_header( 'rezone' );
 			<h3>Make Your Voice Heard</h3>
 			<?php gravity_form( 23, false, true, false, true );?>
 		</div>
-	<div class="morelink left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Opinions</a><a href="https://twitter.com/search?q=%23zonein" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
+	<div class="morelink left"><a href="<?php echo get_term_link( 'commentary', 'post-type' ); ?>" class="btn more">More Opinions</a><a href="https://twitter.com/search?q=%23zoneinnyc&src=typd" class="btn zonein-twitter span8">Follow the #ZoneIn conversation on Twitter</a></div>
 	</div>
 </section>
 
