@@ -61,7 +61,9 @@ class zonein_events extends WP_Widget {
 					'field'     => 'slug',
 					'terms'     => $queried_object->slug
 				)
-			)
+			),
+			'meta_key'	=> 'event_information_date_time',
+			'order_by'	=> 'meta_value_num'
 		);
 
 		if ( $instance['cat'] != '' ) $query_args['cat'] = $instance['cat'];
