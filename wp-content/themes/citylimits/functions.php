@@ -490,3 +490,14 @@ function citylimits_print_event_time() {
 	}
 }
 add_action( 'largo_after_post_header', 'citylimits_print_event_time' );
+
+function citylimits_modify_zonein_events_query( $query ) {
+	if ( !is_admin() && $query->is_main_query() ) {
+		if ( get_post_type() == 'zonein_events' ) {
+			$query->set( 'meta_key', 'event_information_date_time' );
+			$query->set( 'order_by', 'meta_value_num' );
+		}
+	}
+	return $query;
+}
+add_action( 'pre_get_posts', 'citylimits_modify_zonein_events_query' );
