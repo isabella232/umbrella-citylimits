@@ -486,7 +486,7 @@ function citylimits_print_event_time() {
 		if ( $date ) {
 			echo '<span class="date">' . date( 'F d, Y', $date ) . '</span> ';
 			echo '<span class="time">' . date( 'g:ia', $date ) . '</span> ';
-		}	
+		}
 	}
 }
 add_action( 'largo_after_post_header', 'citylimits_print_event_time' );
@@ -501,3 +501,24 @@ function citylimits_modify_zonein_events_query( $query ) {
 	return $query;
 }
 add_action( 'pre_get_posts', 'citylimits_modify_zonein_events_query' );
+
+// Creates the ability to filter
+function zonein_tax_archive_query( $query ) {
+	if ( $query->is_archive() && isset( $query->query['post-type'] ) && isset( $_GET['neighborhood'] ) && ! empty( $_GET['neighborhood'] ) ) {
+		$query->set( 'tax_query', array(
+			'relation' => 'AND',
+			array(
+				'taxonomy' => 'post-type',
+				'field'    => 'slug',
+				'terms'    => array( $query->query['post-type'] ),
+			),
+			array(
+				'taxonomy' => 'neighborhoods',
+				'field' => 'slug',
+				'terms' => $_GET['neighborhood'],
+			),
+		) );
+		return $query;
+	}
+}
+add_action( 'pre_get_posts', 'zonein_tax_archive_query', 1 );
