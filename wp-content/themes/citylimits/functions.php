@@ -515,7 +515,7 @@ function zonein_tax_archive_query( $query ) {
 			array(
 				'taxonomy' => 'neighborhoods',
 				'field' => 'slug',
-				'terms' => $_GET['neighborhood'],
+				'terms' => sanitize_key( $_GET['neighborhood'] ),
 			),
 		) );
 		return $query;
