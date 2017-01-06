@@ -188,7 +188,10 @@ body.clean-read.single-post.classic #content {
   float: right;
   text-align: center;
   position: relative;
-  top: 30px;
+  top: 5px;
+}
+#header-ad-zone-container div div {
+  margin-top: 0;
 }
 .header-ad-zone div[id^="div-gpt-ad"] {
   margin: 0 auto;
