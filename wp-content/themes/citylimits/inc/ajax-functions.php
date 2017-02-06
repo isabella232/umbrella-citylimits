@@ -13,7 +13,6 @@ function citylimits_zonein_events_lmp_template_partial( $partial, $query ) {
 	if ( is_array($query->query) ) {
 		$args = $query->query;
 		if ( $args['post_type'] === 'zonein_events' ) {
-			var_log("POOP");
 			$partial = 'zoneinevents';
 		}
 

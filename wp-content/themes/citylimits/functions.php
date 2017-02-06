@@ -492,6 +492,11 @@ function citylimits_print_event_time() {
 }
 add_action( 'largo_after_post_header', 'citylimits_print_event_time' );
 
+
+/**
+ * Order the zonein events archive by the event date, not by the published date
+ * @see citylimits_modify_zonein_events_lmp_query
+ */
 function citylimits_modify_zonein_events_query( $query ) {
 
 	if ( $query->is_main_query() && is_post_type_archive( 'zonein_events' ) ) {
@@ -503,7 +508,24 @@ function citylimits_modify_zonein_events_query( $query ) {
 }
 add_action( 'pre_get_posts', 'citylimits_modify_zonein_events_query' );
 
-// Creates the ability to filter
+/**
+ * Order the zonein events archive LMP by the event date, not by the published date
+ * @see citylimits_modify_zonein_events_query
+ */
+function citylimits_modify_zonein_events_lmp_query( $args ) {
+	var_log( $args );
+	if ( $args['post_type'] == 'zonein_events' ) {
+		$args['meta_key'] = 'event_information_date_time';
+		$args['orderby'] = 'meta_value_num';
+		$args['order'] = 'ASC';
+	}
+	return $args;
+}
+add_action( 'largo_lmp_args', 'citylimits_modify_zonein_events_lmp_query' );
+
+/**
+ * Filter the main WP_Query by neighborhood on neighborhood post types
+ */
 function zonein_tax_archive_query( $query ) {
 	if ( $query->is_archive() && isset( $query->query['post-type'] ) && isset( $_GET['neighborhood'] ) && ! empty( $_GET['neighborhood'] ) ) {
 		$query->set( 'tax_query', array(
