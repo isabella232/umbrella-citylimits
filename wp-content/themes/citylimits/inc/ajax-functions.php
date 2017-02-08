@@ -20,3 +20,20 @@ function citylimits_zonein_events_lmp_template_partial( $partial, $query ) {
 	return $partial;
 }
 add_filter( 'largo_lmp_template_partial', 'citylimits_zonein_events_lmp_template_partial', 10, 2 );
+
+/**
+ * Filter the LMP WP_Query by neighborhood on neighborhood post types
+ */
+function citylimits_neighborhood_archive_lmp_query( $config ) {
+	if ( $config['query']['post-type'] === 'news' && isset( $_GET['neighborhood'] ) && ! empty( $_GET['neighborhood'] ) ) {
+		$config['query']['tax_query'] = array(
+			array(
+				'taxonomy' => 'neighborhoods',
+				'field' => 'slug',
+				'terms' => sanitize_key( $_GET['neighborhood'] ),
+			),
+		);
+	}
+	return $config;
+}
+add_action( 'largo_load_more_posts_json', 'citylimits_neighborhood_archive_lmp_query', 1 );
