@@ -27,6 +27,7 @@ function largo_child_require_files() {
 		'/inc/registration.php',
 		'/inc/term-meta.php',
 		'/inc/metaboxes.php',
+		'/inc/post-templates.php',
 		'/inc/enqueue.php',
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
