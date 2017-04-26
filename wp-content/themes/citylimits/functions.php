@@ -327,30 +327,23 @@ add_filter( 'pre_option_users_can_register', 'citylimits_users_can_register', 1,
 function citylimits_google_analytics() {
 	if ( ! is_user_logged_in() ) { // don't track logged in users ?>
 		<script>
-			var _gaq = _gaq || [];
-		<?php if ( of_get_option( 'ga_id', true ) ) : // make sure the ga_id setting is defined ?>
-			_gaq.push(['_setAccount', '<?php echo of_get_option( "ga_id" ) ?>']);
-			_gaq.push(['_trackPageview']);
-		<?php endif; ?>
-			_gaq.push(
-				["inn._setAccount", "UA-17578670-2"],
-				["inn._setCustomVar", 1, "MemberName", "<?php bloginfo('name') ?>"],
-				["inn._trackPageview"]
-			);
-			_gaq.push(
-				["largo._setAccount", "UA-17578670-4"],
-				["largo._setCustomVar", 1, "SiteName", "<?php bloginfo('name') ?>"],
-				["largo._trackPageview"]
-			);
+		( function ( i, s, o, g, r, a, m ) {i['GoogleAnalyticsObject']=r;i[r]=i[r]|| function() {( i[r].q=i[r].q||[] ).push( arguments )},i[r].l=1*new Date();a=s.createElement( o ), m=s.getElementsByTagName( o )[0];a.async=1;a.src=g;m.parentNode.insertBefore( a, m )} )
+		( window,document,'script','https://www.google-analytics.com/analytics.js','ga' );
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
+		ga( 'create', 'UA-529003-1', 'auto' );
+		ga( 'send', 'pageview' )
 		</script>
-	<?php }
+
+<?php
+	if ( is_single() ) {
+		$category = get_the_category();
+		if ( $category && !empty ( $category[0]->cat_name ) ){
+			echo “ga( ‘set’, contentGroup2, ‘“.$category[0]->cat_name.“’ );\n”;
+			}
+		}
+	}
 }
+
 if ( ! function_exists( 'largo_google_analytics' ) ) {
 	add_action( 'wp_footer', 'largo_google_analytics' );
 }
