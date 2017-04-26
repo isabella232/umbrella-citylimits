@@ -327,26 +327,46 @@ add_filter( 'pre_option_users_can_register', 'citylimits_users_can_register', 1,
 function citylimits_google_analytics() {
 	if ( ! is_user_logged_in() ) { // don't track logged in users ?>
 		<script>
-		( function ( i, s, o, g, r, a, m ) {i['GoogleAnalyticsObject']=r;i[r]=i[r]|| function() {( i[r].q=i[r].q||[] ).push( arguments )},i[r].l=1*new Date();a=s.createElement( o ), m=s.getElementsByTagName( o )[0];a.async=1;a.src=g;m.parentNode.insertBefore( a, m )} )
-		( window,document,'script','https://www.google-analytics.com/analytics.js','ga' );
+			( function ( i, s, o, g, r, a, m ) {i['GoogleAnalyticsObject']=r;i[r]=i[r]|| function() {( i[r].q=i[r].q||[] ).push( arguments )},i[r].l=1*new Date();a=s.createElement( o ), m=s.getElementsByTagName( o )[0];a.async=1;a.src=g;m.parentNode.insertBefore( a, m )} )
+			( window,document,'script','https://www.google-analytics.com/analytics.js','ga' );
 
-		ga( 'create', 'UA-529003-1', 'auto' );
-		ga( 'send', 'pageview' )
+			ga( 'create', 'UA-529003-1', 'auto' );
+			ga( 'send', 'pageview' )
 		</script>
 
-<?php
-	if ( is_single() ) {
-		$category = get_the_category();
-		if ( $category && !empty ( $category[0]->cat_name ) ){
-			echo “ga( ‘set’, contentGroup2, ‘“.$category[0]->cat_name.“’ );\n”;
+		<?php
+		global $wp_query;
+		if ( is_single() ) {
+			// Get all registered taxonomies
+			$taxonomies = get_taxonomies();
+
+			$excluded_taxonomies = array(
+				'nav_menu',
+				'link_category',
+			);
+
+			foreach ( $taxonomies as $taxonomy ) {
+				// Skip this taxonomy if it's on the excluded list
+				if ( in_array( $taxonomy, $excluded_taxonomies ) ) {
+					continue;
+				}
 			}
+
+			$categories = get_the_category();
+			if ( $categories ) {
+				foreach ( $categories as $category ) {
+					if ( ! empty ( $category->cat_name ) ){
+						echo “ga( ‘set’, contentGroup2, ‘“ . $category->cat_name . “’ );\n”;
+					}
+				}
+			}
+		} elseif ( is_tax() ) {
+			$term = $wp_query->get_queried_object();
+			echo “ga( ‘set’, contentGroup3, ‘“ . $term->name . “’ );\n”;
 		}
 	}
 }
-
-if ( ! function_exists( 'largo_google_analytics' ) ) {
-	add_action( 'wp_footer', 'largo_google_analytics' );
-}
+add_action( 'wp_head', 'citylimits_google_analytics' );
 
 
 function remove_cc_registration_filter() {
