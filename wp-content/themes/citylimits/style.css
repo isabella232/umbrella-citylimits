@@ -1563,6 +1563,6 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
     margin-left: 0;
   }
 }
-body.neighborhoods-lp .navbar li.home-icon > a img {
+.navbar li.home-icon > a img {
   height: 45px;
 }
