@@ -764,6 +764,9 @@ body.neighborhoods-lp .circle.yellow {
 body.neighborhoods-lp .circle.red {
   background: #d41313;
 }
+body.neighborhoods-lp .circle.blue {
+  background: #093ffa;
+}
 body.neighborhoods-lp .morelink {
   width: 100%;
   text-align: right;

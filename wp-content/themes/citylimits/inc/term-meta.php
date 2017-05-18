@@ -24,7 +24,7 @@ function cl_status_edit_status_form( $tag, $taxonomy ) {
 
 				<select class="postform" id="neighborhood-status" name="neighborhood-status">
 					<option value=''><?php _e("No status set", 'citylimits'); ?></option>
-					<?php 
+					<?php
 						foreach ( $statuses as $id => $values ) {
 							printf(
 								'<option value="%1$s" ' . selected( $current_status, $id ) . '>%2$s</option>',
@@ -55,15 +55,19 @@ function cl_status_get_statuses() {
 	$temporary_statuses = array(
 		'red' => array(
 			'color' => 'red',
-			'label' => 'Proposal Anticipated or on Hold'
+			'label' => 'Proposal Defeated or Withdrawn'
 		),
 		'yellow' => array(
 			'color' => 'yellow',
-			'label' => 'Proposal is in the Approval Process'
+			'label' => 'Proposal in Approval Process'
 		),
 		'green' => array(
 			'color' => 'green',
-			'label' => 'Proposal Approved',
+			'label' => 'Proposal Approved'
+		),
+		'blue' => array(
+			'color' => 'blue',
+			'label' => 'Proposal Anticipated'
 		)
 	);
 
@@ -75,7 +79,7 @@ function citylimits_update_project_status( $term_id, $tt_id ) {
 		if ( '' !== $_POST['neighborhood-status'] ) {
 			$group = sanitize_title( $_POST['neighborhood-status'] );
 			update_term_meta( $term_id, 'neighborhood-status', $group );
-		} else {	
+		} else {
 			delete_term_meta( $term_id, 'neighborhood-status' );
 		}
 	}
@@ -99,13 +103,13 @@ function cl_latlon_edit_latlon_form( $tag, $taxonomy ) {
 			</th>
 			<td>
 
-				
+
 				<?php if ($current_status != '') {
 					print '<input type="text" class="postform" id="neighborhood-latlon" name="neighborhood-latlon" value="' . $current_status . '"></input>';
 				} else {
 					print '<input type="text" class="postform" id="neighborhood-latlon" name="neighborhood-latlon"></input>';
 				} ?>
-				
+
 
 			</td>
 		</tr>
@@ -125,7 +129,7 @@ function citylimits_update_project_latlon( $term_id, $tt_id ) {
 		if ( '' !== $_POST['neighborhood-latlon'] ) {
 			$location = $_POST['neighborhood-latlon'];
 			update_term_meta( $term_id, 'neighborhood-latlon', $location );
-		} else {	
+		} else {
 			delete_term_meta( $term_id, 'neighborhood-latlon' );
 		}
 	}
