@@ -397,7 +397,7 @@ body .wpjb .wpjb-login-message ol li {
   }
 }
 /**
- * Rezone / ZoneIn Project 
+ * Rezone / ZoneIn Project
  */
 body.neighborhoods-lp {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -760,6 +760,9 @@ body.neighborhoods-lp .circle.yellow {
 }
 body.neighborhoods-lp .circle.red {
   background: #d41313;
+}
+body.neighborhoods-lp .circle.blue {
+  background: #093ffa;
 }
 body.neighborhoods-lp .morelink {
   width: 100%;

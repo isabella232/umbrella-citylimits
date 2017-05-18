@@ -57,6 +57,8 @@ get_header( 'rezone' );
 				color = '#D41313';
 			} else if (color_name == 'green') {
 				color = '#10a139';
+			} else if (color_name == 'blue') {
+				color = '#093ffa';
 			}
 
 			var zone_data = [name, status, color, lat, lon, url];
@@ -113,10 +115,10 @@ get_header( 'rezone' );
 			var overlay = new google.maps.OverlayView();
 
 			overlay.draw = function() {};
-			overlay.setMap(map); 
+			overlay.setMap(map);
 
 			google.maps.event.addListener(marker, 'mouseover', function(e) {
-				var projection = overlay.getProjection(); 
+				var projection = overlay.getProjection();
     			var pixel = projection.fromLatLngToContainerPixel(this.getPosition());
 
 				tooltip.text(this.name);
@@ -177,11 +179,12 @@ get_header( 'rezone' );
 				<div id="map-tooltip"></div>
 				<div id="map-key">
 					<h3>Key</h3>
-					<div class="circle green"><span>Proposal Approved</span></div>
+					<div class="circle blue"><span>Proposal Anticipated</span></div>
 					<div class="circle yellow"><span>Proposal in Approval Process</span></div>
-					<div class="circle red"><span>Proposal Anticipated or On Hold</span></div>
+					<div class="circle green"><span>Proposal Approved</span></div>
+					<div class="circle red"><span>Proposal Defeated or Withdrawn</span></div>
 				</div>
-			</div>			
+			</div>
 		</div>
 		<div class="span4 plan-status">
 			<h2>Rezoning Status</h2>
@@ -189,25 +192,28 @@ get_header( 'rezone' );
 			$neighborhoods = get_terms( array( 'taxonomy' => 'neighborhoods', 'hide_empty' => false ) );
 			$count = 0;
 			?>
-			<div class="row-fluid">	
-				<?php foreach ( $neighborhoods as $neighborhood ) : ?>			
+			<div class="row-fluid">
+				<?php foreach ( $neighborhoods as $neighborhood ) : ?>
 					<?php
-					$status = get_term_meta( $neighborhood->term_id, 'neighborhood-status', true ); 
+					$status = get_term_meta( $neighborhood->term_id, 'neighborhood-status', true );
 					switch ( $status ) {
 						case 'red':
-							$status_label = 'Proposal Anticipated or on Hold';
+							$status_label = 'Proposal Defeated or Withdrawn';
 							break;
 						case 'yellow':
-							$status_label = 'Proposal is in the Approval Process';
+							$status_label = 'Proposal in Approval Process';
 							break;
 						case 'green':
 							$status_label = 'Proposal Approved';
-							break;	
+							break;
+						case 'blue':
+							$status_label = 'Proposal Anticipated';
+							break;
 						default:
 							$status_label = '';
 							break;
 					}
-					$status_latlon = get_term_meta( $neighborhood->term_id, 'neighborhood-latlon', true ); 
+					$status_latlon = get_term_meta( $neighborhood->term_id, 'neighborhood-latlon', true );
 					?>
 
 					<!-- <?php if ( isset( $title ) ) : ?>
