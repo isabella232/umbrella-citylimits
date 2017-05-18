@@ -364,6 +364,8 @@ function citylimits_google_analytics() {
 			}
 		} elseif ( is_tax() ) {
 			$term = $wp_query->get_queried_object();
+			// See what's in the term variable
+			var_dump( $term );
 			echo "ga( 'set', contentGroup3, '" . $term->name . "' );\n";
 		}
 	}
