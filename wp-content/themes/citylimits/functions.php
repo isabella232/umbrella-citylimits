@@ -337,32 +337,34 @@ function citylimits_google_analytics() {
 		<?php
 		global $wp_query;
 		if ( is_single() ) {
-			// Get all registered taxonomies
-			$taxonomies = get_taxonomies();
 
-			$excluded_taxonomies = array(
-				'nav_menu',
-				'link_category',
+			$taxonomies = array(
+				1 => 'category',
+				2 => 'neighborhoods',
+				3 => 'prominence',
+				4 => 'post-type',
+				5 => 'series',
 			);
 
-			foreach ( $taxonomies as $taxonomy ) {
+			foreach ( $taxonomies as $tax_key => $taxonomy ) {
 				// Skip this taxonomy if it's on the excluded list
 				if ( in_array( $taxonomy, $excluded_taxonomies ) ) {
 					continue;
 				}
-			}
 
-			$categories = get_the_category();
-			if ( $categories ) {
-				foreach ( $categories as $category ) {
-					if ( ! empty ( $category->cat_name ) ){
-						echo “ga( ‘set’, contentGroup2, ‘“ . $category->cat_name . “’ );\n”;
+				$terms = get_terms( array(
+				    'taxonomy' => $taxonomy,
+				    'hide_empty' => false,
+				) );
+				foreach ( $terms as $term ) {
+					if ( ! empty ( $term->name ) ){
+						echo "ga( 'set', contentGroup" . $tax_key . ", '" . $term->name . "' );\n";
 					}
 				}
 			}
 		} elseif ( is_tax() ) {
 			$term = $wp_query->get_queried_object();
-			echo “ga( ‘set’, contentGroup3, ‘“ . $term->name . “’ );\n”;
+			echo "ga( 'set', contentGroup3, '" . $term->name . "' );\n";
 		}
 	}
 }
