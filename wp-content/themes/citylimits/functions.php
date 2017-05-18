@@ -23,9 +23,11 @@ define( 'LARGO_EXT', __FILE__ );
  */
 function largo_child_require_files() {
 	$includes = array(
+		'/inc/ajax-functions.php',
 		'/inc/registration.php',
 		'/inc/term-meta.php',
 		'/inc/metaboxes.php',
+		'/inc/post-templates.php',
 		'/inc/enqueue.php',
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
@@ -325,33 +327,46 @@ add_filter( 'pre_option_users_can_register', 'citylimits_users_can_register', 1,
 function citylimits_google_analytics() {
 	if ( ! is_user_logged_in() ) { // don't track logged in users ?>
 		<script>
-			var _gaq = _gaq || [];
-		<?php if ( of_get_option( 'ga_id', true ) ) : // make sure the ga_id setting is defined ?>
-			_gaq.push(['_setAccount', '<?php echo of_get_option( "ga_id" ) ?>']);
-			_gaq.push(['_trackPageview']);
-		<?php endif; ?>
-			_gaq.push(
-				["inn._setAccount", "UA-17578670-2"],
-				["inn._setCustomVar", 1, "MemberName", "<?php bloginfo('name') ?>"],
-				["inn._trackPageview"]
-			);
-			_gaq.push(
-				["largo._setAccount", "UA-17578670-4"],
-				["largo._setCustomVar", 1, "SiteName", "<?php bloginfo('name') ?>"],
-				["largo._trackPageview"]
+			( function ( i, s, o, g, r, a, m ) {i['GoogleAnalyticsObject']=r;i[r]=i[r]|| function() {( i[r].q=i[r].q||[] ).push( arguments )},i[r].l=1*new Date();a=s.createElement( o ), m=s.getElementsByTagName( o )[0];a.async=1;a.src=g;m.parentNode.insertBefore( a, m )} )
+			( window,document,'script','https://www.google-analytics.com/analytics.js','ga' );
+
+			ga( 'create', 'UA-529003-1', 'auto' );
+			ga( 'send', 'pageview' )
+		</script>
+
+		<?php
+		global $wp_query;
+		if ( is_single() ) {
+			// Get all registered taxonomies
+			$taxonomies = get_taxonomies();
+
+			$excluded_taxonomies = array(
+				'nav_menu',
+				'link_category',
 			);
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-		</script>
-	<?php }
+			foreach ( $taxonomies as $taxonomy ) {
+				// Skip this taxonomy if it's on the excluded list
+				if ( in_array( $taxonomy, $excluded_taxonomies ) ) {
+					continue;
+				}
+			}
+
+			$categories = get_the_category();
+			if ( $categories ) {
+				foreach ( $categories as $category ) {
+					if ( ! empty ( $category->cat_name ) ){
+						echo “ga( ‘set’, contentGroup2, ‘“ . $category->cat_name . “’ );\n”;
+					}
+				}
+			}
+		} elseif ( is_tax() ) {
+			$term = $wp_query->get_queried_object();
+			echo “ga( ‘set’, contentGroup3, ‘“ . $term->name . “’ );\n”;
+		}
+	}
 }
-if ( ! function_exists( 'largo_google_analytics' ) ) {
-	add_action( 'wp_footer', 'largo_google_analytics' );
-}
+add_action( 'wp_head', 'citylimits_google_analytics' );
 
 
 function remove_cc_registration_filter() {
@@ -491,6 +506,11 @@ function citylimits_print_event_time() {
 }
 add_action( 'largo_after_post_header', 'citylimits_print_event_time' );
 
+
+/**
+ * Order the zonein events archive by the event date, not by the published date
+ * @see citylimits_modify_zonein_events_lmp_query
+ */
 function citylimits_modify_zonein_events_query( $query ) {
 
 	if ( $query->is_main_query() && is_post_type_archive( 'zonein_events' ) ) {
@@ -502,7 +522,24 @@ function citylimits_modify_zonein_events_query( $query ) {
 }
 add_action( 'pre_get_posts', 'citylimits_modify_zonein_events_query' );
 
-// Creates the ability to filter
+/**
+ * Order the zonein events archive LMP by the event date, not by the published date
+ * @see citylimits_modify_zonein_events_query
+ */
+function citylimits_modify_zonein_events_lmp_query( $args ) {
+	var_log( $args );
+	if ( $args['post_type'] == 'zonein_events' ) {
+		$args['meta_key'] = 'event_information_date_time';
+		$args['orderby'] = 'meta_value_num';
+		$args['order'] = 'ASC';
+	}
+	return $args;
+}
+add_action( 'largo_lmp_args', 'citylimits_modify_zonein_events_lmp_query' );
+
+/**
+ * Filter the main WP_Query by neighborhood on neighborhood post types
+ */
 function zonein_tax_archive_query( $query ) {
 	if ( $query->is_archive() && isset( $query->query['post-type'] ) && isset( $_GET['neighborhood'] ) && ! empty( $_GET['neighborhood'] ) ) {
 		$query->set( 'tax_query', array(

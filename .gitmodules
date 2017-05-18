@@ -4,3 +4,6 @@
 [submodule "tools"]
 	path = tools
 	url = git@github.com:INN/deploy-tools.git
+[submodule "wp-content/plugins/client-hosting-manager"]
+	path = wp-content/plugins/client-hosting-manager
+	url = https://github.com/INN/client-hosting-manager.git

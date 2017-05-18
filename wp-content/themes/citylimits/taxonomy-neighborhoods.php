@@ -29,7 +29,7 @@ $queried_object = get_queried_object();
 			$project_tax_query = array(
 				'taxonomy'  => 'neighborhoods',
 				'field'     => 'slug',
-				'terms'     => $title
+				'terms'     => $queried_object->slug
 			);
 
 			// rss links for custom taxonomies are a little tricky
