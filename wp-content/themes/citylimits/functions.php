@@ -332,38 +332,52 @@ function citylimits_google_analytics() {
 
 			ga( 'create', 'UA-529003-1', 'auto' );
 			ga( 'send', 'pageview' )
-		</script>
 
-		<?php
-		global $wp_query;
-		if ( is_single() ) {
-			// Get all registered taxonomies
-			$taxonomies = get_taxonomies();
+			<?php
+			global $post, $wp_query;
+			if ( is_single() ) {
 
-			$excluded_taxonomies = array(
-				'nav_menu',
-				'link_category',
-			);
+				$taxonomies = array(
+					1 => 'category',
+					2 => 'neighborhoods',
+					3 => 'prominence',
+					4 => 'post-type',
+					5 => 'series',
+				);
 
-			foreach ( $taxonomies as $taxonomy ) {
-				// Skip this taxonomy if it's on the excluded list
-				if ( in_array( $taxonomy, $excluded_taxonomies ) ) {
-					continue;
-				}
-			}
+				foreach ( $taxonomies as $tax_key => $taxonomy ) {
 
-			$categories = get_the_category();
-			if ( $categories ) {
-				foreach ( $categories as $category ) {
-					if ( ! empty ( $category->cat_name ) ){
-						echo “ga( ‘set’, contentGroup2, ‘“ . $category->cat_name . “’ );\n”;
+					$terms = wp_get_post_terms( $post->ID, $taxonomy );
+					foreach ( $terms as $term ) {
+						if ( ! empty ( $term->name ) ){
+							echo "ga( 'set', contentGroup" . $tax_key . ", '" . esc_attr( $term->name ) . "' );\n";
+						}
 					}
 				}
+			} elseif ( is_tax() ) {
+				$term = $wp_query->get_queried_object();
+				switch ( $term->taxonomy ) {
+					case 'category':
+						$id = 1;
+						break;
+					case 'neighborhoods':
+						$id = 2;
+						break;
+					case 'prominence':
+						$id = 3;
+						break;
+					case 'post-type':
+						$id = 4;
+						break;
+					case 'series':
+						$id = 5;
+						break;
+				}
+				echo "ga( 'set', contentGroup" . $id . ", '" . esc_attr( $term->name ) . "' );\n";
 			}
-		} elseif ( is_tax() ) {
-			$term = $wp_query->get_queried_object();
-			echo “ga( ‘set’, contentGroup3, ‘“ . $term->name . “’ );\n”;
-		}
+		?>
+		</script>
+		<?php
 	}
 }
 add_action( 'wp_head', 'citylimits_google_analytics' );
