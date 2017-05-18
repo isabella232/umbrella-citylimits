@@ -334,7 +334,7 @@ function citylimits_google_analytics() {
 			ga( 'send', 'pageview' )
 
 			<?php
-			global $wp_query;
+			global $post, $wp_query;
 			if ( is_single() ) {
 
 				$taxonomies = array(
@@ -347,10 +347,7 @@ function citylimits_google_analytics() {
 
 				foreach ( $taxonomies as $tax_key => $taxonomy ) {
 
-					$terms = get_terms( array(
-					    'taxonomy' => $taxonomy,
-					    'hide_empty' => false,
-					) );
+					$terms = wp_get_post_terms( $post->ID, $taxonomy );
 					foreach ( $terms as $term ) {
 						if ( ! empty ( $term->name ) ){
 							echo "ga( 'set', contentGroup" . $tax_key . ", '" . esc_attr( $term->name ) . "' );\n";
