@@ -331,7 +331,6 @@ function citylimits_google_analytics() {
 			( window,document,'script','https://www.google-analytics.com/analytics.js','ga' );
 
 			ga( 'create', 'UA-529003-1', 'auto' );
-			ga( 'send', 'pageview' )
 
 			<?php
 			global $post, $wp_query;
@@ -350,7 +349,7 @@ function citylimits_google_analytics() {
 					$terms = wp_get_post_terms( $post->ID, $taxonomy );
 					foreach ( $terms as $term ) {
 						if ( ! empty ( $term->name ) ){
-							echo "ga( 'set', contentGroup" . $tax_key . ", '" . esc_attr( $term->name ) . "' );\n";
+							echo "ga( 'set', 'contentGroup" . $tax_key . "', '" . esc_attr( $term->name ) . "' );\n";
 						}
 					}
 				}
@@ -375,7 +374,9 @@ function citylimits_google_analytics() {
 				}
 				echo "ga( 'set', contentGroup" . $id . ", '" . esc_attr( $term->name ) . "' );\n";
 			}
-		?>
+			?>
+
+			ga( 'send', 'pageview' );
 		</script>
 		<?php
 	}
