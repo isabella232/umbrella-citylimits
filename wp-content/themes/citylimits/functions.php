@@ -334,45 +334,22 @@ function citylimits_google_analytics() {
 
 			<?php
 			global $post, $wp_query;
-			if ( is_single() ) {
 
-				$taxonomies = array(
-					1 => 'category',
-					2 => 'neighborhoods',
-					3 => 'prominence',
-					4 => 'post-type',
-					5 => 'series',
-				);
-
-				foreach ( $taxonomies as $tax_key => $taxonomy ) {
-
-					$terms = wp_get_post_terms( $post->ID, $taxonomy );
-					foreach ( $terms as $term ) {
-						if ( ! empty ( $term->name ) ){
-							echo "ga( 'set', 'contentGroup" . $tax_key . "', '" . esc_attr( $term->name ) . "' );\n";
-						}
-					}
-				}
-			} elseif ( is_tax() ) {
 				$term = $wp_query->get_queried_object();
-				switch ( $term->taxonomy ) {
-					case 'category':
-						$id = 1;
-						break;
-					case 'neighborhoods':
-						$id = 2;
-						break;
-					case 'prominence':
-						$id = 3;
-						break;
-					case 'post-type':
-						$id = 4;
-						break;
-					case 'series':
-						$id = 5;
-						break;
+				error_log(var_export( $term, true));
+				error_log(var_export( get_page_template_slug(), true));
+
+			if ( is_singular() ) {
+				if ( has_term( 'zonein', 'series' ) ) {
+					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
+				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
+					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
 				}
-				echo "ga( 'set', contentGroup" . $id . ", '" . esc_attr( $term->name ) . "' );\n";
+			} elseif ( is_tax() || is_archive() ) {
+				$term = $wp_query->get_queried_object();
+				if ( $term->name === 'ZoneIn' || $term->taxonomy === 'neighborhoods' ) {
+					echo "ga( 'set', 'contentGroup" . $id . "', 'ZoneIn' );\n";
+				}
 			}
 			?>
 
