@@ -7,9 +7,7 @@
  * Enqueue custom sidebar styles
  */
 function largo_jobboard_enqueue() {
-	include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-	if (is_plugin_active('wpjobboard/index.php'))
-		wp_enqueue_style('job-board-styles', plugins_url('css/job-board.css', LARGO_EXT), false, false, 'screen');
+	wp_enqueue_style('job-board-styles', plugins_url('css/job-board.css', LARGO_EXT), false, false, 'screen');
 }
 add_action('wp_enqueue_scripts', 'largo_jobboard_enqueue' );
 
