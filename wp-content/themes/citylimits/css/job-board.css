@@ -213,3 +213,12 @@
   list-style-type: none;
   margin: 0;
 }
+.job_packages {
+  background: #000;
+}
+.job_packages .job-package label {
+  display: inline-block;
+}
+.job_packages .job-package input[type=radio] {
+  margin: 5px 10px 10px 0;
+}
