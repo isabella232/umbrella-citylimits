@@ -213,9 +213,6 @@
   list-style-type: none;
   margin: 0;
 }
-.job_packages {
-  background: #000;
-}
 .job_packages .job-package label {
   display: inline-block;
 }
