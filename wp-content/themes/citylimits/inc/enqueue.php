@@ -36,6 +36,20 @@
 			$version
 		);
 
+		wp_enqueue_style(
+			'largo-stylesheet',
+			get_template_directory_uri() . '/css/style' . $suffix . '.css',
+			null,
+			$version
+		);
+
+		wp_enqueue_style(
+			'largo-child-styles',
+			get_stylesheet_directory_uri() . '/style.css',
+			array('largo-stylesheet'),
+			'20170619'
+		);
+
 		// Core JS includes some utilities, initializes carousels, search form behavior,
 		// popovers, responsive header image, etc.
 		wp_enqueue_script(
