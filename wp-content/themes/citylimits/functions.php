@@ -343,21 +343,23 @@ function citylimits_google_analytics() {
 				}
 
 				/*
-				 * term https://citylimits.org/series/2017-election/
-				 * term https://citylimits.org/category/podcasts/max-murphy-podcasts/
-				 * term https://citylimits.org/tag/campaign-2017-newswire/
-				 * term https://citylimits.org/tag/democracys-timetable-campaign-2017-schedules/
-				 *
-				 * page https://citylimits.org/campaign-2017-candidate-debate-calendar/
-				 * page https://citylimits.org/citizens-toolkit/ 
+				 * Content Group 2 "election 2017" in response to https://secure.helpscout.net/conversation/421881188/1229/?folderId=1259187
 				 */
 				if (
-					has_term( 'campaign-2017-newswire', 'post_tag' )
+					has_term( '2017-election', 'series' )
+					|| has_term( 'campaign-2017-newswire', 'post_tag' )
 					|| has_term( 'democracys-timetable-campaign-2017-schedules', 'post_tag' )
-					|| has_term( '2017-election', 'series' )
+					|| has_term( 'district-data', 'post_tag' )
 					|| has_term( 'max-murphy-podcasts', 'category' )
-					|| 20726 === $post->ID
-					|| 1750692 === $post->ID
+					// below here are specific sections
+					|| 20726 === $post->ID // https://citylimits.org/citizens-toolkit/
+					|| 1750692 === $post->ID // https://citylimits.org/campaign-2017-candidate-debate-calendar/
+					|| 1663505 === $post->ID // https://citylimits.org/politistat-2017/
+					|| 1667230 === $post->ID // https://citylimits.org/our-2017-political-polls-vote-here-see-results/
+					|| 1664887 === $post->ID // https://citylimits.org/lookback-dispatches-from-new-york-city-campaign-history/
+					|| 1685102 === $post->ID // https://citylimits.org/a-users-guide-to-new-york-citys-elected-positions/
+					|| 1663553 === $post->ID // https://citylimits.org/mayoral-race-2017/
+					|| 1663554 === $post->ID // https://citylimits.org/council-races-2017/
 				) {
 					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
 				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
@@ -369,9 +371,10 @@ function citylimits_google_analytics() {
 					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
 				}
 				if (
-					'campaign-2017-newswire' === $term->slug
+					'2017-election' === $term->slug
+					|| 'campaign-2017-newswire' === $term->slug
 					|| 'democracys-timetable-campaign-2017-schedules' === $term->slug
-					|| '2017-election' === $term->slug
+					|| 'district-data' === $term->slug
 					|| 'max-murphy-podcasts' === $term->slug
 				) {
 					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
