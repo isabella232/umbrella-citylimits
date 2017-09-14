@@ -335,20 +335,46 @@ function citylimits_google_analytics() {
 			<?php
 			global $post, $wp_query;
 
-				$term = $wp_query->get_queried_object();
-				error_log(var_export( $term, true));
-				error_log(var_export( get_page_template_slug(), true));
-
 			if ( is_singular() ) {
 				if ( has_term( 'zonein', 'series' ) ) {
 					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
 				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
 					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
 				}
+
+				/*
+				 * term https://citylimits.org/series/2017-election/
+				 * term https://citylimits.org/category/podcasts/max-murphy-podcasts/
+				 * term https://citylimits.org/tag/campaign-2017-newswire/
+				 * term https://citylimits.org/tag/democracys-timetable-campaign-2017-schedules/
+				 *
+				 * page https://citylimits.org/campaign-2017-candidate-debate-calendar/
+				 * page https://citylimits.org/citizens-toolkit/ 
+				 */
+				if (
+					has_term( 'campaign-2017-newswire', 'post_tag' )
+					|| has_term( 'democracys-timetable-campaign-2017-schedules', 'post_tag' )
+					|| has_term( '2017-election', 'series' )
+					|| has_term( 'max-murphy-podcasts', 'category' )
+					|| 20726 === $post->ID
+					|| 1750692 === $post->ID
+				) {
+					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
+				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
+					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
+				}
 			} elseif ( is_tax() || is_archive() ) {
 				$term = $wp_query->get_queried_object();
 				if ( $term->name === 'ZoneIn' || $term->taxonomy === 'neighborhoods' ) {
-					echo "ga( 'set', 'contentGroup" . $id . "', 'ZoneIn' );\n";
+					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
+				}
+				if (
+					'campaign-2017-newswire' === $term->slug
+					|| 'democracys-timetable-campaign-2017-schedules' === $term->slug
+					|| '2017-election' === $term->slug
+					|| 'max-murphy-podcasts' === $term->slug
+				) {
+					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
 				}
 			}
 			?>
