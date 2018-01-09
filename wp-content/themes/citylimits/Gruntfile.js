@@ -14,7 +14,6 @@ module.exports = function(grunt) {
 
   var cssLessFiles = {
     'style.css': 'less/style.less',
-    'css/job-board.css': 'less/job-board.less',
   };
 
   grunt.initConfig({
