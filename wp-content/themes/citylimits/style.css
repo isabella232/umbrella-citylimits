@@ -248,10 +248,6 @@ body.clean-read.single-post.classic #content {
 .TopStories #homepage-featured .sub-stories .story p {
   font-size: 13px;
 }
-/* Job categories widget */
-.widget_wpjb-job-categories ul {
-  list-style-type: none;
-}
 /* User registration form */
 form .form-group {
   margin: 10px 0;
@@ -299,26 +295,6 @@ span#recaptcha_privacy {
 .tribe-events-button:hover,
 .tribe-events-button.tribe-active:hover {
   background-color: #f61212;
-}
-/* Job board */
-.wpjb-flash-error {
-  font-size: 22px;
-  font-weight: bold;
-  background-color: transparent !important;
-  padding: 0 !important;
-  border: none !important;
-}
-body .wpjb .wpjb-login-message ol {
-  margin: 20px 0;
-}
-body .wpjb .wpjb-login-message ol li {
-  margin-left: 20px;
-}
-.wpjb-login-message .cl-job-posting-types {
-  margin: 20px 0;
-}
-.wpjb-login-message a {
-  text-decoration: underline;
 }
 /* Media queries */
 @media (max-width: 1200px) {
