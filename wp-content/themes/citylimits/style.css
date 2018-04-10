@@ -1548,3 +1548,13 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
 .navbar li.home-icon > a img {
   height: 45px;
 }
+/* CUSTOM PRINT STYLES */
+@media print {
+  .entry-content a:link:after,
+  .entry-content a:visited:after {
+    content: '';
+  }
+  img.header_img {
+    width: 40%;
+  }
+}
