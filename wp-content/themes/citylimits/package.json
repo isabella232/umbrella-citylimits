@@ -2,9 +2,9 @@
   "name": "citylimits-theme",
   "version": "1.0.0",
   "description": "Theme for citylimits.org",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/INN/citylimits.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/INN/citylimits.git"
   },
   "license": "GPL-2.0",
   "devDependencies": {

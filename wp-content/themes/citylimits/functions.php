@@ -35,9 +35,6 @@ function largo_child_require_files() {
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-	if ( is_plugin_active( 'wpjobboard/index.php' ) ) {
-		$includes[] =  '/inc/job-board.php';
-	}
 	if ( is_plugin_active( 'gravityforms/gravityforms.php' ) ) {
 		$includes[] = '/inc/gravityforms/events-calendar.php';
 	}
@@ -104,67 +101,6 @@ function citylimits_taboola_footer() {
 }
 add_action( 'wp_footer', 'citylimits_taboola_footer' );
 
-
-// Don't use WPJB css
-add_action( 'wpjb_inject_media', function( $media ) {
-	$media['css'] = false;
-	return $media;
-});
-
-
-// Utilities for loading default job types and categories
-function reset_job_categories_and_types() {
-	$directory = get_stylesheet_directory();
-	if ( file_exists( $directory . '/config.php' ) ) {
-		include_once $directory . '/config.php';
-	} else {
-		return false;
-	}
-
-	$query = new Daq_Db_Query();
-	$query->select( '*' )->from( 'Wpjb_Model_Category t1' );
-	$categories = $query->execute();
-	foreach ( $categories as $category ) {
-		$category->delete();
-	}
-
-	$query = new Daq_Db_Query();
-	$query->select( '*' )->from( 'Wpjb_Model_JobType t1' );
-	$types = $query->execute();
-	foreach ( $types as $type ) {
-		$type->delete();
-	}
-
-	if ( ! empty( $wpjobboard_job_types ) ) {
-		set_job_types( $wpjobboard_job_types );
-	}
-	if ( ! empty( $wpjobboard_categories ) ) {
-		set_job_categories( $wpjobboard_categories );
-	}
-
-	return true;
-}
-
-
-function set_job_categories( $categories ) {
-	foreach ( $categories as $category_attrs ) {
-		$cat = new Wpjb_Model_Category();
-		foreach ( $category_attrs as $k => $v ) {
-			$cat->set( $k, $v );
-		}
-		$cat->save();
-	}
-}
-
-function set_job_types( $types ) {
-	foreach ( $types as $type_attrs ) {
-		$jtype = new Wpjb_Model_JobType();
-		foreach ( $type_attrs as $k => $v ) {
-			$jtype->set( $k, $v );
-		}
-		$jtype->save();
-	}
-}
 
 /* Custom registration link */
 add_filter( 'register', function( $link ) {
@@ -265,16 +201,6 @@ function citylimits_save_user_profile_fields( $user_id ) {
 add_action( 'personal_options_update', 'citylimits_save_user_profile_fields' );
 
 
-/* Customize job add page title */
-function customize_job_add_page_title( $arg ) {
-	if ( trim( $arg ) == 'Create Ad')
-		return 'Post a job';
-	else
-		return $arg;
-}
-add_filter( 'wpjb_set_title', 'customize_job_add_page_title' );
-
-
 function cl_widgets() {
 	unregister_widget( 'TribeCountdownWidget' );
 }
@@ -309,14 +235,6 @@ function citylimits_login_redirect( $redirect_to, $request, $user ) {
 	}
 }
 add_filter( 'login_redirect', 'citylimits_login_redirect', 10, 3 );
-
-
-function citylimits_job_query( $select ) {
-	$select->order("t1.is_featured DESC, t1.job_created_at DESC, t1.id DESC, IF(t1.company_url NOT LIKE '%indeed.com%', 1, 0) DESC, t1.id DESC");
-	return $select;
-}
-add_filter( 'wpjb_jobs_query', 'citylimits_job_query', 1, 10 );
-
 
 function citylimits_users_can_register( $option ) {
 	return true;
