@@ -349,13 +349,20 @@ span#recaptcha_privacy { display: none; }
     width: 100%;
   }
   #site-header {
-    width: 100%;
-    max-width: 100%;
     text-align: center;
-    margin: 0;
+    width: 100%;
   }
   #site-header img {
-    max-width: 500px;
+    margin: 0;
+    max-width: 50%;
+    height: auto;
+    float: left;
+    text-align: left;
+  }
+  #site-header aside {
+    max-width: 50%;
+    float: right;
+    text-align: right;
   }
 }
 
@@ -401,6 +408,21 @@ span#recaptcha_privacy { display: none; }
   }
   #sidebar div[id^="div-gpt-ad"] {
     margin: 0 auto;
+  }
+
+  /* display widgets on homepage */
+  #site-header {
+    display: block;
+    max-width: 100%;
+  }
+  #site-header .header_img {
+    display: none;
+  }
+  #site-header aside {
+      max-width: 100%;
+      float: inherit;
+      text-align: center;
+      margin: 0 auto;
   }
 }
 
