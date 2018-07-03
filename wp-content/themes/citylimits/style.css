@@ -150,7 +150,7 @@ body.clean-read.single-post.classic #content {
 .widgettitle,
 .stories h3.widgettitle {
   text-transform: inherit;
-  font-size: 24px;
+  font-size: 26px;
 }
 /* Homepage layouts */
 .home #dark-top h5.top-tag a {
@@ -311,6 +311,7 @@ span#recaptcha_privacy {
   .header-ad-zone {
     float: none;
     text-align: left;
+    top: 5px;
   }
   .header-ad-zone div[id^="div-gpt-ad"] {
     margin: 0 auto;
@@ -319,20 +320,13 @@ span#recaptcha_privacy {
     width: 100%;
   }
   #site-header {
-    text-align: center;
     width: 100%;
+    max-width: 100%;
+    text-align: center;
+    margin: 0;
   }
   #site-header img {
-    margin: 0;
-    max-width: 50%;
-    height: auto;
-    float: left;
-    text-align: left;
-  }
-  #site-header aside {
-    max-width: 50%;
-    float: right;
-    text-align: right;
+    max-width: 500px;
   }
 }
 @media (min-width: 980px) {
@@ -373,20 +367,6 @@ span#recaptcha_privacy {
     width: 100%;
   }
   #sidebar div[id^="div-gpt-ad"] {
-    margin: 0 auto;
-  }
-  /* display widgets on homepage */
-  #site-header {
-    display: block;
-    max-width: 100%;
-  }
-  #site-header .header_img {
-    display: none;
-  }
-  #site-header aside {
-    max-width: 100%;
-    float: inherit;
-    text-align: center;
     margin: 0 auto;
   }
 }
