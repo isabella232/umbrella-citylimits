@@ -47,7 +47,7 @@
 			'largo-child-styles',
 			get_stylesheet_directory_uri() . '/style.css',
 			array('largo-stylesheet'),
-			'20170619'
+			'20180703'
 		);
 
 		// Core JS includes some utilities, initializes carousels, search form behavior,
