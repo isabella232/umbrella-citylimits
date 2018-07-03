@@ -163,6 +163,11 @@ body.clean-read.single-post.classic #content {
   margin: 0 auto;
 }
 
+.widgettitle, .stories h3.widgettitle {
+    text-transform: inherit; 
+    font-size:26px;
+}
+
 /* Homepage layouts */
 .home #dark-top h5.top-tag a {
   color: #D41313;
@@ -778,7 +783,7 @@ body.neighborhoods-lp {
     &.green { background: #10a139; }
     &.yellow { background: #fac409; }
     &.red { background: @red; }
-	&.blue { background: #093ffa; }
+  &.blue { background: #093ffa; }
 
   }
 
@@ -1303,5 +1308,30 @@ body.neighborhoods-lp {
   }
 }
 .navbar li.home-icon > a img {
-	height: 45px;
+  height: 45px;
+}
+
+/* CUSTOM PRINT STYLES */
+@media print {
+
+  .entry-content a:link:after, .entry-content a:visited:after {
+    content: '';
+  }
+
+  img.header_img {
+    width:40%;
+  }
+
+  iframe {
+    display:inherit;
+  }
+
+  p {
+    page-break-inside: avoid;
+  }
+
+  .hide-for-print {
+    display:none;
+  }
+
 }

@@ -147,6 +147,11 @@ h6 a:active {
 body.clean-read.single-post.classic #content {
   margin: 0 auto;
 }
+.widgettitle,
+.stories h3.widgettitle {
+  text-transform: inherit;
+  font-size: 26px;
+}
 /* Homepage layouts */
 .home #dark-top h5.top-tag a {
   color: #D41313;
@@ -1547,4 +1552,23 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
 }
 .navbar li.home-icon > a img {
   height: 45px;
+}
+/* CUSTOM PRINT STYLES */
+@media print {
+  .entry-content a:link:after,
+  .entry-content a:visited:after {
+    content: '';
+  }
+  img.header_img {
+    width: 40%;
+  }
+  iframe {
+    display: inherit;
+  }
+  p {
+    page-break-inside: avoid;
+  }
+  .hide-for-print {
+    display: none;
+  }
 }
