@@ -55,7 +55,7 @@ class communitywire_announcements extends WP_Widget {
 			'showposts' 	=> $instance['num_posts'],
 			'post_status'	=> 'publish',
 			'post_type'	=> 'communitywire',
-			'order'		=> 'ASC'
+			'order'		=> 'DESC'
 		);
 
 		if ( $instance['cat'] != '' ) $query_args['cat'] = $instance['cat'];
