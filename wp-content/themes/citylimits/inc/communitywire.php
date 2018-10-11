@@ -42,3 +42,33 @@ function create_communitywire_post_type() {
 
 }
 add_action( 'init', 'create_communitywire_post_type', 0 );
+
+add_action( 'gform_after_submission', function ( $entry ) {
+    if ( ! function_exists( 'tribe_create_event' ) ) {
+        return;
+    }
+ 
+    $start_date = rgar( $entry, '4' );
+    $start_time = rgar( $entry, '5' );
+    $end_date   = rgar( $entry, '6' );
+    $end_time   = rgar( $entry, '7' );
+ 
+    $args = array(
+        'post_title'            => rgar( $entry, '1' ),
+        'post_content'          => rgar( $entry, '2' ),
+        'post_category'         => 'CommunityWire',
+        'tax_input'             => array(Tribe__Events__Main::TAXONOMY => 'CommunityWire'),
+        'EventAllDay'           => (bool) rgar( $entry, '3.1' ),
+        'EventHideFromUpcoming' => (bool) rgar( $entry, '3.2' ),
+        'EventShowInCalendar'   => (bool) rgar( $entry, '3.3' ),
+        'feature_event'         => (bool) rgar( $entry, '3.4' ),
+        'EventStartDate'        => $start_date,
+        'EventStartTime'        => $start_time ? Tribe__Date_Utils::reformat( $start_time, 'H:i:s' ) : null,
+        'EventEndDate'          => $end_date,
+        'EventEndTime'          => $end_time ? Tribe__Date_Utils::reformat( $end_time, 'H:i:s' ) : null,
+    );
+ 
+    GFCommon::log_debug( 'gform_after_submission: tribe_create_event args => ' . print_r( $args, 1 ) );
+    $event_id = tribe_create_event( $args );
+    GFCommon::log_debug( 'gform_after_submission: tribe_create_event result => ' . var_export( $event_id, 1 ) );
+} );
