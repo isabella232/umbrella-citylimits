@@ -75,7 +75,7 @@ class communitywire_announcements extends WP_Widget {
 
 			while ( $my_query->have_posts() ) : $my_query->the_post(); $shown_ids[] = get_the_ID();
 				// wrap the items in li's.
-				$output .= '<li>';
+				$output .= '<div class="tribe-mini-calendar-event">';
 
 				$context = array(
 					'instance' => $instance,
@@ -88,7 +88,7 @@ class communitywire_announcements extends WP_Widget {
 				$output .= ob_get_clean();
 
 				// close the item
-				$output .= '</li>';
+				$output .= '</div>';
 
 			endwhile;
 

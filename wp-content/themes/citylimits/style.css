@@ -1553,6 +1553,20 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
 .navbar li.home-icon > a img {
   height: 45px;
 }
+/* NEW COMMUNITYWIRE */
+.tribe-mini-calendar-event .list-date {
+  display: none;
+}
+.tribe-mini-calendar-event {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 1px dotted #2f2f2f;
+}
+.tribe-events-widget-link {
+  display: none;
+}
 /* CUSTOM PRINT STYLES */
 @media print {
   .entry-content a:link:after,
