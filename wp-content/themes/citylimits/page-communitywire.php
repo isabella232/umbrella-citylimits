@@ -22,7 +22,7 @@ $project_tax_query = array(
 // begin the page rendering
 
 // This is the rezone-specific header, /header-rezone.php
-// get_header( 'rezone' );
+get_header();
 
 ?>
 
@@ -32,8 +32,5 @@ $project_tax_query = array(
 		<?php dynamic_sidebar( 'communitywire-listings' ); ?>
 	</div>
 </section>
-
-
-<!-- <?php get_template_part( 'partials/rezone-footer' ); ?> -->
 
 <?php get_footer();
