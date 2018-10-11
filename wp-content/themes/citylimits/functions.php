@@ -30,6 +30,7 @@ function largo_child_require_files() {
 		'/inc/metaboxes.php',
 		'/inc/post-templates.php',
 		'/inc/enqueue.php',
+		'/inc/widgets/communitywire-announcements.php',
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
 	);
@@ -52,6 +53,7 @@ function citylimits_widgets_init() {
 	register_widget( 'WP_Widget_RSS' );
 	register_widget( 'neighborhood_content' );
 	register_widget( 'zonein_events' );
+	register_widget( 'communitywire_announcements' );
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
