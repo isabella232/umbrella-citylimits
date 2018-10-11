@@ -393,8 +393,8 @@ function register_neighborhood_sidebars() {
 		'name'		=> __( 'CommunityWire Listings', 'citylimits' ),
 		'id'		=> 'communitywire-listings',
 		'description'	=> __( 'Widgets in this area will be shown on the CommunityWire listing page' ),
-		'before_widget'	=> '<span class="span6">',
-		'after_widget'	=> '</span>',
+		'before_widget'	=> '<div class="span6">',
+		'after_widget'	=> '</div>',
 		'before_title'	=> '<h2 class="widgettitle">',
 		'after_title'	=> '</h2>'
 	) );
