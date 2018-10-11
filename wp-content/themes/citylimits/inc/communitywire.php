@@ -56,8 +56,6 @@ add_action( 'gform_after_submission', function ( $entry ) {
     $args = array(
         'post_title'            => rgar( $entry, '1' ),
         'post_content'          => rgar( $entry, '2' ),
-        'post_category'         => 'CommunityWire',
-        'tax_input'             => array(Tribe__Events__Main::TAXONOMY => 'CommunityWire'),
         'EventAllDay'           => (bool) rgar( $entry, '3.1' ),
         'EventHideFromUpcoming' => (bool) rgar( $entry, '3.2' ),
         'EventShowInCalendar'   => (bool) rgar( $entry, '3.3' ),
@@ -66,6 +64,9 @@ add_action( 'gform_after_submission', function ( $entry ) {
         'EventStartTime'        => $start_time ? Tribe__Date_Utils::reformat( $start_time, 'H:i:s' ) : null,
         'EventEndDate'          => $end_date,
         'EventEndTime'          => $end_time ? Tribe__Date_Utils::reformat( $end_time, 'H:i:s' ) : null,
+        'tax_input'    => array(
+            Tribe__Events__Main::TAXONOMY => array( 15168 ),
+        ),
     );
  
     GFCommon::log_debug( 'gform_after_submission: tribe_create_event args => ' . print_r( $args, 1 ) );
