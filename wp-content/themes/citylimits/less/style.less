@@ -1312,6 +1312,16 @@ body.neighborhoods-lp {
 }
 
 /* NEW COMMUNITYWIRE */
+
+.type-tribe_events {
+  margin: -5px;
+  padding: 10px;
+}
+
+.type-tribe_events:nth-child(even) {
+  background-color:#f6f7fa;
+}
+
 .tribe-mini-calendar-event .list-date {
   display:none;
 }
@@ -1321,12 +1331,20 @@ body.neighborhoods-lp {
     width: 100%;
     padding-bottom: 0;
     margin-bottom: 0;
-    border-bottom: 1px dotted #2f2f2f;
+    border-bottom: 0;
+
+    .list-info h2, h5 {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 28px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
 }
 
-.tribe-events-widget-link {
-  display:none;
-}
+.tribe-events-widget-link {}
+
+
 
 
 

@@ -69,13 +69,13 @@ class communitywire_announcements extends WP_Widget {
 
 			if ( $title ) echo $before_title . $title . $after_title;
 
-			echo '<ul class="' . $queried_object->slug . '">';
+			echo '';
 
 			$output = '';
 
 			while ( $my_query->have_posts() ) : $my_query->the_post(); $shown_ids[] = get_the_ID();
 				// wrap the items in li's.
-				$output .= '<div class="tribe-mini-calendar-event">';
+				$output .= '<div class="tribe-mini-calendar-event type-tribe_events">';
 
 				$context = array(
 					'instance' => $instance,
@@ -96,7 +96,7 @@ class communitywire_announcements extends WP_Widget {
 			echo $output;
 
 			// close the ul if we're just showing a list of headlines
-			if ( $excerpt == 'none' ) echo '</ul>';
+			if ( $excerpt == 'none' ) echo '';
 
 			if( $instance['linkurl'] !='' ) {
 				echo '<p class="morelink"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
