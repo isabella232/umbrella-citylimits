@@ -1314,16 +1314,24 @@ body.neighborhoods-lp {
 /* NEW COMMUNITYWIRE */
 
 .type-tribe_events {
-  margin: -5px;
-  padding: 10px;
+  padding: 20px 0;
+  border-top:1px solid @grey2;
+
+  &:nth-child(2) {
+    border-top:0;
+  }
 }
 
-.type-tribe_events:nth-child(even) {
+/*.type-tribe_events:nth-child(even) {
   background-color:#f6f7fa;
-}
+}*/
 
 .tribe-mini-calendar-event .list-date {
   display:none;
+}
+
+.tribe-mini-calendar-event.first, .tribe-mini-calendar-event .list-info {
+    margin-top: 0;
 }
 
 .tribe-mini-calendar-event {
@@ -1337,13 +1345,69 @@ body.neighborhoods-lp {
       font-size: 20px;
       font-weight: bold;
       line-height: 28px;
-      margin-top: 10px;
+      margin-top: 0;
       margin-bottom: 10px;
     }
 }
 
-.tribe-events-widget-link {}
+.tribe-events-widget-link {
+  display:none;
+}
 
+.accordion {
+    margin-bottom: 20px;
+    position:relative;
+}
+.accordion-title {
+    margin: 0;
+    padding:10px;
+    font-size:28px;
+    cursor: pointer;
+    background-color:@grey2;
+    position:absolute;
+    top:0;
+    left:0;
+    width:40%;
+
+    &::after {
+      content: ' \25bc';
+      font-size: 15px;
+      padding-bottom: 35px;
+      position: relative;
+      bottom: 7px;
+      left: 10px;
+    }
+}
+#accordion-1-t2 {
+  left:50%;
+}
+
+.accordion-title:hover {}
+.accordion-title:first-child {border: none;}
+.accordion-title.open {
+  cursor: default;
+  outline: none;
+  background-color: white;
+
+  &::after {
+      content: ' \25b2';
+      font-size: 15px;
+      padding-bottom: 35px;
+      position: relative;
+      bottom: 5px;
+      left: 10px;
+    }
+
+  &:active,  &:focus{
+    outline: none;
+  }
+
+}
+.accordion-content {
+  padding: 0 10px 20px;
+  margin-top: 32px;
+  border:1px solid @grey1;
+}
 
 
 
@@ -1373,4 +1437,25 @@ body.neighborhoods-lp {
     display:none;
   }
 
+}
+
+
+
+/* RESPONSIVE */
+
+@media screen and (max-width:768px) {
+  .row-fluid .span6 {
+    width:100%;
+    margin-left:0;
+  }
+
+  .accordion-title {
+    font-size: 18px;
+    position:unset;
+    width:97.5%;
+  }
+
+  .accordion-content {
+    margin-top:0;
+  }
 }

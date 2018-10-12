@@ -31,7 +31,8 @@ get_header();
 	<div class="row-fluid">
 		<?php while ( have_posts() ) : the_post(); ?>
 			<h1><?php the_title(); ?></h1>
-			<!-- <?php largo_post_social_links(); ?> -->
+		</div>
+		<div class="row-fluid">
 			<?php
 				do_action('largo_after_post_header');
 
@@ -39,11 +40,12 @@ get_header();
 
 				do_action('largo_after_hero');
 			?>
+
+				<?php dynamic_sidebar( 'communitywire-listings' ); ?>
+		</div>
+		<div class="row-fluid">
 			<?php the_content(); ?>
 		<?php endwhile; ?>
-	</div>
-	<div class="row-fluid">
-		<?php dynamic_sidebar( 'communitywire-listings' ); ?>
 	</div>
 </section>
 
