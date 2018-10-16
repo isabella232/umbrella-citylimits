@@ -81,12 +81,10 @@ if ( $posts ) : ?>
 				<?php do_action( 'tribe_events_list_widget_before_the_meta' ) ?>
 
 				<div class="tribe-event-duration byline">
-					<?php echo tribe_events_event_schedule_details(); ?>
+					<?php echo tribe_events_event_schedule_details() . ' | ' . tribe_get_venue(); ?>
 				</div>
 
-				<div class="tribe-event-duration byline">
-					<?php echo tribe_get_venue(); ?>
-				</div>
+				<?php echo tribe_events_get_the_excerpt(); ?>
 
 				<?php do_action( 'tribe_events_list_widget_after_the_meta' ) ?>
 			</div></div>
