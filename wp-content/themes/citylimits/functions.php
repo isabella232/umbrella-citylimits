@@ -512,3 +512,26 @@ function zonein_tax_archive_query( $query ) {
 }
 add_action( 'pre_get_posts', 'zonein_tax_archive_query', 1 );
 
+/* Custom query for event list widget*/
+function tribe_custom_list_widget_events ( ){
+     
+    // uncoment the line below and fill in your custom args
+    $args = array(
+        // 'eventDisplay'=>'upcoming',
+        // 'posts_per_page'=>-1,
+        'tax_query'=> array(
+            array(
+                'taxonomy' => 'tribe_events_cat',
+                'field' => 'slug',
+                'terms' => 'communitywire-events'
+            )
+        )
+    );
+    // $args = array();
+ 
+    $posts = tribe_get_events( $args );
+ 
+    return $posts;    
+}
+ 
+add_filter( 'tribe_get_list_widget_events', 'tribe_custom_list_widget_events' );
