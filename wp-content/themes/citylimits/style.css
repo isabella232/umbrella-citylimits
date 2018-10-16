@@ -1558,6 +1558,11 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
   padding: 20px 0;
   border-top: 1px solid #e2e2e2;
 }
+@media screen and (min-width: 769px) {
+  .type-tribe_events {
+    margin-right: 50px;
+  }
+}
 .type-tribe_events:nth-child(2) {
   border-top: 0;
 }
