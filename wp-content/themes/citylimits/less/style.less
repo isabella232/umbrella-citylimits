@@ -1365,7 +1365,7 @@ body.neighborhoods-lp {
 .accordion-title {
     margin: 0;
     padding:10px;
-    font-size:25px;
+    font-size:26px;
     cursor: pointer;
     background-color:@grey2;
     position:absolute;
@@ -1374,14 +1374,22 @@ body.neighborhoods-lp {
     width:33%;
     width: ~"calc(33% - 10px)";
     border: 1px solid @grey1;
-    border-radius: 10px;
+    
+
+    @media screen and (max-width:1150px) {
+      font-size:20px;
+    }
+
+    @media screen and (min-width:769px) {
+      text-align:center;
+    }
 
     &::after {
       content: ' \25bc';
       font-size: 15px;
       padding-bottom: 35px;
       position: relative;
-      bottom: 7px;
+      bottom: 4px;
       left: 10px;
     }
 }
@@ -1421,9 +1429,29 @@ body.neighborhoods-lp {
 .accordion-content {
   width:100%;
   padding: 0 10px 20px;
-  margin-top: 32px;
+  margin-top: 23px;
   border: 1px solid @grey1;
-  border-radius: 10px;
+
+  input[type=submit].gform_button.button {
+    background-color: @red;
+    color: @white;
+    border: none;
+    padding: .5em;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+
+    &:hover {
+      background: saturate(@red,30%);
+    }
+  }
+
+  .ginput_container {
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  input {
+    height:unset;
+  }
 }
 
 
