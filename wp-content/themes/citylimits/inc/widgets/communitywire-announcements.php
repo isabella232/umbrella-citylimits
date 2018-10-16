@@ -69,11 +69,10 @@ class communitywire_announcements extends WP_Widget {
 
 			if ( $title ) echo $before_title . $title . $after_title;
 
-			echo '';
-
 			$output = '';
 
 			while ( $my_query->have_posts() ) : $my_query->the_post(); $shown_ids[] = get_the_ID();
+
 				// wrap the items in li's.
 				$output .= '<div class="type-tribe_events"><div class="tribe-mini-calendar-event">';
 

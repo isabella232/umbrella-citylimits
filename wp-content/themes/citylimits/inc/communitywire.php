@@ -1,4 +1,4 @@
-.<?php
+<?php
 
 // Register Custom Post Type for CommunityWire Announcements
 function create_communitywire_post_type() {
@@ -22,7 +22,7 @@ function create_communitywire_post_type() {
         'label'                 => 'CommunityWire Announcement',
         'description'           => 'Announcements submitted from the community',
         'labels'                => $labels,
-        'supports'              => array('title', 'editor', 'thumbnail'),
+        'supports'              => array('title', 'editor', 'thumbnail', 'excerpt'),
         'hierarchical'          => true,
         'public'                => true,
         'show_ui'               => true,
@@ -35,8 +35,7 @@ function create_communitywire_post_type() {
         'has_archive'           => true,
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
-        'rewrite'               => $rewrite,
-        'capability_type'       => 'page',
+        'rewrite'               => $rewrite
     );
     register_post_type( 'communitywire', $args );
 
