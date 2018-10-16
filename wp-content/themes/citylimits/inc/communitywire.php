@@ -65,7 +65,7 @@ add_action( 'gform_after_submission', function ( $entry ) {
         'EventEndDate'          => $end_date,
         'EventEndTime'          => $end_time ? Tribe__Date_Utils::reformat( $end_time, 'H:i:s' ) : null,
         'tax_input'    => array(
-            Tribe__Events__Main::TAXONOMY => array( 15168 ),
+            Tribe__Events__Main::TAXONOMY => array( 16100 ),
         ),
     );
  
