@@ -1361,13 +1361,16 @@ body.neighborhoods-lp {
 .accordion-title {
     margin: 0;
     padding:10px;
-    font-size:28px;
+    font-size:25px;
     cursor: pointer;
     background-color:@grey2;
     position:absolute;
     top:0;
     left:0;
-    width:40%;
+    width:33%;
+    width: ~"calc(33% - 10px)";
+    border: 1px solid @grey1;
+    border-radius: 10px;
 
     &::after {
       content: ' \25bc';
@@ -1379,7 +1382,15 @@ body.neighborhoods-lp {
     }
 }
 #accordion-1-t2 {
-  left:50%;
+  left:34%;
+}
+#accordion-1-t3 {
+  left:68%;
+  background-color:@red;
+  color:@white;
+  &::after {
+      content: unset !important;
+  }
 }
 
 .accordion-title:hover {}
@@ -1404,9 +1415,11 @@ body.neighborhoods-lp {
 
 }
 .accordion-content {
+  width:100%;
   padding: 0 10px 20px;
   margin-top: 32px;
-  border:1px solid @grey1;
+  border: 1px solid @grey1;
+  border-radius: 10px;
 }
 
 

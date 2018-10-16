@@ -1596,13 +1596,16 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
 .accordion-title {
   margin: 0;
   padding: 10px;
-  font-size: 28px;
+  font-size: 25px;
   cursor: pointer;
   background-color: #e2e2e2;
   position: absolute;
   top: 0;
   left: 0;
-  width: 40%;
+  width: 33%;
+  width: calc(33% - 10px);
+  border: 1px solid #c3c3c3;
+  border-radius: 10px;
 }
 .accordion-title::after {
   content: ' \25bc';
@@ -1613,7 +1616,15 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
   left: 10px;
 }
 #accordion-1-t2 {
-  left: 50%;
+  left: 34%;
+}
+#accordion-1-t3 {
+  left: 68%;
+  background-color: #d41313;
+  color: #ffffff;
+}
+#accordion-1-t3::after {
+  content: unset !important;
 }
 .accordion-title:first-child {
   border: none;
@@ -1636,9 +1647,11 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
   outline: none;
 }
 .accordion-content {
+  width: 100%;
   padding: 0 10px 20px;
   margin-top: 32px;
   border: 1px solid #c3c3c3;
+  border-radius: 10px;
 }
 /* CUSTOM PRINT STYLES */
 @media print {
