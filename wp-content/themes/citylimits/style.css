@@ -1603,6 +1603,11 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
   margin-bottom: 10px;
   font-weight: normal;
 }
+.tribe-event-image {
+  float: left;
+  width: 60px;
+  padding: .2em .66em .4em 0;
+}
 .accordion {
   margin-bottom: 20px;
   position: relative;
