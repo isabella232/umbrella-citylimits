@@ -1711,6 +1711,27 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
     display: none;
   }
 }
+.widget.rev {
+  margin-bottom: 0;
+  color: #000000;
+  background-color: #e2e2e2;
+}
+.widget.rev .widgettitle {
+  background-color: unset;
+  color: #000000;
+  padding: unset;
+}
+.widget.rev .tribe-event-meta,
+.widget.rev .byline,
+.widget.rev .tribe-event-excerpt {
+  display: none;
+}
+.widget.rev a {
+  color: #d41313;
+}
+.widget.rev .type-tribe_events {
+  border-top: 1px solid #c3c3c3;
+}
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {
   .row-fluid .span6 {
