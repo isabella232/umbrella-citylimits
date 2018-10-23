@@ -1554,6 +1554,9 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
   height: 45px;
 }
 /* NEW COMMUNITYWIRE */
+h1.hidden-page-title {
+  display: none;
+}
 .type-tribe_events {
   padding: 20px 0;
   border-top: 1px solid #e2e2e2;

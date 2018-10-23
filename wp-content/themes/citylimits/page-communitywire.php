@@ -30,8 +30,11 @@ get_header();
 <section class="rezone-overview">
 	<div class="row-fluid">
 		<?php while ( have_posts() ) : the_post(); ?>
-			<h1><?php the_title(); ?></h1>
+			<h1 class="hidden-page-title"><?php the_title(); ?></h1>
 		</div>
+		<div class="row-fluid">
+			<?php the_content(); ?>
+		<?php endwhile; ?>
 		<div class="row-fluid">
 			<?php
 				do_action('largo_after_post_header');
@@ -43,9 +46,6 @@ get_header();
 
 				<?php dynamic_sidebar( 'communitywire-listings' ); ?>
 		</div>
-		<div class="row-fluid">
-			<?php the_content(); ?>
-		<?php endwhile; ?>
 	</div>
 </section>
 
