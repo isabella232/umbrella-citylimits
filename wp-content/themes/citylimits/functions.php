@@ -535,3 +535,14 @@ function tribe_custom_list_widget_events ( ){
 }
  
 add_filter( 'tribe_get_list_widget_events', 'tribe_custom_list_widget_events' );
+
+
+/**
+ * get other scripts
+ */
+ function citylimits_communitywire_enqueue() {
+ 	if (is_page_template( 'page-communitywire.php' )) {
+		wp_enqueue_script( 'inn-tools', get_stylesheet_directory_uri() . '/js/communitywire.js', array( 'jquery' ), '1.1', true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
