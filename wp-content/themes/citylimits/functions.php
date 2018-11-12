@@ -409,8 +409,8 @@ function register_neighborhood_sidebars() {
 		'description'	=> __( 'Widgets in this area will be shown as part of the CommunityWire Widget' ),
 		'before_widget'	=> '<aside class="widget">',
 		'after_widget'	=> '</aside>',
-		'before_title'	=> '<h2 class="widgettitle">',
-		'after_title'	=> '</h2>'
+		'before_title'	=> '<h3 class="widgettitle">',
+		'after_title'	=> '</h3>'
 	) );
 }
 add_action( 'widgets_init', 'register_neighborhood_sidebars' );

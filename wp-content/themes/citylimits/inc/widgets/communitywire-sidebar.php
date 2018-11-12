@@ -44,7 +44,11 @@ class communitywire_sidebar extends WP_Widget {
 
 		if ( $title ) echo $before_title . $title . $after_title;
 
+		echo '<aside id="communitywire-sidebar-content" class="widget">';
+
 		dynamic_sidebar( 'communitywire-sidebar-content' );
+
+		echo '</aside>';
 
 		// print all of the items
 		echo $output;

@@ -1522,15 +1522,23 @@ h1.hidden-page-title {
   content: '';
 }
 
-.widget.rev {
-    margin-bottom:0;
+/* CommunityWire Sidebar Widget only */
+#communitywire-sidebar-content {
     color: @black;
     background-color: @grey2;
+
+    &.widget {
+      padding: 24px 10px 24px 0;
+    }
 
     .widgettitle {
       background-color: unset;
       color: @black;
       padding: unset;
+    }
+
+    h3.widgettitle {
+      font-size:24px;
     }
 
     .tribe-event-meta, .byline, .tribe-event-excerpt {
@@ -1542,6 +1550,7 @@ h1.hidden-page-title {
     }
 
     .type-tribe_events {
+      padding: 10px 0 0;
       border-top: 1px solid @grey1;
     }
 }

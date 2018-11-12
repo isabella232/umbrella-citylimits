@@ -1735,25 +1735,32 @@ h1.hidden-page-title {
 .communitywire-filters li:nth-child(2):before {
   content: '';
 }
-.widget.rev {
-  margin-bottom: 0;
+/* CommunityWire Sidebar Widget only */
+#communitywire-sidebar-content {
   color: #000000;
   background-color: #e2e2e2;
 }
-.widget.rev .widgettitle {
+#communitywire-sidebar-content.widget {
+  padding: 24px 10px 24px 0;
+}
+#communitywire-sidebar-content .widgettitle {
   background-color: unset;
   color: #000000;
   padding: unset;
 }
-.widget.rev .tribe-event-meta,
-.widget.rev .byline,
-.widget.rev .tribe-event-excerpt {
+#communitywire-sidebar-content h3.widgettitle {
+  font-size: 24px;
+}
+#communitywire-sidebar-content .tribe-event-meta,
+#communitywire-sidebar-content .byline,
+#communitywire-sidebar-content .tribe-event-excerpt {
   display: none;
 }
-.widget.rev a {
+#communitywire-sidebar-content a {
   color: #d41313;
 }
-.widget.rev .type-tribe_events {
+#communitywire-sidebar-content .type-tribe_events {
+  padding: 10px 0 0;
   border-top: 1px solid #c3c3c3;
 }
 /* RESPONSIVE */
