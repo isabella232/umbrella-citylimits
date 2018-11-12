@@ -196,40 +196,6 @@ class communitywire_announcements extends WP_Widget {
 			<input id="<?php echo $this->get_field_id( 'num_sentences' ); ?>" name="<?php echo $this->get_field_name( 'num_sentences' ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="width:90%;" />
 		</p>
 
-		<p>
-			<input class="checkbox" type="checkbox" <?php echo $showbyline; ?> id="<?php echo $this->get_field_id( 'show_byline' ); ?>" name="<?php echo $this->get_field_name( 'show_byline' ); ?>" /> <label for="<?php echo $this->get_field_id( 'show_byline' ); ?>"><?php _e( 'Show byline on posts?', 'largo' ); ?></label>
-		</p>
-
-		<p>
-			<input class="checkbox" type="checkbox" <?php echo $show_top_term; ?> id="<?php echo $this->get_field_id( 'show_top_term' ); ?>" name="<?php echo $this->get_field_name( 'show_top_term' ); ?>" /> <label for="<?php echo $this->get_field_id( 'show_top_term' ); ?>"><?php _e( 'Show the top term on posts?', 'largo' ); ?></label>
-		</p>
-
-		<p><strong><?php _e( 'Limit by Author, Categories or Tags', 'largo' ); ?></strong><br /><small><?php _e( 'Select an author or category from the dropdown menus or enter post tags separated by commas (\'cat,dog\')', 'largo' ); ?></small></p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'author' ); ?>"><?php _e( 'Limit to author: ', 'largo' ); ?><br />
-			<?php wp_dropdown_users( array( 'name' => $this->get_field_name( 'author' ), 'show_option_all' => __( 'None (all authors)', 'largo' ), 'selected'=>$instance['author'])); ?></label>
-
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id('cat'); ?>"><?php _e('Limit to category: ', 'largo'); ?>
-			<?php wp_dropdown_categories( array( 'name' => $this->get_field_name( 'cat' ), 'show_option_all' => __( 'None (all categories)', 'largo' ), 'hide_empty'=>0, 'hierarchical'=>1, 'selected'=>$instance['cat'] ) ); ?></label>
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'tag' ); ?>"><?php _e( 'Limit to tags:', 'largo' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'tag' ); ?>" name="<?php echo $this->get_field_name( 'tag' ); ?>" type="text" value="<?php echo $instance['tag']; ?>" />
-		</p>
-
-		<p><strong><?php _e( 'More Link', 'largo' ); ?></strong><br /><small><?php _e( 'If you would like to add a more link at the bottom of the widget, add the link text and url here.', 'largo' ); ?></small></p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'linktext' ); ?>"><?php _e( 'Link text:', 'largo' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'linktext' ); ?>" name="<?php echo $this->get_field_name( 'linktext' ); ?>" type="text" value="<?php echo esc_attr( $instance['linktext'] ); ?>" />
-		</p>
-
-		<p>
-			<label for="<?php echo $this->get_field_id( 'linkurl' ); ?>"><?php _e( 'URL:', 'largo' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'linkurl' ); ?>" name="<?php echo $this->get_field_name( 'linkurl' ); ?>" type="text" value="<?php echo esc_attr( $instance['linkurl'] ); ?>" />
-		</p>
-
 	<?php
 	}
 }

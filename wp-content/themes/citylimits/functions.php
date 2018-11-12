@@ -31,6 +31,7 @@ function largo_child_require_files() {
 		'/inc/post-templates.php',
 		'/inc/enqueue.php',
 		'/inc/widgets/communitywire-announcements.php',
+		'/inc/widgets/communitywire-sidebar.php',
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
 	);
@@ -54,6 +55,7 @@ function citylimits_widgets_init() {
 	register_widget( 'neighborhood_content' );
 	register_widget( 'zonein_events' );
 	register_widget( 'communitywire_announcements' );
+	register_widget( 'communitywire_sidebar' );
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
@@ -397,6 +399,16 @@ function register_neighborhood_sidebars() {
 		'description'	=> __( 'Widgets in this area will be shown on the CommunityWire listing page' ),
 		'before_widget'	=> '<div class="span6">',
 		'after_widget'	=> '</div>',
+		'before_title'	=> '<h2 class="widgettitle">',
+		'after_title'	=> '</h2>'
+	) );
+
+	register_sidebar( array(
+		'name'		=> __( 'CommunityWire Sidebar Content', 'citylimits' ),
+		'id'		=> 'communitywire-sidebar-content',
+		'description'	=> __( 'Widgets in this area will be shown as part of the CommunityWire Widget' ),
+		'before_widget'	=> '<aside class="widget">',
+		'after_widget'	=> '</aside>',
 		'before_title'	=> '<h2 class="widgettitle">',
 		'after_title'	=> '</h2>'
 	) );

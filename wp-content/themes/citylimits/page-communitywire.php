@@ -35,7 +35,7 @@ get_header();
 		<div class="row-fluid">
 			<?php the_content(); ?>
 		<?php endwhile; ?>
-		<div class="row-fluid">
+		<div class="row-fluid listing-widgets">
 			<?php
 				do_action('largo_after_post_header');
 
