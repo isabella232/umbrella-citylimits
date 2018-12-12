@@ -558,3 +558,13 @@ add_filter( 'tribe_get_list_widget_events', 'tribe_custom_list_widget_events' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
+
+/* need this to allow Gravity Forms to post to API */
+add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
+    $request_url = rgars( $feed, 'meta/requestURL' );
+    if ( strpos( $request_url, '{rest_api_url}' ) === 0 || strpos( $request_url, rest_url() ) === 0 ) {
+        $request_args['headers']['Authorization'] = 'Basic ' . base64_encode( USERNAME_HERE . ':' . PASSWORD_HERE );
+    }
+ 
+    return $request_args;
+}, 10, 2 );

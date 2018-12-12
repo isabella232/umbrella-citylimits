@@ -42,29 +42,44 @@ function create_communitywire_post_type() {
 }
 add_action( 'init', 'create_communitywire_post_type', 0 );
 
+
+
+// 
 add_action( 'gform_after_submission', function ( $entry ) {
     if ( ! function_exists( 'tribe_create_event' ) ) {
         return;
     }
  
-    $start_date = rgar( $entry, '4' );
-    $start_time = rgar( $entry, '5' );
-    $end_date   = rgar( $entry, '6' );
-    $end_time   = rgar( $entry, '7' );
+    $start_date = rgar( $entry, '7' );
+    $start_time = rgar( $entry, '8' );
+    $end_date   = rgar( $entry, '9' );
+    $end_time   = rgar( $entry, '10' );
+    $event_subcat   = rgar( $entry, '11' );
  
     $args = array(
-        'post_title'            => rgar( $entry, '1' ),
-        'post_content'          => rgar( $entry, '2' ),
-        'EventAllDay'           => (bool) rgar( $entry, '3.1' ),
-        'EventHideFromUpcoming' => (bool) rgar( $entry, '3.2' ),
-        'EventShowInCalendar'   => (bool) rgar( $entry, '3.3' ),
-        'feature_event'         => (bool) rgar( $entry, '3.4' ),
+        'post_title'            => rgar( $entry, '4' ),
+        'post_content'          => rgar( $entry, '5' ),
+        'EventAllDay'           => (bool) rgar( $entry, '6' ),
+        'EventHideFromUpcoming' => false,
+        'EventShowInCalendar'   => true,
+        'feature_event'         => false,
         'EventStartDate'        => $start_date,
-        'EventStartTime'        => $start_time ? Tribe__Date_Utils::reformat( $start_time, 'H:i:s' ) : null,
+        'EventStartTime'        => $start_time ? Tribe__Date_Utils::reformat( $start_time, 'H:i:s' ) : '00:00:00',
         'EventEndDate'          => $end_date,
-        'EventEndTime'          => $end_time ? Tribe__Date_Utils::reformat( $end_time, 'H:i:s' ) : null,
+        'EventEndTime'          => $end_time ? Tribe__Date_Utils::reformat( $end_time, 'H:i:s' ) : '11:59:00',
+        'Organizer' => array(
+            'Organizer' => rgar( $entry, '3' ),
+            'Email' => rgar( $entry, '2' )   
+        ),
+        'Venue' => array(
+            'Venue' => rgar( $entry, '13.1' ),
+            'Country' => 'US',
+            'Address' => rgar( $entry, '13.2' ),
+            'City' => rgar( $entry, '13.3' ),
+            'State' => rgar( $entry, '13.4' )
+         ),
         'tax_input'    => array(
-            Tribe__Events__Main::TAXONOMY => array( 16100 ),
+            Tribe__Events__Main::TAXONOMY => array( 16980, $event_subcat )
         ),
     );
  
