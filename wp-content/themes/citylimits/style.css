@@ -1778,3 +1778,6 @@ h1.hidden-page-title {
     margin-top: 0;
   }
 }
+.archive-background .rss-subscribe-link {
+  display: none;
+}
