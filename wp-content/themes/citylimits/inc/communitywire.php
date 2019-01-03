@@ -45,7 +45,7 @@ add_action( 'init', 'create_communitywire_post_type', 0 );
 
 
 // 
-add_action( 'gform_after_submission', function ( $entry ) {
+add_action( 'gform_after_submission_44', function ( $entry ) {
     if ( ! function_exists( 'tribe_create_event' ) ) {
         return;
     }
@@ -66,7 +66,7 @@ add_action( 'gform_after_submission', function ( $entry ) {
         'EventStartDate'        => $start_date,
         'EventStartTime'        => $start_time ? Tribe__Date_Utils::reformat( $start_time, 'H:i:s' ) : '00:00:00',
         'EventEndDate'          => $end_date,
-        'EventEndTime'          => $end_time ? Tribe__Date_Utils::reformat( $end_time, 'H:i:s' ) : '11:59:00',
+        'EventEndTime'          => $end_time ? Tribe__Date_Utils::reformat( $end_time, 'H:i:s' ) : '23:59:00',
         'Organizer' => array(
             'Organizer' => rgar( $entry, '3' ),
             'Email' => rgar( $entry, '2' )   
