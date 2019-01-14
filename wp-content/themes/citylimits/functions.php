@@ -568,3 +568,30 @@ add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
  
     return $request_args;
 }, 10, 2 );
+
+
+
+
+
+add_filter( 'register_post_type_args', 'add_cpt_capability_organizer', 10, 2 );
+
+function add_cpt_capability_organizer( $args, $post_type ) {
+	// Make sure we're only modifying our desired post type.
+	if ( 'tribe_organizer' != $post_type ) 
+		return $args;
+	$args['capability_type'] = array( 'post', 'tribe_event', 'tribe_events', 'tribe_organizer', 'tribe_organizers' );
+	$args['public'] = 1;
+	return $args;
+}
+
+add_filter( 'register_post_type_args', 'add_cpt_capability_venue', 999, 2 );
+
+function add_cpt_capability_venue( $args, $post_type ) {
+	// Make sure we're only modifying our desired post type.
+	if ( 'tribe_venue' != $post_type ) 
+		return $args;
+	$args['capability_type'] = array( 'post', 'tribe_event', 'tribe_events', 'tribe_venue', 'tribe_venues' );
+	$args['public'] = 1;
+	return $args;
+}
+
