@@ -59,6 +59,7 @@ add_action( 'gform_after_submission_44', function ( $entry ) {
     $args = array(
         'post_title'            => rgar( $entry, '4' ),
         'post_content'          => rgar( $entry, '5' ),
+        'post_author'           => 2,
         'EventAllDay'           => (bool) rgar( $entry, '6' ),
         'EventHideFromUpcoming' => false,
         'EventShowInCalendar'   => true,
