@@ -57,7 +57,7 @@ add_action( 'gform_after_submission_44', function ( $entry ) {
     $event_subcat   = rgar( $entry, '11' );
  
     $args = array(
-        'post_title'            => rgar( $entry, '4' ),
+        'post_title'            => '[CommunityWire] ' . rgar( $entry, '4' ),
         'post_content'          => rgar( $entry, '5' ),
         'post_author'           => 2,
         'EventAllDay'           => (bool) rgar( $entry, '6' ),
