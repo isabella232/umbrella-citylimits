@@ -1553,6 +1553,153 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
 .navbar li.home-icon > a img {
   height: 45px;
 }
+/* NEW COMMUNITYWIRE */
+h1.hidden-page-title {
+  display: none;
+}
+.type-tribe_events {
+  padding: 20px 0;
+  border-top: 1px solid #e2e2e2;
+}
+@media screen and (min-width: 769px) {
+  .type-tribe_events {
+    margin-right: 50px;
+  }
+}
+.type-tribe_events:nth-child(2) {
+  border-top: 0;
+}
+/*.type-tribe_events:nth-child(even) {
+  background-color:#f6f7fa;
+}*/
+.tribe-mini-calendar-event .list-date {
+  display: none;
+}
+.tribe-mini-calendar-event.first,
+.tribe-mini-calendar-event .list-info {
+  margin-top: 0;
+}
+.tribe-mini-calendar-event {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+.tribe-mini-calendar-event .list-info h2,
+.tribe-mini-calendar-event h5 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 28px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.tribe-events-widget-link {
+  display: none;
+}
+.tribe-event-meta,
+.tribe-mini-calendar-event .byline,
+.tribe-mini-calendar-event .byline a {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #b1b1b1;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+.tribe-event-image {
+  float: left;
+  width: 60px;
+  padding: .2em .66em .4em 0;
+}
+.accordion {
+  margin-bottom: 40px;
+  position: relative;
+}
+.accordion-title {
+  margin: 0;
+  padding: 10px;
+  font-size: 26px;
+  cursor: pointer;
+  background-color: #e2e2e2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33%;
+  width: calc(33% - 10px);
+  border: 1px solid #c3c3c3;
+}
+@media screen and (max-width: 1150px) {
+  .accordion-title {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .accordion-title {
+    text-align: center;
+  }
+}
+.accordion-title::after {
+  content: ' \25bc';
+  font-size: 15px;
+  padding-bottom: 35px;
+  position: relative;
+  bottom: 4px;
+  left: 10px;
+}
+#accordion-1-t2 {
+  left: 34%;
+}
+#accordion-1-t3 {
+  left: 68%;
+  background-color: #d41313;
+  color: #ffffff;
+}
+#accordion-1-t3::after {
+  content: unset !important;
+}
+.accordion-title:first-child {
+  border: none;
+}
+.accordion-title.open {
+  cursor: default;
+  outline: none;
+  background-color: white;
+}
+.accordion-title.open::after {
+  content: ' \25b2';
+  font-size: 15px;
+  padding-bottom: 35px;
+  position: relative;
+  bottom: 5px;
+  left: 10px;
+}
+.accordion-title.open:active,
+.accordion-title.open:focus {
+  outline: none;
+}
+.accordion-content {
+  width: 100%;
+  padding: 0 10px 20px;
+  margin-top: 23px;
+  border: 1px solid #c3c3c3;
+}
+.accordion-content input[type=submit].gform_button.button {
+  background-color: #d41313;
+  color: #ffffff;
+  border: none;
+  padding: .5em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+.accordion-content input[type=submit].gform_button.button:hover {
+  background: #e70000;
+}
+.accordion-content .ginput_container {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.accordion-content input {
+  height: unset;
+}
 /* CUSTOM PRINT STYLES */
 @media print {
   .entry-content a:link:after,
@@ -1571,4 +1718,66 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
   .hide-for-print {
     display: none;
   }
+}
+.communitywire-filters li {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.communitywire-filters li:before {
+  content: ' | ';
+  margin-left: 5px;
+}
+.communitywire-filters li:first-child:before {
+  content: '';
+  margin-left: 0;
+}
+.communitywire-filters li:nth-child(2):before {
+  content: '';
+}
+/* CommunityWire Sidebar Widget only */
+#communitywire-sidebar-content {
+  color: #000000;
+  background-color: #e2e2e2;
+}
+#communitywire-sidebar-content.widget {
+  padding: 24px 10px 24px 0;
+}
+#communitywire-sidebar-content .widgettitle {
+  background-color: unset;
+  color: #000000;
+  padding: unset;
+}
+#communitywire-sidebar-content h3.widgettitle {
+  font-size: 24px;
+}
+#communitywire-sidebar-content .tribe-event-meta,
+#communitywire-sidebar-content .byline,
+#communitywire-sidebar-content .tribe-event-excerpt {
+  display: none;
+}
+#communitywire-sidebar-content a {
+  color: #d41313;
+}
+#communitywire-sidebar-content .type-tribe_events {
+  padding: 10px 0 0;
+  border-top: 1px solid #c3c3c3;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  .row-fluid .span6 {
+    width: 100%;
+    margin-left: 0;
+  }
+  .accordion-title {
+    font-size: 18px;
+    position: unset;
+    width: 97.5%;
+  }
+  .accordion-content {
+    margin-top: 0;
+  }
+}
+.archive-background .rss-subscribe-link {
+  display: none;
 }

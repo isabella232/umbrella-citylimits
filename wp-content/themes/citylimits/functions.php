@@ -24,11 +24,14 @@ define( 'LARGO_EXT', __FILE__ );
 function largo_child_require_files() {
 	$includes = array(
 		'/inc/ajax-functions.php',
+		'/inc/communitywire.php',
 		'/inc/registration.php',
 		'/inc/term-meta.php',
 		'/inc/metaboxes.php',
 		'/inc/post-templates.php',
 		'/inc/enqueue.php',
+		'/inc/widgets/communitywire-announcements.php',
+		'/inc/widgets/communitywire-sidebar.php',
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
 	);
@@ -51,6 +54,8 @@ function citylimits_widgets_init() {
 	register_widget( 'WP_Widget_RSS' );
 	register_widget( 'neighborhood_content' );
 	register_widget( 'zonein_events' );
+	register_widget( 'communitywire_announcements' );
+	register_widget( 'communitywire_sidebar' );
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
@@ -387,6 +392,26 @@ function register_neighborhood_sidebars() {
 		'before_title'	=> '<h2 class="widgettitle">',
 		'after_title'	=> '</h2>'
 	) );
+
+	register_sidebar( array(
+		'name'		=> __( 'CommunityWire Listings', 'citylimits' ),
+		'id'		=> 'communitywire-listings',
+		'description'	=> __( 'Widgets in this area will be shown on the CommunityWire listing page' ),
+		'before_widget'	=> '<div class="span6">',
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h2 class="widgettitle">',
+		'after_title'	=> '</h2>'
+	) );
+
+	register_sidebar( array(
+		'name'		=> __( 'CommunityWire Sidebar Content', 'citylimits' ),
+		'id'		=> 'communitywire-sidebar-content',
+		'description'	=> __( 'Widgets in this area will be shown as part of the CommunityWire Widget' ),
+		'before_widget'	=> '<aside class="widget">',
+		'after_widget'	=> '</aside>',
+		'before_title'	=> '<h3 class="widgettitle">',
+		'after_title'	=> '</h3>'
+	) );
 }
 add_action( 'widgets_init', 'register_neighborhood_sidebars' );
 
@@ -498,3 +523,75 @@ function zonein_tax_archive_query( $query ) {
 	}
 }
 add_action( 'pre_get_posts', 'zonein_tax_archive_query', 1 );
+
+/* Custom query for event list widget*/
+function tribe_custom_list_widget_events ( ){
+     
+    // uncoment the line below and fill in your custom args
+    $args = array(
+        // 'eventDisplay'=>'upcoming',
+        // 'posts_per_page'=>-1,
+        'tax_query'=> array(
+            array(
+                'taxonomy' => 'tribe_events_cat',
+                'field' => 'slug',
+                'terms' => 'communitywire-events'
+            )
+        )
+    );
+    // $args = array();
+ 
+    $posts = tribe_get_events( $args );
+ 
+    return $posts;    
+}
+ 
+add_filter( 'tribe_get_list_widget_events', 'tribe_custom_list_widget_events' );
+
+
+/**
+ * get other scripts
+ */
+ function citylimits_communitywire_enqueue() {
+ 	if (is_page_template( 'page-communitywire.php' )) {
+		wp_enqueue_script( 'inn-tools', get_stylesheet_directory_uri() . '/js/communitywire.js', array( 'jquery' ), '1.1', true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
+
+/* need this to allow Gravity Forms to post to API */
+add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
+    $request_url = rgars( $feed, 'meta/requestURL' );
+    if ( strpos( $request_url, '{rest_api_url}' ) === 0 || strpos( $request_url, rest_url() ) === 0 ) {
+        $request_args['headers']['Authorization'] = 'Basic ' . base64_encode( USERNAME_HERE . ':' . PASSWORD_HERE );
+    }
+ 
+    return $request_args;
+}, 10, 2 );
+
+
+
+
+
+add_filter( 'register_post_type_args', 'add_cpt_capability_organizer', 10, 2 );
+
+function add_cpt_capability_organizer( $args, $post_type ) {
+	// Make sure we're only modifying our desired post type.
+	if ( 'tribe_organizer' != $post_type ) 
+		return $args;
+	$args['capability_type'] = 'post';
+	$args['public'] = 1;
+	return $args;
+}
+
+add_filter( 'register_post_type_args', 'add_cpt_capability_venue', 999, 2 );
+
+function add_cpt_capability_venue( $args, $post_type ) {
+	// Make sure we're only modifying our desired post type.
+	if ( 'tribe_venue' != $post_type ) 
+		return $args;
+	$args['capability_type'] = 'post';
+	$args['public'] = 1;
+	return $args;
+}
+

@@ -1311,6 +1311,172 @@ body.neighborhoods-lp {
   height: 45px;
 }
 
+/* NEW COMMUNITYWIRE */
+
+h1.hidden-page-title {
+  display:none;
+}
+
+.type-tribe_events {
+  padding: 20px 0;
+  border-top:1px solid @grey2;
+
+  @media screen and (min-width:769px) {
+    margin-right:50px;
+  }
+
+  &:nth-child(2) {
+    border-top:0;
+  }
+}
+
+/*.type-tribe_events:nth-child(even) {
+  background-color:#f6f7fa;
+}*/
+
+.tribe-mini-calendar-event .list-date {
+  display:none;
+}
+
+.tribe-mini-calendar-event.first, .tribe-mini-calendar-event .list-info {
+    margin-top: 0;
+}
+
+.tribe-mini-calendar-event {
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+
+    .list-info h2, h5 {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 28px;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+}
+
+.tribe-events-widget-link {
+  display:none;
+}
+
+.tribe-event-meta, .tribe-mini-calendar-event .byline, .tribe-mini-calendar-event .byline a {
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  color:#b1b1b1;
+  font-size:14px;
+  margin-bottom: 10px;
+  font-weight:normal;
+}
+
+.tribe-event-image {
+  float: left;
+    width: 60px;
+    padding: .2em .66em .4em 0;
+}
+
+.accordion {
+    margin-bottom: 40px;
+    position:relative;
+}
+.accordion-title {
+    margin: 0;
+    padding:10px;
+    font-size:26px;
+    cursor: pointer;
+    background-color:@grey2;
+    position:absolute;
+    top:0;
+    left:0;
+    width:33%;
+    width: ~"calc(33% - 10px)";
+    border: 1px solid @grey1;
+    
+
+    @media screen and (max-width:1150px) {
+      font-size:20px;
+    }
+
+    @media screen and (min-width:769px) {
+      text-align:center;
+    }
+
+    &::after {
+      content: ' \25bc';
+      font-size: 15px;
+      padding-bottom: 35px;
+      position: relative;
+      bottom: 4px;
+      left: 10px;
+    }
+}
+#accordion-1-t2 {
+  left:34%;
+}
+#accordion-1-t3 {
+  left:68%;
+  background-color:@red;
+  color:@white;
+  &::after {
+      content: unset !important;
+  }
+}
+
+.accordion-title:hover {}
+.accordion-title:first-child {border: none;}
+.accordion-title.open {
+  cursor: default;
+  outline: none;
+  background-color: white;
+
+  &::after {
+      content: ' \25b2';
+      font-size: 15px;
+      padding-bottom: 35px;
+      position: relative;
+      bottom: 5px;
+      left: 10px;
+    }
+
+  &:active,  &:focus{
+    outline: none;
+  }
+
+}
+.accordion-content {
+  width:100%;
+  padding: 0 10px 20px;
+  margin-top: 23px;
+  border: 1px solid @grey1;
+
+  input[type=submit].gform_button.button {
+    background-color: @red;
+    color: @white;
+    border: none;
+    padding: .5em;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+
+    &:hover {
+      background: saturate(@red,30%);
+    }
+  }
+
+  .ginput_container {
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  input {
+    height:unset;
+  }
+}
+
+
+
+
+
+
 /* CUSTOM PRINT STYLES */
 @media print {
 
@@ -1334,4 +1500,82 @@ body.neighborhoods-lp {
     display:none;
   }
 
+}
+
+.communitywire-filters li {
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.communitywire-filters li:before {
+    content: ' | ';
+    margin-left:5px;
+}
+
+.communitywire-filters li:first-child:before {
+    content: '';
+    margin-left:0;
+}
+
+.communitywire-filters li:nth-child(2):before {
+  content: '';
+}
+
+/* CommunityWire Sidebar Widget only */
+#communitywire-sidebar-content {
+    color: @black;
+    background-color: @grey2;
+
+    &.widget {
+      padding: 24px 10px 24px 0;
+    }
+
+    .widgettitle {
+      background-color: unset;
+      color: @black;
+      padding: unset;
+    }
+
+    h3.widgettitle {
+      font-size:24px;
+    }
+
+    .tribe-event-meta, .byline, .tribe-event-excerpt {
+      display:none;
+    }
+
+    a {
+      color:@red;
+    }
+
+    .type-tribe_events {
+      padding: 10px 0 0;
+      border-top: 1px solid @grey1;
+    }
+}
+
+
+
+/* RESPONSIVE */
+
+@media screen and (max-width:768px) {
+  .row-fluid .span6 {
+    width:100%;
+    margin-left:0;
+  }
+
+  .accordion-title {
+    font-size: 18px;
+    position:unset;
+    width:97.5%;
+  }
+
+  .accordion-content {
+    margin-top:0;
+  }
+}
+// https://secure.helpscout.net/conversation/698314399/2780?folderId=1219602
+.archive-background .rss-subscribe-link {
+  display: none;
 }
