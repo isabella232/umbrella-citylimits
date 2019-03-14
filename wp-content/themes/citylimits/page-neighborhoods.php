@@ -154,7 +154,6 @@ get_header( 'rezone' );
 	    });
 	}
 </script>
-</head>
 
 <?php
 	get_template_part( 'partials/neighborhoods', 'overview' );
