@@ -138,7 +138,7 @@ add_filter('body_class', function($classes) {
 		<div class="rezone-header">
 			<div class="row-fluid">
 				<div class="span12">
-					<a href="/series/zonein/"><img src="/wp-content/themes/citylimits/img/zonein-logo.jpg" alt="ZoneIn Project Logo" width="100%" /></a>
+					<a href="/series/zonein/"><img src="/wp-content/themes/citylimits/img/mapping-the-future-logo.jpg" alt="Mapping The Future Project Logo" width="100%" /></a>
 					<?php get_template_part( 'partials/nav', 'rezone' ); ?>
 				</div>
 			</div>
