@@ -1,8 +1,8 @@
 <?php
 /**
- * Page Template: The Future of NYC Neighborhoods
- * Template Name: Rezone Project - Series Home
- * Description: Custom landing page for the ReZone project with the /neighborhoods/ slug
+ * Page Template: Mapping The Future of NYC Neighborhoods
+ * Template Name: Mapping The Future Project - Series Home
+ * Description: Custom landing page for the Mapping The Future project with the /neighborhoods/ slug
  */
 
 global $shown_ids, $post;

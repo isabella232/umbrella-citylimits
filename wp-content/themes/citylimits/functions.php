@@ -290,7 +290,7 @@ function citylimits_google_analytics() {
 				}
 			} elseif ( is_tax() || is_archive() ) {
 				$term = $wp_query->get_queried_object();
-				if ( $term->name === 'ZoneIn' || $term->taxonomy === 'neighborhoods' ) {
+				if ( $term->name === 'ZoneIn' || $term->name === "Mapping the Future" || $term->taxonomy === 'neighborhoods' ) {
 					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
 				}
 				if (
@@ -384,7 +384,7 @@ function register_neighborhood_sidebars() {
 	) );
 
 	register_sidebar( array(
-		'name'		=> __( 'Rezone Subpage', 'citylimits' ),
+		'name'		=> __( 'Mapping The Future Subpage', 'citylimits' ),
 		'id'		=> 'rezone-subpage-sidebar',
 		'description'	=> __( 'Widgets in this area will be shown on all neighborhood taxonomy pages' ),
 		'before_widget'	=> '<li id="%1$s" class="widget %2$s">',
