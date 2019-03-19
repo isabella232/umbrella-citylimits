@@ -12,11 +12,11 @@ class zonein_events extends WP_Widget {
 
 		$widget_ops = array(
 			'classname' => 'zonein-events',
-			'description' => __( 'Dynamic widget to display zonein events', 'citylimits' )
+			'description' => __( 'Dynamic widget to display zonein / MappingtheFuture events', 'citylimits' )
 		);
 		parent::__construct(
 			'zonein-events-widget', // Base ID
-			__( 'ZoneIn Events', 'citylimits' ), // Name
+			__( 'Mapping The Future Events', 'citylimits' ), // Name
 			$widget_ops // Args
 		);
 
