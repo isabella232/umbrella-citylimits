@@ -259,10 +259,10 @@ function citylimits_google_analytics() {
 			global $post, $wp_query;
 
 			if ( is_singular() ) {
-				if ( has_term( 'zonein', 'series' ) ) {
-					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
+				if ( has_term( 'zonein', 'series' ) or has_term( 'mapping-the-future', 'series' ) ) {
+					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
 				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
-					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
+					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
 				}
 
 				/*
@@ -291,7 +291,7 @@ function citylimits_google_analytics() {
 			} elseif ( is_tax() || is_archive() ) {
 				$term = $wp_query->get_queried_object();
 				if ( $term->name === 'ZoneIn' || $term->name === "Mapping the Future" || $term->taxonomy === 'neighborhoods' ) {
-					echo "ga( 'set', 'contentGroup1', 'ZoneIn' );\n";
+					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
 				}
 				if (
 					'2017-election' === $term->slug
@@ -368,7 +368,7 @@ function citylimits_configure_dfp() {
 // add_action( 'dfw_setup', 'citylimits_configure_dfp' );
 
 function register_zonein_menu() {
-  register_nav_menu('zonein-menu',__( 'Zone In Menu' ));
+  register_nav_menu('zonein-menu',__( 'Mapping the Future Menu' ));
 }
 add_action( 'init', 'register_zonein_menu' );
 
@@ -419,13 +419,13 @@ add_action( 'widgets_init', 'register_neighborhood_sidebars' );
 function create_zonein_events_post_type() {
 
 	$labels = array(
-		'name'                  => 'ZoneIn Events',
-		'singular_name'         => 'ZoneIn Event',
-		'menu_name'             => 'ZoneIn Events',
-		'name_admin_bar'        => 'ZoneIn Events',
-		'archives'              => 'ZoneIn Events Archives',
-		'all_items'             => 'All ZoneIn Events',
-		'add_new_item'          => 'Add New ZoneIn Event',
+		'name'                  => 'Mapping the Future Events',
+		'singular_name'         => 'Mapping the Future Event',
+		'menu_name'             => 'Mapping the Future Events',
+		'name_admin_bar'        => 'Mapping the Future Events',
+		'archives'              => 'Mapping the Future Events Archives',
+		'all_items'             => 'All Mapping the Future Events',
+		'add_new_item'          => 'Add New Mapping the Future Event',
 	);
 	$rewrite = array(
 		'slug'                  => 'zonein-events',
@@ -434,8 +434,8 @@ function create_zonein_events_post_type() {
 		'feeds'                 => true,
 	);
 	$args = array(
-		'label'                 => 'ZoneIn Event',
-		'description'           => 'Events for the ZoneIn Series',
+		'label'                 => 'Mapping the Future Event',
+		'description'           => 'Events for the Mapping the Future Series',
 		'labels'                => $labels,
 		'supports'              => array( ),
 		'taxonomies'            => array( 'neighborhoods' ),
