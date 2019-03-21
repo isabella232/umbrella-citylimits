@@ -404,54 +404,65 @@ body.neighborhoods-lp * {
 body.neighborhoods-lp .rezone-header {
   margin-top: 72px;
 }
-body.neighborhoods-lp ul#menu-zone-in {
+body.neighborhoods-lp ul#menu-zone-in,
+body.neighborhoods-lp ul#menu-mapping-the-future {
   list-style: none;
   margin: 0;
   border-top: 4px solid #d41313;
   border-bottom: 1px solid #000000;
   font-size: 0;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item,
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item {
   display: inline-block;
   min-width: 8%;
   max-width: 28%;
   margin-bottom: 0;
   font-size: initial;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item:not(.menu-item-has-children) {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item:not(.menu-item-has-children),
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item:not(.menu-item-has-children) {
   text-align: center;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children,
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children {
   position: relative;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a:after {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a:after,
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children > a:after {
   content: '▼';
   padding-left: .333em;
   font-size: .8em;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children.zones-active > a {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children.zones-active > a,
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children.zones-active > a {
   background-color: #000000;
   color: #ffffff;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children.zones-active ul.sub-menu {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children.zones-active ul.sub-menu,
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children.zones-active ul.sub-menu {
   display: block;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item a {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item a,
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item a {
   display: block;
   padding: 1.25em 1.25em;
   color: #000000;
   font-weight: bold;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item a:hover {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item a:hover,
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item a:hover {
   background-color: #000000;
   color: #ffffff;
   text-decoration: none;
 }
-body.neighborhoods-lp ul#menu-zone-in > .menu-item.cta a {
+body.neighborhoods-lp ul#menu-zone-in > .menu-item.cta a,
+body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.cta a {
   background-color: #d41313;
   color: #ffffff;
 }
-body.neighborhoods-lp ul#menu-zone-in ul.sub-menu {
+body.neighborhoods-lp ul#menu-zone-in ul.sub-menu,
+body.neighborhoods-lp ul#menu-mapping-the-future ul.sub-menu {
   list-style: none;
   margin: 0;
   position: absolute;
@@ -460,14 +471,17 @@ body.neighborhoods-lp ul#menu-zone-in ul.sub-menu {
   z-index: 9999999;
   display: none;
 }
-body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item {
+body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item,
+body.neighborhoods-lp ul#menu-mapping-the-future ul.sub-menu > .menu-item {
   white-space: nowrap;
   margin-bottom: 0;
 }
-body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item a {
+body.neighborhoods-lp ul#menu-zone-in ul.sub-menu > .menu-item a,
+body.neighborhoods-lp ul#menu-mapping-the-future ul.sub-menu > .menu-item a {
   padding: .75em 2em;
 }
-body.neighborhoods-lp ul#menu-zone-in #more-zonein {
+body.neighborhoods-lp ul#menu-zone-in #more-zonein,
+body.neighborhoods-lp ul#menu-mapping-the-future #more-zonein {
   display: none;
 }
 body.neighborhoods-lp.tax-post-type header.archive-background {
@@ -882,7 +896,8 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
   }
 }
 @media (max-width: 900px) {
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item a {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item a,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item a {
     padding: 1em .75em;
     font-size: .8em;
   }
@@ -907,43 +922,53 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
   body.neighborhoods-lp .rezone-header .span4 {
     display: none;
   }
-  body.neighborhoods-lp ul#menu-zone-in {
+  body.neighborhoods-lp ul#menu-zone-in,
+  body.neighborhoods-lp ul#menu-mapping-the-future {
     border-bottom: none;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item {
     min-width: 20%;
     max-width: 20%;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children {
     min-width: 50%;
     max-width: 50%;
     background-color: #000000;
     text-align: center;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children:first-of-type {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children:first-of-type,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children:first-of-type {
     border-right: 1px solid #ffffff;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children > a {
     color: #ffffff;
     padding-right: 1em;
     padding-left: 1em;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a:hover {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children > a:hover,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children > a:hover {
     background-color: #d41313;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children ul.sub-menu {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children ul.sub-menu,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children ul.sub-menu {
     min-width: 100%;
     text-align: center;
     border-top: none;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item > a {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item > a,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item > a {
     padding: 1em .5em;
     font-size: 1em;
   }
-  body.neighborhoods-lp ul#menu-zone-in #more-zonein {
+  body.neighborhoods-lp ul#menu-zone-in #more-zonein,
+  body.neighborhoods-lp ul#menu-mapping-the-future #more-zonein {
     display: inline-block;
   }
-  body.neighborhoods-lp ul#menu-zone-in .menu-hide {
+  body.neighborhoods-lp ul#menu-zone-in .menu-hide,
+  body.neighborhoods-lp ul#menu-mapping-the-future .menu-hide {
     display: none;
   }
   body.neighborhoods-lp .rezone-overview {
@@ -996,20 +1021,25 @@ body.neighborhoods-lp.single-cftl-tax-landing .gform_wrapper .gform_footer {
   }
 }
 @media (max-width: 550px) {
-  body.neighborhoods-lp ul#menu-zone-in {
+  body.neighborhoods-lp ul#menu-zone-in,
+  body.neighborhoods-lp ul#menu-mapping-the-future {
     position: relative;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item {
     min-width: 33.333%;
     max-width: 33.333%;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item.menu-item-has-children,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item.menu-item-has-children {
     position: static;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item:not(.menu-item-has-children) {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item:not(.menu-item-has-children),
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item:not(.menu-item-has-children) {
     text-align: left;
   }
-  body.neighborhoods-lp ul#menu-zone-in > .menu-item .sub-menu {
+  body.neighborhoods-lp ul#menu-zone-in > .menu-item .sub-menu,
+  body.neighborhoods-lp ul#menu-mapping-the-future > .menu-item .sub-menu {
     left: 0;
   }
   body.neighborhoods-lp .rezone-101 .span4 {
