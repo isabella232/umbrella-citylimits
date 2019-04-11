@@ -1581,7 +1581,8 @@ body.neighborhoods-lp.tax-neighborhoods .gform_widget h3 {
   }
 }
 .navbar li.home-icon > a img {
-  height: 45px;
+  height: 37px;
+  margin-right: 0;
 }
 /* NEW COMMUNITYWIRE */
 h1.hidden-page-title {

@@ -87,7 +87,9 @@ wp-content/old-hub-plugins/*
 # do version-control the theme we care about
 !/wp-content/themes/citylimits
 
+# ignore generated files
 wp-content/themes/citylimits/package-lock.json
+wp-content/themes/citylimits/style.css
 
 # large/disallowed file types
 # a CDN should be used for these

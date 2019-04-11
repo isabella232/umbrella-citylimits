@@ -25,6 +25,7 @@ function largo_child_require_files() {
 	$includes = array(
 		'/inc/ajax-functions.php',
 		'/inc/communitywire.php',
+		'/inc/images.php',
 		'/inc/registration.php',
 		'/inc/term-meta.php',
 		'/inc/metaboxes.php',
