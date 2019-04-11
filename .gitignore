@@ -77,11 +77,17 @@ wp-content/debug.log
 /wp-content/index.php
 /wp-content/sunrise.php
 /wp-content/Icon
+/wp-content/ewww/*
 /wp-content/plugins/*
 /wp-content/themes/*
+wp-content/hub-acq-man/*
+wp-content/hub-connector/*
+wp-content/old-hub-plugins/*
 
 # do version-control the theme we care about
 !/wp-content/themes/citylimits
+
+wp-content/themes/citylimits/package-lock.json
 
 # large/disallowed file types
 # a CDN should be used for these
