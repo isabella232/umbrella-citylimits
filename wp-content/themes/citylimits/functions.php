@@ -603,7 +603,7 @@ remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 /**
- * Remove the Tribe Customier css <script>
+ * Remove the Tribe Customizer css <script>
  https://gist.github.com/elimn/50cc4ac8b56cc2809bbc48e7c7e3b461
  */
 function tribe_remove_customizer_css(){

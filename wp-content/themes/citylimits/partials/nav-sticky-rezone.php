@@ -95,7 +95,7 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 					<div class="nav-left">
 						<?php if ( of_get_option( 'sticky_header_logo' ) !== '' ) { ?>
 							<ul>
-								<li class="home-icon"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php largo_home_icon( 'icon-white', 'orig' ); ?></a></li>
+								<li class="home-icon"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"></a></li>
 							</ul>
 						<?php } else { ?>
 							<ul>
