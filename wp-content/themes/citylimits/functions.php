@@ -25,7 +25,6 @@ function largo_child_require_files() {
 	$includes = array(
 		'/inc/ajax-functions.php',
 		'/inc/communitywire.php',
-		'/inc/images.php',
 		'/inc/registration.php',
 		'/inc/term-meta.php',
 		'/inc/metaboxes.php',
@@ -596,3 +595,20 @@ function add_cpt_capability_venue( $args, $post_type ) {
 	return $args;
 }
 
+
+/**
+ * remove unecessary WP header stuff
+ */
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+/**
+ * Remove the Tribe Customier css <script>
+ https://gist.github.com/elimn/50cc4ac8b56cc2809bbc48e7c7e3b461
+ */
+function tribe_remove_customizer_css(){
+	if ( class_exists( 'Tribe__Customizer' ) ) {
+		remove_action( 'wp_print_footer_scripts', array( Tribe__Customizer::instance(), 'print_css_template' ), 15 );
+	}
+}
+add_action( 'wp_footer', 'tribe_remove_customizer_css' );
