@@ -74,22 +74,13 @@ wp-content/debug.log
 /wp-includes
 
 # don't version the themes/plugins we don't care about
-/wp-content/index.php
-/wp-content/sunrise.php
-/wp-content/Icon
-/wp-content/ewww/*
-/wp-content/plugins/*
-/wp-content/themes/*
-wp-content/hub-acq-man/*
-wp-content/hub-connector/*
-wp-content/old-hub-plugins/*
+/wp-content/*
 
 # do version-control the theme we care about
 !/wp-content/themes/citylimits
 
 # ignore generated files
-wp-content/themes/citylimits/package-lock.json
-wp-content/themes/citylimits/style.css
+/wp-content/themes/citylimits/style.css
 
 # large/disallowed file types
 # a CDN should be used for these
