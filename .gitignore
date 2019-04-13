@@ -79,9 +79,6 @@ wp-content/debug.log
 # do version-control the theme we care about
 !/wp-content/themes/citylimits
 
-# ignore generated files
-/wp-content/themes/citylimits/style.css
-
 # large/disallowed file types
 # a CDN should be used for these
 *.hqx
