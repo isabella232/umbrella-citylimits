@@ -75,9 +75,11 @@ wp-content/debug.log
 
 # don't version the themes/plugins we don't care about
 /wp-content/*
+!/wp-content/themes/
+/wp-content/themes/*
 
 # do version-control the theme we care about
-!/wp-content/themes/citylimits
+!/wp-content/themes/citylimits/
 
 # large/disallowed file types
 # a CDN should be used for these
