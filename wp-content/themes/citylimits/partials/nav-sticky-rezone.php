@@ -93,15 +93,9 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 
 					<!-- BEGIN MOBILE MENU (hidden on desktop) -->
 					<div class="nav-left">
-						<?php if ( of_get_option( 'sticky_header_logo' ) !== '' ) { ?>
-							<ul>
-								<li class="home-icon"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"></a></li>
-							</ul>
-						<?php } else { ?>
-							<ul>
-								<li class="site-name"><a href="/"><?php echo $site_name; ?></a></li>
-							</ul>
-						<?php } ?>
+						<ul>
+							<li class="home-icon"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"></a></li>
+						</ul>
 					</div>
 					<!-- END MOBILE MENU -->
 
