@@ -5,18 +5,14 @@
  * Applied on all pages after a user scrolls past the Main Navigation or affixed
  * to the top of most pages that aren't the home page.
  *
- * This is copied from Largo's partials/nav-sticky.php to add the classes 'show sticky_nav_display_article' to div.sticky-nav-holder so it will always show at the top of pages
- * It was that or hack Largo/js/navigation.js
- *
+ * This is copied from Largo's partials/nav-sticky.php to override the nav image uploaded to Theme Options and replace it with an SVG logo.
  * @package Largo
  * @link http://largo.readthedocs.io/users/themeoptions.html#navigation
- * @since 2016-10-14
- * @since Largo 0.5.4
  */
 
 $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'nav_alt_site_name' ) : get_bloginfo('name'); ?>
  <div class="sticky-nav-wrapper nocontent">
-	<div class="sticky-nav-holder show sticky_nav_display_article">
+	<div class="sticky-nav-holder">
 
 	<?php
     /*
@@ -62,7 +58,16 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 									</a>
 								</li><?php
 								}
-							} ?>
+							}
+
+							/**
+							 * Don't display the search in the header if we're on the search page
+							 *
+							 * @link https://github.com/INN/Largo/pull/1167
+							 * @since 0.5.5
+							 */
+							if ( ! is_search() ) {
+							?>
 							<li id="sticky-nav-search">
 								<a href="#" class="toggle">
 									<i class="icon-search" title="<?php esc_attr_e('Search', 'largo'); ?>" role="button"></i>
@@ -77,6 +82,7 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 									</div>
 								</form>
 							</li>
+							<?php } ?>
 							<li>
 								<!-- "hamburger" button (3 bars) to trigger off-canvas navigation -->
 								<a class="btn btn-navbar toggle-nav-bar" title="<?php esc_attr_e('More', 'largo'); ?>">
