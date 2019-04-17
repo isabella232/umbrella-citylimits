@@ -595,6 +595,14 @@ function add_cpt_capability_venue( $args, $post_type ) {
 	return $args;
 }
 
+/**
+ * Set max srcset image width to 771px, because otherwise WP will display the full resolution version
+ */
+function remove_max_srcset_image_width( $max_width ) {
+    $max_width = 771;
+    return $max_width;
+}
+add_filter( 'max_srcset_image_width', 'remove_max_srcset_image_width' );
 
 /**
  * remove unecessary WP header stuff
