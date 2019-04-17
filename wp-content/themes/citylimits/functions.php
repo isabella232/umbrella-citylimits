@@ -612,3 +612,53 @@ function tribe_remove_customizer_css(){
 	}
 }
 add_action( 'wp_footer', 'tribe_remove_customizer_css' );
+
+/**
+ * filter search results: remove old events
+ */
+function cl_pre_get_posts($query) {
+	if ( !is_admin() && $query->is_main_query() && $query->is_search ) {
+		$meta_query = $query->get('meta_query');
+		$additional_query = array(
+			'relation' => 'OR',
+			array(
+				'key' => '_EventStartDate',
+				'value' => date("Y-m-d H:i:s"),
+				'compare' => '>=',
+				'type' => 'DATETIME'
+			) ,
+			array(
+				'key' => '_EventStartDate',
+				'compare' => 'NOT EXISTS'
+			)
+		);
+		if ( is_array( $meta_query ) ) {
+			$meta_query[] = $additional_query;
+		} else {
+			$meta_query = $additional_query;
+		}
+
+		$query->set('meta_query', $meta_query);
+	}
+	return $query;
+}
+
+add_action( 'pre_get_posts', 'cl_pre_get_posts' );
+
+
+/**
+ * my custom logging functions for debug
+ */
+
+function flat($obj) {
+	if (is_array($obj) || is_object($obj)) {
+		return print_r($obj, true);
+	}
+	return $obj;
+}
+
+function jb_log($obj) {
+	error_log(flat($obj));
+}
+
+
