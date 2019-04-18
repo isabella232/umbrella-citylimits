@@ -135,3 +135,42 @@ function citylimits_update_project_latlon( $term_id, $tt_id ) {
 	}
 }
 add_action( 'edited_neighborhoods', 'citylimits_update_project_latlon', 10, 2 );
+
+/**
+ * Overriding Largo function to prevent insertion of empty _term_meta posts
+ * Get the proxy post for a term
+ *
+ * @param string $taxnomy The taxonomy of the term for which you want to retrieve a term meta post
+ * @param int $term_id The ID of the term
+ * @return int $post_id The ID of the term meta post
+ */
+if ( ! function_exists ( 'largo_get_term_meta_post' ) ) {
+	function largo_get_term_meta_post( $taxonomy, $term_id ) {
+		$query = new WP_Query( array(
+			'post_type'      => '_term_meta',
+			'posts_per_page' => 1,
+			'post_status' => 'any',
+			'tax_query'      => array(
+				array(
+					'taxonomy'         => $taxonomy,
+					'field'            => 'id',
+					'terms'            => $term_id,
+					'include_children' => false
+				)
+			)
+		));
+
+		if ( $query->found_posts ) {
+			return $query->posts[0]->ID;
+		} else {
+			$tax_input = array();
+			$post_id = wp_insert_post( array( 'post_type' => '_term_meta', 'post_title' => "{$taxonomy}:${term_id}" ) );
+			if ($taxonomy && $term_id) {
+				wp_set_post_terms( $post_id, array( (int) $term_id ), $taxonomy );
+				return $post_id;
+			}
+			return null;
+		}
+	}
+}
+
