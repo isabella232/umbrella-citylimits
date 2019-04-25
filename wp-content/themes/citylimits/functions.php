@@ -34,6 +34,7 @@ function largo_child_require_files() {
 		'/inc/widgets/communitywire-sidebar.php',
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
+		'/inc/widgets/jp-related-posts.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -56,6 +57,9 @@ function citylimits_widgets_init() {
 	register_widget( 'zonein_events' );
 	register_widget( 'communitywire_announcements' );
 	register_widget( 'communitywire_sidebar' );
+	if ( current_user_can('administrator') && get_current_user_id() == 2635436 ) {
+		register_widget( 'jp_cl_related_posts' );
+	}
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
@@ -594,6 +598,25 @@ function add_cpt_capability_venue( $args, $post_type ) {
 	$args['public'] = 1;
 	return $args;
 }
+
+/* ADD HOTJAR TO HEADER */
+add_action('wp_head', 'add_hotjar');
+function add_hotjar() {
+	print <<<EOH
+<!-- Hotjar Tracking Code for citylimits.org -->
+<script>
+	(function(h,o,t,j,a,r){
+		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		h._hjSettings={hjid:1295994,hjsv:6};
+		a=o.getElementsByTagName('head')[0];
+		r=o.createElement('script');r.async=1;
+		r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		a.appendChild(r);
+		})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+EOH;
+}
+
 
 /**
  * Set max srcset image width to 771px, because otherwise WP will display the full resolution version
