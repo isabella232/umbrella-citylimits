@@ -57,9 +57,7 @@ function citylimits_widgets_init() {
 	register_widget( 'zonein_events' );
 	register_widget( 'communitywire_announcements' );
 	register_widget( 'communitywire_sidebar' );
-	if ( current_user_can('administrator') && get_current_user_id() == 2635436 ) {
-		register_widget( 'jp_cl_related_posts' );
-	}
+	register_widget( 'jp_cl_related_posts' );
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
@@ -617,7 +615,6 @@ function add_hotjar() {
 EOH;
 }
 
-
 /**
  * Set max srcset image width to 771px, because otherwise WP will display the full resolution version
  */
@@ -676,6 +673,73 @@ function cl_pre_get_posts($query) {
 
 add_action( 'pre_get_posts', 'cl_pre_get_posts' );
 
+
+/* TESTING JETPACK RELATED POSTS ON LIVE SERVER */
+
+if ( current_user_can('administrator') ) {
+//	if ( get_current_user_id() == 2635436 ) {
+		add_filter( 'wp', 'jetpackme_remove_rp', 20 );
+		add_action('wp_head', 'jetpack_related_posts_style');
+		add_action( 'widgets_init', 'remove_related_widget' );
+//	}
+} else {
+	add_filter( 'jetpack_relatedposts_filter_options', 'jetpackme_no_related_posts' );
+}
+
+
+//disable related posts for non-admins
+function jetpackme_no_related_posts( $options ) {
+	$options['enabled'] = false;
+	return $options;
+}
+
+//disable largo for now
+function remove_related_widget() {
+	//unregister_widget('largo_recent_posts_widget');
+	//unregister_widget('largo_related_posts_widget');
+}
+
+//remove JP Related Posts from default location so we can move it elsewhere
+function jetpackme_remove_rp() {
+    if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
+        $jprp = Jetpack_RelatedPosts::init();
+        $callback = array( $jprp, 'filter_add_target_to_dom' );
+        remove_filter( 'the_content', $callback, 40 );
+    }
+}
+
+//this should be added to LESS files, but it'll live here until they approve the change
+function jetpack_related_posts_style() {
+  echo '<style>
+  	#jp-relatedposts {
+  		padding-left: 24px;
+  	}
+  	#jp-relatedposts h3.jp-relatedposts-headline {
+  		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  		font-size: 26px;
+  		font-weight: bold;
+  		line-height: 1.27em;
+  		margin-bottom: 8px;
+  	}
+  	#jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post span a.jp-relatedposts-post-a, #jp-relatedposts .jp-relatedposts-items-visual h4.jp-relatedposts-post-title, #jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a {
+  		color: #000;
+  		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  		font-size: 20px;
+  		font-weight: bold;
+  		line-height: 1.3em;
+  	}
+    #jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post {
+    	float: none;
+    	width: auto;
+    	margin-bottom: 12px;
+    }
+    /*
+    aside.largo-related-posts {
+    	display: none;
+    }
+    */
+  </style>';
+}
 
 /**
  * my custom logging functions for debug
