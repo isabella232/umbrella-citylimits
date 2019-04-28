@@ -684,6 +684,8 @@ if ( current_user_can('administrator') ) {
 //	}
 } else {
 	add_filter( 'jetpack_relatedposts_filter_options', 'jetpackme_no_related_posts' );
+	add_action( 'widgets_init', 'remove_jp_related_widget' );
+	add_filter( 'wp', 'jetpackme_remove_rp', 20 );
 }
 
 
@@ -697,6 +699,11 @@ function jetpackme_no_related_posts( $options ) {
 function remove_related_widget() {
 	//unregister_widget('largo_recent_posts_widget');
 	//unregister_widget('largo_related_posts_widget');
+}
+
+//disable JP
+function remove_jp_related_widget() {
+	unregister_widget('jp_cl_related_posts');
 }
 
 //remove JP Related Posts from default location so we can move it elsewhere
