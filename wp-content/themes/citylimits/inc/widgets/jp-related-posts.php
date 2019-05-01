@@ -26,7 +26,7 @@ class jp_cl_related_posts extends WP_Widget {
 	 * Just a wrapper for the Jetpack shortcode.
 	 *
 	 */
-	function widget() {
+	function widget( $args, $instance ) {
 		if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
 			if ( current_user_can('administrator') ) {
 				echo do_shortcode( '[jetpack-related-posts]' );
