@@ -749,6 +749,16 @@ function jetpack_related_posts_style() {
 }
 
 /**
+ * add subscribe form to homepage
+ */
+function citylimits_newsletter_form_homepage() {
+	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
+}
+add_action( 'largo_before_sticky_posts', 'citylimits_newsletter_form_homepage', 11 );
+
+
+
+/**
  * my custom logging functions for debug
  */
 
