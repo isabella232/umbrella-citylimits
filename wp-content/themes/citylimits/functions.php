@@ -748,6 +748,29 @@ function jetpack_related_posts_style() {
   </style>';
 }
 
+// limit results to last 3 years
+function jetpackme_related_posts_past_3years_only( $date_range ) {
+	$date_range = array(
+		'from' => strtotime( '-3 years' ),
+		'to' => time(),
+	);
+	return $date_range;
+}
+add_filter( 'jetpack_relatedposts_filter_date_range', 'jetpackme_related_posts_past_3years_only' );
+
+//eliminate some categories
+function jetpackme_filter_exclude_category( $filters ) {
+	$filters[] = array( 'not' =>
+		array( 'term' => array( 'category.slug' => 'community-wire' ) )
+	);
+	$filters[] = array( 'not' =>
+		array( 'term' => array( 'term' => 'uncategorized' ) )
+	);
+	return $filters;
+}
+add_filter( 'jetpack_relatedposts_filter_filters', 'jetpackme_filter_exclude_category' );
+
+
 /**
  * add subscribe form to homepage
  */
