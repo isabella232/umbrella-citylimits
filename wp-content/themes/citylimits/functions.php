@@ -781,7 +781,14 @@ function citylimits_newsletter_form_homepage() {
 }
 add_action( 'largo_before_sticky_posts', 'citylimits_newsletter_form_homepage', 11 );
 
-
+/**
+ * tell buggy plugins to be quiet in Query Monitor
+ */
+add_filter( 'qm/collect/php_error_levels', function( array $levels ) {
+	$levels['plugin']['taxonomy-converter'] = ( E_ALL & ~E_DEPRECATED );
+	$levels['plugin']['news-match-popup-basics'] = ( E_ALL & ~E_NOTICE );
+	return $levels;
+} );
 
 /**
  * my custom logging functions for debug
