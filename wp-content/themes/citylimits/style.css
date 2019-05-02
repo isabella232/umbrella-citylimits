@@ -1860,17 +1860,43 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 }
 .newsletter-signup.maincolumn {
   margin: 24px 0;
+}
+.newsletter-signup.maincolumn,
+.newsletter-signup.footer {
   background: #DDD;
 }
-.newsletter-signup.maincolumn .column {
+.newsletter-signup.maincolumn .column,
+.newsletter-signup.footer .column {
   float: left;
   width: 33.33%;
   padding: 15px;
 }
-.newsletter-signup.maincolumn p {
+.newsletter-signup.maincolumn p,
+.newsletter-signup.footer p {
   font-size: 15px;
   margin-bottom: 0;
 }
-.newsletter-signup.maincolumn section + section {
+.newsletter-signup.maincolumn section + section,
+.newsletter-signup.footer section + section {
   margin-top: 15px;
+}
+.newsletter-signup.footer {
+  /*most of this is copied from the Largo Less for #page */
+  max-width: 1170px;
+  padding: 0 2.5%;
+}
+@media (min-width: 769px) and (max-width: 979px) {
+  .newsletter-signup.footer {
+    padding: 0 18px;
+  }
+}
+@media (min-width: 1200px) {
+  .newsletter-signup.footer {
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .newsletter-signup.footer {
+    padding: 0 20px;
+  }
 }

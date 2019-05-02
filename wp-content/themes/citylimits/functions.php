@@ -781,6 +781,11 @@ function citylimits_newsletter_form_homepage() {
 }
 add_action( 'largo_before_sticky_posts', 'citylimits_newsletter_form_homepage', 11 );
 
+function citylimits_newsletter_form_homepage_footer() {
+	get_template_part( 'partials/newsletter-signup', 'footer' );
+}
+add_action( 'largo_before_footer', 'citylimits_newsletter_form_homepage_footer', 11 );
+
 /**
  * tell buggy plugins to be quiet in Query Monitor
  */
