@@ -1,5 +1,19 @@
 <div class="newsletter-signup maincolumn clearfix">
-	<form>
+	<div class="not-expanded">
+		<div class="row">
+			<div class="column">
+				<h3>The City Limits Newsletters</h3>
+			</div>
+			<div class="column">
+				<div class="signup-button">Sign Up</div>
+			</div>
+			<div class="column">
+				<h4>Get our reporting in your inbox weekly</h4>
+			</div>
+		</div>
+	</div>
+
+	<form class="expanded">
 		<div class="row">
 			<div class="column">
 				<h3>The City Limits Newsletters</h3>

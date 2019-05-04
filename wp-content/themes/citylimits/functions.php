@@ -37,6 +37,7 @@ function largo_child_require_files() {
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
 		'/inc/widgets/jp-related-posts.php',
+		'/inc/widgets/cl-newsletter-header.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -60,6 +61,7 @@ function citylimits_widgets_init() {
 	register_widget( 'communitywire_announcements' );
 	register_widget( 'communitywire_sidebar' );
 	register_widget( 'jp_cl_related_posts' );
+	register_widget( 'cl_newsletter_header' );
 }
 add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
 
@@ -556,12 +558,17 @@ add_filter( 'tribe_get_list_widget_events', 'tribe_custom_list_widget_events' );
 /**
  * get other scripts
  */
- function citylimits_communitywire_enqueue() {
+function citylimits_communitywire_enqueue() {
  	if (is_page_template( 'page-communitywire.php' )) {
 		wp_enqueue_script( 'inn-tools', get_stylesheet_directory_uri() . '/js/communitywire.js', array( 'jquery' ), '1.1', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
+
+function citylimits_newsletter_enqueue() {
+	wp_enqueue_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery' ), '1.1', true );
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
 
 /* need this to allow Gravity Forms to post to API */
 add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
@@ -809,5 +816,23 @@ function flat($obj) {
 function jb_log($obj) {
 	error_log(flat($obj));
 }
+
+/**
+ * add livereload when developing locally, turn off annoying admin bar
+ */
+
+if (strpos($_SERVER['DOCUMENT_ROOT'], 'jonny') !== false) {
+	add_action( 'wp_enqueue_scripts', 'enqueue_my_scripts' );
+	add_action( 'show_admin_bar', '__return_false' );
+}
+
+function enqueue_my_scripts() {
+	if (!is_admin()) {
+		wp_register_script('livereload', 'http://localhost:35729/livereload.js', null, false, true);
+		wp_enqueue_script('livereload');
+	}
+}
+
+
 
 
