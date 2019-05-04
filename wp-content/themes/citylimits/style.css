@@ -1916,8 +1916,27 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
   transition: max-height 1.4s;
   overflow: hidden;
 }
-.newsletter-signup.header {
+.newsletter-signup.header .header-cl-ad {
   display: none;
+}
+.newsletter-signup.header .cl-tagline-holder {
+  width: 528px;
+  height: 90px;
+  position: relative;
+  float: left;
+}
+.newsletter-signup.header .cl-tagline-holder .cl-tagline {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(img/header_tagline.png);
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+.header-ad-zone {
+  width: 728px;
+  margin-top: 19px;
 }
 @media (min-width: 769px) {
   .newsletter-signup.header {
@@ -1932,6 +1951,16 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 @media (min-width: 769px) and (max-width: 979px) {
   .newsletter-signup.footer {
     padding: 0 18px;
+  }
+}
+@media (max-width: 769px) {
+  .header-ad-zone {
+    display: none;
+  }
+}
+@media (max-width: 1160px) {
+  .header-ad-zone {
+    margin: 0 auto;
   }
 }
 @media (min-width: 1200px) {

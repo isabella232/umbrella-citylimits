@@ -1685,10 +1685,33 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 	}
 	
 	&.header {
-		display: none;
+		.header-cl-ad {
+			display: none;
+		}
+		.cl-tagline-holder {
+			width: 528px;
+			height: 90px;
+			position: relative;
+			float: left;
+			.cl-tagline {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-image: url(img/header_tagline.png);
+				background-position: center;
+				background-size: 80%;
+				background-repeat: no-repeat;
+			}
+		}
 	}
 	
 }
+
+.header-ad-zone {
+	width: 728px;
+	margin-top: 19px;
+}
+
 
 @media (min-width: 769px) {
 	.newsletter-signup {
@@ -1708,6 +1731,18 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 		&.footer {
 			padding: 0 18px;
 		}
+	}
+}
+
+@media (max-width: 769px) {
+	.header-ad-zone {
+		display: none;
+	}
+}
+
+@media (max-width: 1160px) {
+	.header-ad-zone {
+		margin: 0 auto;
 	}
 }
 
