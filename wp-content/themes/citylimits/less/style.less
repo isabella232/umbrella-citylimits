@@ -1607,9 +1607,6 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
-	.expanded {
-		display: none;
-	}
 	.signup-button {
 		width: 200px;
 		height: 60px;
@@ -1650,6 +1647,17 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 	}
 	&.maincolumn {
 		margin: 24px 0;
+		position: relative;
+		max-height: 90px;
+		-webkit-transition: max-height .4s;
+		transition: max-height .4s;
+		overflow: hidden;
+		.expanded {
+			background-color: #DDD;
+			display: none;
+			position: absolute;
+			top: 0
+		}
 	}
 	&.maincolumn, &.footer {
 		background: #DDD;
@@ -1670,6 +1678,10 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 	&.footer { /* copied from the Largo Less for #page */
 		max-width: 1170px;
 		padding: 0 2.5%;
+		max-height: 0;
+		-webkit-transition: max-height 1.4s;
+		transition: max-height 1.4s;
+		overflow: hidden;
 	}
 	
 	&.header {
@@ -1677,14 +1689,6 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 	}
 	
 }
-
-/*tmp for testing*/
-#header-ad-zone-container {
-	aside.widget_media_image {
-		display: none !important;
-	}
-}
-
 
 @media (min-width: 769px) {
 	.newsletter-signup {
