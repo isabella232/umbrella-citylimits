@@ -41,7 +41,13 @@ module.exports = function(grunt) {
         options: {
         	livereload: true
         }
-      }
+      },
+      reload: {
+      	files: ['**/*.php', '**/*.js'],
+         options: {
+        	livereload: true
+        }
+     }
     },
 
     version: {
