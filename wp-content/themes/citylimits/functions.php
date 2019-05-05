@@ -781,17 +781,21 @@ add_filter( 'jetpack_relatedposts_filter_filters', 'jetpackme_filter_exclude_cat
 
 
 /**
- * add subscribe form to homepage
+ * newsletter subscribe forms
  */
-function citylimits_newsletter_form_homepage() {
+function citylimits_newsletter_form_interstitial() {
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
 }
-add_action( 'largo_before_sticky_posts', 'citylimits_newsletter_form_homepage', 11 );
+add_action( 'largo_before_sticky_posts', 'citylimits_newsletter_form_interstitial', 11 );
+add_action( 'largo_category_after_primary_featured_post', 'citylimits_newsletter_form_interstitial', 11 );
+add_action( 'largo_series_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
+add_action( 'largo_archive_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
 
 function citylimits_newsletter_form_homepage_footer() {
 	get_template_part( 'partials/newsletter-signup', 'footer' );
 }
 add_action( 'largo_before_footer', 'citylimits_newsletter_form_homepage_footer', 11 );
+
 
 /**
  * tell buggy plugins to be quiet in Query Monitor
