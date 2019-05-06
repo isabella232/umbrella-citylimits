@@ -45,9 +45,9 @@
 
 		wp_enqueue_style(
 			'largo-child-styles',
-			get_stylesheet_directory_uri() . '/child-style.css',
+			get_stylesheet_directory_uri() . '/css/child-style.css',
 			array('largo-stylesheet'),
-			filemtime( get_stylesheet_directory() . '/child-style.css' )
+			filemtime( get_stylesheet_directory() . '/css/child-style.css' )
 		);
 
 		// Core JS includes some utilities, initializes carousels, search form behavior,

@@ -21,16 +21,13 @@
 				<h4>Get our reporting in your inbox weekly</h4>
 			</div>
 			<div class="column">
+<?php foreach ( get_field('newsletters', 'option') as $newsletter ) { var_log($newsletter);?>
 				<section>
-					<h3>Newsletter #1</h3>
-					<p>Nulla augue posuere nisl, ac sollicitudin tellus.</p>
-					<input type="checkbox" id="newsletter1" value="newsletter1"><label for="newsletter1">Sign up for Newsletter #1</label>
+					<h3><?= $newsletter['newsletter_title'] ?></h3>
+					<?= $newsletter['newsletter_description'] ?>
+					<input type="checkbox" id="<?= $newsletter['newsletter_id'] ?>" value="<?= $newsletter['newsletter_id'] ?>"><label for="<?= $newsletter['newsletter_id'] ?>">Sign up for <?= $newsletter['newsletter_title'] ?></label>
 				</section>
-				<section>
-					<h3>Newsletter #2</h3>
-					<p>Praesent bibendum justo eget porta vulputate.</p>
-					<input type="checkbox" id="newsletter2" value="newsletter2"><label for="newsletter2">Sign up for Newsletter #2</label>
-				</section>
+<?php } ?>
 			</div>
 			<div class="column">
 				<input type="text" id="newsletter_name" placeholder="Your Name">

@@ -647,6 +647,13 @@ function tribe_remove_customizer_css(){
 }
 add_action( 'wp_footer', 'tribe_remove_customizer_css' );
 
+
+/**
+ * remove this theme's style.css, since we're using child-style.css instead
+ * see https://github.com/INN/Largo-Sample-Child-Theme/issues/14
+ */
+remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
+
 /**
  * filter search results: remove old events
  */
@@ -683,11 +690,9 @@ add_action( 'pre_get_posts', 'cl_pre_get_posts' );
 /* TESTING JETPACK RELATED POSTS ON LIVE SERVER */
 
 if ( current_user_can('administrator') ) {
-//	if ( get_current_user_id() == 2635436 ) {
-		add_filter( 'wp', 'jetpackme_remove_rp', 20 );
-		add_action('wp_head', 'jetpack_related_posts_style');
-		add_action( 'widgets_init', 'remove_related_widget' );
-//	}
+	add_filter( 'wp', 'jetpackme_remove_rp', 20 );
+	add_action('wp_head', 'jetpack_related_posts_style');
+	add_action( 'widgets_init', 'remove_related_widget' );
 } else {
 	add_filter( 'jetpack_relatedposts_filter_options', 'jetpackme_no_related_posts' );
 	add_action( 'widgets_init', 'remove_jp_related_widget' );
@@ -804,21 +809,6 @@ add_filter( 'qm/collect/php_error_levels', function( array $levels ) {
 } );
 
 /**
- * my custom logging functions for debug
- */
-
-function flat($obj) {
-	if (is_array($obj) || is_object($obj)) {
-		return print_r($obj, true);
-	}
-	return $obj;
-}
-
-function jb_log($obj) {
-	error_log(flat($obj));
-}
-
-/**
  * add livereload when developing locally, turn off annoying admin bar
  */
 
@@ -834,6 +824,22 @@ function enqueue_my_scripts() {
 	}
 }
 
+
+/**
+ * create Options Page for Mailchimp newsletter settings, which are handled by ACF
+ */
+
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Mailchimp Newsletter Settings',
+		'menu_title'	=> 'CL Mailchimp',
+		'menu_slug' 	=> 'cl-mailchimp-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+}
 
 
 

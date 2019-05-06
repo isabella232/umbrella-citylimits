@@ -138,6 +138,7 @@ add_action( 'edited_neighborhoods', 'citylimits_update_project_latlon', 10, 2 );
 
 /**
  * Overriding Largo function to prevent insertion of empty _term_meta posts
+ * see https://github.com/INN/largo/issues/1014
  * Get the proxy post for a term
  *
  * @param string $taxnomy The taxonomy of the term for which you want to retrieve a term meta post

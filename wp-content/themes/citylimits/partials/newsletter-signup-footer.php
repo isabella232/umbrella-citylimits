@@ -3,8 +3,9 @@
 		<div class="row">
 			<div class="column">
 				<h3>The City Limits Newsletters</h3>
-				<input type="checkbox" id="newsletter1" value="newsletter1"><label for="newsletter1">Newsletter #1</label>
-				<input type="checkbox" id="newsletter2" value="newsletter2"><label for="newsletter2">Newsletter #2</label>
+<?php foreach ( get_field('newsletters', 'option') as $newsletter ) { var_log($newsletter);?>
+				<input type="checkbox" id="<?= $newsletter['newsletter_id'] ?>" value="<?= $newsletter['newsletter_id'] ?>"><label for="<?= $newsletter['newsletter_id'] ?>"><?= $newsletter['newsletter_title'] ?></label>
+<?php } ?>
 				<h4>Get our reporting in your inbox weekly</h4>
 			</div>
 			<div class="column">
