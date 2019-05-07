@@ -23,21 +23,24 @@
 			<div class="column">
 <?php foreach ( get_field('newsletter_group', 'option') as $group ) { 
 		foreach ( $group['newsletters'] as $newsletter) {
-
-var_log($newsletter);?>
+?>
 				<section>
 					<h3><?= $newsletter['title'] ?></h3>
 					<?= $newsletter['description'] ?>
-					<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>"><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
+					<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]" required><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
 				</section>
 <?php }
 } ?>
 			</div>
 			<div class="column">
-				<input type="text" id="newsletter_name" placeholder="Your Name">
-				<input type="text" id="newsletter_email" placeholder="Your Email">
+				<input type="text" name="newsletter_fname" placeholder="First Name" required>
+				<input type="text" name="newsletter_lname" placeholder="Last Name" required>
+				<input type="email" name="newsletter_email" placeholder="Your Email" required>
 				<input type="submit" value="submit">
 			</div>
 		</div>
 	</form>
+	<div class="newsletter-thanks">
+		Thanks for signing up.
+	</div>
 </div><!--.newsletter-signup-->

@@ -1,4 +1,5 @@
 <?php
+use DrewM\MailChimp\MailChimp;
 /**
  * A file of functions modifying Largo's inc/ajax-functions.php
  * Primarily used for LMP modifications
@@ -37,3 +38,30 @@ function citylimits_neighborhood_archive_lmp_query( $config ) {
 	return $config;
 }
 add_action( 'largo_load_more_posts_json', 'citylimits_neighborhood_archive_lmp_query', 1 );
+
+
+if ( !function_exists( 'cl_mc_signup' ) ) {
+	/**
+	 * Signs up for MailChimp newsletter(s)
+	 */
+	function cl_mc_signup() {
+		require_once(get_stylesheet_directory() . '/lib/MailChimp.php');
+		$mailchimp_api_key = get_field('mailchimp_api_key', 'option');
+		$list_id = get_field('list_id', 'option');
+		$MC = new MailChimp($mailchimp_api_key);
+
+		foreach ($_REQUEST['newsletters'] as $newsletter) {
+			$interests[$newsletter] = true;
+		}
+	
+		$result = $MC->post("lists/$list_id/members", [
+			'email_address' => $_REQUEST['email'],
+			'status' => 'subscribed',
+			'merge_fields' => ['FNAME' => $_REQUEST['fname'], 'LNAME' => $_REQUEST['lname']],
+			'interests' => $interests
+		]);
+		die();
+	}
+	add_action("wp_ajax_cl_mc_signup", "cl_mc_signup");
+	add_action("wp_ajax_nopriv_cl_mc_signup", "cl_mc_signup");
+}

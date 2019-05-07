@@ -1826,6 +1826,9 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.newsletter-signup .newsletter-thanks {
+  display: none;
+}
 .newsletter-signup .signup-button {
   width: 200px;
   height: 60px;
