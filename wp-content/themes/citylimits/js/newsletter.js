@@ -50,33 +50,76 @@ jQuery(document).ready(function($) {
 			}
 		})
 		
-		$('.newsletter-signup form').submit(function(e) {
-			e.preventDefault();
-			var $this = $(e.target);
-			$this.find('input[type=submit]').attr('disabled', true)
-			var email = $this.find('input[name=newsletter_email]').val()
-			var fname = $this.find('input[name=newsletter_fname]').val()
-			var lname = $this.find('input[name=newsletter_lname]').val()
+	}
+	
+	//Newsletter Landing Page
+	$('.subscribe_button').click(function() {
+		if ($(this).hasClass('selected')) {
+			return
+		}
+		$(this).addClass('selected')
+		var id = $(this).attr('data-newsletter-id')
+		var title = $(this).parent().find('.newsletter_title').text()
+		var entry = $('<div class="newsletter_to_subscribe" data-newsletter-id="' + id + '">' + title + '<div class="remove">X</div></div>')
+		$('#selected_newsletters').append(entry)
+		$('#newsletter_cart').width($('#sidebar').width()).show()
+		$('#newsletter_cart input[name=newsletter_fname]').focus()
+		
+		entry.children('.remove').click(function() {
+			var id = $(this).parent().attr('data-newsletter-id')
+			$('.subscribe_button[data-newsletter-id=' + id + ']').removeClass('selected')
+			$(this).parent().remove()
+			if (!$('#selected_newsletters .newsletter_to_subscribe').length) {
+				$('#newsletter_cart').hide()
+			}
+		})
+	})
+	
+	$(window).resize(function() {
+		$('#newsletter_cart').width($('#sidebar').width())
+	})
+	
 
-			var newsletters = []
+	/*FORM SUBMIT*/
+	//this form will do dual-duty for mini-forms on all pages, as well as 'cart' on newsletter landing
+	$('.newsletter-signup form, #newsletter_cart form').submit(function(e) {
+		e.preventDefault();
+		var $this = $(e.target);
+		$this.find('input[type=submit]').attr('disabled', true)
+		var email = $this.find('input[name=newsletter_email]').val()
+		var fname = $this.find('input[name=newsletter_fname]').val()
+		var lname = $this.find('input[name=newsletter_lname]').val()
+
+		var newsletters = []
+		if ($('body').hasClass('newsletter-landing')) {
+			$('.newsletter_to_subscribe').each(function(i, x) {
+				newsletters.push($(x).attr('data-newsletter-id'))
+			})
+		} else {
 			$this.find('input[type=checkbox]').filter(':checked').each(function(i, x) {
 				newsletters.push($(x).val())
 			})
-
-			$.ajax({
-				type : "post",
-				dataType : "json",
-				url : myAjax.ajaxurl,
-				data : {action: "cl_mc_signup", fname: fname, lname: lname, email: email, newsletters: newsletters},
-				success: function(response) {
-					$('.newsletter-signup form, .newsletter-signup .not-expanded').hide();
-					$('.newsletter-thanks').show();
-					$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '100px'});
-					submitted = true;
+		}
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : myAjax.ajaxurl,
+			data : {action: "cl_mc_signup", fname: fname, lname: lname, email: email, newsletters: newsletters},
+			success: function(response) {
+				if ($('body').hasClass('newsletter-landing')) {
+					$('#main').html('<h1>Thanks for signing up!</h1>')
+				} else {
+					$('.newsletter-signup form, .newsletter-signup .not-expanded').hide()
+					$('.newsletter-thanks').show()
+					$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '100px'})
+					submitted = true
 				}
-			})
-		});
-	}
+			}
+		})
+	});
+
+
+
 });
 
 function $c(t) {

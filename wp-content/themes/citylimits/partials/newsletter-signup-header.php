@@ -3,7 +3,7 @@
 		<div class="cl-tagline">
 		</div>
 	</div>
-	 <?php if ($_COOKIE['signedUpNewsletter'] == true) { ?>
+	 <?php if ( $_COOKIE['signedUpNewsletter'] == true || $post->post_name == 'newsletter-subscriptions' ) { ?>
 	<a href="<?= site_url() ?>/donate?campaign=7011U000000M5rC" class="header-cl-ad"><img src="<?= get_stylesheet_directory_uri() ?>/img/donate_header.gif"></a>
 	<? } else { ?>
 	<a href="<?= site_url() ?>/get-the-city-limits-weekly-brief/" class="header-cl-ad"><img src="<?= get_stylesheet_directory_uri() ?>/img/newsletter_signup_header.gif"></a>

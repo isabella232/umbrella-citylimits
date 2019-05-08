@@ -830,6 +830,21 @@ function enqueue_my_scripts() {
 }
 
 
+/*REMOVE*/
+function flat($obj) {
+	if (is_array($obj) || is_object($obj)) {
+		return print_r($obj, true);
+	}
+	return $obj;
+}
+
+function jb_log($obj) {
+	error_log(flat($obj));
+}
+
+
+
+
 /**
  * create Options Page for Mailchimp newsletter settings, which are handled by ACF
  */

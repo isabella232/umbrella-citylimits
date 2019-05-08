@@ -1705,6 +1705,101 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 	margin-top: 19px;
 }
 
+/*NEWSLETTER LANDING PAGE*/
+body.newsletter-landing {
+	.newsletter_group {
+		padding-bottom: 30px;
+		border-bottom: 1px solid #000;
+		&:last-child {
+			border-bottom-style: none;
+		}
+		&+.newsletter_group {
+			margin-top: 40px;
+		}
+		h2 {
+			margin-bottom: 12px;
+		}
+		h3, h4, h5 {
+			margin-bottom: 0;
+		}
+		.newsletter {
+			&:before, &:after {
+				display: table;
+				content: " ";
+			}
+			&:after {
+				clear: both;
+			}
+			&+.newsletter {
+				margin-top: 20px;
+			}
+			figure {
+				width: 140px;
+				float: left;
+			}
+			.newsletter_info {
+				padding-left: 30px;
+				float: left;
+				margin-bottom: 12px;
+			}
+			.subscribe_button {
+				clear: both;
+				background-color: #DDD;
+				cursor: pointer;
+				padding: 12px;
+				height: 40px;
+				&:hover {
+					background-color: #DFD;
+				}
+				&.selected {
+					background-color: #FDD;
+					cursor: default;
+					div.selected {
+						display: block;
+					}
+					div.unselected {
+						display: none;
+					}
+				}
+				div.selected {
+					display: none;
+				}
+				
+				div.selected, div.unselected {
+					float: right;
+					text-align: center;
+					padding: 6px 0;
+					width: 100px;
+					border: 1px solid #000;
+				}
+			}
+		}
+	}
+	#newsletter_cart {
+		display: none;
+		position: fixed;
+		* {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		.newsletter_to_subscribe {
+			padding-bottom: 8px;
+		}
+		input[type=text], input[type=email] {
+			width: 100%;
+		}
+		.remove {
+			display: inline-block;
+			background-color: #900;
+			color: #FFF;
+			cursor: pointer;
+			padding: 0 6px;
+			float: right;
+		}
+	}
+}
+
 
 @media (min-width: 769px) {
 	.newsletter-signup {
