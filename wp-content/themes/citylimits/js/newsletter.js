@@ -60,9 +60,15 @@ jQuery(document).ready(function($) {
 		$(this).addClass('selected')
 		var id = $(this).attr('data-newsletter-id')
 		var title = $(this).parent().find('.newsletter_title').text()
-		var entry = $('<div class="newsletter_to_subscribe" data-newsletter-id="' + id + '">' + title + '<div class="remove">X</div></div>')
+		var entry = $('<h6 class="newsletter_to_subscribe" data-newsletter-id="' + id + '">' + title + '<div class="remove">X</div></h6>')
 		$('#selected_newsletters').append(entry)
-		$('#newsletter_cart').width($('#sidebar').width()).show()
+		if ($(window).width() < 769) {
+			cartW = $(window).width()
+		} else {
+			cartW = $('#sidebar').width()
+		}
+		$c(cartW)
+		$('#newsletter_cart').width(cartW).show()
 		$('#newsletter_cart input[name=newsletter_fname]').focus()
 		
 		entry.children('.remove').click(function() {

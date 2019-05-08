@@ -1933,6 +1933,9 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
   margin-top: 19px;
 }
 /*NEWSLETTER LANDING PAGE*/
+body.newsletter-landing #main {
+  margin-top: 60px;
+}
 body.newsletter-landing .newsletter_group {
   padding-bottom: 30px;
   border-bottom: 1px solid #000;
@@ -1948,7 +1951,8 @@ body.newsletter-landing .newsletter_group h2 {
 }
 body.newsletter-landing .newsletter_group h3,
 body.newsletter-landing .newsletter_group h4,
-body.newsletter-landing .newsletter_group h5 {
+body.newsletter-landing .newsletter_group h5,
+body.newsletter-landing .newsletter_group p {
   margin-bottom: 0;
 }
 body.newsletter-landing .newsletter_group .newsletter:before,
@@ -1963,11 +1967,14 @@ body.newsletter-landing .newsletter_group .newsletter + .newsletter {
   margin-top: 20px;
 }
 body.newsletter-landing .newsletter_group .newsletter figure {
-  width: 140px;
+  width: 35%;
   float: left;
 }
+body.newsletter-landing .newsletter_group .newsletter h3 {
+  font-size: 19px;
+}
 body.newsletter-landing .newsletter_group .newsletter .newsletter_info {
-  padding-left: 30px;
+  padding-left: 6%;
   float: left;
   margin-bottom: 12px;
 }
@@ -1977,6 +1984,8 @@ body.newsletter-landing .newsletter_group .newsletter .subscribe_button {
   cursor: pointer;
   padding: 12px;
   height: 40px;
+  width: 40%;
+  float: right;
 }
 body.newsletter-landing .newsletter_group .newsletter .subscribe_button:hover {
   background-color: #DFD;
@@ -2002,21 +2011,40 @@ body.newsletter-landing .newsletter_group .newsletter .subscribe_button div.unse
   width: 100px;
   border: 1px solid #000;
 }
-body.newsletter-landing #newsletter_cart {
-  display: none;
+body.newsletter-landing #sidebar {
   position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /*width: auto;*/
+  margin-bottom: 0;
 }
-body.newsletter-landing #newsletter_cart * {
+body.newsletter-landing #sidebar * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+body.newsletter-landing #newsletter_cart {
+  display: none;
+  padding: 8px 2.5%;
+  background-color: #FAFAFA;
+}
+body.newsletter-landing #newsletter_cart h3 {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+body.newsletter-landing #newsletter_cart #selected_newsletters {
+  width: 95%;
+}
+body.newsletter-landing #newsletter_cart #selected_newsletters h6 {
+  margin-bottom: 0;
 }
 body.newsletter-landing #newsletter_cart .newsletter_to_subscribe {
   padding-bottom: 8px;
 }
 body.newsletter-landing #newsletter_cart input[type=text],
 body.newsletter-landing #newsletter_cart input[type=email] {
-  width: 100%;
+  width: 95%;
 }
 body.newsletter-landing #newsletter_cart .remove {
   display: inline-block;
@@ -2034,6 +2062,36 @@ body.newsletter-landing #newsletter_cart .remove {
   .newsletter-signup.header .header-cl-ad {
     height: 90px;
     display: inline-block;
+  }
+  body.newsletter-landing #main {
+    margin-top: 8px;
+  }
+  body.newsletter-landing .newsletter_group .newsletter h3 {
+    font-size: 29.328px;
+  }
+  body.newsletter-landing .newsletter_group .newsletter figure {
+    width: 140px;
+  }
+  body.newsletter-landing .newsletter_group .newsletter .newsletter_info {
+    padding-left: 30px;
+  }
+  body.newsletter-landing .newsletter_group .newsletter .subscribe_button {
+    width: auto;
+    float: none;
+  }
+  body.newsletter-landing #sidebar {
+    position: static;
+  }
+  body.newsletter-landing #newsletter_cart {
+    position: fixed;
+    padding: 20px;
+  }
+  body.newsletter-landing #newsletter_cart h3 {
+    font-size: 36px;
+  }
+  body.newsletter-landing #newsletter_cart input[type=text],
+  body.newsletter-landing #newsletter_cart input[type=email] {
+    width: 100%;
   }
 }
 @media (min-width: 769px) and (max-width: 979px) {

@@ -1707,6 +1707,9 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 
 /*NEWSLETTER LANDING PAGE*/
 body.newsletter-landing {
+	#main {
+		margin-top: 60px;
+	}
 	.newsletter_group {
 		padding-bottom: 30px;
 		border-bottom: 1px solid #000;
@@ -1719,7 +1722,7 @@ body.newsletter-landing {
 		h2 {
 			margin-bottom: 12px;
 		}
-		h3, h4, h5 {
+		h3, h4, h5, p {
 			margin-bottom: 0;
 		}
 		.newsletter {
@@ -1734,11 +1737,14 @@ body.newsletter-landing {
 				margin-top: 20px;
 			}
 			figure {
-				width: 140px;
+				width: 35%;
 				float: left;
 			}
+			h3 {
+				font-size: 19px;
+			}
 			.newsletter_info {
-				padding-left: 30px;
+				padding-left: 6%;
 				float: left;
 				margin-bottom: 12px;
 			}
@@ -1748,6 +1754,8 @@ body.newsletter-landing {
 				cursor: pointer;
 				padding: 12px;
 				height: 40px;
+				width: 40%;
+				float: right;
 				&:hover {
 					background-color: #DFD;
 				}
@@ -1775,19 +1783,38 @@ body.newsletter-landing {
 			}
 		}
 	}
-	#newsletter_cart {
-		display: none;
+	#sidebar {
 		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		/*width: auto;*/
+		margin-bottom: 0;
 		* {
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
 			box-sizing: border-box;
 		}
+	}
+	#newsletter_cart {
+		display: none;
+		padding: 8px 2.5%;
+		background-color: #FAFAFA;
+		h3 {
+			font-size: 24px;
+			margin-bottom: 0;
+		}
+		#selected_newsletters {
+			width: 95%;
+			h6 {
+				margin-bottom: 0;
+			}
+		}
 		.newsletter_to_subscribe {
 			padding-bottom: 8px;
 		}
 		input[type=text], input[type=email] {
-			width: 100%;
+			width: 95%;
 		}
 		.remove {
 			display: inline-block;
@@ -1809,6 +1836,41 @@ body.newsletter-landing {
 			.header-cl-ad {
 				height: 90px;
 				display: inline-block;
+			}
+		}
+	}
+	body.newsletter-landing {
+		#main {
+			margin-top: 8px;
+		}
+		.newsletter_group {
+			.newsletter {
+				h3 {
+					font-size: 29.328px;
+				}
+				figure {
+					width: 140px;
+				}
+				.newsletter_info {
+					padding-left: 30px;
+				}
+				.subscribe_button {
+					width: auto;
+					float: none;
+				}
+			}
+		}
+		#sidebar {
+			position: static;
+		}
+		#newsletter_cart {
+			position: fixed;
+			padding: 20px;
+			h3 {
+				font-size: 36px;
+			}
+			input[type=text], input[type=email] {
+				width: 100%;
 			}
 		}
 	}
