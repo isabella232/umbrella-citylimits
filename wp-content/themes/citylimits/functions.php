@@ -566,7 +566,7 @@ function citylimits_communitywire_enqueue() {
 add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
 
 function citylimits_newsletter_enqueue() {
-	wp_register_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery' ), '1.1', true );
+	wp_register_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery' ), null, true );
 	wp_localize_script( 'cl-newsletter', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));        
 	wp_enqueue_script( 'cl-newsletter' );
 }

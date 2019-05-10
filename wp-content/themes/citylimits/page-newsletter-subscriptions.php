@@ -30,21 +30,22 @@ get_header();
 	<section class="entry-content">
 		
 		<?php do_action('largo_before_page_content'); ?>
-		
+		<div class="newsletter_intro">
 		<?php the_content(); ?>
+		</div><!--.newsletter_intro-->
 		
 		<?php
 			$groups = get_field('newsletter_group', 'option');
 			foreach ($groups as $group) { ?>
 		<section class="newsletter_group">
-<?php			if ( $group['group_title'] ) { ?>
+<?php			if ( $group['group_title'] && count($group['newsletters']) > 1 ) { ?>
 		<h2><?=$group['group_title']?></h2>
 <?php			}
 				foreach ( $group['newsletters'] as $newsletter ) {
 					$thumb = $newsletter['thumbnail'] ? wp_get_attachment_image( $newsletter['thumbnail']['id'], 'thumbnail' ) : '';
-					$subtitle = $newsletter['subtitle'] ? "<h4>" . $newsletter['subtitle'] . "</h4>\n" : '';
-					$byline = $newsletter['byline'] ? "<h5>" . $newsletter['byline'] . "</h5>\n" : '';
-					$sample = $newsletter['sample'] ? "<a href='" . $newsletter['sample']['url'] . "' target='_blank'>View a sample &raquo;</a>" : '';
+					$subtitle = $newsletter['subtitle'] ? "<h5 class='top-tag'>" . $newsletter['subtitle'] . "</h5>\n" : '';
+					$byline = $newsletter['byline'] ? "<h5 class='byline'>" . $newsletter['byline'] . "</h5>\n" : '';
+					$sample = $newsletter['sample'] ? "<a href='" . $newsletter['sample'] . "' target='_blank'>View a sample &raquo;</a>" : '';
 				
 				?>
 			<section class="newsletter">
@@ -52,7 +53,7 @@ get_header();
 					<?= $thumb ?>
 				</figure>
 				<div class="newsletter_info">
-					<h3 class="newsletter_title"><?= $newsletter['title'] ?></h3>
+					<h3 class="entry-title newsletter_title"><?= $newsletter['title'] ?></h3>
 					<?= $subtitle ?>
 					<?= $byline ?>
 					<?= $newsletter['description'] ?>
@@ -80,13 +81,14 @@ get_header();
 <aside id="sidebar" class="span4">
 	<div id="newsletter_cart">
 		<h3>Your Selections</h3>
-		<div id="selected_newsletters">
-		</div>
+		<div id="remove_header">Remove</div>
+		<ul id="selected_newsletters">
+		</ul>
 		<form>
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
 				<input type="text" name="newsletter_lname" placeholder="Last Name" required>
 				<input type="email" name="newsletter_email" placeholder="Your Email" required>
-				<input type="submit" value="submit">
+				<input type="submit" value="Sign Up">
 		</form>
 	</div>
 </aside><!--#sidebar-->

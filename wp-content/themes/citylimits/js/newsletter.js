@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 		signupH = $('.newsletter-signup .not-expanded').height() + 'px';
 		signupOpenH = $('.newsletter-signup .expanded').height() + 'px';
 		$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH});
-
+/*
 		$('.newsletter-signup .not-expanded').on('mouseover click', function(e) {
 			if (submitted) {
 				return;
@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
 			});
 			homebannerCounter++;
 		});
-
+*/
 
 		var footerShown = false;
 		$(window).scroll(function() {
@@ -60,15 +60,10 @@ jQuery(document).ready(function($) {
 		$(this).addClass('selected')
 		var id = $(this).attr('data-newsletter-id')
 		var title = $(this).parent().find('.newsletter_title').text()
-		var entry = $('<h6 class="newsletter_to_subscribe" data-newsletter-id="' + id + '">' + title + '<div class="remove">X</div></h6>')
+		var entry = $('<li class="newsletter_to_subscribe" data-newsletter-id="' + id + '">' + title + '<div class="remove"></div></li>')
 		$('#selected_newsletters').append(entry)
-		if ($(window).width() < 769) {
-			cartW = $(window).width()
-		} else {
-			cartW = $('#sidebar').width()
-		}
-		$c(cartW)
-		$('#newsletter_cart').width(cartW).show()
+		$('#newsletter_cart').show()
+		$(window).resize()
 		$('#newsletter_cart input[name=newsletter_fname]').focus()
 		
 		entry.children('.remove').click(function() {
@@ -82,7 +77,11 @@ jQuery(document).ready(function($) {
 	})
 	
 	$(window).resize(function() {
-		$('#newsletter_cart').width($('#sidebar').width())
+		if ($(window).width() < 769) {
+			$('#newsletter_cart').css({width: 'auto'});
+		} else {
+			$('#newsletter_cart').width($('#sidebar').width() - 80)
+		}
 	})
 	
 
