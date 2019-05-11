@@ -25,6 +25,7 @@ module.exports = function(grunt) {
           paths: ['less'],
           outputSourceFiles: true,
           sourceMapBasepath: path,
+          compress: true
         },
         files: cssLessFiles
       }
