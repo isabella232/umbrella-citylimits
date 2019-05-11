@@ -55,12 +55,12 @@ jQuery(document).ready(function($) {
 		&& !$('body').hasClass('newsletter-landing')) {
 			setTimeout(function() {
 				$('.newsletter-signup.footer').css({'max-height': '500px'});
-			}, 1000);
+			}, 10000);
 		}
-		
+				
 		$('.newsletter-signup.footer .close_box').click(function(e) {
 			$('.newsletter-signup.footer').css({'max-height': 0});
-			Cookies.set('newsletter_modal_snooze', true, {expires: 1 * 24 * 60 * 60});//1 day
+			//Cookies.set('newsletter_modal_snooze', true, {expires: 1 * 24 * 60 * 60});//1 day
 		});
 
 		//HTML 5 validate checkbox group
