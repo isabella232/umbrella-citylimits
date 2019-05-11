@@ -54,7 +54,7 @@ jQuery(document).ready(function($) {
 		
 		//show footer on timeout for narrow
 		if ($(window).width() < 769 
-		&& !Cookies.get('newsletter_modal_snooze')
+		&& !Cookies.get('xxxnewsletter_modal_snooze')
 		&& !$('body').hasClass('newsletter-landing')) {
 			var footerH = $('.newsletter-signup.footer.mobile .mobile_footer_content').outerHeight();
 			setTimeout(function() {
