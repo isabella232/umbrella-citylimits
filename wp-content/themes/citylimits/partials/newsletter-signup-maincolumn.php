@@ -1,3 +1,6 @@
+<?php
+$newsletter_page = get_page_by_path('newsletter-subscriptions');
+?>
 <div class="newsletter-signup maincolumn clearfix">
 	<div class="not-expanded">
 		<div class="not-expanded-bkg"></div>
@@ -5,12 +8,11 @@
 
 	<form class="expanded">
 		<div class="row">
-			<div class="column">
-				<h3>The City Limits Newsletters</h3>
-				<p>Quisque vel urna vitae ipsum vestibulum semper id et leo. Sed vel ante sodales tortor pretium dapibus. Sed suscipit pulvinar congue. Nunc iaculis molestie dui sed rutrum. Vivamus hendrerit id nibh id ornare.</p>
-				<h4>Get our reporting in your inbox weekly</h4>
+			<div class="column signup_text_holder">
+				<div class="signup_text"></div>
+				<p><?= $newsletter_page->post_content ?></p>
 			</div>
-			<div class="column">
+			<div class="column newsletter_list">
 <?php foreach ( get_field('newsletter_group', 'option') as $group ) { 
 		foreach ( $group['newsletters'] as $newsletter) {
 ?>
@@ -22,13 +24,15 @@
 <?php }
 } ?>
 			</div>
-			<div class="column">
+		</div><!--.row-->
+		<div class="row">
+			<div class="column newsletter_form">
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
 				<input type="text" name="newsletter_lname" placeholder="Last Name" required>
 				<input type="email" name="newsletter_email" placeholder="Email" required>
 				<input type="submit" class="subscribe_button" value="Sign Up">
 			</div>
-		</div>
+		</div><!--.row-->
 	</form>
 	<div class="newsletter-thanks">
 		Thanks for signing up.
