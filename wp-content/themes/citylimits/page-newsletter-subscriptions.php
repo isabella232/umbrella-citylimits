@@ -87,8 +87,8 @@ get_header();
 		<form>
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
 				<input type="text" name="newsletter_lname" placeholder="Last Name" required>
-				<input type="email" name="newsletter_email" placeholder="Your Email" required>
-				<input type="submit" value="Sign Up">
+				<input type="email" name="newsletter_email" placeholder="Email" required>
+				<input type="submit" class="subscribe_button" value="Sign Up">
 		</form>
 	</div>
 </aside><!--#sidebar-->

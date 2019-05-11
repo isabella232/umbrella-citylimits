@@ -3,8 +3,8 @@ jQuery(document).ready(function($) {
 	if ($('.newsletter-signup.maincolumn .not-expanded').length) {
 		signupH = $('.newsletter-signup .not-expanded').height() + 'px';
 		signupOpenH = $('.newsletter-signup .expanded').height() + 'px';
-		$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH});
-/*
+		//$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH});
+
 		$('.newsletter-signup .not-expanded').on('mouseover click', function(e) {
 			if (submitted) {
 				return;
@@ -28,16 +28,39 @@ jQuery(document).ready(function($) {
 			});
 			homebannerCounter++;
 		});
-*/
+
 
 		var footerShown = false;
+		//show footer on scroll for wide layouts
 		$(window).scroll(function() {
-			if (!submitted && !footerShown && $(window).scrollTop() + $(window).height() >= $('#site-footer').position().top) {
+			if (!submitted 
+			&& $(window).width() >= 769 
+			&& !footerShown 
+			&& $(window).scrollTop() + $(window).height() >= $('#site-footer').position().top 
+			&& !$('body').hasClass('newsletter-landing')) {
 				footerShown = true;
 				setTimeout(function() {
-					$('.newsletter-signup.footer').css({'max-height': '1000px'});
+					$('.newsletter-signup.footer').css({'background-size': $(window).width() + 'px', 'max-height': '500px'});
+					setTimeout(function() {
+						//after the CSS transition, set the background-size back to contain
+						$('.newsletter-signup.footer').css({'background-size': 'contain'});
+					}, 1400);
 				}, 1000);
 			}
+		});
+		
+		//show footer on timeout for narrow
+		if ($(window).width() < 769 
+		&& !Cookies.get('newsletter_modal_snooze')
+		&& !$('body').hasClass('newsletter-landing')) {
+			setTimeout(function() {
+				$('.newsletter-signup.footer').css({'max-height': '500px'});
+			}, 1000);
+		}
+		
+		$('.newsletter-signup.footer .close_box').click(function(e) {
+			$('.newsletter-signup.footer').css({'max-height': 0});
+			Cookies.set('newsletter_modal_snooze', true, {expires: 1 * 24 * 60 * 60});//1 day
 		});
 
 		//HTML 5 validate checkbox group
@@ -111,6 +134,7 @@ jQuery(document).ready(function($) {
 			url : myAjax.ajaxurl,
 			data : {action: "cl_mc_signup", fname: fname, lname: lname, email: email, newsletters: newsletters},
 			success: function(response) {
+				Cookies.set('signed_up_for_newsletter', true, { expires: Infinity });
 				if ($('body').hasClass('newsletter-landing')) {
 					$('#main').html('<h1>Thanks for signing up!</h1>')
 				} else {
@@ -122,9 +146,6 @@ jQuery(document).ready(function($) {
 			}
 		})
 	});
-
-
-
 });
 
 function $c(t) {

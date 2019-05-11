@@ -1589,24 +1589,20 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
     opacity: 1;
 }
 
-
 /* NEWSLETTER SIGNUP FORMS */
 .newsletter-signup {
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	* {
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
+	.visible-xs {
+		display: block;
+	}
 	.newsletter-thanks {
 		display: none;
-	}
-	.subscribe_button {
-		height: 53px;
-		color: #FFF;
-		font-weight: bold;
-		line-height: 53px;
-		text-align: center;
-		cursor: pointer;
 	}
 	.row {
 		&:before, &:after {
@@ -1622,13 +1618,29 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 		font-size: 15px;
 		line-height: 1.2em;
 	}
+	h3 {
+		font-size: 16px;
+		color: #F00;
+	}
 	label {
 		display: inline;
-		font-size: 15px;
+		font-size: 12px;
 		font-weight: normal;
 	}
 	input[type=text] {
 		width: 100%;
+	}
+	form input[type="checkbox"] {
+		margin-right: 7px;
+	}
+	.signup_text_holder {
+		position: relative;
+		.signup_text {
+			padding-bottom: 30.41958041958042%;
+			background-image: url(../img/signup_text.svg);
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
 	}
 	&.maincolumn {
 		margin: 24px 0;
@@ -1638,11 +1650,15 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 		transition: max-height .4s;
 		overflow: hidden;
 		.not-expanded {
-			height: 100px;
-			background-image: url(../img/newsletter-776x100-collapsed.svg);
-			background-repeat: no-repeat;
-			background-size: 150%;
-			background-position: 88% bottom;
+			position: relative;
+			.not-expanded-bkg {
+				cursor: pointer;
+				padding-bottom: 12.88659793814433%;
+				background-image: url(../img/newsletter-776x100-collapsed.svg);
+				background-repeat: no-repeat;
+				background-size: contain;
+			}
+			/*
 			.subscribe_button_holder {
 				position: absolute;
 				width: 18.43%;
@@ -1661,6 +1677,7 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 				background-repeat: no-repeat;
 				background-size: contain;;
 			}
+			*/
 		}
 		.expanded {
 			background-color: #EBEBEB;
@@ -1677,21 +1694,95 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 			padding: 15px;
 		}
 		p {
-			font-size: 15px;
+			font-size: 12px;
 			margin-bottom: 0;
 		}
 		section+section {
-			margin-top: 15px;
+			margin-top: 9px;
 		}
 	}
 	
-	&.footer { /* copied from the Largo Less for #page */
-		max-width: 1170px;
-		padding: 0 2.5%;
+	&.footer {
 		max-height: 0;
+		margin-top: 30px;
 		-webkit-transition: max-height 1.4s;
 		transition: max-height 1.4s;
 		overflow: hidden;
+		background-image: url(../img/skyline_bkg.svg);
+		background-position: 13% bottom;
+		background-repeat: no-repeat;
+		form {
+			display: none;
+		}
+		&.mobile {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 99999;
+			max-height: 0;
+			-webkit-transition: max-height 1.4s;
+			transition: max-height 1.4s;
+			&>a {
+				position: absolute;
+				display: block;
+				z-index: 20;
+				top: 33px;
+				left: 0;
+				bottom: 0;
+				right: 0;
+			}
+			#close_bar {
+				height: 33px;
+				position: relative;
+				background-color: #b6b6b6;
+				border-top: 1px solid #979797;
+				border-bottom: 1px solid #979797;
+				.close_box {
+					position: absolute;
+					right: 0;
+					margin-top: -1px;
+					width: 33px;
+					height: 33px;
+					background-image: url(../img/newsletter_close_box_hover.svg);
+					background-repeat: no-repeat;
+					background-size: contain;
+					z-index: 100;
+					cursor: pointer;
+				}
+			}
+			.mobile_footer_content {
+				max-width: 293px;
+				position: relative;
+				margin: 35px auto 115px;
+				padding: 0 15px;
+				font-size: 14px;
+				.signup_text_holder {
+					margin-bottom: 15px;
+				}
+				ul {
+					font-size: 15px;
+					font-weight: bold;
+					color: #F00;
+					margin-left: 20px;
+					margin-top: 9px;
+					li {
+						margin: 0;
+					}
+				}
+				.subscribe_button {
+					text-align: center;
+					display: inline-block;
+					width: 135px;
+					height: 35px;
+					font-family: Georgia, "Times New Roman", Times, serif;
+					line-height: 35px;
+					position: absolute;
+					right: 15px;
+				}
+					
+			}
+		}
 	}
 	
 	&.header {
@@ -1717,34 +1808,28 @@ div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
 	
 }
 
-body.category, body.archive {
-	.newsletter-signup.maincolumn {
-		.not-expanded {
-			background-image: url(../img/skyline_bkg.svg), url(../img/signup_text.svg);
-			background-position: 20% bottom, 10% 30%;
-			background-size: 170%, 40%;
-			.subscribe_button {
-				min-width: 110px;
-				position: absolute;
-				right: 31.459227467811159%;
-				width: 11.67381974248927%;
-			}
-		}
-	}
-}
-
-
 .header-ad-zone {
 	width: 728px;
 	margin-top: 19px;
 }
 
-.subscribe_button, #newsletter_cart input[type=submit] {
+.subscribe_button {
 	background-color: #F00;
 	cursor: pointer;
 	-webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
 	-moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
 	box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
+	font-face: Georgia, "Times New Roman", Times, serif;
+	font-weight: bold;
+	color: #FFF;
+	font-size: 18px;
+}
+
+input[type=submit].subscribe_button {
+	font-size: 18px;
+	border-style: none;
+	padding: 17px 31px;
+	border-style: none;
 }
 
 /*NEWSLETTER LANDING PAGE*/
@@ -1807,7 +1892,7 @@ body.newsletter-landing {
 		}
 	}
 
-	.subscribe_button {
+	div.subscribe_button {
 		width: 135px;
 		padding: 12px;
 		float: right;
@@ -1842,11 +1927,6 @@ body.newsletter-landing {
 
 	
 	#newsletter_cart input[type=submit] {
-		font-size: 18px;
-		font-weight: bold;
-		color: #FFF;
-		border-style: none;
-		padding: 17px 31px;
 		margin-bottom: 0;
 		float: right;
 	}
@@ -1910,34 +1990,39 @@ body.newsletter-landing {
 		.newsletter_to_subscribe {
 			padding-bottom: 8px;
 		}
-		input[type=text], input[type=email] {
-			width: 100%;
-			margin-bottom: 15px;
-			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			color: #000;
-			&::placeholder {
-				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-				color: #878787;
-			}
-			border: 1px solid #7D7D7D;
-			padding: 12px 24px;
-			-webkit-box-shadow: inset 0 1px 5px 0 #7D7D7D;
-			-moz-box-shadow: inset 0 1px 5px 0 #7D7D7D;
-			box-shadow: inset 0 1px 5px 0 #7D7D7D;
-		}
 	}
 }
 
-@media (min-width: 558px) {
-	.newsletter-signup.maincolumn {
-		.not-expanded {
-			background-size: cover;
-			background-position: 63% 50%;
+#newsletter_cart, .newsletter-signup {
+	input[type=text], input[type=email] {
+		width: 100%;
+		margin-bottom: 15px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		color: #000;
+		&::placeholder {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color: #878787;
 		}
+		border: 1px solid #7D7D7D;
+		padding: 12px 24px;
+		-webkit-box-shadow: inset 0 1px 5px 0 #7D7D7D;
+		-moz-box-shadow: inset 0 1px 5px 0 #7D7D7D;
+		box-shadow: inset 0 1px 5px 0 #7D7D7D;
 	}
 }
 
 @media (min-width: 769px) {
+	.visible-xs {
+		display: none !important;
+	}
+	body.category, body.archive {
+		.newsletter-signup.maincolumn {
+			.not-expanded .not-expanded-bkg {
+				padding-bottom: 8.583690987124464%;
+				background-image: url(../img/newsletter-1165x100-collapsed.svg);
+			}
+		}
+	}
 	.newsletter-signup {
 		&.header {
 			display: block;
@@ -1945,6 +2030,42 @@ body.newsletter-landing {
 			.header-cl-ad {
 				height: 90px;
 				display: inline-block;
+			}
+		}
+
+		&.footer {
+			padding: 0 2.5%;
+			background-image: url(../img/skyline_bkg_footer.svg);
+			.column {
+				padding: 20px 0 36px;
+			}
+			.signup_text_holder {
+				width: 33.5176991150442%;
+			}
+			.newsletter_list {
+				width: 26.548672566371681%;
+				padding-left: 5%;
+				padding-right: 5%;
+			}
+			.newsletter_form {
+				width: 39.933628318584071%;
+				position: relative;
+			}
+			form {
+				display: block;
+				max-width: 1170px;
+				margin: 0 auto;
+				.newsletter_fields {
+					float: left;
+					width: 53.5%;
+				}
+				input[type=submit].subscribe_button {
+					position: absolute;
+					right: 0;
+					bottom: 36px;
+					width: 41%;
+					margin-left: 5.15%;
+				}
 			}
 		}
 	}

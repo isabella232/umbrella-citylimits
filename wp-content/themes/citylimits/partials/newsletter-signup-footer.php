@@ -1,21 +1,28 @@
 <div class="newsletter-signup footer clearfix">
 	<form>
 		<div class="row">
-			<div class="column">
-				<h3>The City Limits Newsletters</h3>
+			<div class="column signup_text_holder">
+				<div class="signup_text"></div>
+			</div>
+			<div class="column newsletter_list">
 <?php foreach ( get_field('newsletter_group', 'option') as $group ) { 
 		foreach ( $group['newsletters'] as $newsletter) {
 ?>
-				<input type="checkbox" id="footer_newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]" required><label for="footer_newsletter_<?= $newsletter['id'] ?>"><?= $newsletter['title'] ?></label>
+				<section>
+					<h3><?= $newsletter['title'] ?></h3>
+					<?= $newsletter['description'] ?>
+					<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]" required><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
+				</section>
 <?php }
 } ?>
-				<h4>Get our reporting in your inbox weekly</h4>
 			</div>
-			<div class="column">
-				<input type="text" name="newsletter_fname" placeholder="First Name" required>
-				<input type="text" name="newsletter_lname" placeholder="Last Name" required>
-				<input type="email" name="newsletter_email" placeholder="Your Email" required>
-				<input type="submit" value="submit">
+			<div class="column newsletter_form">
+				<div class="newsletter_fields">
+					<input type="text" name="newsletter_fname" placeholder="First Name" required>
+					<input type="text" name="newsletter_lname" placeholder="Last Name" required>
+					<input type="email" name="newsletter_email" placeholder="Email" required>
+				</div>
+				<input type="submit" class="subscribe_button" value="Sign Up">
 			</div>
 		</div>
 	</form>

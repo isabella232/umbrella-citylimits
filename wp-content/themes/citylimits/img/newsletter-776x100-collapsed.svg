@@ -2,6 +2,12 @@
 <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="245 77 776 100" enable-background="new 245 77 776 100" xml:space="preserve">
+<filter  height="131.1%" width="110.4%" x="-5.2%" id="filter-4" filterUnits="objectBoundingBox" y="-11.1%">
+	<feOffset  dx="0" in="SourceAlpha" result="shadowOffsetOuter1" dy="2"></feOffset>
+	<feGaussianBlur  in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"></feGaussianBlur>
+	<feColorMatrix  type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.272180944 0" in="shadowBlurOuter1">
+		</feColorMatrix>
+</filter>
 <title>776x100 collapsed</title>
 <desc>Created with Sketch.</desc>
 <g id="Page-1">
@@ -85,7 +91,18 @@
 			<g id="titlearea" transform="translate(256.000000, 4.000000)">
 				<text transform="matrix(1 0 0 1 272.922 144.6)" font-family="'HelveticaNeue-Bold'" font-size="14">Our Reporting In Your Inbox</text>
 				<text transform="matrix(1 0 0 1 245 97)" font-family="'HelveticaNeue-Bold'" font-size="21">City Limits</text>
-				<text transform="matrix(1 0 0 1 245 128.6)" fill="#FF0000" font-family="'HelveticaNeue-Bold'" font-size="37">Newsletters</text>
+				<text transform="matrix(1 0 0 1 245 129.6)" fill="#FF0000" font-family="'HelveticaNeue-Bold'" font-size="37">Newsletters</text>
+			</g>
+			<g id="SIGN-UP-button" transform="translate(560.000000, 20.000000)">
+				<g id="Rectangle">
+					<g filter="url(#filter-4)">
+						<polygon id="path-3_2_" points="245,77 380,77 380,122 245,122 						"/>
+					</g>
+					<g>
+						<polygon id="path-3_1_" fill="#FF0000" points="245,77 380,77 380,122 245,122 						"/>
+					</g>
+				</g>
+				<text transform="matrix(1 0 0 1 276 106)" fill="#FFFFFF" font-family="'Georgia-Bold'" font-size="18">Sign Up</text>
 			</g>
 		</g>
 	</g>

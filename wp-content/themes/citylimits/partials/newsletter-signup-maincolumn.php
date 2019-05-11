@@ -1,6 +1,6 @@
 <div class="newsletter-signup maincolumn clearfix">
 	<div class="not-expanded">
-		<div class="subscribe_button_holder"><div class="subscribe_button_svg"></div></div>
+		<div class="not-expanded-bkg"></div>
 	</div>
 
 	<form class="expanded">
@@ -25,8 +25,8 @@
 			<div class="column">
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
 				<input type="text" name="newsletter_lname" placeholder="Last Name" required>
-				<input type="email" name="newsletter_email" placeholder="Your Email" required>
-				<input type="submit" value="submit">
+				<input type="email" name="newsletter_email" placeholder="Email" required>
+				<input type="submit" class="subscribe_button" value="Sign Up">
 			</div>
 		</div>
 	</form>
