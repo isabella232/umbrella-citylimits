@@ -54,12 +54,10 @@
 	&.maincolumn {
 		margin: 24px 0;
 		position: relative;
-		max-height: 1000px;
 		-webkit-transition: max-height .4s;
 		transition: max-height .4s;
 		overflow: hidden;
 		.not-expanded {
-			display: none;
 			position: relative;
 			.not-expanded-bkg {
 				cursor: pointer;
@@ -68,38 +66,18 @@
 				background-repeat: no-repeat;
 				background-size: contain;
 			}
-			/*
-			.subscribe_button_holder {
-				position: absolute;
-				width: 18.43%;
-				min-width: 110px;
-				right: 9.5%;
-				top: 20px;
-			}
-			.subscribe_button_svg {
-				padding-bottom: 37.062937062937063%;
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				background-image: url(../img/newsletter-signup-button.svg);
-				background-repeat: no-repeat;
-				background-size: contain;;
-			}
-			*/
 		}
 		.expanded {
 			background-color: #EBEBEB;
 			display: none;
-			display: block;
-			position: relative;
+			position: absolute;
 			padding-top: 40px;
 			top: 0;
 			background-image: url(../img/skyline_bkg_footer.svg);
 			background-repeat: no-repeat;
 			background-size: 160%;
 			background-position: left bottom;
+			width: 100%;
 			.row:first-child {
 				margin-left: 13.530927835051546%;
 				margin-right: 11.211340206185567%;
@@ -162,11 +140,11 @@
 	&.footer {
 		max-height: 0;
 		margin-top: 30px;
-		-webkit-transition: max-height 1.4s;
-		transition: max-height 1.4s;
+		-webkit-transition: max-height 1.4s, background-position 1.4s;
+		transition: max-height 1.4s, background-position 1.4s;
 		overflow: hidden;
 		background-image: url(../img/skyline_bkg.svg);
-		background-position: 13% bottom;
+		background-position: 13% 226px;
 		background-repeat: no-repeat;
 		form {
 			display: none;

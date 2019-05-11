@@ -1,9 +1,9 @@
 jQuery(document).ready(function($) {
 	var homebannerCounter = 0, signupH, signupOpenH, submitted = false;
 	if ($('.newsletter-signup.maincolumn .not-expanded').length) {
-		signupH = $('.newsletter-signup .not-expanded').height() + 'px';
-		signupOpenH = $('.newsletter-signup .expanded').height() + 'px';
-		//$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH});
+		signupH = $('.newsletter-signup .not-expanded').outerHeight() + 'px';
+		signupOpenH = $('.newsletter-signup .expanded').outerHeight() + 'px';
+		$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH});
 
 		$('.newsletter-signup .not-expanded').on('mouseover click', function(e) {
 			if (submitted) {
@@ -17,7 +17,10 @@ jQuery(document).ready(function($) {
 			}
 			$expanded.mouseleave(function(e) {
 				//don't hide if they're in the middle of filling it out.
-				if ($expanded.find('input[name=newsletter_fname]').val() || $expanded.find('input[name=newsletter_lname]').val() || $expanded.find('input[name=newsletter_email]').val()) {
+				if ($expanded.find('input[name=newsletter_fname]').val() 
+				|| $expanded.find('input[name=newsletter_lname]').val() 
+				|| $expanded.find('input[name=newsletter_email]').val() 
+				|| $expanded.find("input:checkbox[name='newsletter[]']").is(":checked") ) {
 					return
 				}
 				if (homebannerCounter <= 3 && !submitted) {
@@ -53,14 +56,15 @@ jQuery(document).ready(function($) {
 		if ($(window).width() < 769 
 		&& !Cookies.get('newsletter_modal_snooze')
 		&& !$('body').hasClass('newsletter-landing')) {
+			var footerH = $('.newsletter-signup.footer.mobile .mobile_footer_content').outerHeight();
 			setTimeout(function() {
-				$('.newsletter-signup.footer').css({'max-height': '500px'});
+				$('.newsletter-signup.footer.mobile').css({'max-height': (footerH + 183) + 'px', 'background-position': '13% ' + (footerH + 20) + 'px'});
 			}, 10000);
 		}
 				
 		$('.newsletter-signup.footer .close_box').click(function(e) {
 			$('.newsletter-signup.footer').css({'max-height': 0});
-			//Cookies.set('newsletter_modal_snooze', true, {expires: 1 * 24 * 60 * 60});//1 day
+			Cookies.set('newsletter_modal_snooze', true, {expires: 1 * 24 * 60 * 60});//1 day
 		});
 
 		//HTML 5 validate checkbox group
