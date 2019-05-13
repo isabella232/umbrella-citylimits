@@ -7,6 +7,9 @@
 			<div class="column newsletter_list">
 <?php foreach ( get_field('newsletter_group', 'option') as $group ) { 
 		foreach ( $group['newsletters'] as $newsletter) {
+			if (!$newsletter['active']) {
+				continue;
+			}
 ?>
 				<section>
 					<h3><?= $newsletter['title'] ?></h3>

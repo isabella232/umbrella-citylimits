@@ -12,6 +12,9 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 		<ul>
 <?php foreach ( get_field('newsletter_group', 'option') as $group ) { 
 	foreach ( $group['newsletters'] as $newsletter) {
+		if (!$newsletter['active']) {
+			continue;
+		}
 ?>
 			<li><?= $newsletter['title'] ?></li>
 <?php }

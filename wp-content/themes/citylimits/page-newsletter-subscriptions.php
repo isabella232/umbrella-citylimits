@@ -36,12 +36,19 @@ get_header();
 		
 		<?php
 			$groups = get_field('newsletter_group', 'option');
-			foreach ($groups as $group) { ?>
+			foreach ($groups as $group) {
+				$newsletters = array_filter($group['newsletters'], function($n) {
+					return $n['active'] == true;
+				});
+			?>
 		<section class="newsletter_group">
-<?php			if ( $group['group_title'] && count($group['newsletters']) > 1 ) { ?>
+<?php			if ( $group['group_title'] && count($newsletters) > 1 ) { ?>
 		<h2><?=$group['group_title']?></h2>
 <?php			}
-				foreach ( $group['newsletters'] as $newsletter ) {
+				foreach ( $newsletters as $newsletter ) {
+					if (!$newsletter['active']) {
+						continue;
+					}
 					$thumb = $newsletter['thumbnail'] ? wp_get_attachment_image( $newsletter['thumbnail']['id'], 'thumbnail' ) : '';
 					$subtitle = $newsletter['subtitle'] ? "<h5 class='top-tag'>" . $newsletter['subtitle'] . "</h5>\n" : '';
 					$byline = $newsletter['byline'] ? "<h5 class='byline'>" . $newsletter['byline'] . "</h5>\n" : '';
