@@ -1,13 +1,7 @@
 jQuery(document).ready(function($) {
 	var homebannerCounter = 0, signupH, signupOpenH, submitted = false;
 	if ($('.newsletter-signup.maincolumn .not-expanded').length) {
-		signupH = $('.newsletter-signup .not-expanded').outerHeight() + 'px'
-		signupOpenH = $('.newsletter-signup .expanded').outerHeight() + 'px'
-		$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH})
-		
-		//set height for thanks in footer
-		signupFooterH = $('.newsletter-signup.footer form').outerHeight() + 'px'
-		$('.newsletter-signup.footer .newsletter-thanks').css({'height': signupFooterH})
+		setBannerSizes()
 		
 		$('.newsletter-signup .not-expanded').on('mouseover click', function(e) {
 			if (submitted) {
@@ -83,6 +77,16 @@ jQuery(document).ready(function($) {
 		
 	}
 	
+	function setBannerSizes() {
+		signupH = $('.newsletter-signup .not-expanded').outerHeight() + 'px'
+		signupOpenH = $('.newsletter-signup .expanded').outerHeight() + 'px'
+		$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH})
+	
+		//set height for thanks in footer
+		signupFooterH = $('.newsletter-signup.footer form').outerHeight() + 'px'
+		$('.newsletter-signup.footer .newsletter-thanks').css({'height': signupFooterH})
+	}
+	
 	//Newsletter Landing Page
 	$('.subscribe_button').click(function() {
 		if ($(this).hasClass('selected')) {
@@ -112,6 +116,9 @@ jQuery(document).ready(function($) {
 			$('#newsletter_cart').css({width: 'auto'});
 		} else {
 			$('#newsletter_cart').width($('#sidebar').width() - 80)
+			if ($('.newsletter-signup.maincolumn .not-expanded').length) {
+				setBannerSizes()
+			}
 		}
 	})
 	
