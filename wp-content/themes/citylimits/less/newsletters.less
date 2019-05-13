@@ -146,6 +146,12 @@
 		background-image: url(../img/skyline_bkg.svg);
 		background-position: 13% bottom;
 		background-repeat: no-repeat;
+		.newsletter-thanks {
+			height: 300px;
+			.newsletter-thanks-content {
+				max-width: 293px;
+			}
+		}
 		form {
 			display: none;
 		}
@@ -516,6 +522,12 @@ body.newsletter-landing {
 		&.footer {
 			padding: 0 2.5%;
 			background-image: url(../img/skyline_bkg_footer.svg);
+			.newsletter-thanks {
+				.newsletter-thanks-content {
+					max-width: 1170px;
+					margin: 50px auto 0;
+				}
+			}
 			.column {
 				padding: 20px 0 36px;
 			}
@@ -614,4 +626,12 @@ body.newsletter-landing {
 			padding: 0 20px;
 		}
 	}
+}
+
+.newsletter-signup form, .newsletter-signup .not-expanded {
+	display: none;
+}
+
+.newsletter-signup.maincolumn {
+	max-height: 100px;
 }

@@ -30,6 +30,9 @@
 		</div>
 	</form>
 	<div class="newsletter-thanks">
-		Thanks for signing up.
+		<div class="newsletter-thanks-content">
+			<h3>Thank you for signing up for our newsletters.</h3>
+			<p>Check your email for our confirmation.</p>
+		</div>
 	</div>
 </div><!--.newsletter-signup-->
