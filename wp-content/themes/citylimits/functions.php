@@ -837,6 +837,16 @@ function enqueue_my_scripts() {
 	}
 }
 
+/*TESTING*/
+function pm_remove_all_scripts() {
+    global $wp_scripts;
+    $wp_scripts->queue = array();
+    enqueue_my_scripts();
+    citylimits_newsletter_enqueue();
+}
+//add_action('wp_print_scripts', 'pm_remove_all_scripts', 100);
+
+
 /*REMOVE*/
 function flat($obj) {
 	if (is_array($obj) || is_object($obj)) {

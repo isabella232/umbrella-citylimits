@@ -88,7 +88,7 @@ jQuery(document).ready(function($) {
 	//Newsletter Landing Page
 	if ($('body').hasClass('newsletter-landing')) {
 		var cartTop
-		$('.subscribe_button').click(function() {
+		$('#content .subscribe_button').click(function() {
 			if ($(this).hasClass('selected')) {
 				return
 			}
@@ -177,13 +177,14 @@ jQuery(document).ready(function($) {
 				}
 			}
 		})
-	});
+	})
 	
 	//testing banners
+	/*
 	$('.newsletter-signup form, .newsletter-signup .not-expanded').hide()
 	$('.newsletter-response').show()
 	$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '318px'})
-	
+	*/
 	//testing landing page
 	//$('body.newsletter-landing .subscribe_button').eq(0).click()
 
