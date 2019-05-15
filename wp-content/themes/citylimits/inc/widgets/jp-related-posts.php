@@ -28,9 +28,7 @@ class jp_cl_related_posts extends WP_Widget {
 	 */
 	function widget( $args, $instance ) {
 		if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
-			if ( current_user_can('administrator') ) {
-				echo do_shortcode( '[jetpack-related-posts]' );
-			}
+			echo do_shortcode( '[jetpack-related-posts]' );
 		}
 	}
 }

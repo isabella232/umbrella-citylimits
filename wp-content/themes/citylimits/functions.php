@@ -693,35 +693,10 @@ function cl_pre_get_posts($query) {
 add_action( 'pre_get_posts', 'cl_pre_get_posts' );
 
 
-/* TESTING JETPACK RELATED POSTS ON LIVE SERVER */
-
-if ( current_user_can('administrator') ) {
-	add_filter( 'wp', 'jetpackme_remove_rp', 20 );
-	add_action( 'widgets_init', 'remove_related_widget' );
-} else {
-	add_filter( 'jetpack_relatedposts_filter_options', 'jetpackme_no_related_posts' );
-	add_action( 'widgets_init', 'remove_jp_related_widget' );
-	add_filter( 'wp', 'jetpackme_remove_rp', 20 );
-}
-
-
-//disable related posts for non-admins
-function jetpackme_no_related_posts( $options ) {
-	$options['enabled'] = false;
-	return $options;
-}
-
-//disable largo for now
-function remove_related_widget() {
-	//unregister_widget('largo_recent_posts_widget');
-	//unregister_widget('largo_related_posts_widget');
-}
-
-//disable JP
-function remove_jp_related_widget() {
-	unregister_widget('jp_cl_related_posts');
-}
-
+/**
+ * JETPACK RELATED POSTS
+ */
+ 
 //remove JP Related Posts from default location so we can move it elsewhere
 function jetpackme_remove_rp() {
     if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
@@ -730,6 +705,8 @@ function jetpackme_remove_rp() {
         remove_filter( 'the_content', $callback, 40 );
     }
 }
+add_filter( 'wp', 'jetpackme_remove_rp', 20 );
+
 
 // limit results to last 3 years
 function jetpackme_related_posts_past_3years_only( $date_range ) {
@@ -740,6 +717,7 @@ function jetpackme_related_posts_past_3years_only( $date_range ) {
 	return $date_range;
 }
 add_filter( 'jetpack_relatedposts_filter_date_range', 'jetpackme_related_posts_past_3years_only' );
+
 
 //eliminate some categories
 function jetpackme_filter_exclude_category( $filters ) {
@@ -757,6 +735,7 @@ add_filter( 'jetpack_relatedposts_filter_filters', 'jetpackme_filter_exclude_cat
 /**
  * newsletter subscribe forms
  */
+
 function citylimits_newsletter_form_interstitial() {
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
 }
