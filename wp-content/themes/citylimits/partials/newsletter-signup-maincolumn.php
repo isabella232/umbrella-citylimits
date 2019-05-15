@@ -38,14 +38,21 @@ foreach ( get_field('newsletter_group', 'option') as $group ) {
 		<div class="row">
 			<div class="column newsletter_form">
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
-				<input type="text" name="newsletter_lname" placeholder="Last Name" required>
+				<!--<input type="text" name="newsletter_lname" placeholder="Last Name" required>-->
 				<input type="email" name="newsletter_email" placeholder="Email" required>
 				<input type="submit" class="subscribe_button" value="Sign Up">
 			</div>
 		</div><!--.row-->
 	</form>
 	<div class="newsletter-response">
-		<div class="newsletter-response-content">
-		</div>
-	</div>
+		<div class="row">
+			<div class="column signup_text_holder">
+				<div class="signup_text"></div>
+				jam
+			</div>
+			<div class="column newsletter-response-content">
+				jim
+			</div>
+		</div><!--.row-->
+	</div><!--.newsletter-response-->
 </div><!--.newsletter-signup-->

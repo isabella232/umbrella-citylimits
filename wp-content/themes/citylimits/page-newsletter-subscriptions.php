@@ -9,6 +9,7 @@ add_filter('body_class', function($classes) {
 
 get_header();
 ?>
+<div id="landing_header"></div>
 
 <div id="content" class="span8" role="main">
 	<?php
@@ -21,7 +22,6 @@ get_header();
 	<?php do_action('largo_before_page_header'); ?>
 	
 	<header class="entry-header">
-		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<?php edit_post_link(__('Edit This Page', 'largo'), '<h5 class="byline"><span class="edit-link">', '</span></h5>'); ?>
 	</header><!-- .entry-header -->
 	
@@ -93,7 +93,7 @@ get_header();
 		</ul>
 		<form>
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
-				<input type="text" name="newsletter_lname" placeholder="Last Name" required>
+				<!--<input type="text" name="newsletter_lname" placeholder="Last Name" required>-->
 				<input type="email" name="newsletter_email" placeholder="Email" required>
 				<input type="submit" class="subscribe_button" value="Sign Up">
 		</form>
