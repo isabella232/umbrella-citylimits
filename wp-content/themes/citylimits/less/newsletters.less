@@ -227,13 +227,13 @@ body.newsletter-landing {
 		font-size: 18px;
 		line-height: 1.333em;
 		color: #333;
-		margin-bottom: 30px;
+		margin-bottom: 15px;
 		margin-top: 19px;
-		padding-bottom: 23px;
+		padding-bottom: 17px;
 		border-bottom: 1px #D1D1D1 solid;
 	}
 	.newsletter_group {
-		padding-bottom: 15px;
+		padding-bottom: 9px;
 		border-bottom: 1px solid #000;
 		&:last-child {
 			border-bottom-style: none;
@@ -248,10 +248,10 @@ body.newsletter-landing {
 			margin-bottom: 0;
 		}
 		.newsletter {
-			border-bottom: 30px solid #EBEBEB;
 			padding-bottom: 10px;
+			position: relative;
 			&+.newsletter {
-				margin-top: 20px;
+				margin-top: 0;
 			}
 			figure {
 				width: 35%;
@@ -259,10 +259,25 @@ body.newsletter-landing {
 				margin-bottom: 10px;
 			}
 			h3 {
-				font-size: 19px;
+				font-size: 24px;
+			}
+			h5.subtitle {
+				font-size: 14px;
+				color: #AAA;
+				text-transform: uppercase;
 			}
 			h5.byline {
-				font-size: 13.04px;
+				font-size: 11px;
+				color: #343434;
+			}
+			p {
+				font-size: 16px;
+				color: #333;
+				margin-bottom: 1em;
+			}
+			a.sample {
+				font-size: 14px;
+				color: #F00;
 			}
 			.newsletter_info {
 				padding-left: 6%;
@@ -281,10 +296,19 @@ body.newsletter-landing {
 			clear: both;
 		}
 	}
+	
+	div.divider {
+		height: 35px;
+		background: #EBEBEB;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		right: 170px;
+	}
 
 	div.subscribe_button {
 		width: 135px;
-		padding: 12px;
+		padding: 0 12px;
 		float: right;
 		clear: both;
 		&:hover {
@@ -310,7 +334,7 @@ body.newsletter-landing {
 			font-size: 18px;
 			font-weight: bold;
 			color: #FFF;
-			padding: 5px 0;
+			padding: 4px 0;
 			width: 100%;
 		}
 	}
@@ -335,11 +359,11 @@ body.newsletter-landing {
 	}
 	#newsletter_cart {
 		display: none;
-		padding: 33px 40px 40px;
+		padding: 19px 27px 27px;
 		background-color: #EBEBEB;
 		h3 {
 			font-size: 28px;
-			margin-bottom: 28px;
+			margin-bottom: 12px;
 		}
 		#remove_header {
 			text-align: right;
@@ -358,12 +382,12 @@ body.newsletter-landing {
 				border-bottom: 1px solid #969696;
 				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 				font-weight: bold;
-				font-size: 18px;
-				line-height: 52px;
+				font-size: 16px;
+				line-height: 48px;
 				color: #333;
 				.remove {
-					width: 33px;
-					height: 33px;
+					width: 29px;
+					height: 29px;
 					margin-top: 10px;
 					background-image: url(../img/newsletter_close_box.svg);
 					background-repeat: no-repeat;
@@ -385,7 +409,7 @@ body.newsletter-landing {
 #newsletter_cart, .newsletter-signup {
 	input[type=text], input[type=email] {
 		width: 100%;
-		margin-bottom: 15px;
+		margin-bottom: 10px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		color: #000;
 		&::placeholder {
@@ -393,7 +417,7 @@ body.newsletter-landing {
 			color: #878787;
 		}
 		border: 1px solid #7D7D7D;
-		padding: 12px 24px;
+		padding: 4px 16px;
 		-webkit-box-shadow: inset 0 1px 5px 0 #7D7D7D;
 		-moz-box-shadow: inset 0 1px 5px 0 #7D7D7D;
 		box-shadow: inset 0 1px 5px 0 #7D7D7D;
@@ -584,7 +608,7 @@ body.newsletter-landing {
 	}
 	body.newsletter-landing {
 		.entry-content {
-			margin-right: 130px;
+			margin-right: 98px;
 		}
 		#main {
 			margin-top: 8px;

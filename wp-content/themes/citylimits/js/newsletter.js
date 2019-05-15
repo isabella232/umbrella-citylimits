@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
 		if ($(window).width() < 769) {
 			$('#newsletter_cart').css({width: 'auto', position: 'static'});
 		} else {
-			$('#newsletter_cart').width($('#sidebar').width() - 80)
+			$('#newsletter_cart').width($('#sidebar').width() - 53)
 			if ($('.newsletter-signup.maincolumn .not-expanded').length) {
 				setBannerSizes()
 			}

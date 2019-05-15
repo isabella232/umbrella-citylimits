@@ -50,9 +50,9 @@ get_header();
 						continue;
 					}
 					$thumb = $newsletter['thumbnail'] ? wp_get_attachment_image( $newsletter['thumbnail']['id'], 'thumbnail' ) : '';
-					$subtitle = $newsletter['subtitle'] ? "<h5 class='top-tag'>" . $newsletter['subtitle'] . "</h5>\n" : '';
+					$subtitle = $newsletter['subtitle'] ? "<h5 class='subtitle'>" . $newsletter['subtitle'] . "</h5>\n" : '';
 					$byline = $newsletter['byline'] ? "<h5 class='byline'>" . $newsletter['byline'] . "</h5>\n" : '';
-					$sample = $newsletter['sample'] ? "<a href='" . $newsletter['sample'] . "' target='_blank'>View a sample &raquo;</a>" : '';
+					$sample = $newsletter['sample'] ? "<a href='" . $newsletter['sample'] . "' target='_blank' class='sample'>View a sample &raquo;</a>" : '';
 				
 				?>
 			<section class="newsletter">
@@ -66,6 +66,7 @@ get_header();
 					<?= $newsletter['description'] ?>
 					<?= $sample ?>
 				</div><!--.newsletter_info-->
+				<div class="divider"></div>
 				<div class="subscribe_button" data-newsletter-id="<?= $newsletter['id'] ?>"><div class="unselected">Subscribe</div><div class="selected">Selected</div></div>
 			</section><!--.newsletter-->
 <?php				} ?>
