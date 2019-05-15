@@ -697,7 +697,6 @@ add_action( 'pre_get_posts', 'cl_pre_get_posts' );
 
 if ( current_user_can('administrator') ) {
 	add_filter( 'wp', 'jetpackme_remove_rp', 20 );
-	add_action('wp_head', 'jetpack_related_posts_style');
 	add_action( 'widgets_init', 'remove_related_widget' );
 } else {
 	add_filter( 'jetpack_relatedposts_filter_options', 'jetpackme_no_related_posts' );
@@ -730,39 +729,6 @@ function jetpackme_remove_rp() {
         $callback = array( $jprp, 'filter_add_target_to_dom' );
         remove_filter( 'the_content', $callback, 40 );
     }
-}
-
-//this should be added to LESS files, but it'll live here until they approve the change
-function jetpack_related_posts_style() {
-  echo '<style>
-  	#jp-relatedposts {
-  		padding-left: 24px;
-  	}
-  	#jp-relatedposts h3.jp-relatedposts-headline {
-  		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  		font-size: 26px;
-  		font-weight: bold;
-  		line-height: 1.27em;
-  		margin-bottom: 8px;
-  	}
-  	#jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post span a.jp-relatedposts-post-a, #jp-relatedposts .jp-relatedposts-items-visual h4.jp-relatedposts-post-title, #jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a {
-  		color: #000;
-  		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  		font-size: 20px;
-  		font-weight: bold;
-  		line-height: 1.3em;
-  	}
-    #jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post {
-    	float: none;
-    	width: auto;
-    	margin-bottom: 12px;
-    }
-    /*
-    aside.largo-related-posts {
-    	display: none;
-    }
-    */
-  </style>';
 }
 
 // limit results to last 3 years

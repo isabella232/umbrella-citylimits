@@ -1591,16 +1591,37 @@ h1.hidden-page-title {
 }
 
 /* JETPACK RELATED POSTS */
-div#jp-relatedposts div.jp-relatedposts-items-visual .jp-relatedposts-post {
-    -moz-opacity: 1;
-    opacity: 1;
-}
+#jp-relatedposts {
+	padding-left: 24px;
+	h3.jp-relatedposts-headline {
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 26px;
+		font-weight: bold;
+		line-height: 1.27em;
+		margin-bottom: 8px;
+	}
+	.jp-relatedposts-items .jp-relatedposts-post span a.jp-relatedposts-post-a, .jp-relatedposts-items-visual h4.jp-relatedposts-post-title, .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a {
+		color: #000;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 20px;
+		font-weight: bold;
+		line-height: 1.3em;
+	}
+	.jp-relatedposts-items .jp-relatedposts-post {
+		float: none;
+		width: auto;
+		margin-bottom: 12px;
+	}
+	div.jp-relatedposts-items-visual .jp-relatedposts-post {
+		-moz-opacity: 1;
+		opacity: 1;
+	}
 
-div#jp-relatedposts div.jp-relatedposts-items div.jp-relatedposts-post:hover {
-    filter: alpha(opacity=100);
-    -moz-opacity: 1;
-    opacity: 1;
+	div.jp-relatedposts-items div.jp-relatedposts-post:hover {
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		opacity: 1;
+	}
 }
-
 
 @import "newsletters.less";
