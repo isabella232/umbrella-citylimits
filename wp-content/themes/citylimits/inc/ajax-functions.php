@@ -69,6 +69,14 @@ if ( !function_exists( 'cl_mc_signup' ) ) {
 			'merge_fields' => ['FNAME' => $_REQUEST['fname'], 'LNAME' => $_REQUEST['lname']],
 			'interests' => $interests
 		]);
+		
+		if ($result['status'] == 'subscribed') {
+			$response = get_field('thank_you_text', 'option');
+		} else {
+			$response = get_field('error_text', 'option');
+			$response .= "<p>$result[detail]</p>";
+		}
+		wp_send_json( array( 'message' => $response ) );
 		die();
 	}
 	add_action("wp_ajax_cl_mc_signup", "cl_mc_signup");

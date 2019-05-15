@@ -31,7 +31,7 @@ get_header();
 		
 		<?php do_action('largo_before_page_content'); ?>
 		<div class="newsletter_intro">
-		<?php the_content(); ?>
+		<?= get_field('intro_text', 'option') ?>
 		</div><!--.newsletter_intro-->
 		
 		<?php

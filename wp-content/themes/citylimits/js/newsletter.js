@@ -84,7 +84,7 @@ jQuery(document).ready(function($) {
 	
 		//set height for thanks in footer
 		signupFooterH = $('.newsletter-signup.footer form').outerHeight() + 'px'
-		$('.newsletter-signup.footer .newsletter-thanks').css({'height': signupFooterH})
+		$('.newsletter-signup.footer .newsletter-response').css({'height': signupFooterH})
 	}
 	
 	//Newsletter Landing Page
@@ -143,6 +143,9 @@ jQuery(document).ready(function($) {
 				newsletters.push($(x).val())
 			})
 		}
+
+		submitted = true
+
 		$.ajax({
 			type : "post",
 			dataType : "json",
@@ -151,12 +154,11 @@ jQuery(document).ready(function($) {
 			success: function(response) {
 				Cookies.set('signed_up_for_newsletter', true, { expires: Infinity });
 				if ($('body').hasClass('newsletter-landing')) {
-					$('#main').html('<h3>Thank you for signing up for our newsletters.</h3><p>Check your email for our confirmation.</p>')
+					$('#main').html(response.message)
 				} else {
 					$('.newsletter-signup form, .newsletter-signup .not-expanded').hide()
-					$('.newsletter-thanks').show()
+					$('.newsletter-response').html(response.message).show()
 					$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '100px'})
-					submitted = true
 				}
 			}
 		})

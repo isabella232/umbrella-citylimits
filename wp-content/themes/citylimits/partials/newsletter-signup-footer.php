@@ -13,7 +13,7 @@
 ?>
 				<section>
 					<h3><?= $newsletter['title'] ?></h3>
-					<?= $newsletter['description'] ?>
+					<p><?= $newsletter['short_description'] ?></p>
 					<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]" required><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
 				</section>
 <?php }
@@ -29,10 +29,8 @@
 			</div>
 		</div>
 	</form>
-	<div class="newsletter-thanks">
-		<div class="newsletter-thanks-content">
-			<h3>Thank you for signing up for our newsletters.</h3>
-			<p>Check your email for our confirmation.</p>
+	<div class="newsletter-response">
+		<div class="newsletter-response-content">
 		</div>
 	</div>
 </div><!--.newsletter-signup-->
