@@ -38,10 +38,9 @@
 		<div class="row">
 			<div class="column signup_text_holder">
 				<div class="signup_text"></div>
-				jam
 			</div>
 			<div class="column newsletter-response-content">
-				jim
+				<div class="signup_intro"><?= get_field('thank_you_text', 'option') ?></div>
 			</div>
 		</div><!--.row-->
 	</div><!--.newsletter-response-->

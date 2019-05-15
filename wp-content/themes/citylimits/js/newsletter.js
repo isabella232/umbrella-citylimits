@@ -173,7 +173,7 @@ jQuery(document).ready(function($) {
 					$('.newsletter-signup form, .newsletter-signup .not-expanded').hide()
 					$('.newsletter-response-content').html(response.message)
 					$('.newsletter-response').show()
-					$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '100px'})
+					$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '318px'})
 				}
 			}
 		})
@@ -181,12 +181,11 @@ jQuery(document).ready(function($) {
 	
 	//testing banners
 	$('.newsletter-signup form, .newsletter-signup .not-expanded').hide()
-	$('.newsletter-response-content').html('Thanks')
 	$('.newsletter-response').show()
-	$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '100px'})
+	$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '318px'})
 	
 	//testing landing page
-	$('body.newsletter-landing .subscribe_button').eq(0).click()
+	//$('body.newsletter-landing .subscribe_button').eq(0).click()
 
 });
 

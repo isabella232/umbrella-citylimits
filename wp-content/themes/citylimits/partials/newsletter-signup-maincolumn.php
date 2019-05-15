@@ -48,10 +48,10 @@ foreach ( get_field('newsletter_group', 'option') as $group ) {
 		<div class="row">
 			<div class="column signup_text_holder">
 				<div class="signup_text"></div>
-				jam
+				<div class="signup_intro"><?= get_field('intro_text', 'option') ?></div>
 			</div>
 			<div class="column newsletter-response-content">
-				jim
+				<?= get_field('thank_you_text', 'option') ?>
 			</div>
 		</div><!--.row-->
 	</div><!--.newsletter-response-->
