@@ -807,9 +807,9 @@ add_action( 'largo_before_footer', 'citylimits_newsletter_form_footer', 11 );
 function citylimits_newsletter_form_popover() {
 	get_template_part( 'partials/newsletter-signup', 'popover' );
 }
-//if (!$_COOKIE['newsletter_modal_snooze']) {
+if (!$_COOKIE['newsletter_modal_snooze']) {
 	add_action( 'wp_footer', 'citylimits_newsletter_form_popover', 11 );
-//}
+}
 
 
 /**

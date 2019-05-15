@@ -50,7 +50,7 @@ jQuery(document).ready(function($) {
 		
 		//show footer on timeout for narrow
 		if ($(window).width() < 769 
-		&& !Cookies.get('xxxnewsletter_modal_snooze')
+		&& !Cookies.get('newsletter_modal_snooze')
 		&& !$('body').hasClass('newsletter-landing')) {
 			var footerH = $('.newsletter-signup.footer.mobile .mobile_footer_content').outerHeight();
 			setTimeout(function() {
@@ -60,7 +60,7 @@ jQuery(document).ready(function($) {
 				
 		$('.newsletter-signup.footer .close_box').click(function(e) {
 			$('.newsletter-signup.footer').css({'max-height': 0});
-			Cookies.set('newsletter_modal_snooze', true, {expires: 1 * 24 * 60 * 60});//1 day
+			Cookies.set('newsletter_modal_snooze', true, {expires: 7 * 24 * 60 * 60});//7 days
 		});
 
 		//HTML 5 validate checkbox group
@@ -166,7 +166,10 @@ jQuery(document).ready(function($) {
 			url : myAjax.ajaxurl,
 			data : {action: "cl_mc_signup", fname: fname, email: email, newsletters: newsletters},
 			success: function(response) {
-				Cookies.set('signed_up_for_newsletter', true, { expires: Infinity });
+				if (response.status == 'success') {
+					Cookies.set('signed_up_for_newsletter', true, { expires: Infinity });
+					Cookies.set('newsletter_modal_snooze', true, { expires: Infinity });
+				}
 				if ($('body').hasClass('newsletter-landing')) {
 					$('#main').html(response.message)
 				} else {

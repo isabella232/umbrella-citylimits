@@ -227,6 +227,12 @@ body.clean-read.single-post.classic #content {
   font-weight: bold;
 }
 
+/* Sidebar */
+#sidebar {
+	display: none;
+}
+
+
 /* Sticky posts */
 .sticky-related, .sticky-solo {
 background-color: #f61212;
@@ -1572,6 +1578,13 @@ h1.hidden-page-title {
     margin-top:0;
   }
 }
+
+@media screen and (min-width:769px) {
+	#sidebar {
+		display: block;
+	}
+}
+
 // https://secure.helpscout.net/conversation/698314399/2780?folderId=1219602
 .archive-background .rss-subscribe-link {
   display: none;

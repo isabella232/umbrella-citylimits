@@ -72,12 +72,14 @@ if ( !function_exists( 'cl_mc_signup' ) ) {
 		]);
 		
 		if ($result['status'] == 'subscribed') {
-			$response = get_field('thank_you_text', 'option');
+			$response['message'] = get_field('thank_you_text', 'option');
+			$response['status'] = 'success';
 		} else {
-			$response = get_field('error_text', 'option');
-			$response .= "<p>$result[detail]</p>";
+			$response['message'] = get_field('error_text', 'option');
+			$response['message'] .= "<p>$result[detail]</p>";
+			$response['status'] = 'error';
 		}
-		wp_send_json( array( 'message' => $response ) );
+		wp_send_json( array( $response ) );
 		die();
 	}
 	add_action("wp_ajax_cl_mc_signup", "cl_mc_signup");
