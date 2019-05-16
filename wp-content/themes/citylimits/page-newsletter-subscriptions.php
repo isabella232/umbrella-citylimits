@@ -55,11 +55,11 @@ get_header();
 					$sample = $newsletter['sample'] ? "<a href='" . $newsletter['sample'] . "' target='_blank' class='sample'>View a sample &raquo;</a>" : '';
 				
 				?>
-			<section class="newsletter">
-				<figure>
+			<section class="newsletter row-fluid">
+				<figure class="span3">
 					<?= $thumb ?>
 				</figure>
-				<div class="newsletter_info">
+				<div class="newsletter_info span9">
 					<h3 class="entry-title newsletter_title"><?= $newsletter['title'] ?></h3>
 					<?= $subtitle ?>
 					<?= $byline ?>
