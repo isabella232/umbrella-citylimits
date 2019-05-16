@@ -89,7 +89,6 @@ get_header();
 <aside id="sidebar" class="span4">
 	<div id="newsletter_cart">
 		<h3>Your Selections</h3>
-		<div id="remove_header">Remove</div>
 		<ul id="selected_newsletters">
 		</ul>
 		<form>
