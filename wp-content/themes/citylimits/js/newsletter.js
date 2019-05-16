@@ -98,10 +98,11 @@ jQuery(document).ready(function($) {
 			var entry = $('<li class="newsletter_to_subscribe" data-newsletter-id="' + id + '">' + title + '<div class="remove"></div></li>')
 			$('#selected_newsletters').append(entry)
 			$('#newsletter_cart').show()
-			cartTop = $('#newsletter_cart').offset().top - 19
+			if (cartTop == undefined) {
+				cartTop = $('#newsletter_cart').offset().top - 19
+			}
 			$(window).resize()
 			$(window).scroll()
-			$('#newsletter_cart input[name=newsletter_fname]').focus()
 		
 			entry.children('.remove').click(function() {
 				var id = $(this).parent().attr('data-newsletter-id')
