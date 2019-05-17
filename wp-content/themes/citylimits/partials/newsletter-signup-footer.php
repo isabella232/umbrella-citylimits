@@ -27,7 +27,6 @@
 			<div class="column newsletter_form">
 				<div class="newsletter_fields">
 					<input type="text" name="newsletter_fname" placeholder="First Name" required>
-					<!--<input type="text" name="newsletter_lname" placeholder="Last Name" required>-->
 					<input type="email" name="newsletter_email" placeholder="Email" required>
 				</div>
 				<input type="submit" class="subscribe_button" value="Sign Up">

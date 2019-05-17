@@ -26,55 +26,53 @@ jQuery(document).ready(function($) {
 				}
 			});
 			homebannerCounter++;
-		});
-
-
-		var footerShown = false;
-		//show footer on scroll for wide layouts
-		$(window).scroll(function() {
-			if (!submitted 
-			&& $(window).width() >= 769 
-			&& !footerShown 
-			&& $(window).scrollTop() + $(window).height() >= $('#site-footer').position().top 
-			&& !$('body').hasClass('newsletter-landing')) {
-				footerShown = true;
-				setTimeout(function() {
-					$('.newsletter-signup.footer').css({'background-size': $(window).width() + 'px', 'max-height': '500px'});
-					setTimeout(function() {
-						//after the CSS transition, set the background-size back to contain
-						$('.newsletter-signup.footer').css({'background-size': 'contain'});
-					}, 1400);
-				}, 1000);
-			}
-		});
-		
-		//show footer on timeout for narrow
-		if ($(window).width() < 769 
-		&& !Cookies.get('newsletter_modal_snooze')
-		&& !$('body').hasClass('newsletter-landing')) {
-			var footerH = $('.newsletter-signup.footer.mobile .mobile_footer_content').outerHeight();
-			setTimeout(function() {
-				$('.newsletter-signup.footer.mobile').css({'max-height': (footerH + 183) + 'px', 'background-position': '13% ' + (footerH + 20) + 'px'});
-			}, 10000);
-		}
-				
-		$('.newsletter-signup.footer .close_box').click(function(e) {
-			$('.newsletter-signup.footer').css({'max-height': 0});
-			Cookies.set('newsletter_modal_snooze', true, {expires: 7 * 24 * 60 * 60});//7 days
-		});
-
-		//HTML 5 validate checkbox group
-		$('.newsletter-signup form input[type=submit]').click(function(e) {
-			$this_form = $(this).parents('form');
-			$cbx_group = $this_form.find("input:checkbox[name='newsletter[]']");
-			$cbx_group.prop('required', true);
-			if ($cbx_group.is(":checked")) {
-				$cbx_group.prop('required', false);
-			}
-		})
-		
+		});		
 	}
 	
+	var footerShown = false;
+	//show footer on scroll for wide layouts
+	$(window).scroll(function() {
+		if (!submitted 
+		&& $(window).width() >= 769 
+		&& !footerShown 
+		&& $(window).scrollTop() + $(window).height() >= $('#site-footer').position().top 
+		&& !$('body').hasClass('newsletter-landing')) {
+			footerShown = true;
+			setTimeout(function() {
+				$('.newsletter-signup.footer').css({'background-size': $(window).width() + 'px', 'max-height': '500px'});
+				setTimeout(function() {
+					//after the CSS transition, set the background-size back to contain
+					$('.newsletter-signup.footer').css({'background-size': 'contain'});
+				}, 1400);
+			}, 1000);
+		}
+	});
+	
+	//show footer on timeout for narrow
+	if ($(window).width() < 769 
+	&& !Cookies.get('newsletter_modal_snooze')
+	&& !$('body').hasClass('newsletter-landing')) {
+		var footerH = $('.newsletter-signup.footer.mobile .mobile_footer_content').outerHeight();
+		setTimeout(function() {
+			$('.newsletter-signup.footer.mobile').css({'max-height': (footerH + 183) + 'px', 'background-position': '13% ' + (footerH + 20) + 'px'});
+		}, 10000);
+	}
+			
+	$('.newsletter-signup.footer .close_box').click(function(e) {
+		$('.newsletter-signup.footer').css({'max-height': 0});
+		Cookies.set('newsletter_modal_snooze', true, {expires: 7 * 24 * 60 * 60});//7 days
+	});
+
+	//HTML 5 validate checkbox group
+	$('.newsletter-signup form input[type=submit]').click(function(e) {
+		$this_form = $(this).parents('form');
+		$cbx_group = $this_form.find("input:checkbox[name='newsletter[]']");
+		$cbx_group.prop('required', true);
+		if ($cbx_group.is(":checked")) {
+			$cbx_group.prop('required', false);
+		}
+	})
+
 	function setBannerSizes() {
 		signupH = $('.newsletter-signup .not-expanded').outerHeight() + 'px'
 		signupOpenH = $('.newsletter-signup .expanded').outerHeight() + 'px'
