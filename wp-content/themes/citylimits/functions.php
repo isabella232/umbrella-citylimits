@@ -584,9 +584,6 @@ add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
 }, 10, 2 );
 
 
-
-
-
 add_filter( 'register_post_type_args', 'add_cpt_capability_organizer', 10, 2 );
 
 function add_cpt_capability_organizer( $args, $post_type ) {
@@ -756,6 +753,12 @@ if (!$_COOKIE['newsletter_modal_snooze']) {
 	add_action( 'wp_footer', 'citylimits_newsletter_form_popover', 11 );
 }
 
+add_shortcode('cl-newsletter', function() {
+	ob_start();
+	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
+	return ob_get_clean();
+});
+
 
 /**
  * tell buggy plugins to be quiet in Query Monitor
@@ -765,47 +768,6 @@ add_filter( 'qm/collect/php_error_levels', function( array $levels ) {
 	$levels['plugin']['news-match-popup-basics'] = ( E_ALL & ~E_NOTICE );
 	return $levels;
 } );
-
-/**
- * add livereload when developing locally, turn off annoying admin bar
- */
-
-if (strpos($_SERVER['DOCUMENT_ROOT'], 'jonny') !== false) {
-	add_action( 'wp_enqueue_scripts', 'enqueue_my_scripts' );
-	add_action( 'show_admin_bar', '__return_false' );
-}
-
-function enqueue_my_scripts() {
-	if (!is_admin()) {
-		wp_register_script('livereload', 'http://localhost:35729/livereload.js', null, false, true);
-		wp_enqueue_script('livereload');
-	}
-}
-
-/*TESTING*/
-function pm_remove_all_scripts() {
-    global $wp_scripts;
-    $wp_scripts->queue = array();
-    enqueue_my_scripts();
-    citylimits_newsletter_enqueue();
-}
-//add_action('wp_print_scripts', 'pm_remove_all_scripts', 100);
-
-
-/*REMOVE*/
-function flat($obj) {
-	if (is_array($obj) || is_object($obj)) {
-		return print_r($obj, true);
-	}
-	return $obj;
-}
-
-function jb_log($obj) {
-	error_log(flat($obj));
-}
-
-
-
 
 /**
  * create Options Page for Mailchimp newsletter settings, which are handled by ACF

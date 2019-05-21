@@ -79,7 +79,7 @@ if ( !function_exists( 'cl_mc_signup' ) ) {
 			$response['message'] .= "<p>$result[detail]</p>";
 			$response['status'] = 'error';
 		}
-		wp_send_json( array( $response ) );
+		wp_send_json( $response );
 		die();
 	}
 	add_action("wp_ajax_cl_mc_signup", "cl_mc_signup");

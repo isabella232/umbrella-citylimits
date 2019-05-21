@@ -78,11 +78,11 @@ if ( $posts ) : ?>
 				<!-- Event Time -->
 
 				<?php do_action( 'tribe_events_list_widget_before_the_meta' ) ?>
-
+				<!--
 				<div class="tribe-event-meta">
 					<?php echo tribe_events_event_schedule_details() . ' | ' . tribe_get_venue(); ?>
 				</div>
-
+				-->
 				<div class="tribe-event-excerpt">
 					<?php echo tribe_events_get_the_excerpt(); ?>
 				</div>
