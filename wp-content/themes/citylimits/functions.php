@@ -728,6 +728,8 @@ function jetpackme_filter_exclude_category( $filters ) {
 }
 add_filter( 'jetpack_relatedposts_filter_filters', 'jetpackme_filter_exclude_category' );
 
+//dequeue jetpack css so we can override it
+add_filter( 'jetpack_implode_frontend_css', '__return_false', 99 );
 
 /**
  * newsletter subscribe forms
