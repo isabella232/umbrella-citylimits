@@ -650,7 +650,6 @@ function tribe_remove_customizer_css(){
 }
 add_action( 'wp_footer', 'tribe_remove_customizer_css' );
 
-
 /**
  * remove this theme's style.css, since we're using child-style.css instead
  * see https://github.com/INN/Largo-Sample-Child-Theme/issues/14
