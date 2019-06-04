@@ -12,7 +12,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
+	wp_die();
 }
 
 $events_label_singular = tribe_get_event_label_singular();
