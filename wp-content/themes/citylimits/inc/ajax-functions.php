@@ -69,7 +69,6 @@ if ( !function_exists( 'cl_mc_signup' ) ) {
 		$result = $MC->put("lists/$list_id/members/$email_hash", [
 			'email_address' => $_REQUEST['email'],
 			'status_if_new' => 'subscribed',
-/*			'merge_fields' => ['FNAME' => $_REQUEST['fname'], 'LNAME' => $_REQUEST['lname']],*/ 
 			'merge_fields' => ['FNAME' => $_REQUEST['fname']],
 			'interests' => $interests
 		]);
