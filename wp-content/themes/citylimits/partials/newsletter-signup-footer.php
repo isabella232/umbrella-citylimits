@@ -5,7 +5,8 @@
 				<div class="signup_text"></div>
 			</div>
 			<div class="column newsletter_list">
-<?php foreach ( get_field('newsletter_group', 'option') as $group ) { 
+<?php if ( function_exists( 'get_field' ) ) {
+	foreach ( get_field('newsletter_group', 'option') as $group ) { 
 		foreach ( $group['newsletters'] as $newsletter) {
 			if (!$newsletter['active']) {
 				continue;
@@ -22,7 +23,9 @@
 					<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]"<?= $checked ?>  required><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
 				</section>
 <?php }
-} ?>
+} 
+}
+?>
 			</div>
 			<div class="column newsletter_form">
 				<div class="newsletter_fields">

@@ -45,6 +45,9 @@ if ( !function_exists( 'cl_mc_signup' ) ) {
 	 * Signs up for MailChimp newsletter(s)
 	 */
 	function cl_mc_signup() {
+		if ( !function_exists( 'get_field' ) ) {
+			die('you must have ACF installed');
+		}
 		require_once(get_stylesheet_directory() . '/lib/MailChimp.php');
 		$mailchimp_api_key = get_field('mailchimp_api_key', 'option');
 		$list_id = get_field('list_id', 'option');

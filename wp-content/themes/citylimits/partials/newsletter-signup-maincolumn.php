@@ -15,6 +15,7 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 			<div class="column newsletter_list">
 <?php 
 $checkedFlag = false;
+if ( function_exists( 'get_field' ) ) {
 foreach ( get_field('newsletter_group', 'option') as $group ) { 
 		foreach ( $group['newsletters'] as $newsletter) {
 			if (!$newsletter['active']) {
@@ -32,18 +33,19 @@ foreach ( get_field('newsletter_group', 'option') as $group ) {
 					<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]"<?= $checked ?> required><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
 				</section>
 <?php }
+	}
 } ?>
 			</div>
 		</div><!--.row-->
 		<div class="row">
 			<div class="column newsletter_form">
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
-				<!--<input type="text" name="newsletter_lname" placeholder="Last Name" required>-->
 				<input type="email" name="newsletter_email" placeholder="Email" required>
 				<input type="submit" class="subscribe_button" value="Sign Up">
 			</div>
 		</div><!--.row-->
 	</form>
+<? if ( function_exists( 'get_field' ) ) { ?>
 	<div class="newsletter-response">
 		<div class="row">
 			<div class="column signup_text_holder">
@@ -55,4 +57,5 @@ foreach ( get_field('newsletter_group', 'option') as $group ) {
 			</div>
 		</div><!--.row-->
 	</div><!--.newsletter-response-->
+<? } ?>
 </div><!--.newsletter-signup-->

@@ -30,9 +30,11 @@ get_header();
 	<section class="entry-content">
 		
 		<?php do_action('largo_before_page_content'); ?>
+		<? if ( function_exists( 'get_field' ) ) { ?>
 		<div class="newsletter_intro">
 		<?= get_field('intro_text', 'option') ?>
 		</div><!--.newsletter_intro-->
+		<? } ?>
 		
 		<?php
 			$groups = get_field('newsletter_group', 'option');

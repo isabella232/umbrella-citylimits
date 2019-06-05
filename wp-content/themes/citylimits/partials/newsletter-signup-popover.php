@@ -10,7 +10,9 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 		</div>
 		<p><?= $newsletter_page->post_content ?></p>
 		<ul>
-<?php foreach ( get_field('newsletter_group', 'option') as $group ) { 
+<?php
+if ( function_exists( 'get_field' ) ) {
+foreach ( get_field('newsletter_group', 'option') as $group ) { 
 	foreach ( $group['newsletters'] as $newsletter) {
 		if (!$newsletter['active']) {
 			continue;
@@ -18,6 +20,7 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 ?>
 			<li><?= $newsletter['title'] ?></li>
 <?php }
+	} 
 } ?>
 		</ul>
 		<div class="subscribe_button">Sign Up</div>
