@@ -294,7 +294,12 @@ function citylimits_google_analytics() {
 				// Term archives
 
 				$term = $wp_query->get_queried_object();
-				if ( $term->slug === 'zonein' || $term->slug === 'futuremap'|| $term->taxonomy === 'neighborhoods' ) {
+				if (
+					$term->slug === 'zonein'
+					|| $term->slug === 'futuremap'
+					|| $term->slug === 'zonein-espanol'
+					|| $term->taxonomy === 'neighborhoods'
+				) {
 					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
 				}
 				if (
