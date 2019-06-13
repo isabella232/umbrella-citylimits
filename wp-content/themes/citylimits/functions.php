@@ -259,7 +259,9 @@ function citylimits_google_analytics() {
 			global $post, $wp_query;
 
 			if ( is_singular() ) {
-				if ( has_term( 'zonein', 'series' ) or has_term( 'mapping-the-future', 'series' ) ) {
+				// Single objects
+
+				if ( has_term( 'zonein', 'series' ) or has_term( 'futuremap', 'series' ) ) {
 					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
 				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
 					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
@@ -289,8 +291,15 @@ function citylimits_google_analytics() {
 					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
 				}
 			} elseif ( is_tax() || is_archive() ) {
+				// Term archives
+
 				$term = $wp_query->get_queried_object();
-				if ( $term->name === 'ZoneIn' || $term->name === "Mapping the Future" || $term->taxonomy === 'neighborhoods' ) {
+				if (
+					$term->slug === 'zonein'
+					|| $term->slug === 'futuremap'
+					|| $term->slug === 'zonein-espanol'
+					|| $term->taxonomy === 'neighborhoods'
+				) {
 					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
 				}
 				if (
