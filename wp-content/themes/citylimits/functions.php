@@ -624,6 +624,15 @@ function add_hotjar() {
 EOH;
 }
 
+/* ADD Google Tag Manager Verification code TO HEADER */
+add_action('wp_head', 'add_gtm');
+function add_gtm() {
+	print <<<EOH
+<!-- Google Tag Manager Verification for citylimits.org -->
+<meta name=“google-site-verification” content=“xtkYdoGbfrA1xVBUGe11w1Z6HyrnplNW9OSjNh6HZx8" />
+EOH;
+}
+
 /**
  * Set max srcset image width to 771px, because otherwise WP will display the full resolution version
  */
