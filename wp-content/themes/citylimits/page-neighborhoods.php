@@ -30,9 +30,9 @@ get_header( 'rezone' );
 
 <?php
 	get_template_part( 'partials/neighborhoods', 'overview' );
-	get_template_part( 'partials/neighborhoods', 'news' );
-	get_template_part( 'partials/neighborhoods', 'videos' );
-	get_template_part( 'partials/neighborhoods', 'commentary' );
+	include( locate_template( 'partials/neighborhoods-news.php' ) );
+	include( locate_template( 'partials/neighborhoods-videos.php' ) );
+	include( locate_template( 'partials/neighborhoods-commentary.php' ) );
 	get_template_part( 'partials/neighborhoods', 'map' );
 	get_template_part( 'partials/neighborhoods', '101' );
 	get_template_part( 'partials/neighborhoods', 'documents' );
