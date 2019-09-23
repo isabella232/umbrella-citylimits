@@ -81,48 +81,10 @@ function citylimits_featured_stories_count( $showstories ) {
 }
 add_filter( 'largo_homepage_topstories_post_count', 'citylimits_featured_stories_count' );
 
-
-/**
- * Taboola code
- */
-function citylimits_taboola_header() {
-	?>
-	<script type="text/javascript">
-		window._taboola = window._taboola || [];
-		_taboola.push(
-		{article:'auto'}
-		);
-		!function (e, f, u)
-		{ e.async = 1; e.src = u; f.parentNode.insertBefore(e, f); }
-		(document.createElement('script'),
-		document.getElementsByTagName('script')[0],
-		'//cdn.taboola.com/libtrc/citylimit/loader.js');
-	</script>
-	<?php
-}
-add_action( 'wp_head', 'citylimits_taboola_header' );
-
-
-function citylimits_taboola_footer() {
-	?>
-	<script type="text/javascript">
-		window._taboola = window._taboola || [];
-		_taboola.push(
-		{flush: true}
-		);
-	</script>
-	<?php
-}
-add_action( 'wp_footer', 'citylimits_taboola_footer' );
-
-
-
-
 function cl_widgets() {
 	unregister_widget( 'TribeCountdownWidget' );
 }
 add_action( 'widgets_init', 'cl_widgets', 14 );
-
 
 /* Remove the largo logo from login page */
 add_action( 'init', function() {
@@ -152,83 +114,6 @@ function citylimits_login_redirect( $redirect_to, $request, $user ) {
 	}
 }
 add_filter( 'login_redirect', 'citylimits_login_redirect', 10, 3 );
-
-
-function citylimits_google_analytics() {
-	if ( ! is_user_logged_in() ) { // don't track logged in users ?>
-		<script>
-			( function ( i, s, o, g, r, a, m ) {i['GoogleAnalyticsObject']=r;i[r]=i[r]|| function() {( i[r].q=i[r].q||[] ).push( arguments )},i[r].l=1*new Date();a=s.createElement( o ), m=s.getElementsByTagName( o )[0];a.async=1;a.src=g;m.parentNode.insertBefore( a, m )} )
-			( window,document,'script','https://www.google-analytics.com/analytics.js','ga' );
-
-			ga( 'create', 'UA-529003-1', 'auto' );
-
-			<?php
-			global $post, $wp_query;
-
-			if ( is_singular() ) {
-				// Single objects
-
-				if ( has_term( 'zonein', 'series' ) or has_term( 'futuremap', 'series' ) ) {
-					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
-				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
-					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
-				}
-
-				/*
-				 * Content Group 2 "election 2017" in response to https://secure.helpscout.net/conversation/421881188/1229/?folderId=1259187
-				 */
-				if (
-					has_term( '2017-election', 'series' )
-					|| has_term( 'campaign-2017-newswire', 'post_tag' )
-					|| has_term( 'democracys-timetable-campaign-2017-schedules', 'post_tag' )
-					|| has_term( 'district-data', 'post_tag' )
-					|| has_term( 'max-murphy-podcasts', 'category' )
-					// below here are specific sections
-					|| 20726 === $post->ID // https://citylimits.org/citizens-toolkit/
-					|| 1750692 === $post->ID // https://citylimits.org/campaign-2017-candidate-debate-calendar/
-					|| 1663505 === $post->ID // https://citylimits.org/politistat-2017/
-					|| 1667230 === $post->ID // https://citylimits.org/our-2017-political-polls-vote-here-see-results/
-					|| 1664887 === $post->ID // https://citylimits.org/lookback-dispatches-from-new-york-city-campaign-history/
-					|| 1685102 === $post->ID // https://citylimits.org/a-users-guide-to-new-york-citys-elected-positions/
-					|| 1663553 === $post->ID // https://citylimits.org/mayoral-race-2017/
-					|| 1663554 === $post->ID // https://citylimits.org/council-races-2017/
-				) {
-					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
-				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
-					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
-				}
-			} elseif ( is_tax() || is_archive() ) {
-				// Term archives
-
-				$term = $wp_query->get_queried_object();
-				if (
-					$term->slug === 'zonein'
-					|| $term->slug === 'futuremap'
-					|| $term->slug === 'zonein-espanol'
-					|| $term->taxonomy === 'neighborhoods'
-				) {
-					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
-				}
-				if (
-					'2017-election' === $term->slug
-					|| 'campaign-2017-newswire' === $term->slug
-					|| 'democracys-timetable-campaign-2017-schedules' === $term->slug
-					|| 'district-data' === $term->slug
-					|| 'max-murphy-podcasts' === $term->slug
-				) {
-					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
-				}
-			}
-			?>
-
-			ga( 'send', 'pageview' );
-		</script>
-		<?php
-	}
-}
-add_action( 'wp_head', 'citylimits_google_analytics' );
-
-
 
 function create_neighborhoods_taxonomy() {
 
@@ -415,31 +300,6 @@ function zonein_tax_archive_query( $query ) {
 }
 add_action( 'pre_get_posts', 'zonein_tax_archive_query', 1 );
 
-/* Custom query for event list widget*/
-function tribe_custom_list_widget_events ( ){
-     
-    // uncoment the line below and fill in your custom args
-    $args = array(
-        // 'eventDisplay'=>'upcoming',
-        // 'posts_per_page'=>-1,
-        'tax_query'=> array(
-            array(
-                'taxonomy' => 'tribe_events_cat',
-                'field' => 'slug',
-                'terms' => 'communitywire-events'
-            )
-        )
-    );
-    // $args = array();
- 
-    $posts = tribe_get_events( $args );
- 
-    return $posts;    
-}
- 
-add_filter( 'tribe_get_list_widget_events', 'tribe_custom_list_widget_events' );
-
-
 /**
  * get other scripts
  */
@@ -469,30 +329,6 @@ add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
     return $request_args;
 }, 10, 2 );
 
-
-add_filter( 'register_post_type_args', 'add_cpt_capability_organizer', 10, 2 );
-
-function add_cpt_capability_organizer( $args, $post_type ) {
-	// Make sure we're only modifying our desired post type.
-	if ( 'tribe_organizer' != $post_type ) 
-		return $args;
-	$args['capability_type'] = 'post';
-	$args['public'] = 1;
-	return $args;
-}
-
-add_filter( 'register_post_type_args', 'add_cpt_capability_venue', 999, 2 );
-
-function add_cpt_capability_venue( $args, $post_type ) {
-	// Make sure we're only modifying our desired post type.
-	if ( 'tribe_venue' != $post_type ) 
-		return $args;
-	$args['capability_type'] = 'post';
-	$args['public'] = 1;
-	return $args;
-}
-
-
 /**
  * Set max srcset image width to 771px, because otherwise WP will display the full resolution version
  */
@@ -501,51 +337,6 @@ function set_max_srcset_image_width( $max_width ) {
     return $max_width;
 }
 add_filter( 'max_srcset_image_width', 'set_max_srcset_image_width' );
-
-/**
- * Remove the Tribe Customizer css <script>
- https://gist.github.com/elimn/50cc4ac8b56cc2809bbc48e7c7e3b461
- */
-function tribe_remove_customizer_css(){
-	if ( class_exists( 'Tribe__Customizer' ) ) {
-		remove_action( 'wp_print_footer_scripts', array( Tribe__Customizer::instance(), 'print_css_template' ), 15 );
-	}
-}
-add_action( 'wp_footer', 'tribe_remove_customizer_css' );
-
-
-/**
- * filter search results: remove old events
- */
-function cl_pre_get_posts($query) {
-	if ( !is_admin() && $query->is_main_query() && $query->is_search ) {
-		$meta_query = $query->get('meta_query');
-		$additional_query = array(
-			'relation' => 'OR',
-			array(
-				'key' => '_EventStartDate',
-				'value' => date("Y-m-d H:i:s"),
-				'compare' => '>=',
-				'type' => 'DATETIME'
-			) ,
-			array(
-				'key' => '_EventStartDate',
-				'compare' => 'NOT EXISTS'
-			)
-		);
-		if ( is_array( $meta_query ) ) {
-			$meta_query[] = $additional_query;
-		} else {
-			$meta_query = $additional_query;
-		}
-
-		$query->set('meta_query', $meta_query);
-	}
-	return $query;
-}
-
-add_action( 'pre_get_posts', 'cl_pre_get_posts' );
-
 
 /**
  * newsletter subscribe forms

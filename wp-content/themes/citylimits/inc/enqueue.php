@@ -160,3 +160,113 @@ EOH;
  */
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+/**
+ * Custom Google Analytics things.
+ */
+function citylimits_google_analytics() {
+	if ( ! is_user_logged_in() ) { // don't track logged in users ?>
+		<script>
+			( function ( i, s, o, g, r, a, m ) {i['GoogleAnalyticsObject']=r;i[r]=i[r]|| function() {( i[r].q=i[r].q||[] ).push( arguments )},i[r].l=1*new Date();a=s.createElement( o ), m=s.getElementsByTagName( o )[0];a.async=1;a.src=g;m.parentNode.insertBefore( a, m )} )
+			( window,document,'script','https://www.google-analytics.com/analytics.js','ga' );
+
+			ga( 'create', 'UA-529003-1', 'auto' );
+
+			<?php
+			global $post, $wp_query;
+
+			if ( is_singular() ) {
+				// Single objects
+
+				if ( has_term( 'zonein', 'series' ) or has_term( 'futuremap', 'series' ) ) {
+					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
+				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
+					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
+				}
+
+				/*
+				 * Content Group 2 "election 2017" in response to https://secure.helpscout.net/conversation/421881188/1229/?folderId=1259187
+				 */
+				if (
+					has_term( '2017-election', 'series' )
+					|| has_term( 'campaign-2017-newswire', 'post_tag' )
+					|| has_term( 'democracys-timetable-campaign-2017-schedules', 'post_tag' )
+					|| has_term( 'district-data', 'post_tag' )
+					|| has_term( 'max-murphy-podcasts', 'category' )
+					// below here are specific sections
+					|| 20726 === $post->ID // https://citylimits.org/citizens-toolkit/
+					|| 1750692 === $post->ID // https://citylimits.org/campaign-2017-candidate-debate-calendar/
+					|| 1663505 === $post->ID // https://citylimits.org/politistat-2017/
+					|| 1667230 === $post->ID // https://citylimits.org/our-2017-political-polls-vote-here-see-results/
+					|| 1664887 === $post->ID // https://citylimits.org/lookback-dispatches-from-new-york-city-campaign-history/
+					|| 1685102 === $post->ID // https://citylimits.org/a-users-guide-to-new-york-citys-elected-positions/
+					|| 1663553 === $post->ID // https://citylimits.org/mayoral-race-2017/
+					|| 1663554 === $post->ID // https://citylimits.org/council-races-2017/
+				) {
+					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
+				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
+					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
+				}
+			} elseif ( is_tax() || is_archive() ) {
+				// Term archives
+
+				$term = $wp_query->get_queried_object();
+				if (
+					$term->slug === 'zonein'
+					|| $term->slug === 'futuremap'
+					|| $term->slug === 'zonein-espanol'
+					|| $term->taxonomy === 'neighborhoods'
+				) {
+					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
+				}
+				if (
+					'2017-election' === $term->slug
+					|| 'campaign-2017-newswire' === $term->slug
+					|| 'democracys-timetable-campaign-2017-schedules' === $term->slug
+					|| 'district-data' === $term->slug
+					|| 'max-murphy-podcasts' === $term->slug
+				) {
+					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
+				}
+			}
+			?>
+
+			ga( 'send', 'pageview' );
+		</script>
+		<?php
+	}
+}
+add_action( 'wp_head', 'citylimits_google_analytics' );
+
+/**
+ * Taboola code
+ */
+function citylimits_taboola_header() {
+	?>
+	<script type="text/javascript">
+		window._taboola = window._taboola || [];
+		_taboola.push(
+		{article:'auto'}
+		);
+		!function (e, f, u)
+		{ e.async = 1; e.src = u; f.parentNode.insertBefore(e, f); }
+		(document.createElement('script'),
+		document.getElementsByTagName('script')[0],
+		'//cdn.taboola.com/libtrc/citylimit/loader.js');
+	</script>
+	<?php
+}
+add_action( 'wp_head', 'citylimits_taboola_header' );
+
+
+function citylimits_taboola_footer() {
+	?>
+	<script type="text/javascript">
+		window._taboola = window._taboola || [];
+		_taboola.push(
+		{flush: true}
+		);
+	</script>
+	<?php
+}
+add_action( 'wp_footer', 'citylimits_taboola_footer' );
