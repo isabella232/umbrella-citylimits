@@ -29,12 +29,12 @@ get_header( 'rezone' );
 
 
 <?php
-	get_template_part( 'partials/neighborhoods', 'overview' );
-	get_template_part( 'partials/neighborhoods', 'news' );
-	get_template_part( 'partials/neighborhoods', 'videos' );
-	get_template_part( 'partials/neighborhoods', 'commentary' );
-	get_template_part( 'partials/neighborhoods', 'map' );
-	get_template_part( 'partials/neighborhoods', '101' );
-	get_template_part( 'partials/neighborhoods', 'documents' );
-	get_template_part( 'partials/neighborhoods', 'ctas' );
+	include( locate_template( 'partials/neighborhoods-overview.php' ) );
+	include( locate_template( 'partials/neighborhoods-news.php' ) );
+	include( locate_template( 'partials/neighborhoods-videos.php' ) );
+	include( locate_template( 'partials/neighborhoods-commentary.php' ) );
+	include( locate_template( 'partials/neighborhoods-map.php' ) );
+	include( locate_template( 'partials/neighborhoods-101.php' ) );
+	include( locate_template( 'partials/neighborhoods-documents.php' ) );
+	include( locate_template( 'partials/neighborhoods-ctas.php' ) );
 	get_footer();
