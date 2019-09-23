@@ -39,17 +39,8 @@ module.exports = function(grunt) {
         ],
         tasks: [
           'less:compile',
-        ],
-        options: {
-        	livereload: true
         }
-      },
-      reload: {
-      	files: ['**/*.php', '**/*.js'],
-         options: {
-        	livereload: true
-        }
-     }
+      }
     },
 
     version: {
