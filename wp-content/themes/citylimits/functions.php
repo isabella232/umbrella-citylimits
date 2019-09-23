@@ -65,8 +65,9 @@ function citylimits_widgets_init() {
 	register_widget( 'communitywire_sidebar' );
 	register_widget( 'jp_cl_related_posts' );
 	register_widget( 'cl_newsletter_header' );
+	unregister_widget( 'TribeCountdownWidget' );
 }
-add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
+add_action( 'widgets_init', 'citylimits_widgets_init', 14 );
 
 /**
  * Set the number of posts in the right-hand side of the Top Stories homepage template to 2.
@@ -80,11 +81,6 @@ function citylimits_featured_stories_count( $showstories ) {
 	return 3;
 }
 add_filter( 'largo_homepage_topstories_post_count', 'citylimits_featured_stories_count' );
-
-function cl_widgets() {
-	unregister_widget( 'TribeCountdownWidget' );
-}
-add_action( 'widgets_init', 'cl_widgets', 14 );
 
 /* Remove the largo logo from login page */
 add_action( 'init', function() {
