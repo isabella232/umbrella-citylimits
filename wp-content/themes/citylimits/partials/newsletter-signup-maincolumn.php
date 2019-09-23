@@ -45,7 +45,7 @@ foreach ( get_field('newsletter_group', 'option') as $group ) {
 			</div>
 		</div><!--.row-->
 	</form>
-<? if ( function_exists( 'get_field' ) ) { ?>
+<?php if ( function_exists( 'get_field' ) ) { ?>
 	<div class="newsletter-response">
 		<div class="row">
 			<div class="column signup_text_holder">
@@ -57,5 +57,5 @@ foreach ( get_field('newsletter_group', 'option') as $group ) {
 			</div>
 		</div><!--.row-->
 	</div><!--.newsletter-response-->
-<? } ?>
+<?php } ?>
 </div><!--.newsletter-signup-->
