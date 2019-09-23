@@ -122,3 +122,41 @@ remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 			);
 		}
 	}
+
+/**
+ * ADD Google Tag Manager Verification code TO HEADER
+ */
+add_action('wp_head', 'add_gtm');
+function add_gtm() {
+	print <<<EOH
+<!-- Google Tag Manager Verification for citylimits.org -->
+<meta name=“google-site-verification” content=“xtkYdoGbfrA1xVBUGe11w1Z6HyrnplNW9OSjNh6HZx8" />
+EOH;
+}
+
+
+/**
+ * ADD HOTJAR TO HEADER
+ */
+add_action('wp_head', 'add_hotjar');
+function add_hotjar() {
+	print <<<EOH
+<!-- Hotjar Tracking Code for citylimits.org -->
+<script>
+	(function(h,o,t,j,a,r){
+		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		h._hjSettings={hjid:1295994,hjsv:6};
+		a=o.getElementsByTagName('head')[0];
+		r=o.createElement('script');r.async=1;
+		r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		a.appendChild(r);
+		})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+EOH;
+}
+
+/**
+ * remove WordPress' emoji support for print
+ */
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );

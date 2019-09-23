@@ -492,32 +492,6 @@ function add_cpt_capability_venue( $args, $post_type ) {
 	return $args;
 }
 
-/* ADD HOTJAR TO HEADER */
-add_action('wp_head', 'add_hotjar');
-function add_hotjar() {
-	print <<<EOH
-<!-- Hotjar Tracking Code for citylimits.org -->
-<script>
-	(function(h,o,t,j,a,r){
-		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-		h._hjSettings={hjid:1295994,hjsv:6};
-		a=o.getElementsByTagName('head')[0];
-		r=o.createElement('script');r.async=1;
-		r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-		a.appendChild(r);
-		})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-</script>
-EOH;
-}
-
-/* ADD Google Tag Manager Verification code TO HEADER */
-add_action('wp_head', 'add_gtm');
-function add_gtm() {
-	print <<<EOH
-<!-- Google Tag Manager Verification for citylimits.org -->
-<meta name=“google-site-verification” content=“xtkYdoGbfrA1xVBUGe11w1Z6HyrnplNW9OSjNh6HZx8" />
-EOH;
-}
 
 /**
  * Set max srcset image width to 771px, because otherwise WP will display the full resolution version
@@ -527,12 +501,6 @@ function set_max_srcset_image_width( $max_width ) {
     return $max_width;
 }
 add_filter( 'max_srcset_image_width', 'set_max_srcset_image_width' );
-
-/**
- * remove unecessary WP header stuff
- */
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
 /**
  * Remove the Tribe Customizer css <script>
