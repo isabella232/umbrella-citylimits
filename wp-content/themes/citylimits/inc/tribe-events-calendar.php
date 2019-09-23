@@ -5,7 +5,7 @@
 
 /**
  * Remove the Tribe Customizer css <script>
- https://gist.github.com/elimn/50cc4ac8b56cc2809bbc48e7c7e3b461
+ * https://gist.github.com/elimn/50cc4ac8b56cc2809bbc48e7c7e3b461
  */
 function tribe_remove_customizer_css(){
 	if ( class_exists( 'Tribe__Customizer' ) ) {
