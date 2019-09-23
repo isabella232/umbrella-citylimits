@@ -89,7 +89,7 @@ get_header();
 					?>
 				</section><!-- .entry-content -->
 			</article><!-- #post-<?php the_ID(); ?> -->
-			<?
+			<?php
 		} // endwhile
 	?>
 </div>
