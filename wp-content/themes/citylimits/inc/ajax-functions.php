@@ -56,15 +56,7 @@ if ( !function_exists( 'cl_mc_signup' ) ) {
 		foreach ($_REQUEST['newsletters'] as $newsletter) {
 			$interests[$newsletter] = true;
 		}
-	
-		/*
-		$result = $MC->post("lists/$list_id/members", [
-			'email_address' => $_REQUEST['email'],
-			'status' => 'subscribed',
-			'merge_fields' => ['FNAME' => $_REQUEST['fname'], 'LNAME' => $_REQUEST['lname']],
-			'interests' => $interests
-		]);
-		*/
+
 		$email_hash = md5(strtolower($_REQUEST['email']));
 		$result = $MC->put("lists/$list_id/members/$email_hash", [
 			'email_address' => $_REQUEST['email'],
