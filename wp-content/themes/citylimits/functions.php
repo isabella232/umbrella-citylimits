@@ -574,13 +574,3 @@ add_shortcode('cl-newsletter', function() {
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
 	return ob_get_clean();
 });
-
-
-/**
- * tell buggy plugins to be quiet in Query Monitor
- */
-add_filter( 'qm/collect/php_error_levels', function( array $levels ) {
-	$levels['plugin']['taxonomy-converter'] = ( E_ALL & ~E_DEPRECATED );
-	$levels['plugin']['news-match-popup-basics'] = ( E_ALL & ~E_NOTICE );
-	return $levels;
-} );
