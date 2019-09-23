@@ -25,17 +25,18 @@ function largo_child_require_files() {
 	$includes = array(
 		'/inc/ajax-functions.php',
 		'/inc/communitywire.php',
-		'/inc/registration.php',
-		'/inc/term-meta.php',
+		'/inc/enqueue.php',
 		'/inc/metaboxes.php',
 		'/inc/post-templates.php',
-		'/inc/enqueue.php',
+		'/inc/registration.php',
+		'/inc/term-meta.php',
 		// plugin compat
+		'/inc/acf.php',
 		'/inc/doubleclick-for-wordpress.php',
 		'/inc/jetpack.php',
+		'/inc/tribe-events-calendar.php',
 		'/inc/widgets/jp-related-posts.php',
 		// widgets
-		'/inc/acf.php',
 		'/inc/widgets/communitywire-announcements.php',
 		'/inc/widgets/communitywire-sidebar.php',
 		'/inc/widgets/neighborhood-content.php',
