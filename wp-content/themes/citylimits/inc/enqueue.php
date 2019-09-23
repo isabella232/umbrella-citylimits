@@ -1,4 +1,13 @@
 <?php
+/**
+ * Regarding enqueueing and dequeueing styles and scripts
+ */
+
+/**
+ * remove this theme's style.css, since we're using child-style.css instead
+ * see https://github.com/INN/Largo-Sample-Child-Theme/issues/14
+ */
+remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 
 /**
  * Copy Largo's largo_enqueue_js() so that we can make a case-specific modification to whether or not the largo sticky nav is set to display or not

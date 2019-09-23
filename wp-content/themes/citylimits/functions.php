@@ -30,11 +30,16 @@ function largo_child_require_files() {
 		'/inc/metaboxes.php',
 		'/inc/post-templates.php',
 		'/inc/enqueue.php',
+		// plugin compat
+		'/inc/doubleclick-for-wordpress.php',
+		'/inc/jetpack.php',
+		'/inc/widgets/jp-related-posts.php',
+		// widgets
+		'/inc/acf.php',
 		'/inc/widgets/communitywire-announcements.php',
 		'/inc/widgets/communitywire-sidebar.php',
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
-		'/inc/widgets/jp-related-posts.php',
 		'/inc/widgets/cl-newsletter-header.php',
 	);
 
@@ -111,103 +116,6 @@ function citylimits_taboola_footer() {
 add_action( 'wp_footer', 'citylimits_taboola_footer' );
 
 
-/* Custom registration link */
-add_filter( 'register', function( $link ) {
-	return '<a href="' . site_url( '/register' ) . '">Register</a>';
-});
-
-
-/* Custom fields for user registration */
-function citylimits_custom_signup_fields_early( $values ) {
-	extract( $values );
-	?>
-	<div class="form-group">
-		<label for="organization"><?php _e('Organization name (optional)', 'citylimits'); ?></label>
-		<input type="text" value="<?php if (!empty($organization)) { echo $organization; } ?>" name="organization">
-
-		<?php if ( $errmsg = $errors->get_error_message('organization') ) : ?>
-			<p class="alert alert-error"><?php echo $errmsg; ?></p>
-		<?php endif; ?>
-	</div>
-
-	<div class="form-group">
-		<label>Want to receive our free newsletter? <a href="https://app.getresponse.com/site2/citylimits?u=Btt5L&webforms_id=439505">Sign up here.</a></label>
-	</div>
-	<?php
-}
-add_action( 'signup_extra_fields', 'citylimits_custom_signup_fields_early', 1, 2 );
-
-
-function citylimits_custom_signup_fields_late( $values ) {
-	extract( $values );
-	?>
-	<div class="form-group">
-		<label for="recaptcha_response_field"><?php _e('Are you human?', 'citylimits'); ?></label>
-		<?php
-		/* ReCaptcha */
-		require_once('lib/recaptchalib.php');
-		echo recaptcha_get_html( RECAPCHA_PUBLIC_KEY );
-		if ( $errmsg = $errors->get_error_message( 'recaptcha' ) ) : ?>
-			<p class="alert alert-error"><?php echo $errmsg; ?></p>
-		<?php endif; ?>
-	</div>
-	<?php
-}
-add_action('signup_extra_fields', 'citylimits_custom_signup_fields_late', 10, 2);
-
-
-/**
- * Verify citylimits custom signup fields applied above.
- *
- * @param $result. array. The $_POST variables from the form to validate.
- * @param $extras. array. ??
- */
-function citylimits_verify_custom_signup_fields( $result, $extras=null ) {
-	/* Check the reCaptcha */
-	require_once( 'lib/recaptchalib.php' );
-	$privatekey = RECAPCHA_PRIVATE_KEY;
-
-	$resp = recaptcha_check_answer(
-		$privatekey, $_SERVER["REMOTE_ADDR"], $result["recaptcha_challenge_field"],
-		$result["recaptcha_response_field"]);
-
-	/* Check the Captcha */
-	if (!$resp->is_valid) {
-		$result['errors']->add( 'recaptcha',__( 'The entered captcha was incorrect','citylimits' ) );
-		return $result;
-	} else {
-		return $result;
-	}
-}
-add_action( 'largo_validate_user_signup_extra_fields', 'citylimits_verify_custom_signup_fields' );
-
-
-function citylimits_user_profile_fields( $user ) {
-	$organization = get_user_meta( $user->ID, 'organization', true );
-	$mailing_id = get_user_meta( $user->ID, 'mailing_id', true );
-	?>
-	<h3>Other preferences</h3>
-
-	<table class="form-table">
-		<tbody>
-			<tr>
-				<th><label for="organization"><?php _e( 'Organization name', 'citylimits' ); ?></label></th>
-				<td><input type="text" value="<?php if ( ! empty( $organization ) ) { echo $organization; } ?>" name="organization"></td>
-			</tr>
-		</tbody>
-	</table>
-
-	<?php
-}
-add_action( 'show_user_profile',  'citylimits_user_profile_fields' );
-
-
-function citylimits_save_user_profile_fields( $user_id ) {
-	if ( ! empty( $_POST ) ) {
-		update_user_meta( $user_id, 'organization', $_POST['organization'] );
-	}
-}
-add_action( 'personal_options_update', 'citylimits_save_user_profile_fields' );
 
 
 function cl_widgets() {
@@ -244,11 +152,6 @@ function citylimits_login_redirect( $redirect_to, $request, $user ) {
 	}
 }
 add_filter( 'login_redirect', 'citylimits_login_redirect', 10, 3 );
-
-function citylimits_users_can_register( $option ) {
-	return true;
-}
-add_filter( 'pre_option_users_can_register', 'citylimits_users_can_register', 1, 10 );
 
 
 function citylimits_google_analytics() {
@@ -326,13 +229,6 @@ function citylimits_google_analytics() {
 add_action( 'wp_head', 'citylimits_google_analytics' );
 
 
-function remove_cc_registration_filter() {
-	global $pagenow;
-	if ( $pagenow == 'user-new.php' )
-		remove_filter( 'wpmu_signup_user_notification', 'constant_contact_register_post_multisite', 10 );
-}
-add_action( 'plugins_loaded', 'remove_cc_registration_filter', 2 );
-
 
 function create_neighborhoods_taxonomy() {
 
@@ -362,23 +258,6 @@ function create_neighborhoods_taxonomy() {
 
 }
 add_action( 'init', 'create_neighborhoods_taxonomy', 0 );
-
-/**
- * Configuration for DFP plugin
- */
-function citylimits_configure_dfp() {
-
-    global $DoubleClick;
-
-    $DoubleClick->networkCode = "1291657";
-
-    /* breakpoints */
-    $DoubleClick->register_breakpoint( 'phone', array( 'minWidth'=>0, 'maxWidth'=>769 ) );
-    $DoubleClick->register_breakpoint( 'tablet', array( 'minWidth'=>769, 'maxWidth'=>980 ) );
-    $DoubleClick->register_breakpoint( 'desktop', array( 'minWidth'=>980, 'maxWidth'=>9999 ) );
-
-}
-// add_action( 'dfw_setup', 'citylimits_configure_dfp' );
 
 function register_zonein_menu() {
   register_nav_menu('zonein-menu',__( 'Mapping the Future Menu' ));
@@ -666,11 +545,6 @@ function tribe_remove_customizer_css(){
 }
 add_action( 'wp_footer', 'tribe_remove_customizer_css' );
 
-/**
- * remove this theme's style.css, since we're using child-style.css instead
- * see https://github.com/INN/Largo-Sample-Child-Theme/issues/14
- */
-remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 
 /**
  * filter search results: remove old events
@@ -704,47 +578,6 @@ function cl_pre_get_posts($query) {
 
 add_action( 'pre_get_posts', 'cl_pre_get_posts' );
 
-
-/**
- * JETPACK RELATED POSTS
- */
- 
-//remove JP Related Posts from default location so we can move it elsewhere
-function jetpackme_remove_rp() {
-    if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
-        $jprp = Jetpack_RelatedPosts::init();
-        $callback = array( $jprp, 'filter_add_target_to_dom' );
-        remove_filter( 'the_content', $callback, 40 );
-    }
-}
-add_filter( 'wp', 'jetpackme_remove_rp', 20 );
-
-
-// limit results to last 3 years
-function jetpackme_related_posts_past_3years_only( $date_range ) {
-	$date_range = array(
-		'from' => strtotime( '-3 years' ),
-		'to' => time(),
-	);
-	return $date_range;
-}
-add_filter( 'jetpack_relatedposts_filter_date_range', 'jetpackme_related_posts_past_3years_only' );
-
-
-//eliminate some categories
-function jetpackme_filter_exclude_category( $filters ) {
-	$filters[] = array( 'not' =>
-		array( 'term' => array( 'category.slug' => 'community-wire' ) )
-	);
-	$filters[] = array( 'not' =>
-		array( 'term' => array( 'term' => 'uncategorized' ) )
-	);
-	return $filters;
-}
-add_filter( 'jetpack_relatedposts_filter_filters', 'jetpackme_filter_exclude_category' );
-
-//dequeue jetpack css so we can override it
-add_filter( 'jetpack_implode_frontend_css', '__return_false', 99 );
 
 /**
  * newsletter subscribe forms
@@ -783,19 +616,3 @@ add_filter( 'qm/collect/php_error_levels', function( array $levels ) {
 	$levels['plugin']['news-match-popup-basics'] = ( E_ALL & ~E_NOTICE );
 	return $levels;
 } );
-
-/**
- * create Options Page for Mailchimp newsletter settings, which are handled by ACF
- */
-
-if( function_exists('acf_add_options_page') ) {
-	
-	acf_add_options_page(array(
-		'page_title' 	=> 'Mailchimp Newsletter Settings',
-		'menu_title'	=> 'CL Mailchimp',
-		'menu_slug' 	=> 'cl-mailchimp-settings',
-		'capability'	=> 'edit_posts',
-		'redirect'		=> false
-	));
-	
-}
