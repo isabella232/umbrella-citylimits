@@ -10,6 +10,76 @@ Version:        1.0
 /**
  * VARIABLES
  */
+#main-nav.navbar {
+  border-top: 2px solid #e2e2e2;
+  border-bottom: 2px solid #e2e2e2;
+  padding: 15px 0;
+}
+#main-nav .nav-shelf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#main-nav .nav-shelf .nav {
+  padding-right: 15px;
+}
+#main-nav .nav-shelf .nav li.menu-item a {
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#main-nav .nav-shelf .nav li.menu-item a:hover {
+  background: none;
+  color: #d41313;
+}
+#main-nav .nav-shelf .nav li.menu-item a .caret {
+  display: none;
+}
+#main-nav .nav-shelf .nav li.dropdown a {
+  padding-right: 15px;
+}
+#main-nav .nav-shelf .languages-nav {
+  left: 0;
+  display: inline-block;
+  float: left;
+  margin: 0;
+  padding-left: 25px;
+  border-left: 2px solid #e2e2e2;
+}
+#main-nav .nav-shelf .languages-nav li.menu-item:first-of-type {
+  font-weight: bold;
+  border-right: 2px solid #000000;
+}
+#main-nav .nav-shelf .languages-nav li.menu-item a {
+  font-size: 15px;
+  color: #333333;
+  text-transform: uppercase;
+  line-height: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#main-nav .nav-shelf .languages-nav li.menu-item a:hover {
+  background: none;
+  color: #d41313;
+}
+@media (max-width: 999px) and (min-width: 769px) {
+  #main-nav .nav-shelf .nav {
+    padding-right: 10px;
+  }
+  #main-nav .nav-shelf .nav li.menu-item a {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+  }
+  #main-nav .nav-shelf .languages-nav {
+    padding-left: 5px;
+  }
+  #main-nav .nav-shelf .languages-nav li.menu-item a {
+    font-size: 14px;
+  }
+}
 a {
   color: #D41313;
   text-decoration: none;
