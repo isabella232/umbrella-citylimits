@@ -626,6 +626,6 @@ add_action( 'wp_footer', 'tribe_remove_customizer_css' );
  * Register custom languages menu location for the main nav
  */
 function register_languages_menu() {
-	register_nav_menu('languages-menu',__( 'Languages Menu' ));
+	register_nav_menu( 'languages-menu', __( 'Languages Menu' ) );
 }
 add_action( 'init', 'register_languages_menu' );
