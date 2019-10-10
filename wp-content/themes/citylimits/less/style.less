@@ -237,6 +237,12 @@ body.clean-read.single-post.classic #content {
   font-weight: bold;
 }
 
+/* Sidebar */
+#sidebar {
+	display: none;
+}
+
+
 /* Sticky posts */
 .sticky-related, .sticky-solo {
 background-color: #f61212;
@@ -1312,7 +1318,7 @@ body.neighborhoods-lp {
   height: 37px;
   margin-right: 0;
   margin-top: 8px;
-  background-image: url(img/CityLimitsLogo.svg);
+  background-image: url(../img/CityLimitsLogo.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center
@@ -1562,6 +1568,12 @@ h1.hidden-page-title {
     }
 }
 
+.single-communitywire {
+	h5.byline {
+		display: none;
+	}
+}
+
 
 
 /* RESPONSIVE */
@@ -1582,7 +1594,50 @@ h1.hidden-page-title {
     margin-top:0;
   }
 }
+
+@media screen and (min-width:769px) {
+	#sidebar {
+		display: block;
+	}
+}
+
 // https://secure.helpscout.net/conversation/698314399/2780?folderId=1219602
 .archive-background .rss-subscribe-link {
   display: none;
 }
+
+/* JETPACK RELATED POSTS */
+#jp-relatedposts {
+	padding-left: 24px;
+	h3.jp-relatedposts-headline {
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 26px;
+		font-weight: bold;
+		line-height: 1.27em;
+		margin-bottom: 8px;
+	}
+	.jp-relatedposts-items .jp-relatedposts-post span a.jp-relatedposts-post-a, .jp-relatedposts-items-visual h4.jp-relatedposts-post-title, .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a {
+		color: #000;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 20px;
+		font-weight: bold;
+		line-height: 1.3em;
+	}
+	.jp-relatedposts-items .jp-relatedposts-post {
+		float: none;
+		width: auto;
+		margin-bottom: 12px;
+	}
+	div.jp-relatedposts-items-visual .jp-relatedposts-post {
+		-moz-opacity: 1;
+		opacity: 1;
+	}
+
+	div.jp-relatedposts-items div.jp-relatedposts-post:hover {
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		opacity: 1;
+	}
+}
+
+@import "newsletters.less";
