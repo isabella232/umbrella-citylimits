@@ -14,7 +14,8 @@ module.exports = function(grunt) {
 
   var cssLessFiles = {
     'css/child-style.css': 'less/child-style.less',
-    'css/job-board.css': 'less/job-board.less'
+    'css/job-board.css': 'less/job-board.less',
+    'homepages/assets/css/homepage.css': 'homepages/assets/less/homepage.less'
   };
 
   grunt.initConfig({
@@ -23,7 +24,9 @@ module.exports = function(grunt) {
     less: {
       compile: {
         options: {
-          paths: ['less'],
+          paths: [
+            'less'
+          ],
           outputSourceFiles: true,
           sourceMapBasepath: path,
           compress: true
@@ -39,35 +42,13 @@ module.exports = function(grunt) {
         ],
         tasks: [
           'less:compile',
-        }
-      }
-    },
-
-    version: {
-      src: [
-        'package.json'
-      ],
-      css: {
-        options: {
-          prefix: 'Version: '
-        },
-        src: [
-          'css/child-style.css',
-        ]
-      },
-      readme: {
-        options: {
-          prefix: '\\*\\*Current version:\\*\\* v'
-        },
-        src: [
-          'readme.md'
         ]
       }
     }
   });
 
   // Build assets, docs and language files
-  grunt.registerTask('build', 'Build less files', [
+  grunt.registerTask('default', 'Build less files', [
     'less',
   ]);
 }
