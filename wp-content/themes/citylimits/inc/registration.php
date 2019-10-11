@@ -320,3 +320,118 @@ function largo_registration_form($attrs) {
 	}
 }
 add_shortcode('largo_registration_form', 'largo_registration_form');
+
+/**
+ * Custom registration link
+ *
+ * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/register
+ */
+add_filter( 'register', function( $link ) {
+	return '<a href="' . site_url( '/register' ) . '">Register</a>';
+});
+
+
+/* Custom fields for user registration */
+function citylimits_custom_signup_fields_early( $values ) {
+	extract( $values );
+	?>
+	<div class="form-group">
+		<label for="organization"><?php _e('Organization name (optional)', 'citylimits'); ?></label>
+		<input type="text" value="<?php if (!empty($organization)) { echo $organization; } ?>" name="organization">
+
+		<?php if ( $errmsg = $errors->get_error_message('organization') ) : ?>
+			<p class="alert alert-error"><?php echo $errmsg; ?></p>
+		<?php endif; ?>
+	</div>
+
+	<div class="form-group">
+		<label>Want to receive our free newsletter? <a href="https://app.getresponse.com/site2/citylimits?u=Btt5L&webforms_id=439505">Sign up here.</a></label>
+	</div>
+	<?php
+}
+add_action( 'signup_extra_fields', 'citylimits_custom_signup_fields_early', 1, 2 );
+
+
+function citylimits_custom_signup_fields_late( $values ) {
+	extract( $values );
+	?>
+	<div class="form-group">
+		<label for="recaptcha_response_field"><?php _e('Are you human?', 'citylimits'); ?></label>
+		<?php
+		/* ReCaptcha */
+		require_once('lib/recaptchalib.php');
+		echo recaptcha_get_html( RECAPCHA_PUBLIC_KEY );
+		if ( $errmsg = $errors->get_error_message( 'recaptcha' ) ) : ?>
+			<p class="alert alert-error"><?php echo $errmsg; ?></p>
+		<?php endif; ?>
+	</div>
+	<?php
+}
+add_action('signup_extra_fields', 'citylimits_custom_signup_fields_late', 10, 2);
+
+
+/**
+ * Verify citylimits custom signup fields applied above.
+ *
+ * @param $result. array. The $_POST variables from the form to validate.
+ * @param $extras. array. ??
+ */
+function citylimits_verify_custom_signup_fields( $result, $extras=null ) {
+	/* Check the reCaptcha */
+	require_once( 'lib/recaptchalib.php' );
+	$privatekey = RECAPCHA_PRIVATE_KEY;
+
+	$resp = recaptcha_check_answer(
+		$privatekey, $_SERVER["REMOTE_ADDR"], $result["recaptcha_challenge_field"],
+		$result["recaptcha_response_field"]);
+
+	/* Check the Captcha */
+	if (!$resp->is_valid) {
+		$result['errors']->add( 'recaptcha',__( 'The entered captcha was incorrect','citylimits' ) );
+		return $result;
+	} else {
+		return $result;
+	}
+}
+add_action( 'largo_validate_user_signup_extra_fields', 'citylimits_verify_custom_signup_fields' );
+
+
+function citylimits_user_profile_fields( $user ) {
+	$organization = get_user_meta( $user->ID, 'organization', true );
+	$mailing_id = get_user_meta( $user->ID, 'mailing_id', true );
+	?>
+	<h3>Other preferences</h3>
+
+	<table class="form-table">
+		<tbody>
+			<tr>
+				<th><label for="organization"><?php _e( 'Organization name', 'citylimits' ); ?></label></th>
+				<td><input type="text" value="<?php if ( ! empty( $organization ) ) { echo $organization; } ?>" name="organization"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<?php
+}
+add_action( 'show_user_profile',  'citylimits_user_profile_fields' );
+
+
+function citylimits_save_user_profile_fields( $user_id ) {
+	if ( ! empty( $_POST ) ) {
+		update_user_meta( $user_id, 'organization', $_POST['organization'] );
+	}
+}
+add_action( 'personal_options_update', 'citylimits_save_user_profile_fields' );
+
+function citylimits_users_can_register( $option ) {
+	return true;
+}
+add_filter( 'pre_option_users_can_register', 'citylimits_users_can_register', 1, 10 );
+
+
+function remove_cc_registration_filter() {
+	global $pagenow;
+	if ( $pagenow == 'user-new.php' )
+		remove_filter( 'wpmu_signup_user_notification', 'constant_contact_register_post_multisite', 10 );
+}
+add_action( 'plugins_loaded', 'remove_cc_registration_filter', 2 );
