@@ -21,7 +21,7 @@
 				if ( $counter != 3 ) {
 					largo_render_template( 'partials/home', 'featured', array( 'featured' => $featured ) );
 				} else {
-					if ( ! dynamic_sidebar() ) {
+					if ( ! dynamic_sidebar( 'homepage-featured' ) ) {
 						largo_render_template( 'partials/home', 'featured', array( 'featured' => $featured ) );
 					}
 				}

@@ -32,6 +32,7 @@ class CityLimits extends Homepage {
 			),
 			'sidebars' => array(
 				'Homepage Bottom (The bottom area of the homepage)',
+				'Homepage Featured (Next to the featured posts box on the homepage)',
 			),
 		);
 		$options = array_merge( $defaults, $options );
