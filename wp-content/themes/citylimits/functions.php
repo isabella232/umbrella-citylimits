@@ -25,15 +25,23 @@ function largo_child_require_files() {
 	$includes = array(
 		'/inc/ajax-functions.php',
 		'/inc/communitywire.php',
-		'/inc/registration.php',
-		'/inc/term-meta.php',
+		'/inc/enqueue.php',
 		'/inc/metaboxes.php',
 		'/inc/post-templates.php',
-		'/inc/enqueue.php',
+		'/inc/registration.php',
+		'/inc/term-meta.php',
+		// plugin compat
+		'/inc/acf.php',
+		'/inc/doubleclick-for-wordpress.php',
+		'/inc/jetpack.php',
+		'/inc/tribe-events-calendar.php',
+		'/inc/widgets/jp-related-posts.php',
+		// widgets
 		'/inc/widgets/communitywire-announcements.php',
 		'/inc/widgets/communitywire-sidebar.php',
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
+		'/inc/widgets/cl-newsletter-header.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -56,8 +64,11 @@ function citylimits_widgets_init() {
 	register_widget( 'zonein_events' );
 	register_widget( 'communitywire_announcements' );
 	register_widget( 'communitywire_sidebar' );
+	register_widget( 'jp_cl_related_posts' );
+	register_widget( 'cl_newsletter_header' );
+	unregister_widget( 'TribeCountdownWidget' );
 }
-add_action( 'widgets_init', 'citylimits_widgets_init', 11 );
+add_action( 'widgets_init', 'citylimits_widgets_init', 14 );
 
 /**
  * Set the number of posts in the right-hand side of the Top Stories homepage template to 2.
@@ -71,146 +82,6 @@ function citylimits_featured_stories_count( $showstories ) {
 	return 3;
 }
 add_filter( 'largo_homepage_topstories_post_count', 'citylimits_featured_stories_count' );
-
-
-/**
- * Taboola code
- */
-function citylimits_taboola_header() {
-	?>
-	<script type="text/javascript">
-		window._taboola = window._taboola || [];
-		_taboola.push(
-		{article:'auto'}
-		);
-		!function (e, f, u)
-		{ e.async = 1; e.src = u; f.parentNode.insertBefore(e, f); }
-		(document.createElement('script'),
-		document.getElementsByTagName('script')[0],
-		'//cdn.taboola.com/libtrc/citylimit/loader.js');
-	</script>
-	<?php
-}
-add_action( 'wp_head', 'citylimits_taboola_header' );
-
-
-function citylimits_taboola_footer() {
-	?>
-	<script type="text/javascript">
-		window._taboola = window._taboola || [];
-		_taboola.push(
-		{flush: true}
-		);
-	</script>
-	<?php
-}
-add_action( 'wp_footer', 'citylimits_taboola_footer' );
-
-
-/* Custom registration link */
-add_filter( 'register', function( $link ) {
-	return '<a href="' . site_url( '/register' ) . '">Register</a>';
-});
-
-
-/* Custom fields for user registration */
-function citylimits_custom_signup_fields_early( $values ) {
-	extract( $values );
-	?>
-	<div class="form-group">
-		<label for="organization"><?php _e('Organization name (optional)', 'citylimits'); ?></label>
-		<input type="text" value="<?php if (!empty($organization)) { echo $organization; } ?>" name="organization">
-
-		<?php if ( $errmsg = $errors->get_error_message('organization') ) : ?>
-			<p class="alert alert-error"><?php echo $errmsg; ?></p>
-		<?php endif; ?>
-	</div>
-
-	<div class="form-group">
-		<label>Want to receive our free newsletter? <a href="https://app.getresponse.com/site2/citylimits?u=Btt5L&webforms_id=439505">Sign up here.</a></label>
-	</div>
-	<?php
-}
-add_action( 'signup_extra_fields', 'citylimits_custom_signup_fields_early', 1, 2 );
-
-
-function citylimits_custom_signup_fields_late( $values ) {
-	extract( $values );
-	?>
-	<div class="form-group">
-		<label for="recaptcha_response_field"><?php _e('Are you human?', 'citylimits'); ?></label>
-		<?php
-		/* ReCaptcha */
-		require_once('lib/recaptchalib.php');
-		echo recaptcha_get_html( RECAPCHA_PUBLIC_KEY );
-		if ( $errmsg = $errors->get_error_message( 'recaptcha' ) ) : ?>
-			<p class="alert alert-error"><?php echo $errmsg; ?></p>
-		<?php endif; ?>
-	</div>
-	<?php
-}
-add_action('signup_extra_fields', 'citylimits_custom_signup_fields_late', 10, 2);
-
-
-/**
- * Verify citylimits custom signup fields applied above.
- *
- * @param $result. array. The $_POST variables from the form to validate.
- * @param $extras. array. ??
- */
-function citylimits_verify_custom_signup_fields( $result, $extras=null ) {
-	/* Check the reCaptcha */
-	require_once( 'lib/recaptchalib.php' );
-	$privatekey = RECAPCHA_PRIVATE_KEY;
-
-	$resp = recaptcha_check_answer(
-		$privatekey, $_SERVER["REMOTE_ADDR"], $result["recaptcha_challenge_field"],
-		$result["recaptcha_response_field"]);
-
-	/* Check the Captcha */
-	if (!$resp->is_valid) {
-		$result['errors']->add( 'recaptcha',__( 'The entered captcha was incorrect','citylimits' ) );
-		return $result;
-	} else {
-		return $result;
-	}
-}
-add_action( 'largo_validate_user_signup_extra_fields', 'citylimits_verify_custom_signup_fields' );
-
-
-function citylimits_user_profile_fields( $user ) {
-	$organization = get_user_meta( $user->ID, 'organization', true );
-	$mailing_id = get_user_meta( $user->ID, 'mailing_id', true );
-	?>
-	<h3>Other preferences</h3>
-
-	<table class="form-table">
-		<tbody>
-			<tr>
-				<th><label for="organization"><?php _e( 'Organization name', 'citylimits' ); ?></label></th>
-				<td><input type="text" value="<?php if ( ! empty( $organization ) ) { echo $organization; } ?>" name="organization"></td>
-			</tr>
-		</tbody>
-	</table>
-
-	<?php
-}
-add_action( 'show_user_profile',  'citylimits_user_profile_fields' );
-
-
-function citylimits_save_user_profile_fields( $user_id ) {
-	if ( ! empty( $_POST ) ) {
-		update_user_meta( $user_id, 'organization', $_POST['organization'] );
-	}
-}
-add_action( 'personal_options_update', 'citylimits_save_user_profile_fields' );
-
-
-function cl_widgets() {
-	unregister_widget( 'TribeCountdownWidget' );
-}
-add_action( 'widgets_init', 'cl_widgets', 14 );
-
 
 /* Remove the largo logo from login page */
 add_action( 'init', function() {
@@ -241,95 +112,6 @@ function citylimits_login_redirect( $redirect_to, $request, $user ) {
 }
 add_filter( 'login_redirect', 'citylimits_login_redirect', 10, 3 );
 
-function citylimits_users_can_register( $option ) {
-	return true;
-}
-add_filter( 'pre_option_users_can_register', 'citylimits_users_can_register', 1, 10 );
-
-
-function citylimits_google_analytics() {
-	if ( ! is_user_logged_in() ) { // don't track logged in users ?>
-		<script>
-			( function ( i, s, o, g, r, a, m ) {i['GoogleAnalyticsObject']=r;i[r]=i[r]|| function() {( i[r].q=i[r].q||[] ).push( arguments )},i[r].l=1*new Date();a=s.createElement( o ), m=s.getElementsByTagName( o )[0];a.async=1;a.src=g;m.parentNode.insertBefore( a, m )} )
-			( window,document,'script','https://www.google-analytics.com/analytics.js','ga' );
-
-			ga( 'create', 'UA-529003-1', 'auto' );
-
-			<?php
-			global $post, $wp_query;
-
-			if ( is_singular() ) {
-				// Single objects
-
-				if ( has_term( 'zonein', 'series' ) or has_term( 'futuremap', 'series' ) ) {
-					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
-				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
-					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
-				}
-
-				/*
-				 * Content Group 2 "election 2017" in response to https://secure.helpscout.net/conversation/421881188/1229/?folderId=1259187
-				 */
-				if (
-					has_term( '2017-election', 'series' )
-					|| has_term( 'campaign-2017-newswire', 'post_tag' )
-					|| has_term( 'democracys-timetable-campaign-2017-schedules', 'post_tag' )
-					|| has_term( 'district-data', 'post_tag' )
-					|| has_term( 'max-murphy-podcasts', 'category' )
-					// below here are specific sections
-					|| 20726 === $post->ID // https://citylimits.org/citizens-toolkit/
-					|| 1750692 === $post->ID // https://citylimits.org/campaign-2017-candidate-debate-calendar/
-					|| 1663505 === $post->ID // https://citylimits.org/politistat-2017/
-					|| 1667230 === $post->ID // https://citylimits.org/our-2017-political-polls-vote-here-see-results/
-					|| 1664887 === $post->ID // https://citylimits.org/lookback-dispatches-from-new-york-city-campaign-history/
-					|| 1685102 === $post->ID // https://citylimits.org/a-users-guide-to-new-york-citys-elected-positions/
-					|| 1663553 === $post->ID // https://citylimits.org/mayoral-race-2017/
-					|| 1663554 === $post->ID // https://citylimits.org/council-races-2017/
-				) {
-					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
-				} elseif ( 'page-neighborhoods.php' === get_page_template_slug() ) {
-					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
-				}
-			} elseif ( is_tax() || is_archive() ) {
-				// Term archives
-
-				$term = $wp_query->get_queried_object();
-				if (
-					$term->slug === 'zonein'
-					|| $term->slug === 'futuremap'
-					|| $term->slug === 'zonein-espanol'
-					|| $term->taxonomy === 'neighborhoods'
-				) {
-					echo "ga( 'set', 'contentGroup1', 'MappingTheFuture' );\n";
-				}
-				if (
-					'2017-election' === $term->slug
-					|| 'campaign-2017-newswire' === $term->slug
-					|| 'democracys-timetable-campaign-2017-schedules' === $term->slug
-					|| 'district-data' === $term->slug
-					|| 'max-murphy-podcasts' === $term->slug
-				) {
-					echo "ga( 'set', 'contentGroup2', 'election2017' );\n";
-				}
-			}
-			?>
-
-			ga( 'send', 'pageview' );
-		</script>
-		<?php
-	}
-}
-add_action( 'wp_head', 'citylimits_google_analytics' );
-
-
-function remove_cc_registration_filter() {
-	global $pagenow;
-	if ( $pagenow == 'user-new.php' )
-		remove_filter( 'wpmu_signup_user_notification', 'constant_contact_register_post_multisite', 10 );
-}
-add_action( 'plugins_loaded', 'remove_cc_registration_filter', 2 );
-
-
 function create_neighborhoods_taxonomy() {
 
 	$labels = array(
@@ -358,23 +140,6 @@ function create_neighborhoods_taxonomy() {
 
 }
 add_action( 'init', 'create_neighborhoods_taxonomy', 0 );
-
-/**
- * Configuration for DFP plugin
- */
-function citylimits_configure_dfp() {
-
-    global $DoubleClick;
-
-    $DoubleClick->networkCode = "1291657";
-
-    /* breakpoints */
-    $DoubleClick->register_breakpoint( 'phone', array( 'minWidth'=>0, 'maxWidth'=>769 ) );
-    $DoubleClick->register_breakpoint( 'tablet', array( 'minWidth'=>769, 'maxWidth'=>980 ) );
-    $DoubleClick->register_breakpoint( 'desktop', array( 'minWidth'=>980, 'maxWidth'=>9999 ) );
-
-}
-// add_action( 'dfw_setup', 'citylimits_configure_dfp' );
 
 function register_zonein_menu() {
   register_nav_menu('zonein-menu',__( 'Mapping the Future Menu' ));
@@ -500,7 +265,6 @@ add_action( 'pre_get_posts', 'citylimits_modify_zonein_events_query' );
  * @see citylimits_modify_zonein_events_query
  */
 function citylimits_modify_zonein_events_lmp_query( $args ) {
-	var_log( $args );
 	if ( $args['post_type'] == 'zonein_events' ) {
 		$args['meta_key'] = 'event_information_date_time';
 		$args['orderby'] = 'meta_value_num';
@@ -533,40 +297,24 @@ function zonein_tax_archive_query( $query ) {
 }
 add_action( 'pre_get_posts', 'zonein_tax_archive_query', 1 );
 
-/* Custom query for event list widget*/
-function tribe_custom_list_widget_events ( ){
-     
-    // uncoment the line below and fill in your custom args
-    $args = array(
-        // 'eventDisplay'=>'upcoming',
-        // 'posts_per_page'=>-1,
-        'tax_query'=> array(
-            array(
-                'taxonomy' => 'tribe_events_cat',
-                'field' => 'slug',
-                'terms' => 'communitywire-events'
-            )
-        )
-    );
-    // $args = array();
- 
-    $posts = tribe_get_events( $args );
- 
-    return $posts;    
-}
- 
-add_filter( 'tribe_get_list_widget_events', 'tribe_custom_list_widget_events' );
-
-
 /**
  * get other scripts
  */
- function citylimits_communitywire_enqueue() {
+function citylimits_communitywire_enqueue() {
  	if (is_page_template( 'page-communitywire.php' )) {
 		wp_enqueue_script( 'inn-tools', get_stylesheet_directory_uri() . '/js/communitywire.js', array( 'jquery' ), '1.1', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
+
+function citylimits_newsletter_enqueue() {
+	wp_enqueue_script( 'jscookies', get_stylesheet_directory_uri() . '/js/cookies.js', null, '1.1', true );
+
+	wp_register_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery', 'jscookies' ), null, true );
+	wp_localize_script( 'cl-newsletter', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));        
+	wp_enqueue_script( 'cl-newsletter' );
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
 
 /* need this to allow Gravity Forms to post to API */
 add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
@@ -578,49 +326,42 @@ add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
     return $request_args;
 }, 10, 2 );
 
-
-
-
-
-add_filter( 'register_post_type_args', 'add_cpt_capability_organizer', 10, 2 );
-
-function add_cpt_capability_organizer( $args, $post_type ) {
-	// Make sure we're only modifying our desired post type.
-	if ( 'tribe_organizer' != $post_type ) 
-		return $args;
-	$args['capability_type'] = 'post';
-	$args['public'] = 1;
-	return $args;
+/**
+ * Set max srcset image width to 771px, because otherwise WP will display the full resolution version
+ */
+function set_max_srcset_image_width( $max_width ) {
+    $max_width = 771;
+    return $max_width;
 }
-
-add_filter( 'register_post_type_args', 'add_cpt_capability_venue', 999, 2 );
-
-function add_cpt_capability_venue( $args, $post_type ) {
-	// Make sure we're only modifying our desired post type.
-	if ( 'tribe_venue' != $post_type ) 
-		return $args;
-	$args['capability_type'] = 'post';
-	$args['public'] = 1;
-	return $args;
-}
-
+add_filter( 'max_srcset_image_width', 'set_max_srcset_image_width' );
 
 /**
- * remove unecessary WP header stuff
+ * newsletter subscribe forms
  */
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-/**
- * Remove the Tribe Customizer css <script>
- https://gist.github.com/elimn/50cc4ac8b56cc2809bbc48e7c7e3b461
- */
-function tribe_remove_customizer_css(){
-	if ( class_exists( 'Tribe__Customizer' ) ) {
-		remove_action( 'wp_print_footer_scripts', array( Tribe__Customizer::instance(), 'print_css_template' ), 15 );
-	}
+function citylimits_newsletter_form_interstitial() {
+	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
 }
-add_action( 'wp_footer', 'tribe_remove_customizer_css' );
+add_action( 'largo_before_sticky_posts', 'citylimits_newsletter_form_interstitial', 11 );
+add_action( 'largo_category_after_primary_featured_post', 'citylimits_newsletter_form_interstitial', 11 );
+add_action( 'largo_series_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
+add_action( 'largo_archive_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
+
+function citylimits_newsletter_form_footer() {
+	get_template_part( 'partials/newsletter-signup', 'footer' );
+}
+add_action( 'largo_before_footer', 'citylimits_newsletter_form_footer', 11 );
+
+function citylimits_newsletter_form_popover() {
+	get_template_part( 'partials/newsletter-signup', 'popover' );
+}
+add_action( 'wp_footer', 'citylimits_newsletter_form_popover', 11 );
+
+add_shortcode('cl-newsletter', function() {
+	ob_start();
+	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
+	return ob_get_clean();
+});
 
 /**
  * Register custom languages menu location for the main nav

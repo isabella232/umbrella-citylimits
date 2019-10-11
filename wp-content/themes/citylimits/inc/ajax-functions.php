@@ -1,4 +1,5 @@
 <?php
+use DrewM\MailChimp\MailChimp;
 /**
  * A file of functions modifying Largo's inc/ajax-functions.php
  * Primarily used for LMP modifications
@@ -37,3 +38,44 @@ function citylimits_neighborhood_archive_lmp_query( $config ) {
 	return $config;
 }
 add_action( 'largo_load_more_posts_json', 'citylimits_neighborhood_archive_lmp_query', 1 );
+
+
+if ( !function_exists( 'cl_mc_signup' ) ) {
+	/**
+	 * Signs up for MailChimp newsletter(s)
+	 */
+	function cl_mc_signup() {
+		if ( !function_exists( 'get_field' ) ) {
+			die('you must have ACF installed');
+		}
+		require_once(get_stylesheet_directory() . '/lib/MailChimp.php');
+		$mailchimp_api_key = get_field('mailchimp_api_key', 'option');
+		$list_id = get_field('list_id', 'option');
+		$MC = new MailChimp($mailchimp_api_key);
+
+		foreach ($_REQUEST['newsletters'] as $newsletter) {
+			$interests[$newsletter] = true;
+		}
+
+		$email_hash = md5(strtolower($_REQUEST['email']));
+		$result = $MC->put("lists/$list_id/members/$email_hash", [
+			'email_address' => $_REQUEST['email'],
+			'status_if_new' => 'subscribed',
+			'merge_fields' => ['FNAME' => $_REQUEST['fname']],
+			'interests' => $interests
+		]);
+		
+		if ($result['status'] == 'subscribed') {
+			$response['message'] = get_field('thank_you_text', 'option');
+			$response['status'] = 'success';
+		} else {
+			$response['message'] = get_field('error_text', 'option');
+			$response['message'] .= "<p>$result[detail]</p>";
+			$response['status'] = 'error';
+		}
+		wp_send_json( $response );
+		die();
+	}
+	add_action("wp_ajax_cl_mc_signup", "cl_mc_signup");
+	add_action("wp_ajax_nopriv_cl_mc_signup", "cl_mc_signup");
+}
