@@ -1,0 +1,35 @@
+@import "../../../less/_variables.less";
+@measure: 1.5rem;
+
+#homepage-featured {
+  @media screen { // placeholder until breakpoints determined for mobile
+    display: grid;
+    grid-template-areas:
+      "top top featured";
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-gap: @measure;
+  }
+
+  #top-story {
+    grid-area: top;
+    padding-right: @measure;
+    border-right: 1px solid @grey1;
+    border-bottom: none;
+  }
+  #featured {
+    grid-area: featured;
+    article {
+      padding-bottom: @measure;
+      border-bottom: none;
+      & + article {
+        border-top: 1px solid @grey1;
+        padding-top: @measure;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
