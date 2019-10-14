@@ -4,6 +4,10 @@
  *
  * Expects a variable $featured being a WP_Post
  */
+
+global $shown_ids;
+$shown_ids[] = $featured->ID;
+
 ?>
 <article <?php post_class( '', $featured->ID ); ?> >
 	<?php largo_maybe_top_term( array( 'post' => $featured->ID ) ); ?>
