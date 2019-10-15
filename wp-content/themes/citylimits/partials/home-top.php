@@ -10,7 +10,9 @@
 	<div class="inner">
 		<?php largo_maybe_top_term( array( 'post' => $topstory->ID ) ); ?>
 		<h2><a href="<?php the_permalink( $topstory ); ?>"><?php echo get_the_title( $topstory ); ?></a></h2>
-		<?php largo_excerpt( $topstory, 4 ); ?>
+		<div class="excerpt">
+			<?php largo_excerpt( $topstory, 4 ); ?>
+		</div>
 		<h5 class="byline"><?php largo_byline( true, true, $topstory ); ?></h5>
 	</div>
 </article>
