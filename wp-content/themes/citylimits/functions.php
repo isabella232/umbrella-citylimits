@@ -364,9 +364,11 @@ add_shortcode('cl-newsletter', function() {
 });
 
 /**
- * Register custom languages menu location for the main nav
+ * Register custom menu locations for the main nav and sticky mobile navs
  */
-function register_languages_menu() {
+function register_citylimits_menu_locations() {
 	register_nav_menu( 'languages-menu', __( 'Languages Menu' ) );
+	register_nav_menu( 'mobile-sticky-menu', __( 'Mobile Sticky' ) );
+	register_nav_menu( 'special-projects-secondary-menu', __( 'Special Projects Secondary Navigation Menu' ) ) ;
 }
-add_action( 'init', 'register_languages_menu' );
+add_action( 'init', 'register_citylimits_menu_locations' );
