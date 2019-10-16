@@ -64,46 +64,61 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 						</div>
 						<div class="expanded-nav-menu">
 							<ul class="nav">
+							<?php
+								/**
+								 * Don't display the search in the header if we're on the search page
+								 *
+								 * @link https://github.com/INN/Largo/pull/1167
+								 * @since 0.5.5
+								 */
+								if ( ! is_search() ) {
+								?>
+								<li id="sticky-nav-search">
+									<form class="form-search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+										<div class="input-append">
+											<span class="text-input-wrapper">
+												<input type="text" placeholder="<?php esc_attr_e('Search', 'largo'); ?>"
+													class="input-medium appendedInputButton search-query" value="" name="s" />
+											</span>
+											<button type="submit" class="search-submit btn"><i class="icon-search" title="<?php esc_attr_e('Search', 'largo'); ?>" role="button"></i></button>
+										</div>
+									</form>
+								</li>
+								<?php }
+
+								/* Build Main Navigation using Boostrap_Walker_Nav_Menu() */
+								$args = array(
+									'theme_location' => 'main-nav',
+									'depth'		 => 0,
+									'container'	 => false,
+									'items_wrap' => '%3$s',
+									'menu_class' => 'nav',
+									'walker'	 => new Bootstrap_Walker_Nav_Menu()
+								);
+								largo_nav_menu($args);
+
+								?>
+							</ul>
+							<ul class="languages-nav">
+							<?php
+
+								$args = array(
+									'theme_location' => 'languages-menu',
+									'depth' => 0,
+									'container' => true,
+									'items_wrap' => '%3$s',
+									'menu_class' => 'languages-nav',
+									'walker' => new Bootstrap_Walker_Nav_Menu()
+								);
+								largo_nav_menu( $args );
+
+							?>
+							</ul>
+							<div class="special-projects">
+								<ul id="special-projects-secondary-menu">
 								<?php
-									/**
-									 * Don't display the search in the header if we're on the search page
-									 *
-									 * @link https://github.com/INN/Largo/pull/1167
-									 * @since 0.5.5
-									 */
-									if ( ! is_search() ) {
-									?>
-									<li id="sticky-nav-search">
-										<form class="form-search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-											<div class="input-append">
-												<span class="text-input-wrapper">
-													<input type="text" placeholder="<?php esc_attr_e('Search', 'largo'); ?>"
-														class="input-medium appendedInputButton search-query" value="" name="s" />
-												</span>
-												<button type="submit" class="search-submit btn"><i class="icon-search" title="<?php esc_attr_e('Search', 'largo'); ?>" role="button"></i></button>
-											</div>
-										</form>
-									</li>
-									<?php }
-
-									/* Build Main Navigation using Boostrap_Walker_Nav_Menu() */
 									$args = array(
-										'theme_location' => 'main-nav',
-										'depth'		 => 0,
-										'container'	 => false,
-										'items_wrap' => '%3$s',
-										'menu_class' => 'nav',
-										'walker'	 => new Bootstrap_Walker_Nav_Menu()
-									);
-									largo_nav_menu($args);
-
-									?>
-								</ul>
-								<ul class="languages-nav">
-								<?php
-
-									$args = array(
-										'theme_location' => 'languages-menu',
+										'theme_location' => 'special-projects-secondary-menu',
 										'depth' => 0,
 										'container' => true,
 										'items_wrap' => '%3$s',
@@ -111,23 +126,8 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 										'walker' => new Bootstrap_Walker_Nav_Menu()
 									);
 									largo_nav_menu( $args );
-
 								?>
 								</ul>
-								<div class="special-projects">
-									<ul id="special-projects-secondary-menu">
-									<?php
-										$args = array(
-											'theme_location' => 'special-projects-secondary-menu',
-											'depth' => 0,
-											'container' => true,
-											'items_wrap' => '%3$s',
-											'menu_class' => 'languages-nav',
-											'walker' => new Bootstrap_Walker_Nav_Menu()
-										);
-										largo_nav_menu( $args );
-									?>
-									</ul>
 							</div>
 						</div>
 					</div>

@@ -95,11 +95,11 @@ if ( ! is_single() && ! is_singular() || ! of_get_option( 'main_nav_hide_article
 				 *
 				 * @link https://codex.wordpress.org/Function_Reference/add_action
 				 * @since 0.5.5
-     			 */
+				 */
 				do_action( 'largo_after_main_nav_shelf' );
 			?>
 			
-		</div>
+        </div>
 	</div>
 </nav>
 <?php }
