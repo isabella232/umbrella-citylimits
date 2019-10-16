@@ -60,7 +60,7 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 					<!-- BEGIN DESKTOP MENU -->
 					<div class="nav-shelf">
 						<div class="close-menu toggle-nav-bar">
-							<span class="dashicons dashicons-no-alt"></span>
+							<span class="dashicons dashicons-no-alt" aria-label="close menu"></span>
 						</div>
 						<div class="expanded-nav-menu">
 							<ul class="nav">
