@@ -1,27 +1,18 @@
 @import "../../../less/_variables.less";
 @measure: 1.5rem;
 
-#homepage-featured {
-  @media screen { // placeholder until breakpoints determined for mobile
-    display: grid;
-    grid-template-areas:
-      "top top featured";
-    grid-auto-columns: 1fr;
-    grid-auto-rows: 1fr;
-    grid-gap: @measure;
-  }
+.stories article {
+  border-bottom: none; // a reset of Largo's default
+}
 
+#homepage-featured {
   #top-story {
-    grid-area: top;
-    padding-right: @measure;
-    border-right: 1px solid @grey1;
     border-bottom: none;
     .inner {
       background: @white;
       padding-left: @measure;
       padding-right: @measure;
       padding-top: 0;
-      max-width: calc( 100% - ( 2 * @measure ) );
       box-sizing: border-box;
       margin-left: auto;
       margin-right: auto;
@@ -30,9 +21,8 @@
       border-right: 1px solid @grey1;
 
 
+      // necessary for creating new stacking context, for the backgrounds
       position: relative;
-      top: -25%;
-      //z-index: 10;
     }
     h2 {
       font-size: 1.5 * @measure;
@@ -62,7 +52,41 @@
     .top-tag {
       margin-bottom: 0.5 * @measure;
     }
-    grid-area: featured;
+    a.img {
+      max-width: 30%;
+    }
+
+    .widgettitle,
+    article h2 {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 1em;
+    }
+  }
+
+  // media query specific overrides
+
+  // desktopish
+  @media (min-width: 990px) {
+    display: grid;
+    grid-template-areas:
+      "top top featured";
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-gap: @measure;
+    #top-story {
+      grid-area: top;
+      padding-right: @measure;
+      border-right: 1px solid @grey1;
+
+      .inner {
+        top: -15%;
+        max-width: calc( 100% - ( 2 * @measure ) );
+      }
+    }
+    #featured {
+      grid-area: featured;
+    }
     article {
       padding-bottom: @measure;
       margin-bottom: 0;
@@ -74,12 +98,66 @@
         padding-top: @measure;
       }
     }
+  }
 
-    .widgettitle,
-    article h2 {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      margin-bottom: 1em;
+  // tabletish
+  @media (min-width: 600px ) and  (max-width: 990px) {
+    display: grid;
+    grid-template-areas:
+      "img img inner"
+      "one two three";
+    grid-gap: @measure;
+    #top-story {
+      display: contents;
+      .img {
+        grid-area: img;
+        justify-self: center;
+        align-self: center;
+      }
+      .inner {
+        grid-area: inner;
+        border-left: none;
+        border-bottom: 1px solid @grey1;
+      }
+      h2 {
+        font-size: 1.75rem;
+      }
+    }
+    #featured {
+      display: contents;
+      :nth-child(1) {
+        grid-area: one;
+      }
+      :nth-child(2) {
+        grid-area: two;
+      }
+      :nth-child(3) {
+        grid-area: three;
+      }
+    }
+  }
+
+  // phoneish
+  @media (max-width: 600px) {
+    display: block;
+
+    .inner {
+      border-bottom: 1px solid @grey1;
+      .byline {
+        margin-bottom: @measure;
+      }
+    }
+
+    article {
+      padding-bottom: @measure;
+      margin-bottom: 0;
+
+      border-bottom: none;
+      & + .widget,
+      & + article {
+        border-top: 1px solid @grey1;
+        padding-top: @measure;
+      }
     }
   }
 }
