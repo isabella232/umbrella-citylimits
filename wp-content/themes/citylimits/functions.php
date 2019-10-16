@@ -365,10 +365,19 @@ add_shortcode('cl-newsletter', function() {
 
 /**
  * Register custom menu locations for the main nav and sticky mobile navs
+ * Also unregister default Largo menus that aren't used
  */
 function register_citylimits_menu_locations() {
+
+	// menus to be registered
 	register_nav_menu( 'languages-menu', __( 'Languages Menu' ) );
 	register_nav_menu( 'mobile-sticky-menu', __( 'Mobile Sticky' ) );
 	register_nav_menu( 'special-projects-secondary-menu', __( 'Special Projects Secondary Navigation Menu' ) ) ;
+
+	// default Largo menus to be unregistered
+	unregister_nav_menu( 'global-nav' );
+	unregister_nav_menu( 'main-nav' );
+	unregister_nav_menu( 'dont-miss' );
+
 }
 add_action( 'init', 'register_citylimits_menu_locations' );
