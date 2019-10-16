@@ -85,7 +85,7 @@ if ( ! is_single() && ! is_singular() || ! of_get_option( 'main_nav_hide_article
 
                 ?>
                 </ul>
-			</div>
+            </div>
 			
 			<?php 
 				/*
@@ -100,6 +100,6 @@ if ( ! is_single() && ! is_singular() || ! of_get_option( 'main_nav_hide_article
 			?>
 			
         </div>
-	</div>
+    </div>
 </nav>
 <?php }
