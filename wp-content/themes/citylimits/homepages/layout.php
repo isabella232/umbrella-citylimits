@@ -43,7 +43,7 @@ class CityLimits extends Homepage {
 /**
  * Register this layout with Largo
  */
-function workday_homepage_layout() {
+function citylimits_homepage_layout() {
 	register_homepage_layout( 'CityLimits' );
 }
-add_action( 'init', 'workday_homepage_layout' );
+add_action( 'init', 'citylimits_homepage_layout' );
