@@ -24,14 +24,6 @@
       // necessary for creating new stacking context, for the backgrounds
       position: relative;
     }
-    h2 {
-      font-size: 1.5 * @measure;
-      margin-bottom: 1 * @measure;
-    }
-    a.img {
-      //z-index: 5;
-      display: block;
-    }
     .top-tag {
       // this inherits a lot of styles from the main sitewide stylesheet
       padding: 0.5 * @measure;
@@ -45,7 +37,18 @@
         margin-left: auto;
         margin-right: auto;
       }
-
+    }
+    h2 {
+      font-size: 1.5 * @measure;
+      margin-bottom: 1 * @measure;
+    }
+    // what if there's no .top-tag to provide spacing above the h2?
+    h2:first-child {
+      margin-top: 0.5 * @measure;
+    }
+    a.img {
+      //z-index: 5;
+      display: block;
     }
   }
   #featured {
