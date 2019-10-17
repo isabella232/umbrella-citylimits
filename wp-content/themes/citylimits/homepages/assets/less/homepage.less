@@ -85,16 +85,37 @@
         border-bottom: 1px solid @grey1;
       }
       .inner {
-        top: -15%;
+        top: calc( -1 *  1170px * 0.66 * 0.15 );
         max-width: calc( 100% - ( 2 * @measure ) );
+        padding: @measure;
+        background: transparent;
+        z-index: 1;
+        border: none;
 
-        border-color: @white;
-        border-style: solid;
-        border-width: @measure * 0.5;
-        border-bottom: none;
-        border-image: url("../../../img/homepage-border-img.png");
-        border-image-slice: 25;
+        &::before {
+          display: block;
+          box-sizing: border-box;
+          content: "";
+          height: calc( ( 1170px * 0.66 * 0.15 ) - ( 0.5 * @measure ) );
 
+          position: absolute;
+          top: 0.5 * @measure;
+          left: 0.0 * @measure;
+          right: 0.0 * @measure;
+          z-index: -1;
+
+          background: white;
+          border-color: @white;
+          border-style: solid;
+          border-width: @measure * 0.5;
+          border-bottom-width: 1px;
+
+          // this only works because of the combination of this specific image and border-image-slice
+          // https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice
+          // https://github.com/INN/umbrella-citylimits/pull/61#issuecomment-542890018
+          border-image: url("../../../img/homepage-border-img.png");
+          border-image-slice: 25 25 1 25;
+        }
       }
       .top-tag {
         margin-top: -1 * @measure;
