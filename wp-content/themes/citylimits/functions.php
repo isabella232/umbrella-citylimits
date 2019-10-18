@@ -381,3 +381,11 @@ function register_citylimits_menu_locations() {
 
 }
 add_action( 'init', 'register_citylimits_menu_locations' );
+
+/**
+ * Enqueue specific styles and scripts for City Limits child theme
+ */
+function citylimits_enqueue_styles(){
+    wp_enqueue_style( 'dashicons' );
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
