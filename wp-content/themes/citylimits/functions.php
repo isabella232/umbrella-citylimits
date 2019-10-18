@@ -42,6 +42,8 @@ function largo_child_require_files() {
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
 		'/inc/widgets/cl-newsletter-header.php',
+		// homepage
+		'/homepages/layout.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -362,3 +364,30 @@ add_shortcode('cl-newsletter', function() {
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
 	return ob_get_clean();
 });
+
+/**
+ * Register custom menu locations for the main nav and sticky mobile navs
+ * Also unregister default Largo menus that aren't used
+ */
+function register_citylimits_menu_locations() {
+
+	// menus to be registered
+	register_nav_menu( 'languages-menu', __( 'Languages Menu' ) );
+	register_nav_menu( 'mobile-sticky-menu', __( 'Mobile Sticky' ) );
+	register_nav_menu( 'special-projects-secondary-menu', __( 'Special Projects Secondary Navigation Menu' ) ) ;
+
+	// default Largo menus to be unregistered
+	unregister_nav_menu( 'global-nav' );
+	unregister_nav_menu( 'main-nav' );
+	unregister_nav_menu( 'dont-miss' );
+
+}
+add_action( 'init', 'register_citylimits_menu_locations' );
+
+/**
+ * Enqueue specific styles and scripts for City Limits child theme
+ */
+function citylimits_enqueue_styles(){
+    wp_enqueue_style( 'dashicons' );
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );

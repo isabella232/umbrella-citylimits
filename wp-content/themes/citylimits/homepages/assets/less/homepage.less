@@ -1,0 +1,219 @@
+@import "../../../less/_variables.less";
+@measure: 1.5rem;
+
+.stories article {
+  border-bottom: none; // a reset of Largo's default
+}
+
+#homepage-featured {
+  #top-story {
+    border-bottom: none;
+    .inner {
+      background: @white;
+      padding-left: @measure;
+      padding-right: @measure;
+      padding-top: 0;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+      border-top: 1px solid @grey1;
+      border-left: 1px solid @grey1;
+      border-right: 1px solid @grey1;
+
+
+      // necessary for creating new stacking context, for the backgrounds
+      position: relative;
+    }
+    .top-tag {
+      // this inherits a lot of styles from the main sitewide stylesheet
+      padding: 0.5 * @measure;
+      background: @white;
+      margin-top: -0.5 * @measure;
+      margin-left: auto;
+      margin-right: auto;
+      width: max-content;
+      clear: both;
+      span {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    h2 {
+      font-size: 1.5 * @measure;
+      margin-bottom: 1 * @measure;
+    }
+    // what if there's no .top-tag to provide spacing above the h2?
+    h2:first-child {
+      margin-top: 0.5 * @measure;
+    }
+    a.img {
+      //z-index: 5;
+      display: block;
+    }
+  }
+  #featured {
+    .top-tag {
+      margin-bottom: 0.5 * @measure;
+    }
+    a.img {
+      max-width: 30%;
+    }
+
+    .widgettitle,
+    article h2 {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 1em;
+    }
+  }
+
+  // media query specific overrides
+
+  // desktopish
+  @media (min-width: 990px) {
+    display: grid;
+    grid-template-areas:
+      "top top featured";
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-gap: @measure;
+
+    #top-story {
+      grid-area: top;
+      padding-right: @measure;
+      border-right: 1px solid @grey1;
+
+      a.img {
+        padding-bottom: 0.5 * @measure;
+        border-bottom: 1px solid @grey1;
+      }
+      .inner {
+        top: calc( -1 *  1170px * 0.66 * 0.15 );
+        max-width: calc( 100% - ( 2 * @measure ) );
+        padding: @measure;
+        background: transparent;
+        z-index: 1;
+        border: none;
+
+        &::before {
+          display: block;
+          box-sizing: border-box;
+          content: "";
+          height: calc( ( 1170px * 0.66 * 0.15 ) - ( 0.5 * @measure ) );
+
+          position: absolute;
+          top: 0.5 * @measure;
+          left: 0.0 * @measure;
+          right: 0.0 * @measure;
+          z-index: -1;
+
+          background: white;
+          border-color: @white;
+          border-style: solid;
+          border-width: @measure * 0.5;
+          border-bottom-width: 1px;
+
+          // this only works because of the combination of this specific image and border-image-slice
+          // https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice
+          // https://github.com/INN/umbrella-citylimits/pull/61#issuecomment-542890018
+          border-image: url("../../../img/homepage-border-img.png");
+          border-image-slice: 24 24 1 24;
+          border-image-repeat: space;
+        }
+      }
+      .top-tag {
+        margin-top: -1 * @measure;
+      }
+    }
+    #featured {
+      grid-area: featured;
+    }
+    article {
+      padding-bottom: @measure;
+      margin-bottom: 0;
+
+      border-bottom: none;
+      & + .widget,
+      & + article {
+        border-top: 1px solid @grey1;
+        padding-top: @measure;
+      }
+    }
+  }
+
+  // tabletish
+  @media (min-width: 600px ) and  (max-width: 990px) {
+    display: grid;
+    grid-template-areas:
+      "img img inner"
+      "one two three";
+    grid-gap: @measure;
+    #top-story {
+      display: contents;
+      .img {
+        grid-area: img;
+        justify-self: center;
+        align-self: center;
+      }
+      .inner {
+        grid-area: inner;
+        border-left: none;
+        border-bottom: 1px solid @grey1;
+      }
+      h2 {
+        font-size: 1.75rem;
+      }
+    }
+    #featured {
+      display: contents;
+      :nth-child(1) {
+        grid-area: one;
+      }
+      :nth-child(2) {
+        grid-area: two;
+      }
+      :nth-child(3) {
+        grid-area: three;
+      }
+    }
+  }
+
+  // phoneish
+  @media (max-width: 600px) {
+    display: block;
+
+    .inner {
+      margin-top: 0.5 * @measure;
+      border-bottom: 1px solid @grey1;
+      .byline {
+        margin-bottom: @measure;
+      }
+    }
+    #top-story {
+      .top-tag {
+        margin-top: -1.0 * @measure;
+      }
+    }
+
+    article {
+      padding-bottom: @measure;
+      margin-bottom: 0;
+
+      border-bottom: none;
+      & + .widget,
+      & + article {
+        border-top: 1px solid @grey1;
+        padding-top: @measure;
+      }
+    }
+  }
+}
+.home article p,
+.home .by,
+.home .byline .and {
+  color: @grey3;
+}
+.excerpt p {
+  font-size: 16px;
+  margin-bottom: 1em;
+}
