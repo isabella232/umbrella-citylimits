@@ -39,6 +39,7 @@ module.exports = function(grunt) {
       less: {
         files: [
           'less/*.less',
+          'homepages/assets/less/*.less',
         ],
         tasks: [
           'less:compile',
