@@ -42,6 +42,8 @@ function largo_child_require_files() {
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
 		'/inc/widgets/cl-newsletter-header.php',
+		// homepage
+		'/homepages/layout.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
