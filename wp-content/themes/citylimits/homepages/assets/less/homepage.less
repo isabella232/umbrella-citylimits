@@ -1,5 +1,5 @@
-@import "../../../less/_variables.less";
-@measure: 1.5rem;
+@import (reference) "../../../less/_variables.less";
+@import (reference) "../../../less/top-tag.less";
 
 .stories article {
   border-bottom: none; // a reset of Largo's default
@@ -26,18 +26,10 @@
     }
     .top-tag {
       // this inherits a lot of styles from the main sitewide stylesheet
-      padding: 0.5 * @measure;
-      background: @white;
       margin-top: -0.5 * @measure;
-      margin-left: auto;
-      margin-right: auto;
-      width: max-content;
-      clear: both;
-      span {
-        margin-left: auto;
-        margin-right: auto;
-      }
+      .tt-fancy();
     }
+
     h2 {
       font-size: 1.5 * @measure;
       margin-bottom: 1 * @measure;
@@ -54,6 +46,7 @@
   #featured {
     .top-tag {
       margin-bottom: 0.5 * @measure;
+      .tt-plain();
     }
     a.img {
       max-width: 30%;
@@ -274,10 +267,21 @@
           margin-bottom: @measure;
         }
       }
-      li:not(:first-of-type) a.img {
-        max-width: 25%;
-        float: right;
-        margin-left: @measure;
+      li:first-of-type {
+        .top-tag {
+          .tt-fancy();
+          margin-top: -1 * @measure;
+        }
+      }
+      li:not(:first-of-type) {
+        .top-tag {
+          .tt-plain();
+        }
+        a.img {
+          max-width: 25%;
+          float: right;
+          margin-left: @measure;
+        }
       }
       li:not(:last-of-type) {
         padding-bottom: @measure;
@@ -360,6 +364,19 @@
             padding-left: @measure;
           }
 
+          // some light grey border-bottom
+          &:nth-child( 2 ),
+          &:nth-child( 3 ) {
+            &::after {
+              content: "";
+              display: block;
+              clear: both;
+              height: 1px;
+              width: 100%;
+              background-color: @grey;
+            }
+          }
+
           &:nth-child( 2 ),
           &:nth-child( 3 ),
           &:nth-child( 4 ),
@@ -370,6 +387,15 @@
             p { // excerpt
               display: none;
             }
+          }
+
+          img {
+            padding: 0;
+          }
+          .top-tag {
+            .tt-fancy();
+            margin-top: -1 * @measure;
+            position: relative;
           }
         }
       }

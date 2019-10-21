@@ -1,0 +1,59 @@
+/**
+ * The Top Tag styles
+ *
+ * There are two mixin variants to the top tag styles:
+ *   - .tt-plain: top term aligned left, red border, no special spacing
+ *   - .tt-fancy: top term centered, not full width, with thick white-and-red border.
+ *                Often found overlapping the image above it, but the positional
+ *                styles are not handled by this mixin.
+ *
+ * If you're putting a top term in a place on the page,
+ * use these mixins to make your top term display neatly.
+ * You will need to handle the positional styles when you use the mixin.
+ */
+.widget h5.top-tag,  // ugh, override Largo's ridiculous redundancy at https://github.com/INN/largo/issues/1642#issuecomment-544311184
+h5.top-tag {
+  font-size: 14px;
+  background: white;
+
+  span {
+    background-color: @white;
+    display: inline-block;
+    padding: 0.5em 1em;
+    width: auto;
+    max-wdth: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    word-wrap: none;
+    line-height: 1;
+  }
+  a {
+    color: @red;
+    text-decoration: none;
+    &:hover {
+      color: @black;
+    }
+  }
+}
+
+.tt-plain {
+  border: 1px solid @red;
+  width: auto;
+}
+.tt-fancy {
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+  max-width: calc( 100% - (2 * @measure ) );
+  width: auto;
+
+  text-align: center;
+
+  border-width: @measure * 0.5;
+  border-color: @white;
+  border-style: solid;
+
+  border-image: url("/wp-content/themes/citylimits/img/top-term-border-image.png"); // absolute URL because this is a mixin that may be called from the homepage stylesheet.
+  border-image-slice: 24 24 24 24;
+  border-image-repeat: space;
+}

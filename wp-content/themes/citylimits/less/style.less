@@ -11,6 +11,7 @@ Version:        1.0
 @import "_variables.less";
 @import "mixins.less";
 @import "typography.less";
+@import "top-tag.less";
 
 // nav components
 @import "_navbar.less";
@@ -67,30 +68,6 @@ body.clean-read.single-post.classic #content {
 .stories h3.widgettitle {
   text-transform: inherit;
   font-size:26px;
-}
-
-.widget h5.top-tag,  // ugh, override Largo's ridiculous redundancy at https://github.com/INN/largo/issues/1642#issuecomment-544311184
-h5.top-tag {
-  font-size: 14px;
-  span {
-    background-color: @white;
-    border: 1px solid @red;
-    display: block;
-    padding: 0.5em 1em;
-    width: auto;
-    max-wdth: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    word-wrap: none;
-    line-height: 1;
-  }
-  a {
-    color: @red;
-    text-decoration: none;
-    &:hover {
-      color: @black;
-    }
-  }
 }
 
 /* Homepage alert */
