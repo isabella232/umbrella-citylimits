@@ -10,11 +10,6 @@
  * @since Largo 0.6.4 - when this file was refreshed from Largo
  */
 
-// The top term
-if ( isset( $instance['show_top_term'] ) && $instance['show_top_term'] == 1 && largo_has_categories_or_tags() ) {
-	largo_maybe_top_term();
-}
-
 // the thumbnail image (if we're using one)
 if ($thumb == 'small') {
 	$img_location = ! empty( $instance['image_align'] ) ? $instance['image_align'] : 'left';
@@ -38,6 +33,11 @@ if ($thumb == 'small') {
 	<?php
 }
 
+// The top term
+if ( isset( $instance['show_top_term'] ) && $instance['show_top_term'] == 1 && largo_has_categories_or_tags() ) {
+	largo_maybe_top_term();
+}
+
 // the headline and optionally the post-type icon
 ?>
 <h5>
@@ -51,6 +51,16 @@ if ($thumb == 'small') {
 </h5>
 
 <?php
+// the excerpt
+if ( $excerpt == 'num_sentences' ) {
+	$num_sentences = ( ! empty( $instance['num_sentences'] ) ) ? $instance['num_sentences'] : 2;
+	?>
+		<p><?php echo largo_trim_sentences( get_the_content(), $num_sentences ); ?></p>
+	<?php } elseif ( $excerpt == 'custom_excerpt' ) { ?>
+		<p><?php echo get_the_excerpt(); ?></p>
+	<?php
+}
+
 // byline on posts
 if ( isset( $instance['show_byline'] ) && $instance['show_byline'] == true) {
 	$hide_byline_date = ( ! empty( $instance['hide_byline_date'] ) ) ? $instance['hide_byline_date'] : true;
@@ -68,12 +78,3 @@ if ( !empty( $date ) ) {
 	<?php
 }
 
-// the excerpt
-if ( $excerpt == 'num_sentences' ) {
-	$num_sentences = ( ! empty( $instance['num_sentences'] ) ) ? $instance['num_sentences'] : 2;
-	?>
-		<p><?php echo largo_trim_sentences( get_the_content(), $num_sentences ); ?></p>
-	<?php } elseif ( $excerpt == 'custom_excerpt' ) { ?>
-		<p><?php echo get_the_excerpt(); ?></p>
-	<?php
-}
