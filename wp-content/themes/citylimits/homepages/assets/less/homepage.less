@@ -274,6 +274,16 @@
           margin-bottom: @measure;
         }
       }
+      li:not(:first-of-type) a.img {
+        max-width: 25%;
+        float: right;
+        margin-left: @measure;
+      }
+      li:not(:last-of-type) {
+        padding-bottom: @measure;
+        border-bottom: 1px solid @grey1;
+        margin-bottom: @measure;
+      }
     } // end phone
 
     @media (min-width: 768px) {
