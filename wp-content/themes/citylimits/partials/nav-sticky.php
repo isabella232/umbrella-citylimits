@@ -114,6 +114,7 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 
 							?>
 							</ul>
+							<?php if( is_home() ) { ?>
 							<div class="special-projects">
 								<ul id="special-projects-secondary-menu">
 								<?php
@@ -129,6 +130,7 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 								?>
 								</ul>
 							</div>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
