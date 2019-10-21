@@ -225,16 +225,45 @@
  */
 #widget-area {
   .largo-recent-posts {
+    padding: 0;
+    box-sizing: border-box;
+
     ul {
       display: grid;
+      box-sizing: border-box;
+
       grid-template-areas:
         "a b c"
         "a d e"
       ;
-      grid-template-columns: 1fr;
+      // what I would do if I could mix fr and rem:
+      // grid-template-columns: calc( 5fr + @measure ) calc( 3fr + @measure + @measure ) calc( 3fr + @measure);
+      // we want one @measure padding in these locations:
+      //          here | here       here | here
+      //       5       |        3        |       3    // column relative widths
+      // that's four times in 100% of width
+      // and then that remainder of 100% will be split 5:3:3 across the columns
+      // so let's define a term for ( (100% - 4@measure) / ( 4 + 3 + 3 ) )
+      // and use that as "1fr"
+      //
+      // note that this uses LESS escapes and interpolation in order to prevent a nasty thing
+      // where ( 100% - 4*@measure )/11  gets simplified to (100 - 4)/11%
+      // http://lesscss.org/features/#variables-feature-variable-interpolation
+      @fr: ~"(   (100% - ( 4 * @{measure} ) )   /   ( 5 + 3 + 3 )   )";
+      grid-template-columns:
+        calc( ( 5 * @fr) + @measure )
+        calc( ( 3 * @fr ) + @measure + @measure )
+        calc( ( 3 * @fr ) + @measure)
+      ;
+      // and then let everyone's browser melt
+
+
+      // these must remain 0; they're not accounted for in the above calculations
+      // and also it would get in the way of placing borders
+      grid-column-gap: 0;
+      grid-row-gap: 0;
+
       grid-template-rows: auto;
-      grid-column-gap: @measure;
-      grid-row-gap: @measure;
       justify-items: center;
       align-items: start;
       // in case this widget gets set to n>5 posts:
@@ -244,20 +273,32 @@
 
       // grid items!
       li {
+        box-sizing: border-box;
         &:nth-child( 1 ) {
           grid-area: a;
+          padding-right: @measure;
+          border-right: 1px solid @grey1;
+          align-self: stretch;
         }
         &:nth-child( 2 ) {
           grid-area: b;
+          padding-right: @measure;
+          padding-left: @measure;
+          border-right: 1px solid @grey1;
         }
         &:nth-child( 3 ) {
           grid-area: c;
+          padding-left: @measure;
         }
         &:nth-child( 4 ) {
           grid-area: d;
+          padding-right: @measure;
+          padding-left: @measure;
+          border-right: 1px solid @grey1;
         }
         &:nth-child( 5 ) {
           grid-area: e;
+          padding-left: @measure;
         }
       }
     }
