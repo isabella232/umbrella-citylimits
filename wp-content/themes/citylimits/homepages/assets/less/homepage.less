@@ -228,79 +228,141 @@
     padding: 0;
     box-sizing: border-box;
 
+    // how we get the widget title to have a vertical bar to the right, and a long line off to the right
+    border-top: 1px solid @grey1;
+    .widgettitle {
+      position: relative;
+      top: -1rem;
+      line-height: 2rem;
+
+      border-right: 1px solid @grey1;
+      padding-right: @measure;
+      width: auto;
+      display: inline-block;
+      clear: both;
+
+      background-color: @white;
+      font-size: 1rem;
+      vertical-align: middle;
+
+      text-transform: uppercase;
+      color: @black;
+    }
+
     ul {
-      display: grid;
-      box-sizing: border-box;
-
-      grid-template-areas:
-        "a b c"
-        "a d e"
-      ;
-      // what I would do if I could mix fr and rem:
-      // grid-template-columns: calc( 5fr + @measure ) calc( 3fr + @measure + @measure ) calc( 3fr + @measure);
-      // we want one @measure padding in these locations:
-      //          here | here       here | here
-      //       5       |        3        |       3    // column relative widths
-      // that's four times in 100% of width
-      // and then that remainder of 100% will be split 5:3:3 across the columns
-      // so let's define a term for ( (100% - 4@measure) / ( 4 + 3 + 3 ) )
-      // and use that as "1fr"
-      //
-      // note that this uses LESS escapes and interpolation in order to prevent a nasty thing
-      // where ( 100% - 4*@measure )/11  gets simplified to (100 - 4)/11%
-      // http://lesscss.org/features/#variables-feature-variable-interpolation
-      @fr: ~"(   (100% - ( 4 * @{measure} ) )   /   ( 5 + 3 + 3 )   )";
-      grid-template-columns:
-        calc( ( 5 * @fr) + @measure )
-        calc( ( 3 * @fr ) + @measure + @measure )
-        calc( ( 3 * @fr ) + @measure)
-      ;
-      // and then let everyone's browser melt
-
-
-      // these must remain 0; they're not accounted for in the above calculations
-      // and also it would get in the way of placing borders
-      grid-column-gap: 0;
-      grid-row-gap: 0;
-
-      grid-template-rows: auto;
-      justify-items: center;
-      align-items: start;
-      // in case this widget gets set to n>5 posts:
-      grid-auto-columns: 1fr;
-      grid-auto-rows: 1fr;
-      grid-auto-flow: row;
-
-      // grid items!
       li {
-        box-sizing: border-box;
-        &:nth-child( 1 ) {
-          grid-area: a;
-          padding-right: @measure;
-          border-right: 1px solid @grey1;
-          align-self: stretch;
+        h5.post-title {
+          margin-bottom: 0.5 * @measure;
         }
-        &:nth-child( 2 ) {
-          grid-area: b;
-          padding-right: @measure;
-          padding-left: @measure;
-          border-right: 1px solid @grey1;
+        p {
+          margin-top: 0.5 * @measure;
+          margin-bottom: 0.5 * @measure;
         }
-        &:nth-child( 3 ) {
-          grid-area: c;
-          padding-left: @measure;
-        }
-        &:nth-child( 4 ) {
-          grid-area: d;
-          padding-right: @measure;
-          padding-left: @measure;
-          border-right: 1px solid @grey1;
-        }
-        &:nth-child( 5 ) {
-          grid-area: e;
-          padding-left: @measure;
+        h5.byline {
+          margin-top: 0.5 * @measure;
+          margin-bottom: 0;
         }
       }
     }
+
+    @media (max-width: 767px) {
+      margin-top: 2 * @measure;
+      margin-bottom: 2 * @measure;
+
+      ul {
+        li {
+          margin-bottom: @measure;
+        }
+      }
+    } // end phone
+
+    @media (min-width: 768px) {
+      ul {
+        display: grid;
+        box-sizing: border-box;
+
+        grid-template-areas:
+          "a b c"
+          "a d e"
+        ;
+        // what I would do if I could mix fr and rem:
+        // grid-template-columns: calc( 5fr + @measure ) calc( 3fr + @measure + @measure ) calc( 3fr + @measure);
+        // we want one @measure padding in these locations:
+        //          here | here       here | here
+        //       5       |        3        |       3    // column relative widths
+        // that's four times in 100% of width
+        // and then that remainder of 100% will be split 5:3:3 across the columns
+        // so let's define a term for ( (100% - 4@measure) / ( 4 + 3 + 3 ) )
+        // and use that as "1fr"
+        //
+        // note that this uses LESS escapes and interpolation in order to prevent a nasty thing
+        // where ( 100% - 4*@measure )/11  gets simplified to (100 - 4)/11%
+        // http://lesscss.org/features/#variables-feature-variable-interpolation
+        @fr: ~"(   (100% - ( 4 * @{measure} ) )   /   ( 5 + 3 + 3 )   )";
+        grid-template-columns:
+          calc( ( 5 * @fr) + @measure )
+          calc( ( 3 * @fr ) + @measure + @measure )
+          calc( ( 3 * @fr ) + @measure)
+        ;
+        // and then let everyone's browser melt
+
+
+        // these must remain 0; they're not accounted for in the above calculations
+        // and also it would get in the way of placing borders
+        grid-column-gap: 0;
+        grid-row-gap: 0;
+
+        grid-template-rows: auto;
+        justify-items: center;
+        align-items: start;
+        // in case this widget gets set to n>5 posts:
+        grid-auto-columns: 1fr;
+        grid-auto-rows: 1fr;
+        grid-auto-flow: row;
+
+        // grid items!
+        li {
+          box-sizing: border-box;
+          &:nth-child( 1 ) {
+            grid-area: a;
+            padding-right: @measure;
+            border-right: 1px solid @grey1;
+            align-self: stretch;
+          }
+          &:nth-child( 2 ) {
+            grid-area: b;
+            padding-right: @measure;
+            padding-left: @measure;
+            border-right: 1px solid @grey1;
+          }
+          &:nth-child( 3 ) {
+            grid-area: c;
+            padding-left: @measure;
+          }
+          &:nth-child( 4 ) {
+            grid-area: d;
+            padding-right: @measure;
+            padding-left: @measure;
+            border-right: 1px solid @grey1;
+          }
+          &:nth-child( 5 ) {
+            grid-area: e;
+            padding-left: @measure;
+          }
+
+          &:nth-child( 2 ),
+          &:nth-child( 3 ),
+          &:nth-child( 4 ),
+          &:nth-child( 5 ) {
+            h5.post-title {
+              font-size: 100%;
+            }
+            p { // excerpt
+              display: none;
+            }
+          }
+        }
+      }
+    } // media query for desktop
   }
 }

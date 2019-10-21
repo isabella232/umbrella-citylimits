@@ -6,6 +6,7 @@
  * - add the custom event date metadata
  * - move top term below image
  * - move byline after excerpt
+ * - add class .post-title to the headline, because for some reason that h5 didn't have one
  *
  * @since Largo 0.6.4 - when this file was refreshed from Largo
  */
@@ -40,7 +41,7 @@ if ( isset( $instance['show_top_term'] ) && $instance['show_top_term'] == 1 && l
 
 // the headline and optionally the post-type icon
 ?>
-<h5>
+<h5 class="post-title">
 	<a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?>
 	<?php
 		if ( isset( $instance['show_icon'] ) && $instance['show_icon'] == true ) {
