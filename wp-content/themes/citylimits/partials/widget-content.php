@@ -1,4 +1,14 @@
 <?php
+/**
+ * Custom partials/widget-content.php
+ *
+ * Modified thusly:
+ * - add the custom event date metadata
+ * - move top term below image
+ * - move byline after excerpt
+ *
+ * @since Largo 0.6.4 - when this file was refreshed from Largo
+ */
 
 // The top term
 if ( isset( $instance['show_top_term'] ) && $instance['show_top_term'] == 1 && largo_has_categories_or_tags() ) {
