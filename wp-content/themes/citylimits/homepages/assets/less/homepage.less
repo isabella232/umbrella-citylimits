@@ -348,6 +348,7 @@
         li {
           box-sizing: border-box;
           position: relative;
+          margin-bottom: @measure;
 
           &:nth-child( 1 ) {
             grid-area: a;
@@ -378,17 +379,27 @@
           // some light grey border-bottom
           &:nth-child( 2 ),
           &:nth-child( 3 ) {
+            overflow: visible;
             &::after {
               content: "";
               display: block;
               clear: both;
               height: 1px;
-              width: 100%;
+              width: auto;
               box-sizing: border-box;
               background-color: @grey1;
               position: absolute;
-              bottom: -0 * @measure;
+              z-index: 1;
+              bottom: -1 * @measure;
             }
+          }
+          &:nth-child( 2 )::after {
+            left: 1 * @measure;
+            right: 0 * @measure;
+          }
+          &:nth-child( 3 )::after {
+            left: 0 * @measure;
+            right: 0 * @measure;
           }
 
           &:nth-child( 2 ),
