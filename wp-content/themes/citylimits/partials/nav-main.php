@@ -102,4 +102,23 @@ if ( ! is_single() && ! is_singular() || ! of_get_option( 'main_nav_hide_article
         </div>
     </div>
 </nav>
+<?php if( is_home() ){ ?>
+<nav id="secondary-nav">
+    <ul class="secondary-special-projects-nav">
+    <?php
+
+        $args = array(
+            'theme_location' => 'special-projects-secondary-menu',
+            'depth' => 0,
+            'container' => true,
+            'items_wrap' => '%3$s',
+            'menu_class' => 'special-projects-secondary-menu',
+            'walker' => new Bootstrap_Walker_Nav_Menu(),
+        );
+        largo_nav_menu( $args );
+
+    ?>
+    </ul>
+</nav>
 <?php }
+}

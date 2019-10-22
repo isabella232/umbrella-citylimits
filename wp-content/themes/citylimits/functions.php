@@ -391,3 +391,60 @@ function citylimits_enqueue_styles(){
     wp_enqueue_style( 'dashicons' );
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
+
+/**
+ * Function to add thumbnail images to the secondary special project nav menu
+ * 
+ * @param Arr $sorted_menu_items The menu items, sorted by each menu item's menu order.
+ * @param Obj $args An object containing wp_nav_menu() arguments.
+ * 
+ * @return Arr $sorted_menu_items The menu items, sorted by each menu item's menu order.
+ */
+function add_thumbnails_to_special_projects_nav( $sorted_menu_items, $args ) {
+
+	// don't continue if we're not on the special projects secondary menu
+    if( $args->theme_location != 'special-projects-secondary-menu' ) {
+
+		return $sorted_menu_items;
+
+	}
+
+    foreach( $sorted_menu_items as $menu_item ) {
+
+		$thumbnail = '';
+
+		$menu_item_id = $menu_item->object_id;
+		$menu_item_object_type = $menu_item->object;
+
+		if( taxonomy_exists( $menu_item_object_type ) ){
+		
+			// get the term featured media thumbnail image
+			$term_meta_post = largo_get_term_meta_post( $menu_item_object_type, $menu_item_id );
+
+			if( largo_has_featured_media( $term_meta_post ) ){
+
+				$thumbnail = largo_get_featured_media( $term_meta_post );
+				$thumbnail = $thumbnail['attachment_data']['sizes']['thumbnail']['url'];
+
+			}
+
+		} else if( 'post' === $menu_item_object_type ){
+
+			if( largo_has_featured_media( $menu_item_id ) ){
+				
+				$thumbnail = largo_get_featured_media( $menu_item_id );
+				$thumbnail = $thumbnail['attachment_data']['sizes']['thumbnail']['url'];
+
+			}
+
+		}
+	
+		$menu_item->title = ! empty( $thumbnail ) ? '<img src="'.$thumbnail.'" class="secondary-nav-item-thumbnail"><span class="secondary-nav-item-title">'.$menu_item->title.'</span>' : $menu_item->title;
+
+    }
+
+	// return all of the menu objects
+	return $sorted_menu_items;
+	
+}
+add_filter( 'wp_nav_menu_objects', 'add_thumbnails_to_special_projects_nav', 10, 2 );
