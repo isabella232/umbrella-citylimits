@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="11.576" height="20" viewBox="0 0 11.576 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <g id="Group_137" data-name="Group 137" transform="translate(0.75 0.75)">
+    <g id="Regular_137" data-name="Regular 137">
+      <path id="Shape_400" data-name="Shape 400" class="cls-1" d="M527.949,113.505h-3.5v-1.57a.821.821,0,0,1,.822-.9h2.466v-3.287h-3.559c-3.23,0-3.838,2.466-3.838,3.994v1.767h-2.466v3.287h2.466v9.451h4.109v-9.451h3.164Z" transform="translate(-517.873 -107.744)"/>
+    </g>
+  </g>
+</svg>

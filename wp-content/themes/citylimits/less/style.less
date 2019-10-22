@@ -11,9 +11,13 @@ Version:        1.0
 @import "_variables.less";
 @import "mixins.less";
 @import "typography.less";
+@import "top-tag.less";
 
 // nav components
 @import "_navbar.less";
+
+// footer components
+@import "footer.less";
 
 .zone-a-btn {
   a.btn {
@@ -67,27 +71,6 @@ body.clean-read.single-post.classic #content {
 .stories h3.widgettitle {
   text-transform: inherit;
   font-size:26px;
-}
-
-h5.top-tag {
-  font-size: 14px;
-  span {
-    background-color: @white;
-    border: 1px solid @red;
-    display: block;
-    padding: 0.5em 1em;
-    width: max-content;
-    text-align: center;
-    word-wrap: none;
-    line-height: 1;
-  }
-  a {
-    color: @red;
-    text-decoration: none;
-    &:hover {
-      color: @black;
-    }
-  }
 }
 
 /* Homepage alert */
