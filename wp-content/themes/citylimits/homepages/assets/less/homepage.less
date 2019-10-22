@@ -1,5 +1,6 @@
 @import (reference) "../../../less/_variables.less";
 @import (reference) "../../../less/top-tag.less";
+@import (reference) "../../../less/mixin-bracket-borders.less";
 
 .stories article {
   border-bottom: none; // a reset of Largo's default
@@ -222,7 +223,6 @@
     box-sizing: border-box;
 
     // how we get the widget title to have a vertical bar to the right, and a long line off to the right
-    border-top: 1px solid @grey1;
     .widgettitle {
       position: relative;
       top: -1rem;
@@ -241,6 +241,16 @@
       text-transform: uppercase;
       color: @black;
     }
+
+    position: relative;
+    .bracket-border-before();
+    padding-bottom: 2 * @measure;
+    @media (max-width: 767px) {
+      padding-bottom: 0.5 * @measure;
+    }
+    .bracket-border-after();
+    margin-bottom: 2 * @measure;
+
 
     ul {
       li {
