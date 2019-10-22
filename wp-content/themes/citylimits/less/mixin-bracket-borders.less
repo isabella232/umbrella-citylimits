@@ -1,0 +1,27 @@
+/**
+ * Mixins implementing the ::before and ::after elements described at
+ * https://github.com/INN/umbrella-citylimits/pull/67#issuecomment-544675122
+ */
+@import (reference) "_variables.less";
+.bracket-border-before {
+  &::before {
+    width: 100%;
+    content: "";
+    height: @measure;
+    border-top: 1px solid @grey1;
+    border-right: 1px solid @grey1;
+    position: absolute;
+    top: 0;
+  }
+}
+.bracket-border-after {
+  &::after {
+    width: 100%;
+    content: "";
+    height: @measure;
+    border-bottom: 1px solid @grey1;
+    border-right: 1px solid @grey1;
+    position: absolute;
+    bottom: 0;
+  }
+}
