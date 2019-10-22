@@ -402,12 +402,12 @@ add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
  */
 function add_thumbnails_to_special_projects_nav( $sorted_menu_items, $args ) {
 
-	// don't continue if we're not on the special projects secondary menu
+    // don't continue if we're not on the special projects secondary menu
     if( $args->theme_location != 'special-projects-secondary-menu' ) {
 
 		return $sorted_menu_items;
 
-	}
+    }
 
     foreach( $sorted_menu_items as $menu_item ) {
 
@@ -443,8 +443,8 @@ function add_thumbnails_to_special_projects_nav( $sorted_menu_items, $args ) {
 
     }
 
-	// return all of the menu objects
-	return $sorted_menu_items;
+    // return all of the menu objects
+    return $sorted_menu_items;
 	
 }
 add_filter( 'wp_nav_menu_objects', 'add_thumbnails_to_special_projects_nav', 10, 2 );
