@@ -291,3 +291,50 @@ html.nav-open body {
         display: none;
     }
 }
+#secondary-nav {
+    .secondary-special-projects-nav {
+        list-style: none;
+        margin-left: 0;
+        margin-top: -5px;
+        display: flex;
+        align-items: stretch;
+        background: @red;
+        li {
+            display: flex;
+            flex-grow: 1;
+            flex-basis: 0;
+            margin: 20px 0;
+            border-right: 1px solid @grey1;
+            padding: 0 @measure;
+            &:last-of-type {
+                border-right: 0;
+            }
+            a {
+                color: @white;
+                font-size: 15px;
+                font-weight: 600;
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+                &:hover {
+                    text-decoration: none;
+                }
+                .secondary-nav-item-thumbnail {
+                    width: 60px;
+                    height: 60px;
+                }
+                .secondary-nav-item-title {
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+    @media (max-width: 769px) {
+        display: none;
+    }
+}
+.secondary-nav-item-thumbnail {
+    @media (max-width: 769px){
+        display: none;
+    }
+}
