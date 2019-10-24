@@ -8,15 +8,15 @@
  * Register the widget
  */
 add_action( 'widgets_init', function() {
-	register_widget( 'Borderzine_3_Col_Widget' );
+	register_widget( 'Citylimits_Podcasts_Widget' );
 });
 /**
  * The City Limits Podcasts widget clss
  *
- * Based on the code-cleanup version of Largo Recent Posts from https://github.com/INN/umbrella-borderzine/pull/75
+ * Based on the code-cleanup version of Largo Recent Posts from https://github.com/INN/umbrella-borderzine/pull/67/files
  *
  */
-class Borderzine_3_Col_Widget extends WP_Widget {
+class Citylimits_Podcasts_Widget extends WP_Widget {
 
 	/**
 	 * Register widget with WordPress.
@@ -63,7 +63,13 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 			'post__not_in'   => get_option( 'sticky_posts' ),
 			'posts_per_page' => isset( $instance['num_posts'] ) ? $instance['num_posts'] : 3,
 			'post_status'    => 'publish',
-			'tax_query'      => array(),
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'prominence',
+					'field'    => 'slug',
+					'terms'    => 'category-featured',
+				),
+			)
 		);
 
 		if ( isset( $instance['avoid_duplicates'] ) && 1 === $instance['avoid_duplicates'] ) {
@@ -83,14 +89,29 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 			echo $args['before_title'] . wp_kses_post( $title ). $args['after_title'];
 		}
 
-		$my_query = new WP_Query( $query_args );
+		$posts = get_posts( $query_args );
+		error_log(var_export( $posts, true));
 
-		if ( $my_query->have_posts() ) {
+		if ( count( $posts ) < $query_args['posts_per_page'] ) {
+			$supplemental_query_args = $query_args;
+			unset( $supplemental_query_args['tax_query'] ); // remove prominence
+			$supplemental_query_args['posts_per_page'] = $query_args['posts_per_page'] - count( $posts );
+
+			$supplemental_posts = get_posts( $supplemental_query_args );
+
+			$posts = array_merge( $posts, $supplemental_posts );
+		}
+
+		if ( count( $posts ) > 0 ) {
 
 			$output = '<ul>';
 
-			while ( $my_query->have_posts() ) {
-				$my_query->the_post();
+			global $post;
+			$preserve = $post;
+
+			foreach ( $posts as $p ) {
+				setup_postdata( $p );
+				$post = $p;
 				$shown_ids[] = get_the_ID();
 
 				// wrap the items in li's.
@@ -113,7 +134,14 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 				// close the item
 				$output .= '</li>';
 
-			} // endwhile.
+
+				// cleanup
+				wp_reset_postdata();
+
+			} // end foreach
+
+			$post = $preserve;
+
 
 			// close the ul
 			$output .= '</ul>';
