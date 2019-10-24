@@ -230,7 +230,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 				printf(
 					' <a href="%1$s">%2$s</a>',
 					'/wp-admin/edit.php?prominence=category-featured&category_name=' . $cat_name,
-					esc_html__( 'View featured podcasts', 'citylimits' )
+					esc_html__( 'View featured podcasts.', 'citylimits' )
 				);
 			?>
 		</p>
