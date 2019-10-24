@@ -1,0 +1,140 @@
+.citylimits-podcasts {
+  margin-top: 2 * @measure;
+  margin-bottom: 2 * @measure;
+
+  // override Largo's .row-fluid > .span12:last-child > * > .widget { padding-left, padding-right: 24px }
+  padding: @measure 0 !important ;
+
+  position: relative;
+  border: 1px solid @grey1;
+
+  text-align: center; // to center the widgettitle
+
+  .stories & h3.widgettitle, // https://github.com/INN/largo/issues/1642#issuecomment-546025808
+  .widgettitle {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -2 * @measure;
+    margin-bottom: 0;
+    padding: 0.5 * @measure;
+    width: intrinsic;
+    width: max-content;
+
+    border-left: 1px solid @grey1;
+    border-right: 1px solid @grey1;
+    background-color: @white;
+    font-size: @measure;
+    line-height: @measure;
+  }
+
+  ul {
+    text-align: left;
+    @media ( min-width: 900px ) {
+      margin-top: 2 * @measure;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+
+      li {
+        padding: 0 (2 * @measure);
+        &:nth-child( 3n + 1 ),
+        &:nth-child( 3n + 2 ) {
+          border-right: 1px solid @grey1;
+        }
+      }
+    }
+    @media ( min-width: 700px ) and ( max-width: 900px )  {
+      margin-top: 2 * @measure;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+
+      li {
+        padding: 0 (1 * @measure);
+        &:nth-child( 3n + 1 ),
+        &:nth-child( 3n + 2 ) {
+          border-right: 1px solid @grey1;
+        }
+      }
+    }
+    @media ( max-width: 699px )  {
+      display: block;
+      padding: 0 @measure;
+      li {
+        display: block;
+        margin: 0;
+        padding: @measure 0;
+        & + li {
+          border-top: 1px solid @grey1;
+        }
+      }
+    }
+  }
+  h5 {
+    font-size: 100%;
+  }
+  .morelink {
+    margin-top: @measure;
+    padding: (0.5 * @measure)  @measure;
+    a {
+      color: white;
+    }
+  }
+
+  // the play icon
+  // https://github.com/INN/umbrella-workdayminn/blob/70a90c7035e252034cd221c85ca985a33a88d88a/wp-content/themes/workday/less/widgets.less#L49-L95
+  @circlesize: 1.5 * @measure;
+  .mediaplay {
+    color: @red;
+    text-transform: uppercase;
+    vertical-align: middle;
+    text-align: center;
+    line-height: @circlesize;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: @measure;
+    a {
+      display: tnline-block;
+      text-align: center;
+      vertical-align: middle;
+      margin-left: auto;
+      margin-right: auto;
+      color: @red;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    &:hover {
+      .encircle {
+        border-color: @black;
+        background-color: @white;
+        color: @black;
+      }
+    }
+  }
+  .encircle {
+    box-sizing: border-box;
+    * {
+      box-sizing: border-box;
+    }
+    padding-left: 0.2em;
+    padding-top: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    height: @circlesize;
+    width: @circlesize;
+    line-height: calc( @circlesize - 2px );
+    font-size: calc( @circlesize * 3 / 5 );
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid @red;
+    color: @red;
+    margin-right: 0.5em;
+  }
+}
