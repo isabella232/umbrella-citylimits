@@ -14,11 +14,12 @@
 
 // the thumbnail image (if we're using one)
 if ( $podcast === true ) {
-	?>
-		<a href="<?php echo get_permalink(); ?>" class="img">
-			play
-		</a>
-	<?php
+	printf(
+		'<p class="mediaplay"><a href="%1$s">%2$s <span class="visuallyhidden">%3$s</span></a></p>',
+		get_permalink(),
+		'<span class="encircle">►</span>',
+		__( 'Decorative play icon links to post: ', 'citylimits') . get_the_title()
+	);
 } elseif ( $thumb === 'small') {
 	$img_location = ! empty( $instance['image_align'] ) ? $instance['image_align'] : 'left';
 	$img_attr = array( 'class' => $img_location . '-align' );

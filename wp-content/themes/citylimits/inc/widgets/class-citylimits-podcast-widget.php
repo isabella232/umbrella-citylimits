@@ -134,7 +134,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 
 
 		if ( ! empty( $instance['linkurl'] ) && ! empty( $instance['linktext'] ) ) {
-			echo '<p class="morelink btn btn-primary"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
+			echo '<a class="morelink btn" href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a>';
 		}
 
 		// close the widget

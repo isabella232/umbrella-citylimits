@@ -13,6 +13,7 @@ Version:        1.0
 @import "typography.less";
 @import "ads.less";
 @import "top-tag.less";
+@import "widget-citylimits-podcast.less";
 
 // nav components
 @import "_navbar.less";
@@ -53,17 +54,40 @@ Version:        1.0
  * GENERAL STYLES
  */
 
+.btn {
+  border-radius: 0;
+  color: @white;
+  background-color: @black;
+  border: 1px solid @black;
+  text-decoration: none;
+  a {
+    color: @white;
+  }
+  &:active,
+  &:hover {
+    background-color: @red;
+    border-color: @red;
+    color: @white;
+    text-decoration: none;
+    a {
+      text-decoration: none;
+    }
+  }
+}
 .btn-primary {
-  color: #eee;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #D41313;
-  border: 1px solid #D41313;
-}
-.btn-primary:hover {
-  color: #fff;
-  background-color: #f61212;
-}
+  color: @white;
+  background-color: @red;
+  border-color: @red;
+  &:active,
+  &:hover {
+    color: @red;
+    background-color: @white;
+    a {
+      color: @red;
+    }
+  }
 
+}
 body.clean-read.single-post.classic #content {
   margin: 0 auto;
 }
