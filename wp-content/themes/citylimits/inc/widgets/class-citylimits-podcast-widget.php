@@ -83,14 +83,11 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 			echo $args['before_title'] . wp_kses_post( $title ). $args['after_title'];
 		}
 
-		if ( ! empty( $instance['linkurl'] ) && ! empty( $instance['linktext'] ) ) {
-			echo '<p class="morelink btn btn-primary"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
-		}
 		$my_query = new WP_Query( $query_args );
 
 		if ( $my_query->have_posts() ) {
 
-			$output = '';
+			$output = '<ul>';
 
 			while ( $my_query->have_posts() ) {
 				$my_query->the_post();
@@ -104,7 +101,8 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 
 				$context = array(
 					'instance' => $instance,
-					'thumb' => $thumb,
+					'thumb' => '',
+					'podcast' => true,
 					'excerpt' => $excerpt,
 				);
 
@@ -116,6 +114,9 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 				$output .= '</li>';
 
 			} // endwhile.
+
+			// close the ul
+			$output .= '</ul>';
 
 			// print all of the items
 			echo $output;
@@ -131,8 +132,10 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 			);
 		} // end more featured posts
 
-		// close the ul
-		echo '</ul>';
+
+		if ( ! empty( $instance['linkurl'] ) && ! empty( $instance['linktext'] ) ) {
+			echo '<p class="morelink btn btn-primary"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
+		}
 
 		// close the widget
 		echo wp_kses_post( $args['after_widget'] );
