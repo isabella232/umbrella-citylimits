@@ -118,6 +118,8 @@
       // No; because div.global-nav-bg #page and div.footer-bg are separate things,
       // and together they do not cover all of body.
       $('body').on('touchstart.touchDropdown click.touchDropdown' , closeOpenMenu);
+
+      $('.sticky-nav-holder').removeClass('position-fixed');
     };
   
     /**
@@ -377,6 +379,7 @@
           if (!navbar.hasClass('open')) {
             navbar.find('.nav-shelf li.open').removeClass('open');
             $('html').removeClass('nav-open');
+            $('.sticky-nav-holder').removeClass('position-fixed');
           }
   
           return false;
