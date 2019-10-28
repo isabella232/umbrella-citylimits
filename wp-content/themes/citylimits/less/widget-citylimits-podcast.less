@@ -35,12 +35,45 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: auto;
+      grid-row-gap: 2 * @measure;
 
       li {
         padding: 0 (2 * @measure);
+        margin-bottom: 0;
         &:nth-child( 3n + 1 ),
         &:nth-child( 3n + 2 ) {
           border-right: 1px solid @grey1;
+        }
+
+        // if there's more than one row, add a border-top between them
+        overflow: visible;
+        position: relative;
+        &:nth-child( 3n + 4 ),
+        &:nth-child( 3n + 4 ) ~ li {
+          &::before {
+            content: "";
+            display: block;
+            clear: both;
+            height: 1px;
+            width: auto;
+            box-sizing: border-box;
+            background-color: @grey1;
+            position: absolute;
+            top: -1 * @measure;
+          }
+        }
+        &:nth-child( 3n + 4 )::before {
+          left: 2 * @measure;
+          right: 0;
+        }
+        &:nth-child( 3n + 5 )::before {
+          // to cover up a gap caused by 1px borders on li
+          left: -1px;
+          right: -1px;
+        }
+        &:nth-child( 3n + 6 )::before {
+          left: 0;
+          right: 2 * @measure;
         }
       }
     }
@@ -49,12 +82,45 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: auto;
+      grid-row-gap: 2 * @measure;
 
       li {
         padding: 0 (1 * @measure);
+        margin-bottom: 0;
         &:nth-child( 3n + 1 ),
         &:nth-child( 3n + 2 ) {
           border-right: 1px solid @grey1;
+        }
+        // duplicated from the >900px mq in order to use different left/right offsets to match padding
+        // if there's more than one row, add a border-top between them
+        overflow: visible;
+        position: relative;
+        &:nth-child( 3n + 4 ),
+        &:nth-child( 3n + 4 ) ~ li {
+          &::before {
+            content: "";
+            display: block;
+            clear: both;
+            height: 1px;
+            width: auto;
+            box-sizing: border-box;
+            background-color: @grey1;
+            position: absolute;
+            top: -1 * @measure;
+          }
+        }
+        &:nth-child( 3n + 4 )::before {
+          left: 1 * @measure;
+          right: 0;
+        }
+        &:nth-child( 3n + 5 )::before {
+          // to cover up a gap caused by 1px borders on li
+          left: -1px;
+          right: -1px;
+        }
+        &:nth-child( 3n + 6 )::before {
+          left: 0;
+          right: 1 * @measure;
         }
       }
     }
