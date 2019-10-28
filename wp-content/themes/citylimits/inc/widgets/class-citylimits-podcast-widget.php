@@ -252,13 +252,22 @@ class Citylimits_Podcasts_Widget extends WP_Widget {
 			<?php
 				esc_html_e( 'If any posts have the "Featured in Category" prominence term on them, those will be presented before other posts in the category.', 'citylimits' );
 
+				echo ' '; 
+
 				// Because wp uses cat names in URLs
-				$cat_name = get_the_category_by_id( $instance['cat'] );
-				printf(
-					' <a href="%1$s">%2$s</a>',
-					'/wp-admin/edit.php?prominence=category-featured&category_name=' . $cat_name,
-					esc_html__( 'View featured podcasts.', 'citylimits' )
-				);
+				$cat = get_category( $instance['cat'] );
+				if ( is_a( $cat, 'WP_Term' ) ) {
+					printf(
+						'<a href="%1$s">%2$s</a>',
+						'/wp-admin/edit.php?prominence=category-featured&category_name=' . $cat-> slug,
+						sprintf(
+							esc_html__( 'View featured podcasts in the "%1$s" category.', 'citylimits' ),
+							$cat->name
+						)
+					);
+				} else {
+					echo esc_html__( '(Save this widget to get a link to view featured podcasts in this category.)', 'citylimits' );
+				}
 			?>
 		</p>
 
