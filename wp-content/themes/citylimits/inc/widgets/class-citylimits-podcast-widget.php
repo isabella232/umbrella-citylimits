@@ -266,7 +266,7 @@ class Citylimits_Podcasts_Widget extends WP_Widget {
 						)
 					);
 				} else {
-					echo esc_html__( '(Save this widget to get a link to view featured podcasts in this category.)', 'citylimits' );
+					echo esc_html__( '(Choose a category and click "Save" to get a link to view featured podcasts in this category.)', 'citylimits' );
 				}
 			?>
 		</p>
