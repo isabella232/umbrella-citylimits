@@ -90,7 +90,6 @@ class Citylimits_Podcasts_Widget extends WP_Widget {
 		}
 
 		$posts = get_posts( $query_args );
-		error_log(var_export( $posts, true));
 
 		if ( count( $posts ) < $query_args['posts_per_page'] ) {
 			$supplemental_query_args = $query_args;
