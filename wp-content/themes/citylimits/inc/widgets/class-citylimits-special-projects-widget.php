@@ -36,20 +36,50 @@ class citylimits_special_projects_widget extends WP_Widget {
 
 		if ( empty( $series_1_posts ) && empty( $series_2_posts ) && empty( $series_3_posts ) ) return; //output nothing if no posts found
 
-		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
-		$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
+		$widget_title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
 		echo $args['before_widget'];
 
-		if ( ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
-
 		echo '<div class="citylimits-special-projects-container">';
+
+		if ( ! empty( $widget_title ) ) echo $args['before_title'] . $widget_title . $args['after_title'];
+
+		$series_counter = 0;
+
+		echo '<div class="citylimits-special-projects-inner-container">';
 
 		foreach( $series_arr as $series ) {
 
-			if( $series->have_posts() ) {
+			$series_counter++;
 
-				echo '<div class="citylimits-special-project"><h5 class="series-split top-tag">' . esc_html( $instance['heading'] ) .'</h5><ul>';
+			if( $series->have_posts() ) {
+				
+				echo '<div class="citylimits-special-project">';
+
+				$thumbnail = '';
+				$series_id = $instance['series_'.$series_counter];
+				$title_link = get_term_link( (int) $instance['series_'.$series_counter], 'series' );
+				$term = get_term( $instance['series_'.$series_counter], 'series' );
+				$title = apply_filters( 'widget_title', $term->name, $instance, $this->id_base );
+				$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
+				
+				// get the term meta post so we can grab the featured image
+				$term_meta_post = largo_get_term_meta_post( 'series', $series_id );
+
+				if( largo_has_featured_media( $term_meta_post ) ){
+
+					$thumbnail = largo_get_featured_media( $term_meta_post );
+					$thumbnail = $thumbnail['attachment_data']['sizes']['large']['url'];
+
+					echo '<a class="citylimits-special-project-title" href="'.$title_link.'"><img src="'.$thumbnail.'"><span class="citylimits-special-projects-title-border"><span>'.$title.'</span></span></a>';
+
+				} else {
+
+					echo '<a href="'.$title_link.'">'.$title.'</a>';
+
+				}
+
+				echo '<h5 class="series-split top-tag">' . esc_html( $instance['heading'] ) .'</h5><ul>';
 
 				while ( $series->have_posts() ) {
 
@@ -72,7 +102,7 @@ class citylimits_special_projects_widget extends WP_Widget {
 
 		}
 
-		echo '</div>';
+		echo '</div></div>';
 
 		echo $args['after_widget'];
 
