@@ -43,6 +43,7 @@ function largo_child_require_files() {
 		'/inc/widgets/zonein-events.php',
 		'/inc/widgets/cl-newsletter-header.php',
 		'/inc/widgets/class-citylimits-special-projects-widget.php',
+		'/inc/widgets/class-citylimits-podcast-widget.php',
 		// homepage
 		'/homepages/layout.php',
 	);

@@ -3,6 +3,7 @@
  * Custom partials/widget-content.php
  *
  * Modified thusly:
+ * - replace the post thumbnail with a play button on the podcast widget
  * - add the custom event date metadata
  * - move top term below image
  * - move byline after excerpt
@@ -12,7 +13,14 @@
  */
 
 // the thumbnail image (if we're using one)
-if ($thumb == 'small') {
+if ( $podcast === true ) {
+	printf(
+		'<p class="mediaplay"><a href="%1$s">%2$s <span class="visuallyhidden">%3$s</span></a></p>',
+		get_permalink(),
+		'<span class="encircle">►</span>',
+		__( 'Decorative play icon links to post: ', 'citylimits') . get_the_title()
+	);
+} elseif ( $thumb === 'small') {
 	$img_location = ! empty( $instance['image_align'] ) ? $instance['image_align'] : 'left';
 	$img_attr = array( 'class' => $img_location . '-align' );
 	$img_attr['class'] .= " attachment-small";
@@ -21,7 +29,7 @@ if ($thumb == 'small') {
 			<?php echo get_the_post_thumbnail( get_the_ID(), '60x60', $img_attr); ?>
 		</a>
 	<?php
-} elseif ($thumb == 'medium') {
+} elseif ( $thumb === 'medium') {
 	$img_location = ! empty( $instance['image_align'] ) ? $instance['image_align'] : 'left';
 	$img_attr = array('class' => $img_location . '-align');
 	$img_attr['class'] .= " attachment-thumbnail";
@@ -30,7 +38,7 @@ if ($thumb == 'small') {
 			<?php echo get_the_post_thumbnail( get_the_ID(), 'post-thumbnail', $img_attr); ?>
 		</a>
 	<?php
-} elseif ($thumb == 'large') {
+} elseif ( $thumb === 'large') {
 	$img_attr = array();
 	$img_attr['class'] = " attachment-large";
 	?>
