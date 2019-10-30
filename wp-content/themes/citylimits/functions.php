@@ -480,8 +480,6 @@ function citylimits_get_series_posts( $series_id, $number = -1, $order = null ) 
 		$order = get_post_meta( $landing->post->ID, 'post_order', TRUE );
 	}
 
-	print("<pre>".print_r($order,true)."</pre>");
-
 	switch ( $order ) {
 		case 'ASC':
 			$series_args['order'] = 'ASC';
