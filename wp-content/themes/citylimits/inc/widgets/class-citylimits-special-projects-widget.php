@@ -71,11 +71,11 @@ class citylimits_special_projects_widget extends WP_Widget {
 					$thumbnail = largo_get_featured_media( $term_meta_post );
 					$thumbnail = $thumbnail['attachment_data']['sizes']['large']['url'];
 
-					echo '<a class="citylimits-special-project-title" href="'.$title_link.'"><img src="'.$thumbnail.'"><span class="citylimits-special-projects-title-border"><span>'.$title.'</span></span></a>';
+					echo '<a class="citylimits-special-project-title" href="'.$title_link.'"><img class="citylimits-special-project-img" src="'.$thumbnail.'"><span class="citylimits-special-projects-title-border"><span>'.$title.'</span></span></a>';
 
 				} else {
 
-					echo '<a href="'.$title_link.'">'.$title.'</a>';
+					echo '<a class="citylimits-special-project-title" href="'.$title_link.'"><div class="citylimits-special-project-img"></div><span class="citylimits-special-projects-title-border"><span>'.$title.'</span></span></a>';
 
 				}
 
