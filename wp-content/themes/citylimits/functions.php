@@ -468,11 +468,11 @@ function citylimits_get_series_posts( $series_id, $number = -1, $order = null ) 
 	$term_slug = $term->slug;
 
 	$series_args = array(
-		'post_type' 	=> 'post',
-		'taxonomy' 	=> 'series',
-		'term' 	=> $term_slug,
-		'order' 	=> 'DESC',
-		'orderby' 		=> 'date',
+		'post_type' 	 	=> 'post',
+		'taxonomy' 		 	=> 'series',
+		'term' 		 	 	=> $term_slug,
+		'order' 		 	=> 'DESC',
+		'orderby' 	 		=> 'date',
 		'posts_per_page' 	=> $number
 	);
 
