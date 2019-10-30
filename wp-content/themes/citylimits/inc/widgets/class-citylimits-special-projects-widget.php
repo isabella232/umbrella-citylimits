@@ -28,9 +28,9 @@ class citylimits_special_projects_widget extends WP_Widget {
 		// instance: num, series (id), title, heading
 
 		//get the posts
-		$series_1_posts = largo_get_series_posts( $instance['series_1'], $instance['num'] );
-		$series_2_posts = largo_get_series_posts( $instance['series_2'], $instance['num'] );
-		$series_3_posts = largo_get_series_posts( $instance['series_3'], $instance['num'] );
+		$series_1_posts = citylimits_get_series_posts( $instance['series_1'], $instance['num'], 'featured, DESC' );
+		$series_2_posts = citylimits_get_series_posts( $instance['series_2'], $instance['num'], 'featured, DESC' );
+		$series_3_posts = citylimits_get_series_posts( $instance['series_3'], $instance['num'], 'featured, DESC' );
 
 		$series_arr = [$series_1_posts, $series_2_posts, $series_3_posts];
 
