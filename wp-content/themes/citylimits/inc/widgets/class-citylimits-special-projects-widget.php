@@ -25,7 +25,7 @@ class citylimits_special_projects_widget extends WP_Widget {
 		// Preserve global $post
 		$preserve = $post;
 
-		// instance: num, series (id), title, heading
+		// instance: num, series (id), title
 
 		//get the posts
 		$series_1_posts = citylimits_get_series_posts( $instance['series_1'], $instance['num'], 'featured, DESC' );
@@ -79,7 +79,7 @@ class citylimits_special_projects_widget extends WP_Widget {
 
 				}
 
-				echo '<h5 class="series-split top-tag">' . esc_html( $instance['heading'] ) .'</h5><ul>';
+				echo '<ul>';
 
 				while ( $series->have_posts() ) {
 
@@ -114,31 +114,25 @@ class citylimits_special_projects_widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
-		$instance['heading'] = sanitize_text_field( $new_instance['heading'] );
 		$instance['num'] = 3;
-		$instance['show_top_term'] = 1;
 		$instance['excerpt_display'] = sanitize_key( $new_instance['excerpt_display'] );
 		$instance['num_sentences'] = intval( $new_instance['num_sentences'] );
 		$instance['series_1'] = sanitize_key( $new_instance['series_1'] );
 		$instance['series_2'] = sanitize_key( $new_instance['series_2'] );
 		$instance['series_3'] = sanitize_key( $new_instance['series_3'] );
-		$instance['show_byline'] = (int) $new_instance['show_byline'];
-		$instance['thumbnail_display'] = sanitize_key( $new_instance['thumbnail_display'] );
-		$instance['image_align'] = sanitize_key( $new_instance['image_align'] );
 		return $instance;
 	}
 
 	function form( $instance ) {
 		//Defaults
-		// to control: which series, # of posts, explore heading...
+		// to control: which series, # of posts
 		// @todo enhance with more control over thumbnail, icon, etc
 		$instance = wp_parse_args( (array) $instance, array(
 			'title' => 'Series',
 			'num' => 3,
 			'show_top_term' => 1,
 			'excerpt_display' => 'num_sentences',
-			'num_sentences' => 2,
-			'heading' => 'Explore:',
+			'num_sentences' => 1,
 			'thumbnail_display' => 'small',
 			'image_align' => 'left',
 			'show_byline' => 0,
@@ -148,7 +142,6 @@ class citylimits_special_projects_widget extends WP_Widget {
 		);
 		$title = esc_attr( $instance['title'] );
 		$num = $instance['num'];
-		$heading = esc_attr( $instance['heading'] );
 		?>
 
 		<p>
@@ -200,7 +193,7 @@ class citylimits_special_projects_widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'num_sentences' ); ?>"><?php _e( 'Excerpt Length (# of Sentences):', 'largo' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'num_sentences' ); ?>" name="<?php echo $this->get_field_name( 'num_sentences' ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="width:90%;" />
+			<input id="<?php echo $this->get_field_id( 'num_sentences' ); ?>" type="number" min="1" name="<?php echo $this->get_field_name( 'num_sentences' ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="width:90%;" />
 		</p>
 
 	<?php
