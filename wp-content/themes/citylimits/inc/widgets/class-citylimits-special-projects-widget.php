@@ -66,10 +66,9 @@ class citylimits_special_projects_widget extends WP_Widget {
 				// get the term meta post so we can grab the featured image
 				$term_meta_post = largo_get_term_meta_post( 'series', $series_id );
 
-				if( largo_has_featured_media( $term_meta_post ) ){
+				if( has_post_thumbnail( $term_meta_post ) ){
 
-					$thumbnail = largo_get_featured_media( $term_meta_post );
-					$thumbnail = $thumbnail['attachment_data']['sizes']['large']['url'];
+					$thumbnail = get_the_post_thumbnail_url( $term_meta_post, 'rect_thumb_half' );
 
 					echo '<a class="citylimits-special-project-title" href="'.$title_link.'"><img class="citylimits-special-project-img" src="'.$thumbnail.'"><span class="citylimits-special-projects-title-border"><span>'.$title.'</span></span></a>';
 
