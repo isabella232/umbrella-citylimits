@@ -74,8 +74,20 @@
                         }
                     }
                     .citylimits-special-project-img {
-                        height: 240px;
                         width: 100%;
+                        @media (min-width: 1200px) {
+                            height: calc(
+                                ( ( ( (1170px - 40px) / 3 ) - 40px ) * 3/4 )
+                            );
+                        }
+                        @media (max-width: 1199px) and (min-width: 769px) {
+                            height: calc(
+                               ( ( ( ( (100vw - 2.5vw - 2.5vw) - 40px ) / 3 ) - 40px ) * 3/4 )
+                            );
+                        }
+                    }
+                    @media (max-width: 769px) {
+                        padding-right: 0;
                     }
                 }
                 ul {
