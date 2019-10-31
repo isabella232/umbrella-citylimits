@@ -389,9 +389,18 @@ add_action( 'init', 'register_citylimits_menu_locations' );
  * Enqueue specific styles and scripts for City Limits child theme
  */
 function citylimits_enqueue_styles(){
-    wp_enqueue_style( 'dashicons' );
+	wp_enqueue_style( 'dashicons' );
+	wp_enqueue_script( 'citylimits-navigation', get_stylesheet_directory_uri() . '/js/navigation.js', array( 'jquery' ), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
+
+/**
+ * Dequeue specific scripts
+ */
+function citylimits_dequeue_scripts(){
+	wp_dequeue_script( 'largo-navigation' );
+}
+add_action( 'wp_print_scripts', 'citylimits_dequeue_scripts', 100 );
 
 /**
  * Function to add thumbnail images to the secondary special project nav menu

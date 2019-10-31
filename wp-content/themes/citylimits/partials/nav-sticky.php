@@ -12,7 +12,7 @@
 
 $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'nav_alt_site_name' ) : get_bloginfo('name'); ?>
  <div class="sticky-nav-wrapper nocontent">
-	<div class="sticky-nav-holder">
+	<div class="sticky-nav-holder show">
 
 	<?php
     /*

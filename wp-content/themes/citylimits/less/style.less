@@ -18,6 +18,9 @@ Version:        1.0
 // nav components
 @import "_navbar.less";
 
+// header components
+@import "header.less";
+
 // footer components
 @import "footer.less";
 
@@ -115,24 +118,7 @@ body.clean-read.single-post.classic #content {
 }
 
 /* Header */
-#site-header {
-  text-align: center;
-  width: 33%;
-  max-width: 410px;
-}
-#site-header img {
-  margin: 0;
-  max-width: 100%;
-  height: auto;
-}
 
-/* Leaderboard ad */
-.header-ad-zone {
-  float: right;
-  text-align: center;
-  position: relative;
-  top: 5px;
-}
 #header-ad-zone-container div div {
   margin-top: 0;
 }
@@ -251,9 +237,6 @@ span#recaptcha_privacy { display: none; }
     text-align: center;
     margin: 0;
   }
-  #site-header img {
-    max-width: 500px;
-  }
 }
 
 @media (max-width: 980px) {
@@ -310,7 +293,7 @@ body.neighborhoods-lp {
   }
 
   .rezone-header {
-    margin-top: @navbarHeight + 32px;
+    // margin-top: @navbarHeight + 32px;
   }
 
   ul#menu-zone-in, ul#menu-mapping-the-future {
