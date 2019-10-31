@@ -112,6 +112,22 @@ add_filter('body_class', function($classes) {
 
 		<?php
 
+			/**
+			 * Fires before the Largo header content.
+			 *
+			 * @since 0.4
+			 */
+			do_action( 'largo_before_header' );
+
+			get_template_part( 'partials/largo-header' );
+			
+			/**
+			 * Fires after the Largo header content.
+			 *
+			 * @since 0.4
+			 */
+			do_action( 'largo_after_header' );
+
 			get_template_part( 'partials/nav', 'sticky' );
 
 			/**
