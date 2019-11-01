@@ -390,7 +390,7 @@ add_action( 'init', 'register_citylimits_menu_locations' );
  */
 function citylimits_enqueue_styles(){
 	wp_enqueue_style( 'dashicons' );
-	wp_enqueue_script( 'citylimits-navigation', get_stylesheet_directory_uri() . '/js/navigation.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'citylimits-navigation', get_stylesheet_directory_uri() . '/js/navigation.js', array( 'jquery', 'largo-modernizr' ), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
 
