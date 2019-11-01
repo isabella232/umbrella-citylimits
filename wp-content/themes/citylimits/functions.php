@@ -42,6 +42,7 @@ function largo_child_require_files() {
 		'/inc/widgets/neighborhood-content.php',
 		'/inc/widgets/zonein-events.php',
 		'/inc/widgets/cl-newsletter-header.php',
+		'/inc/widgets/class-citylimits-special-projects-widget.php',
 		'/inc/widgets/class-citylimits-podcast-widget.php',
 		// homepage
 		'/homepages/layout.php',
@@ -458,3 +459,53 @@ function add_thumbnails_to_special_projects_nav( $sorted_menu_items, $args ) {
 	
 }
 add_filter( 'wp_nav_menu_objects', 'add_thumbnails_to_special_projects_nav', 10, 2 );
+
+/**
+ * Helper function for getting posts in proper order for a series
+ *
+ * @uses largo_is_series_enabled
+ * @param integer $series_id series term id
+ * @param integer $number number of posts to fetch, defaults to all
+ * @param string $order how to sort the returned posts, optional. series landing option will be used if empty
+ */
+function citylimits_get_series_posts( $series_id, $number = -1, $order = null ) {
+
+	// If series are not enabled, then there are no posts in a series.
+	if ( !largo_is_series_enabled() ) return;
+
+	$term = get_term_by( 'id', $series_id, 'series' );
+	$term_slug = $term->slug;
+
+	$series_args = array(
+		'post_type' 	 	=> 'post',
+		'taxonomy' 		 	=> 'series',
+		'term' 		 	 	=> $term_slug,
+		'order' 		 	=> 'DESC',
+		'orderby' 	 		=> 'date',
+		'posts_per_page' 	=> $number
+	);
+
+	if( empty( $order ) ){
+		$order = get_post_meta( $landing->post->ID, 'post_order', TRUE );
+	}
+
+	switch ( $order ) {
+		case 'ASC':
+			$series_args['order'] = 'ASC';
+			break;
+		case 'custom':
+			$series_args['orderby'] = 'series_custom';
+			break;
+		case 'featured, DESC':
+		case 'featured, ASC':
+			$series_args['orderby'] = $order;
+			break;
+	}
+
+	$series_posts = new WP_Query( $series_args );
+
+	if ( $series_posts->found_posts ) return $series_posts;
+
+	return false;
+
+}

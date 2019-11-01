@@ -1,0 +1,166 @@
+.citylimits-special-projects {
+    background: @black;
+    color: @white;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: 0!important;
+    padding-right: 0!important;
+    .citylimits-special-projects-container {
+        max-width: 1170px;
+        margin: 0 auto;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        padding: 1.5rem 0 !important;
+        position: relative;
+        border: 1px solid @grey1;
+        .widgettitle {
+            color: @white;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: -3rem;
+            margin-bottom: 0;
+            padding: .75rem;
+            width: intrinsic;
+            width: max-content;
+            border-left: 1px solid @grey1;
+            border-right: 1px solid @grey1;
+            background-color: @black;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+        }
+        .citylimits-special-projects-inner-container {
+            display: flex;
+            padding: 40px 20px 0;
+            .citylimits-special-project {
+                flex: 1 1 0;
+                display: inline-flex;
+                flex-direction: column;
+                margin: 0 10px;
+                &:first-of-type {
+                    padding-left: 0;
+                }
+                &:last-of-type {
+                    padding-right: 0;
+                    ul {
+                        border-right: 0;
+                    }
+                }
+                .citylimits-special-project-title {
+                    color: @white;
+                    font-weight: 600;
+                    font-size: 20px;
+                    position: relative;
+                    margin-bottom: 40px;
+                    padding-right: 20px;
+                    &:hover {
+                        color: @grey1;
+                    }
+                    .citylimits-special-projects-title-border {
+                        float: left;
+                        position: absolute;
+                        height: 96%;
+                        width: 91%;
+                        left: 0px;
+                        top: 0px;
+                        border-left: 1px solid @grey1;
+                        border-bottom: 1px solid @grey1;
+                        margin: 0 3% 3%;
+                        bottom: 0;
+                        span {
+                            position: absolute;
+                            bottom: 0;
+                            padding: 4%;
+                        }
+                    }
+                    .citylimits-special-projects-img-overlay {
+                        background-color: rgba(0, 0, 0, 0.62);
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 0;
+                    }
+                    .citylimits-special-project-img {
+                        width: 100%;
+                        @media (min-width: 1200px) {
+                            height: calc(
+                                ( ( ( (1170px - 40px) / 3 ) - 40px ) * 3/4 )
+                            );
+                        }
+                        @media (max-width: 1199px) and (min-width: 769px) {
+                            height: calc(
+                               ( ( ( ( (100vw - 2.5vw - 2.5vw) - 40px ) / 3 ) - 40px ) * 3/4 )
+                            );
+                        }
+                    }
+                    @media (max-width: 769px) {
+                        padding-right: 0;
+                    }
+                }
+                ul {
+                    border-right: 1px solid @grey2;
+                    padding-right: 20px;
+                    height: 100%;
+                    li {
+                        h5 {
+                            a {
+                                color: @white;
+                            }
+                            &.top-tag {
+                                max-width: calc(100% - (2 * 2rem));
+                                width: auto;
+                                text-align: center;
+                                border: 1px solid @red;
+                                position: relative;
+                                background: transparent;
+                                margin-bottom: 20px;
+                                span {
+                                    background-color: transparent;
+                                    a {
+                                        color: @red;
+                                        &:hover {
+                                            color: @white;
+                                        }
+                                    }
+                                }
+                            }
+                            &.post-title {
+                                font-size: 18px;
+                                margin-bottom: 10px;
+                            }
+                        }
+                        p {
+                            color: @grey2;
+                        }
+                    }
+                }
+            }
+        }
+        @media (max-width: 768px) {
+            margin-bottom: 0;
+            .citylimits-special-projects-inner-container {
+                flex-direction: column;
+                .citylimits-special-project {
+                    .citylimits-special-project-title {
+                        img {
+                            height: auto;
+                        }
+                    }
+                    ul {
+                        border-right: 0;
+                        padding-right: 0;
+                        li {
+                            h5 {
+                                &.top-tag {
+                                    max-width: max-content;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
