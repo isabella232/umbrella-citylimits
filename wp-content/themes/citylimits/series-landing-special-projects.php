@@ -52,20 +52,20 @@ $content_span = array( 'one-column' => 12, 'two-column' => 8, 'three-column' => 
 				echo '<h5 class="byline">' . largo_byline( false, false, get_the_ID() ) . '</h5>';
 			}
 		?>
-		<?php
-			if ( 'standard' == $opt['header_style'] ) {
-				//need to set a size, make this responsive, etc
-				?>
-					<div class="description">
-						<?php echo apply_filters( 'the_content', $post->post_excerpt ); ?>
-					</div>
-				<?php
-			} else {
-				the_content();
-			}
+			<div class="description">
+				<?php echo apply_filters( 'the_content', $post->post_excerpt ); ?>
+			</div>
 		?>
 	</section>
 </div><!-- end main div -->
+
+<?php
+	if ( 'standard' != $opt['header_style'] ) {
+		echo '<section class="entry-content">';
+			the_content();
+		echo '</section>';
+	}
+?>
 
 <?php
 	if ( $opt['show_sharebar'] ) {
