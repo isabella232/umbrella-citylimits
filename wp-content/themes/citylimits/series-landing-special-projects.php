@@ -40,34 +40,40 @@ if ( 'cftl-tax-landing' == $post->post_type ) {
 $content_span = array( 'one-column' => 12, 'two-column' => 8, 'three-column' => 5 );
 ?>
 
-<?php if ( $opt['header_enabled'] ) : ?>
-	<div class="full series-banner full-image"><?php the_post_thumbnail( 'full' ); ?></div>
-	<section id="series-header" class="span12">
+<?php if ( $opt['header_enabled'] ) { ?>
+	<div class="series-banner">
+		<?php the_post_thumbnail( 'large' ); ?>
+	</div>
+	<section id="series-header" class="">
+		<span class="special-project"><?php esc_html_e( 'Special Project', 'citylimits' ); ?></span>
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<?php
 			if ( $opt['show_series_byline'] ) {
 				echo '<h5 class="byline">' . largo_byline( false, false, get_the_ID() ) . '</h5>';
 			}
-			if ( $opt['show_sharebar'] ) {
-				largo_post_social_links();
-			}
 		?>
-		<div class="description">
-			<?php echo apply_filters( 'the_content', $post->post_excerpt ); ?>
-		</div>
 		<?php
 			if ( 'standard' == $opt['header_style'] ) {
 				//need to set a size, make this responsive, etc
 				?>
+					<div class="description">
+						<?php echo apply_filters( 'the_content', $post->post_excerpt ); ?>
+					</div>
 				<?php
 			} else {
 				the_content();
 			}
 		?>
 	</section>
-	</div><!-- end main div -->
-	<div id="series-main" class="row-fluid clearfix">
-<?php endif; ?>
+</div><!-- end main div -->
+
+<?php
+	if ( $opt['show_sharebar'] ) {
+		largo_post_social_links();
+	}
+?>
+<div id="series-main" class="row-fluid clearfix">
+<?php } // end the "if there's a header" conditional ?>
 
 
 <?php // display left rail

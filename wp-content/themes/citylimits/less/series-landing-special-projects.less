@@ -1,0 +1,71 @@
+/**
+ * Styles for series-landing-special-projects.php
+ */
+.cftl-tax-landing-template-series-landing-special-projects-php {
+  .series-banner {
+    @media ( min-width: 700px ) {
+      text-align: right;
+      img {
+        max-width: 70%;
+      }
+    }
+  }
+  #main {
+    border-bottom: 1px solid @grey1;
+    padding-bottom: 0.5 * @measure;
+  }
+  #series-header {
+    position: absolute;
+    bottom: -1px; // to overlap the border-bottom on the containing element
+    left: 0;
+
+    padding: 0 @measure 0 0;
+    background: @white;
+    text-align: left;
+    // this only works because of the combination of this specific image and border-image-slice
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice
+    // https://github.com/INN/umbrella-citylimits/pull/61#issuecomment-542890018
+    border-image: url("../img/homepage-border-img.png");
+    border-image-slice: 24 24 1 24;
+    border-image-repeat: space;
+    border-color: @white;
+    border-style: solid;
+    border-width: @measure * 0.5;
+    border-bottom-width: 1px;
+    border-left: none;
+    // the above styles match up with those on #main
+
+    @media ( min-width: 700px ) {
+      max-width: 50%;
+    }
+
+    .special-project {
+      // should be roughly twice the height of the border-top on this element
+      display: inline-block;
+      height: 1 * @measure;
+      line-height: 1 * @measure;
+      font-size: 0.5 * @measure;
+      background-color: @white;
+      border-right: 1px solid @grey1;
+      position: relative;
+      top: -0.5 * @measure;
+      padding-right: 2 * @measure;
+
+      text-transform: uppercase;
+      font-weight: 700;
+      color: @black;
+    }
+    .entry-title {
+      margin-top: 1 * @measure;
+      font-size: @measure;
+      margin-bottom: @measure;
+    }
+    .byline {
+      margin-top: 1 * @measure;
+    }
+    .description {
+      margin-top: 1 * @measure;
+      font-size: 1rem;
+    }
+  }
+}
