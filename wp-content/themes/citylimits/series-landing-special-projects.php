@@ -55,13 +55,13 @@ $content_span = array( 'one-column' => 12, 'two-column' => 8, 'three-column' => 
 			<div class="description">
 				<?php echo apply_filters( 'the_content', $post->post_excerpt ); ?>
 			</div>
-		?>
 	</section>
 </div><!-- end main div -->
 
 <?php
 	if ( 'standard' != $opt['header_style'] ) {
-		echo '<section class="entry-content">';
+		// these classes are a bit of a hack; there's some classes in Largo that assume body.single.normal instead of just .normal; I've tried to patch them in less/series-landing-pages-special-projects.less
+		echo '<section class=" normal entry-content">';
 			the_content();
 		echo '</section>';
 	}

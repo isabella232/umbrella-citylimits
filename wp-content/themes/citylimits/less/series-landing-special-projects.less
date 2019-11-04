@@ -78,4 +78,19 @@
       color: @grey3;
     }
   }
+
+  // use same formatting for the the_content area on this page as on the single-normal template
+  // scoped to section.entry-content rather than .entry-content so that it doesn't propagate to other .entry-content on the page.
+  section.entry-content {
+    // https://github.com/INN/largo/blob/v0.6.4/less/inc/single.less#L62-L65
+    padding: 0 17.021276594%;
+    // https://github.com/INN/largo/blob/v0.6.4/less/inc/single.less#L108-L110
+    @media ( max-width: 979px ) {
+      padding: 0 6.382978723%;
+    }
+    // https://github.com/INN/largo/blob/v0.6.4/less/inc/single.less#L128-129
+    @media ( max-width: 529px ) {
+      padding: 0;
+    }
+  }
 }
