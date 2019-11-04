@@ -11,15 +11,12 @@
     }
   }
   #main {
-    border-bottom: 1px solid @grey1;
-    padding-bottom: 0.5 * @measure;
+    @media ( min-width: 700px ) {
+      border-bottom: 1px solid @grey1;
+      padding-bottom: 0.5 * @measure;
+    }
   }
   #series-header {
-    position: absolute;
-    bottom: -1px; // to overlap the border-bottom on the containing element
-    left: 0;
-
-    padding: 0 @measure 0 0;
     background: @white;
     text-align: left;
     // this only works because of the combination of this specific image and border-image-slice
@@ -32,11 +29,22 @@
     border-style: solid;
     border-width: @measure * 0.5;
     border-bottom-width: 1px;
-    border-left: none;
     // the above styles match up with those on #main
 
     @media ( min-width: 700px ) {
+      position: absolute;
+      bottom: -1px; // to overlap the border-bottom on the containing element
+      left: 0;
+
       max-width: 50%;
+      border-left: none;
+      padding: 0 @measure 0 0;
+    }
+    @media ( max-width: 699px ) {
+      margin-top: @measure;
+      padding: 0 ( 0.5 * @measure );
+      border-left: none;
+      border-right: none;
     }
 
     .special-project {
@@ -46,10 +54,12 @@
       line-height: 1 * @measure;
       font-size: 0.5 * @measure;
       background-color: @white;
-      border-right: 1px solid @grey1;
       position: relative;
       top: -0.5 * @measure;
-      padding-right: 2 * @measure;
+      left: -0.5 * @measure;
+      border-right: 1px solid @grey1;
+      padding-right: 1 * @measure;
+      padding-left: 0.5 * @measure;
 
       text-transform: uppercase;
       font-weight: 700;
@@ -60,12 +70,12 @@
       font-size: @measure;
       margin-bottom: @measure;
     }
-    .byline {
-      margin-top: 1 * @measure;
-    }
-    .description {
+    .byline,
+    .description,
+    .description * {
       margin-top: 1 * @measure;
       font-size: 1rem;
+      color: @grey3;
     }
   }
 }
