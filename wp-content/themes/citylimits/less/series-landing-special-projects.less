@@ -79,6 +79,85 @@
     }
   }
 
+  #secondary-navigation-menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-bottom: 40px;
+    background: @red;
+    .secondary-navigation-menu {
+      list-style: none;
+      width: 100%;
+      max-width: 1170px;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      li {
+        margin-bottom: 0;
+        padding: 30px;
+        &:hover {
+          background: @black;
+        }
+        a {
+          color: @white;
+          text-transform: uppercase;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+        @media (max-width: 769px) {
+          border-bottom: 1px solid @grey1;
+          &:not(:first-of-type) {
+            padding: 15px 0;
+          }
+          &:first-of-type {
+            padding: 0 0 15px;
+          }
+        }
+      }
+      @media (max-width: 769px) {
+        flex-direction: column;
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+    }
+    @media (max-width: 769px) {
+      display: block;
+      margin-top: -1px;
+    }
+  }
+
+  #secondary-navigation-menu-mobile {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background: @red;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 20px 0;
+    li {
+      margin-bottom: 0;
+    }
+    .toggle-secondary-nav-bar {
+      background: transparent;
+      border: 0;
+      width: 100%;
+      padding-left: 0;
+      span {
+        text-transform: uppercase;
+      }
+    }
+  }
+
   // use same formatting for the the_content area on this page as on the single-normal template
   // scoped to section.entry-content rather than .entry-content so that it doesn't propagate to other .entry-content on the page.
   section.entry-content {

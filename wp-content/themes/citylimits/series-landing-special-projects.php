@@ -72,9 +72,39 @@ $content_span = array( 'one-column' => 12, 'two-column' => 8, 'three-column' => 
 		largo_post_social_links();
 	}
 ?>
+<?php 
+	if ( $opt['cftl_secondary_navigation'] ) {
+		?>
+		<ul id="secondary-navigation-menu-mobile">
+			<li>
+				<!-- "hamburger" button (3 bars) to trigger off-canvas navigation -->
+				<a class="btn btn-navbar toggle-secondary-nav-bar" title="<?php esc_attr_e('More', 'largo'); ?>">
+					<div class="bars">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</div>
+					<span><?php echo the_title(); ?></span>
+				</a>
+			</li>
+		</ul>
+		<?php
+		echo '<div id="secondary-navigation-menu-container">';
+			echo '<ul class="secondary-navigation-menu">';
+				$args = array(
+					'container' => true,
+					'items_wrap' => '%3$s',
+					'menu_class' => 'secondary-navigation-menu',
+					'menu' => $opt['cftl_secondary_navigation'],
+					'walker' => new Bootstrap_Walker_Nav_Menu()
+				);
+				largo_nav_menu( $args );
+			echo '</ul>';
+		echo '</div>';
+	}
+?>
 <div id="series-main" class="row-fluid clearfix">
 <?php } // end the "if there's a header" conditional ?>
-
 
 <?php // display left rail
 if ( 'three-column' == $opt['cftl_layout'] ) :
