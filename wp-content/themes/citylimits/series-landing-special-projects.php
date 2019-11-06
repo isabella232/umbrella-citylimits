@@ -74,6 +74,7 @@ $content_span = array( 'one-column' => 12, 'two-column' => 8, 'three-column' => 
 ?>
 <?php 
 	if ( $opt['cftl_secondary_navigation'] ) {
+		echo '<div id="secondary-navigation-menu-container">';
 		?>
 		<ul id="secondary-navigation-menu-mobile">
 			<li>
@@ -84,12 +85,14 @@ $content_span = array( 'one-column' => 12, 'two-column' => 8, 'three-column' => 
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</div>
+					<div class="close">
+						<span class="dashicons dashicons-no-alt" aria-label="close menu"></span>
+					</div>
 					<span><?php echo the_title(); ?></span>
 				</a>
 			</li>
 		</ul>
 		<?php
-		echo '<div id="secondary-navigation-menu-container">';
 			echo '<ul class="secondary-navigation-menu">';
 				$args = array(
 					'container' => true,

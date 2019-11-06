@@ -124,11 +124,33 @@
         max-width: 90%;
         margin: 0 auto;
         padding: 40px 0;
+        display: none;
       }
     }
     @media (max-width: 769px) {
       display: block;
       margin-top: -1px;
+      &.open {
+        #secondary-navigation-menu-mobile {
+          background: @black;
+          .bars {
+            display: none!important;
+          }
+          .close {
+            display: inline-block;
+            margin-right: 2%;
+            .dashicons {
+              &::before {
+                border-radius: 50%;
+                border: 1px solid @white;
+              }
+            }
+          }
+        }
+        .secondary-navigation-menu {
+          display: flex;
+        }
+      }
     }
   }
 
@@ -146,15 +168,36 @@
     padding: 20px 0;
     li {
       margin-bottom: 0;
+      width: 100%;
     }
     .toggle-secondary-nav-bar {
       background: transparent;
       border: 0;
       width: 100%;
       padding-left: 0;
+      padding-right: 0;
+      .bars {
+        display: inline-block;
+        margin-right: 2%;
+        .icon-bar {
+          display: block;
+          width: 18px;
+          height: 3px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 3px;
+          background-color: @white;
+        }
+      }
+      .close {
+        display: none;
+      }
       span {
         text-transform: uppercase;
       }
+    }
+    @media (min-width: 769px) {
+      display: none;
     }
   }
 
