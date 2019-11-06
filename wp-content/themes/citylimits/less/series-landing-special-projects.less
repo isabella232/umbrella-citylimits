@@ -42,7 +42,7 @@
       padding: 0 @measure 0 0;
     }
     @media ( max-width: 699px ) {
-      margin-top: @measure;
+      margin-top: 0;
       padding: 0 ( 0.5 * @measure );
       border-left: none;
       border-right: none;
@@ -50,17 +50,53 @@
 
     .special-project {
       // should be roughly twice the height of the border-top on this element
-      display: inline-block;
       height: 1 * @measure;
       line-height: 1 * @measure;
       font-size: 0.5 * @measure;
       background-color: @white;
       position: relative;
-      top: -0.5 * @measure;
-      left: -0.5 * @measure;
       border-right: 1px solid @grey1;
-      padding-right: 1 * @measure;
-      padding-left: 0.5 * @measure;
+      @media ( min-width: 700px ) {
+        // left aligned
+        display: inline-block;
+        top: -0.5 * @measure;
+        left: -0.5 * @measure;
+        padding-right: 1 * @measure;
+        padding-left: 0.5 * @measure;
+      }
+      @media ( max-width: 699px ) {
+        // centered, with a pseudoelement for outline/border placement
+        top: -0.5 * @measure;
+        display: block;
+        margin: 0 auto;
+        width: max-content;
+        padding-left: 0.5 * @measure;
+        padding-right: 0.5 * @measure;
+        border-left: 1px solid @grey1;
+
+        position: relative;
+        overflow: visible;
+        &::before {
+          // set border-color to something to other than white to see how this works
+          box-sizing: border-box;
+          border-color: @white;
+          border-width: 0.5 * @measure;
+          border-style: solid;
+          border-bottom: none;
+          height: 0.5 * @measure;
+
+          display: block;
+          position: absolute;
+          left: -0.5 * @measure;
+          right: -0.5 * @measure;
+          top: -0.5 * @measure ;
+          bottom: 0.5 * @measure;
+          content: "";
+          background-color: @white;
+          width: auto;
+          background-color: transparent;
+        }
+      }
 
       text-transform: uppercase;
       font-weight: 700;
@@ -70,8 +106,11 @@
       margin-top: 1 * @measure;
       font-size: @measure;
       margin-bottom: @measure;
-      @media ( min-height: 500px ) {
+      @media ( min-width: 700px ) and ( min-height: 500px ) {
         margin-top: 1.5 * @measure;
+      }
+      @media ( max-width: 699px ) {
+        margin-top: 1.0 * @measure;
       }
     }
     .byline,
