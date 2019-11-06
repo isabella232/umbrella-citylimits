@@ -36,7 +36,8 @@
       bottom: -1px; // to overlap the border-bottom on the containing element
       left: 0;
 
-      max-width: 50%;
+      width: 40%;
+      min-width: 25em;
       border-left: none;
       padding: 0 @measure 0 0;
     }
@@ -69,6 +70,9 @@
       margin-top: 1 * @measure;
       font-size: @measure;
       margin-bottom: @measure;
+      @media ( min-height: 500px ) {
+        margin-top: 1.5 * @measure;
+      }
     }
     .byline,
     .description,
