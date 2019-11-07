@@ -24,7 +24,7 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 	public function __construct() {
 
 		$widget_ops = array(
-			'classname' => 'citylimits-series-posts',
+			'classname' => 'citylimits-seven-series-posts',
 			'description' => __( 'Seven posts from the series on the present page', 'citylimits' ),
 		);
 		parent::__construct(
@@ -127,6 +127,8 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 					$context['instance']['image_align'] = 'none';
 					$context['instance']['thumb'] = 'large';
 					$context['thumb'] = 'large';
+				} else {
+					$context['excerpt'] = false;
 				}
 
 				ob_start();
@@ -212,7 +214,7 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'excerpt_display' ) ); ?>"><?php esc_html_e( 'Excerpt Display', 'largo' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'excerpt_display' ) ); ?>"><?php esc_html_e( 'First post excerpt display option:', 'citylimits' ); ?></label>
 			<select id="<?php echo esc_attr( $this->get_field_id( 'excerpt_display' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'excerpt_display' ) ); ?>" class="widefat" style="width:90%;">
 				<option <?php selected( $instance['excerpt_display'], 'custom_excerpt' ); ?> value="custom_excerpt"><?php esc_html_e( 'Use Custom Post Excerpt', 'largo' ); ?></option>
 				<option <?php selected( $instance['excerpt_display'], 'none' ); ?> value="none"><?php esc_html_e( 'None', 'largo' ); ?></option>
