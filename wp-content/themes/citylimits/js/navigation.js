@@ -557,6 +557,11 @@
     $(document).ready(function() {
       // make this Navigation available to inspectors.
       window.Largo.navigation = new Navigation();
+
+      // toggle the special projects secondary nav open and closed
+      $('#secondary-navigation-menu-mobile').on('click', function(){
+        $(this).closest('#secondary-navigation-menu-container').toggleClass('open');
+      })
     });
   })();
   

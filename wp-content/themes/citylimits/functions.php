@@ -510,3 +510,99 @@ function citylimits_get_series_posts( $series_id, $number = -1, $order = null ) 
 	return false;
 
 }
+
+/**
+ * Add custom meta boxes to the cftl taxonomy landing page editor
+ */
+function add_meta_boxes_to_cftl_tax_landing_page_editor() {
+
+	add_meta_box(
+		'cftl_tax_landing_secondary_navigation',
+		__('Secondary Navigation', 'largo'),
+		'cftl_tax_landing_secondary_navigation',
+		'cftl-tax-landing',
+		'normal',
+		'high'
+	);
+
+}
+add_action('add_meta_boxes', 'add_meta_boxes_to_cftl_tax_landing_page_editor', 100);
+
+/**
+ * Displays the custom field for secondary navigation on the cftl taxonomy landing page editor
+ */
+function cftl_tax_landing_secondary_navigation() {
+
+	global $post;
+
+	// Get menus
+	$menus = wp_get_nav_menus();
+	$nav_menu = esc_attr( get_post_meta( $post->ID, 'cftl_secondary_navigation', true ) );
+	?>	
+
+	<div class="form-field">
+		<label for="cftl_secondary_navigation"><?php _e('Select the secondary navigation menu', 'cf-tax-landing') ?></label>
+		<br/>
+		<select name="cftl_secondary_navigation" id="cftl_secondary_navigation">
+			<option value="0"><?php _e( '&mdash; Select &mdash;' ); ?></option>
+			<?php foreach ( $menus as $menu ) : ?>
+				<option value="<?php echo esc_attr( $menu->term_id ); ?>" <?php selected( $nav_menu, $menu->term_id ); ?>>
+					<?php echo esc_html( $menu->name ); ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+	</div>
+
+	<?php
+}
+
+/**
+ * Save data from custom fields that were added to the cftl landing page editor
+ * Copied from https://github.com/INN/largo/blob/512da701664b329f2f92244bbe54880a6e146431/inc/wp-taxonomy-landing/functions/cftl-admin.php#L556-L614
+ * 
+ * @param int $post_id The id of the landing page we're saving data to
+ */
+function cftl_tax_landing_save_custom_fields( $post_id ){
+
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	if ( ! isset( $_POST['post_type'] )
+		|| $_POST['post_type'] != 'cftl-tax-landing') {
+		return;
+	}
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+
+	$custom_fields = array( 
+		'cftl_secondary_navigation' => 'sanitize_text_field',
+	 );
+
+	foreach( $custom_fields as $field_name => $sanitize ){
+
+		if( $_POST[$field_name] ){
+
+			switch ( $sanitize ) {
+				case 'bool':
+					$safe_value = ! empty( $_POST[ $field_name ] ) ? true : false;
+					break;
+				case 'sanitize_show':
+					$safe_value = array();
+					foreach( array( 'image', 'excerpt', 'byline', 'tags' ) as $key ) {
+						$safe_value[ $key ] = ! empty( $_POST[ $field_name ][ $key ] ) ? true : false;
+					}
+					break;
+				default:
+					$safe_value = ! empty( $_POST[ $field_name ] ) ? call_user_func( $sanitize, $_POST[ $field_name ] ) : '';
+					break;
+			}
+
+			update_post_meta( $post_id, $field_name, $safe_value );
+
+		}
+
+	}
+
+}
+add_action('save_post', 'cftl_tax_landing_save_custom_fields');
