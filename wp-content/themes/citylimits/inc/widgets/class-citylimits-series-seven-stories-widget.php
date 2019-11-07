@@ -102,16 +102,6 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 
 		$posts = get_posts( $query_args );
 
-		if ( count( $posts ) < $query_args['posts_per_page'] ) {
-			$supplemental_query_args = $query_args;
-			unset( $supplemental_query_args['tax_query'] ); // remove prominence
-			$supplemental_query_args['posts_per_page'] = $query_args['posts_per_page'] - count( $posts );
-
-			$supplemental_posts = get_posts( $supplemental_query_args );
-
-			$posts = array_merge( $posts, $supplemental_posts );
-		}
-
 		if ( count( $posts ) > 0 ) {
 
 			$output = '<ul>';
