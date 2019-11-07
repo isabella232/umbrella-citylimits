@@ -220,11 +220,11 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 		</p>
 
 		<p>
-			<input class="checkbox" type="checkbox" <?php echo $duplicates; ?> id="<?php echo esc_attr( $this->get_field_id( 'avoid_duplicates' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'avoid_duplicates' ) ); ?>" /> <label for="<?php echo esc_attr( $this->get_field_id( 'avoid_duplicates' ) ); ?>"><?php esc_html_e( 'Avoid showing podcasts here shown earlier on the same page?', 'citylimits' ); ?></label>
+			<input class="checkbox" type="checkbox" <?php echo $duplicates; ?> id="<?php echo esc_attr( $this->get_field_id( 'avoid_duplicates' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'avoid_duplicates' ) ); ?>" /> <label for="<?php echo esc_attr( $this->get_field_id( 'avoid_duplicates' ) ); ?>"><?php esc_html_e( 'Avoid showing posts here shown earlier on the same page?', 'citylimits' ); ?></label>
 		</p>
 
 		<p>
-			<input class="checkbox" type="checkbox" <?php echo $showbyline; ?> id="<?php echo esc_attr( $this->get_field_id( 'show_byline' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_byline' ) ); ?>" /> <label for="<?php echo esc_attr( $this->get_field_id( 'show_byline' ) ); ?>"><?php esc_html_e( 'Show byline on podcasts?', 'citylimits' ); ?></label>
+			<input class="checkbox" type="checkbox" <?php echo $showbyline; ?> id="<?php echo esc_attr( $this->get_field_id( 'show_byline' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_byline' ) ); ?>" /> <label for="<?php echo esc_attr( $this->get_field_id( 'show_byline' ) ); ?>"><?php esc_html_e( 'Show byline on posts?', 'citylimits' ); ?></label>
 		</p>
 
 		<p>
