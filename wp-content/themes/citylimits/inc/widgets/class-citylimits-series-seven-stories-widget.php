@@ -59,6 +59,20 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 
 		$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
 
+		if (
+			isset( $wp_query->query_vars['term'] )
+			&& isset( $wp_query->query_vars['taxonomy'] )
+			&& 'series' == $wp_query->query_vars['taxonomy']
+		) {
+			$series = $wp_query->query_vars['term'];
+		} else {
+			printf(
+				'<!-- %1$s %2$s -->',
+				__( 'A City Limits Seven Series Posts widget is being used where it should not be used', 'citylimits'),
+				var_export( $args['name'], true )
+			);
+		}
+
 		$query_args = array (
 			'post__not_in'   => get_option( 'sticky_posts' ),
 			'posts_per_page' => 7,
@@ -67,7 +81,7 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 				array(
 					'taxonomy' => 'series',
 					'field'    => 'slug',
-					'terms'    => '', // @TODO set this
+					'terms'    => $series,
 				),
 			)
 		);
