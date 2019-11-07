@@ -36,7 +36,9 @@
   p {
     color: @grey3;
   }
-
+  img.attachment-large, {
+    padding: 0;
+  }
 
   ul {
     li {
@@ -64,19 +66,8 @@
       }
     }
     li:first-of-type {
-      .top-tag {
-        .tt-fancy();
-        margin-top: -1 * @measure;
-      }
-    }
-    li:not(:first-of-type) {
-      .top-tag {
-        .tt-plain();
-      }
-      a.img {
-        max-width: 25%;
-        float: right;
-        margin-left: @measure;
+      .post-title {
+        margin-top: 1 * @measure;
       }
     }
     li:not(:last-of-type) {
@@ -217,9 +208,6 @@
           }
         }
 
-        img {
-          padding: 0;
-        }
         .top-tag {
           .tt-fancy();
           margin-top: -1 * @measure;
