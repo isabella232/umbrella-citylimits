@@ -54,6 +54,11 @@
         margin-bottom: 0;
       }
     }
+    li:first-of-type {
+      .post-title {
+        margin-top: 0.5 * @measure;
+      }
+    }
   }
 
   @media (max-width: 767px) {
@@ -63,11 +68,6 @@
     ul {
       li {
         margin-bottom: @measure;
-      }
-    }
-    li:first-of-type {
-      .post-title {
-        margin-top: 1 * @measure;
       }
     }
     li:not(:last-of-type) {
