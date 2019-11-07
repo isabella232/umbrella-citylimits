@@ -135,7 +135,7 @@
       list-style: none;
       width: 100%;
       max-width: 1170px;
-      height: 80px;
+      min-height: 80px;
       padding: 0;
       margin: 0;
       display: flex;
@@ -147,8 +147,10 @@
           color: @white;
           text-transform: uppercase;
           height: 100%;
-          line-height: 80px;
           padding: 0 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           &:hover {
             text-decoration: none;
             background: @black;
