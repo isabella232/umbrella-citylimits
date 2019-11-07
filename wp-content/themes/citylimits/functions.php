@@ -44,6 +44,7 @@ function largo_child_require_files() {
 		'/inc/widgets/cl-newsletter-header.php',
 		'/inc/widgets/class-citylimits-special-projects-widget.php',
 		'/inc/widgets/class-citylimits-podcast-widget.php',
+		'/inc/widgets/class-citylimits-special-projects-featured-content-widget.php',
 		// homepage
 		'/homepages/layout.php',
 	);

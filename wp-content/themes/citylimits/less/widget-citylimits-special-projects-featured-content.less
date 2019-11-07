@@ -1,0 +1,73 @@
+.citylimits-special-projects-featured-content {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background: @beige;
+    .citylimits-special-projects-featured-content-inner-container {
+        max-width: 1170px;
+        margin: 0 auto;
+        .widgettitle {
+            text-align: center;
+            padding: 20px 0;
+        }
+        ul {
+            display: grid;
+            overflow: hidden;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+            padding-bottom: 20px;
+            li {
+                border-bottom: 1px solid @grey1;
+                padding: 30px 0;
+                margin-bottom: 0;
+                &:nth-child(1),
+                &:nth-child(2) {
+                    .byline {
+                        display: none;
+                    }
+                }
+                &:nth-child(1n+3) {
+                    .img {
+                        display: none;
+                    }
+                    p {
+                        display: none;
+                    }
+                    height: 120px;
+                }
+                &:nth-child(odd) {
+                    // border-right: 1px solid @grey1;
+                }
+                &:nth-child(even) {
+                    .inner {
+                        float: right;
+                    }
+                }
+                .inner {
+                    width: 100%;
+                    // max-width: 90%;
+                    // padding: 0 19px;
+                    // border-right: 1px solid @grey1;
+                    height: 100%;
+                    float: left;
+                }
+            }
+            @media (max-width: 769px) {
+                grid-template-columns: repeat(1, 1fr);
+                padding: 0 20px;
+                li {
+                    height: auto!important;
+                    .inner {
+                        max-width: 100%;
+                        padding: 0;
+                        border: 0;
+                    }
+                    &:last-of-type {
+                        border-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}

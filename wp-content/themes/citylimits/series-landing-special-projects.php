@@ -95,7 +95,7 @@ endif;
 <?php do_action( 'largo_series_before_stories' ); ?>
 <?php
 
-global $wp_query, $post;
+global $wp_query, $post, $shown_ids;
 
 // Make sure we're actually a series page, and pull posts accordingly
 if ( isset( $wp_query->query_vars['term'] )
@@ -105,54 +105,55 @@ if ( isset( $wp_query->query_vars['term'] )
 	$series = $wp_query->query_vars['term'];
 
 	//default query args: by date, descending
-	$args = array(
-		'p' 				=> '',
-		'post_type' 		=> 'post',
-		'taxonomy' 			=> 'series',
-		'term' 				=> $series,
-		'order' 			=> 'DESC',
-		'posts_per_page' 	=> $opt['per_page']
-	);
+	// $args = array(
+	// 	'p' 				=> '',
+	// 	'post_type' 		=> 'post',
+	// 	'taxonomy' 			=> 'series',
+	// 	'term' 				=> $series,
+	// 	'order' 			=> 'DESC',
+	// 	'posts_per_page' 	=> $opt['per_page']
+	// );
 
-	//stores original 'paged' value in 'pageholder'
-	global $cftl_previous;
-	if ( isset($cftl_previous['pageholder']) && $cftl_previous['pageholder'] > 1 ) {
-		$args['paged'] = $cftl_previous['pageholder'];
-		global $paged;
-		$paged = $args['paged'];
-	}
+	// //stores original 'paged' value in 'pageholder'
+	// global $cftl_previous;
+	// if ( isset($cftl_previous['pageholder']) && $cftl_previous['pageholder'] > 1 ) {
+	// 	$args['paged'] = $cftl_previous['pageholder'];
+	// 	global $paged;
+	// 	$paged = $args['paged'];
+	// }
 
-	//change args as needed
-	//these unusual WP_Query args are handled by filters defined in cftl-series-order.php
-	switch ( $opt['post_order'] ) {
-		case 'ASC':
-			$args['orderby'] = 'ASC';
-			break;
-		case 'custom':
-			$args['orderby'] = 'series_custom';
-			break;
-		case 'featured, DESC':
-		case 'featured, ASC':
-			$args['orderby'] = $opt['post_order'];
-			break;
-	}
+	// //change args as needed
+	// //these unusual WP_Query args are handled by filters defined in cftl-series-order.php
+	// switch ( $opt['post_order'] ) {
+	// 	case 'ASC':
+	// 		$args['orderby'] = 'ASC';
+	// 		break;
+	// 	case 'custom':
+	// 		$args['orderby'] = 'series_custom';
+	// 		break;
+	// 	case 'featured, DESC':
+	// 	case 'featured, ASC':
+	// 		$args['orderby'] = $opt['post_order'];
+	// 		break;
+	// }
 
-	$series_query = new WP_Query($args);
-	$counter = 1;
-	while ( $series_query->have_posts() ) : $series_query->the_post();
-		get_template_part( 'partials/content', 'series' );
-		do_action( 'largo_loop_after_post_x', $counter, $context = 'archive' );
-		$counter++;
-	endwhile;
+	// $series_query = new WP_Query($args);
+	// $counter = 1;
+	// while ( $series_query->have_posts() ) : $series_query->the_post();
+	// 	$shown_ids[] = get_the_ID();
+	// 	get_template_part( 'partials/content', 'series' );
+	// 	do_action( 'largo_loop_after_post_x', $counter, $context = 'archive' );
+	// 	$counter++;
+	// endwhile;
 	wp_reset_postdata();
 
 	// Enqueue the LMP data
-	$posts_term = of_get_option('posts_term_plural');
-	largo_render_template('partials/load-more-posts', array(
-		'nav_id' => 'nav-below',
-		'the_query' => $series_query,
-		'posts_term' => ($posts_term)? $posts_term : 'Posts'
-	));
+	// $posts_term = of_get_option('posts_term_plural');
+	// largo_render_template('partials/load-more-posts', array(
+	// 	'nav_id' => 'nav-below',
+	// 	'the_query' => $series_query,
+	// 	'posts_term' => ($posts_term)? $posts_term : 'Posts'
+	// ));
 } ?>
 
 </div><!-- /.grid_8 #content -->
