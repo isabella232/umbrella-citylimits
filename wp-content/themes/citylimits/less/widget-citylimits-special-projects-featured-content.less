@@ -9,6 +9,7 @@
         .widgettitle {
             text-align: center;
             padding: 20px 0;
+            margin-bottom: 0;
         }
         ul {
             display: grid;
@@ -16,7 +17,7 @@
             grid-template-columns: repeat(2, 1fr);
             grid-column-gap: 0px;
             grid-row-gap: 0px;
-            padding-bottom: 20px;
+            padding: 0 20px 20px;
             li {
                 border-bottom: 1px solid @grey1;
                 padding: 30px 0;
@@ -37,20 +38,25 @@
                     height: 120px;
                 }
                 &:nth-child(odd) {
-                    // border-right: 1px solid @grey1;
+                    .inner {
+                        border-right: 1px solid @grey1;
+                    }
                 }
                 &:nth-child(even) {
-                    .inner {
+                    .post-inner {
                         float: right;
                     }
                 }
                 .inner {
-                    width: 100%;
-                    // max-width: 90%;
-                    // padding: 0 19px;
-                    // border-right: 1px solid @grey1;
+                    width: 99%;
                     height: 100%;
                     float: left;
+                    .post-inner {
+                        width: 95%;
+                        .post-title {
+                            margin-bottom: 20px;
+                        }
+                    }
                 }
             }
             @media (max-width: 769px) {
@@ -62,6 +68,11 @@
                         max-width: 100%;
                         padding: 0;
                         border: 0;
+                        border: 0!important;
+                        .post-inner {
+                            max-width: 100%;
+                            float: left!important;
+                        }
                     }
                     &:last-of-type {
                         border-bottom: 0;

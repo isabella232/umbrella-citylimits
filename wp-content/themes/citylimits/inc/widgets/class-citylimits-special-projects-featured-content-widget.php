@@ -98,7 +98,7 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 				while ( $my_query->have_posts() ) : $my_query->the_post(); $shown_ids[] = get_the_ID();
 
 					// wrap the items in li's.
-					$output .= '<li><div class="inner">';
+					$output .= '<li><div class="inner"><div class="post-inner">';
 
 					$context = array(
 						'instance' => $instance,
@@ -111,7 +111,7 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 					$output .= ob_get_clean();
 
 					// close the item
-					$output .= '</div></li>';
+					$output .= '</div></div></li>';
 
 				endwhile;
 
