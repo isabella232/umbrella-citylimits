@@ -1,6 +1,6 @@
 <?php
 /**
- * City Limits "Series Posts, Continued" widget, and associated function
+ * City Limits "Seven Series Posts" widget, and associated function
  */
 
 /**
@@ -25,11 +25,11 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 
 		$widget_ops = array(
 			'classname' => 'citylimits-series-posts',
-			'description' => __( 'Posts from the series on the present page', 'citylimits' ),
+			'description' => __( 'Seven posts from the series on the present page', 'citylimits' ),
 		);
 		parent::__construct(
 			'citylimits-series-posts', // Base ID
-			__( 'City Limits Series Posts', 'citylimits' ), // Name
+			__( 'City Limits Seven Series Posts', 'citylimits' ), // Name
 			$widget_ops // Args
 		);
 
@@ -104,6 +104,7 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 
 			global $post;
 			$preserve = $post;
+			$counter = 1;
 
 			foreach ( $posts as $p ) {
 				setup_postdata( $p );
@@ -119,13 +120,19 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 				$context = array(
 					'instance' => $instance,
 					'thumb' => '',
-					'podcast' => true,
 					'excerpt' => $excerpt,
 				);
+
+				if ( $counter === 1 ) {
+					$context['instance']['image_align'] = 'none';
+					$context['instance']['thumb'] = 'large';
+					$context['thumb'] = 'large';
+				}
 
 				ob_start();
 				largo_render_template( 'partials/widget', 'content', $context );
 				$output .= ob_get_clean();
+				$counter++;
 
 				// close the item
 				$output .= '</li>';
