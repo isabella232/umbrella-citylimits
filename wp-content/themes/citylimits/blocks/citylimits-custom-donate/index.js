@@ -19,12 +19,12 @@
 	 * Every block starts by registering a new block type definition.
 	 * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/#registering-a-block
 	 */
-	registerBlockType( 'largo/citylimits-custom-donate', {
+	registerBlockType( 'citylimits/citylimits-custom-donate', {
 		/**
 		 * This is the display title for your block, which can be translated with `i18n` functions.
 		 * The block inserter will show this name.
 		 */
-		title: __( 'Citylimits Custom Donations', 'largo' ),
+		title: __( 'Citylimits Custom Donations', 'citylimits' ),
 
 		/**
 		 * An icon property should be specified to make it easier to identify a block.
@@ -58,7 +58,7 @@
 			return el(
 				'p',
 				{ className: props.className },
-				__( 'Hello from the editor!', 'largo' )
+				__( 'Hello from the editor!', 'citylimits' )
 			);
 		},
 
@@ -73,7 +73,7 @@
 			return el(
 				'p',
 				{},
-				__( 'Hello from the saved content!', 'largo' )
+				__( 'Hello from the saved content!', 'citylimits' )
 			);
 		}
 	} );

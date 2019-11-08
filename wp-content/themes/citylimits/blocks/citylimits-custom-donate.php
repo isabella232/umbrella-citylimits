@@ -3,7 +3,7 @@
  * Functions to register client-side assets (scripts and stylesheets) for the
  * Gutenberg block.
  *
- * @package largo
+ * @package citylimits
  */
 
 /**
@@ -47,7 +47,7 @@ function citylimits_custom_donate_block_init() {
 		filemtime( "$dir/$style_css" )
 	);
 
-	register_block_type( 'largo/citylimits-custom-donate', array(
+	register_block_type( 'citylimits/citylimits-custom-donate', array(
 		'editor_script' => 'citylimits-custom-donate-block-editor',
 		'editor_style'  => 'citylimits-custom-donate-block-editor',
 		'style'         => 'citylimits-custom-donate-block',
