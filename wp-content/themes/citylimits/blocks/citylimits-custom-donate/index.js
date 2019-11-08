@@ -33,6 +33,12 @@
 		icon: 'money',
 
 		/**
+		 * Make it easier to discover a block with keyword aliases.
+		 * These can be localised so your keywords work across locales.
+		 */
+		keywords: [ __( 'donation' ), __( 'donate' ) ],
+
+		/**
 		 * Blocks are grouped into categories to help users browse and discover them.
 		 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
 		 */
