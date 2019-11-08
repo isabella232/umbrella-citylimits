@@ -17,7 +17,23 @@
             grid-template-columns: repeat(2, 1fr);
             grid-column-gap: 0px;
             grid-row-gap: 0px;
-            padding: 0 20px 20px;
+            padding: 0 20px 120px;
+            margin-bottom: 40px;
+            position: relative;
+            nav {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                &.pager {
+                    a {
+                        background: @red;
+                        color: @white;
+                        text-transform: uppercase;
+                        padding: 20px 40px;
+                    }
+                }
+            }
             li {
                 border-bottom: 1px solid @grey1;
                 padding: 30px 0;
@@ -62,6 +78,12 @@
             @media (max-width: 769px) {
                 grid-template-columns: repeat(1, 1fr);
                 padding: 0 20px;
+                nav {
+                    text-align: center;
+                    position: relative;
+                    left: 0;
+                    margin-left: 0;
+                }
                 li {
                     height: auto!important;
                     .inner {

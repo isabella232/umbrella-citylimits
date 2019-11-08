@@ -48,12 +48,13 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 		$preserve = $post;
 
 		if ( isset( $wp_query->query_vars['term'] )
-			&& isset( $wp_query->query_vars['taxonomy'] )
-			&& 'series' == $wp_query->query_vars['taxonomy'] ) {
+		&& isset( $wp_query->query_vars['taxonomy'] )
+		&& 'series' == $wp_query->query_vars['taxonomy'] ) {
 
-			$series = $wp_query->query_vars['term'];
+			var_dump($query_vars['term']);
+			$term = get_term_by( 'name', 'election-watch-2018', 'series');
+			var_dump($term);
 
-			// Add the link to the title.
 			$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
 			echo $args['before_widget'];
@@ -65,14 +66,18 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 			$thumb = isset( $instance['thumbnail_display'] ) ? $instance['thumbnail_display'] : 'small';
 			$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
 
-			$query_args = array (
-				'post__not_in' 	 => get_option( 'sticky_posts' ),
-				'post_status'	=> 'publish',
+			$series = $wp_query->query_vars['term'];
+
+			// default query args: by date, descending
+			$args = array(
+				'p' 				=> '',
 				'post_type' 		=> 'post',
 				'taxonomy' 			=> 'series',
 				'term' 				=> $series,
 				'order' 			=> 'DESC',
 				'posts_per_page' 	=> 8,
+				'post__not_in'   => get_option( 'sticky_posts' ),
+				'is_series_featured_content_widget'   => true,
 			);
 
 			//stores original 'paged' value in 'pageholder'
@@ -83,19 +88,34 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 				$paged = $args['paged'];
 			}
 
-			if ( isset( $instance['avoid_duplicates'] ) && $instance['avoid_duplicates'] === 1 ) {
-				$query_args['post__not_in'] = $shown_ids;
+			//change args as needed
+			//these unusual WP_Query args are handled by filters defined in cftl-series-order.php
+			switch ( $opt['post_order'] ) {
+				case 'ASC':
+					$args['orderby'] = 'ASC';
+					break;
+				case 'custom':
+					$args['orderby'] = 'series_custom';
+					break;
+				case 'featured, DESC':
+				case 'featured, ASC':
+					$args['orderby'] = $opt['post_order'];
+					break;
+			}
+
+			if ( isset( $instance['avoid_duplicates'] ) && 1 === $instance['avoid_duplicates'] ) {
+				$args['post__not_in'] = $shown_ids;
 			}
 
 			echo '<ul>';
 
-			$my_query = new WP_Query( $query_args );
+			$series_query = new WP_Query($args);
+			$counter = 1;
 
-			if ( $my_query->have_posts() ) {
+			if ( $series_query->have_posts() ) {
+			$output = '';
 
-				$output = '';
-
-				while ( $my_query->have_posts() ) : $my_query->the_post(); $shown_ids[] = get_the_ID();
+				while ( $series_query->have_posts() ) : $series_query->the_post(); $shown_ids[] = get_the_ID();
 
 					// wrap the items in li's.
 					$output .= '<li><div class="inner"><div class="post-inner">';
@@ -117,23 +137,25 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 
 				// print all of the items
 				echo $output;
-
 			} else {
 				printf( __( '<p class="error"><strong>You don\'t have any recent %s.</strong></p>', 'largo' ), strtolower( $posts_term ) );
 			} // end more featured posts
+
+			wp_reset_postdata();
+
+			// Enqueue the LMP data
+			$posts_term = of_get_option('posts_term_plural');
+
+			largo_render_template('partials/load-more-posts', array(
+				'nav_id' => 'nav-below',
+				'the_query' => $series_query,
+				'posts_term' => ($posts_term) ? $posts_term : 'Posts'
+			));
 
 			// close the ul
 			echo '</ul>';
 
 			echo '</div>';
-
-			// Enqueue the LMP data
-			// var_dump($posts_term);
-			// largo_render_template('partials/load-more-posts', array(
-			// 	'nav_id' => 'nav-below',
-			// 	'the_query' => $query_args,
-			// 	'term' => 'series'
-			// ));
 			
 			echo $args['after_widget'];
 
@@ -149,7 +171,7 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 		$instance = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['avoid_duplicates'] = ! empty( $new_instance['avoid_duplicates'] ) ? 1 : 0;
-		$instance['thumbnail_display'] = sanitize_key( $new_instance['thumbnail_display'] );
+		$instance['thumbnail_display'] = 'large';
 		$instance['image_align'] = sanitize_key( $new_instance['image_align'] );
 		$instance['excerpt_display'] = sanitize_key( $new_instance['excerpt_display'] );
 		$instance['num_sentences'] = intval( $new_instance['num_sentences'] );
@@ -162,8 +184,7 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 		$defaults = array(
 			'title' => __( 'Recent ' . of_get_option( 'posts_term_plural', 'Posts' ), 'largo' ),
 			'avoid_duplicates' => '',
-			'thumbnail_display' => 'small',
-			'image_align' => 'left',
+			'thumbnail_display' => 'large',
 			'excerpt_display' => 'num_sentences',
 			'num_sentences' => 2,
 			'show_byline' => '',
@@ -182,25 +203,6 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 
 		<p>
 			<input class="checkbox" type="checkbox" <?php echo $duplicates; ?> id="<?php echo $this->get_field_id( 'avoid_duplicates' ); ?>" name="<?php echo $this->get_field_name( 'avoid_duplicates' ); ?>" /> <label for="<?php echo $this->get_field_id( 'avoid_duplicates' ); ?>"><?php _e( 'Avoid Duplicate Posts?', 'largo' ); ?></label>
-		</p>
-
-		<p>
-			<label for="<?php echo $this->get_field_id( 'thumbnail_display' ); ?>"><?php _e( 'Thumbnail Image', 'largo' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'thumbnail_display' ); ?>" name="<?php echo $this->get_field_name( 'thumbnail_display' ); ?>" class="widefat" style="width:90%;">
-				<option <?php selected( $instance['thumbnail_display'], 'small'); ?> value="small"><?php _e( 'Small (60x60)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'medium'); ?> value="medium"><?php _e( 'Medium (140x140)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'large'); ?> value="large"><?php _e( 'Large (Full width of the widget)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'none'); ?> value="none"><?php _e( 'None', 'largo' ); ?></option>
-			</select>
-		</p>
-
-		<!-- Image alignment -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'image_align' ); ?>"><?php _e( 'Image Alignment', 'largo' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'image_align' ); ?>" name="<?php echo $this->get_field_name( 'image_align' ); ?>" class="widefat" style="width:90%;">
-				<option <?php selected( $instance['image_align'], 'left'); ?> value="left"><?php _e( 'Left align', 'largo' ); ?></option>
-				<option <?php selected( $instance['image_align'], 'right'); ?> value="right"><?php _e( 'Right align', 'largo' ); ?></option>
-			</select>
 		</p>
 
 		<p>
