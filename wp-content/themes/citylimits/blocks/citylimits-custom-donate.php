@@ -17,12 +17,12 @@ function citylimits_custom_donate_block_init() {
 	if ( ! function_exists( 'register_block_type' ) ) {
 		return;
 	}
-	$dir = get_template_directory() . '/blocks';
+	$dir = get_stylesheet_directory() . '/blocks';
 
 	$index_js = 'citylimits-custom-donate/index.js';
 	wp_register_script(
 		'citylimits-custom-donate-block-editor',
-		get_template_directory_uri() . "/blocks/$index_js",
+		get_stylesheet_directory_uri() . "/blocks/$index_js",
 		array(
 			'wp-blocks',
 			'wp-i18n',
@@ -34,7 +34,7 @@ function citylimits_custom_donate_block_init() {
 	$editor_css = 'citylimits-custom-donate/editor.css';
 	wp_register_style(
 		'citylimits-custom-donate-block-editor',
-		get_template_directory_uri() . "/blocks/$editor_css",
+		get_stylesheet_directory_uri() . "/blocks/$editor_css",
 		array(),
 		filemtime( "$dir/$editor_css" )
 	);
@@ -42,7 +42,7 @@ function citylimits_custom_donate_block_init() {
 	$style_css = 'citylimits-custom-donate/style.css';
 	wp_register_style(
 		'citylimits-custom-donate-block',
-		get_template_directory_uri() . "/blocks/$style_css",
+		get_stylesheet_directory_uri() . "/blocks/$style_css",
 		array(),
 		filemtime( "$dir/$style_css" )
 	);
