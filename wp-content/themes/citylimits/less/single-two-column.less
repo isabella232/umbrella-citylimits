@@ -28,6 +28,41 @@
       clear: both;
     }
   }
+  .largo-follow {
+    margin-bottom: 0;
+
+    // override Largo colors
+    .facebook,
+    .twitter,
+    .email,
+    .print,
+    .more-social-links {
+      background-color: transparent;
+    }
+    a {
+      color: @red;
+      &:hover {
+        color: @black;
+      }
+    }
+    .hidden-phone {
+      display: none;
+    }
+    span {
+      margin: 0;
+    }
+    // make this fold to the right, not left
+    .popover {
+      left: unset;
+      right: 0;
+      z-index: 1;
+      &::after,
+      &::before {
+        left: unset;
+        right: 24px;
+      }
+    }
+  }
 
 
   @media ( max-width: 699px ) {
@@ -60,6 +95,8 @@
         margin-top: @measure;
         text-align: center;
         border-top: 1px solid @grey1;
+        padding-top: @measure;
+        padding-bottom: @measure;
       }
     }
   }
