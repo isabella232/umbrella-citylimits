@@ -72,134 +72,109 @@ $content_span = array( 'one-column' => 12, 'two-column' => 8, 'three-column' => 
 		largo_post_social_links();
 	}
 ?>
+
+<?php 
+	if ( $opt['cftl_secondary_navigation'] ) {
+		echo '<div id="secondary-navigation-menu-container">';
+		?>
+		<ul id="secondary-navigation-menu-mobile">
+			<li>
+				<!-- "hamburger" button (3 bars) to trigger off-canvas navigation -->
+				<a class="btn btn-navbar toggle-secondary-nav-bar" title="<?php esc_attr_e('More', 'largo'); ?>">
+					<div class="bars">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</div>
+					<div class="close">
+						<span class="dashicons dashicons-no-alt" aria-label="close menu"></span>
+					</div>
+					<span><?php echo the_title(); ?></span>
+				</a>
+			</li>
+		</ul>
+		<?php
+			echo '<ul class="secondary-navigation-menu">';
+				$args = array(
+					'container' => true,
+					'items_wrap' => '%3$s',
+					'menu_class' => 'secondary-navigation-menu',
+					'menu' => $opt['cftl_secondary_navigation'],
+					'walker' => new Bootstrap_Walker_Nav_Menu()
+				);
+				largo_nav_menu( $args );
+			echo '</ul>';
+		echo '</div>';
+	}
+?>
+
 <div id="series-main" class="row-fluid clearfix">
 <?php } // end the "if there's a header" conditional ?>
 
-
 <?php // display left rail
-if ( 'three-column' == $opt['cftl_layout'] ) :
-		$left_rail = $opt['left_region'];
-?>
-	<aside id="sidebar-left" class="span3">
-		<div class="widget-area" role="complementary">
-			<?php
-				dynamic_sidebar($left_rail);
-			?>
-		</div>
-	</aside>
-<?php
-endif;
+if ( 'three-column' == $opt['cftl_layout'] ) {
+	$left_rail = $opt['left_region'];
+	?>
+		<aside id="sidebar-left" class="clearfix">
+			<div class="widget-area" role="complementary">
+				<?php
+					dynamic_sidebar($left_rail);
+				?>
+			</div>
+		</aside>
+	<?php
+}
 ?>
 
 <div id="content" class="span<?php echo $content_span[ $opt['cftl_layout'] ]; ?> stories" role="main">
 <?php do_action( 'largo_series_before_stories' ); ?>
-<?php
-
-global $wp_query, $post, $shown_ids;
-
-// Make sure we're actually a series page, and pull posts accordingly
-if ( isset( $wp_query->query_vars['term'] )
-		&& isset( $wp_query->query_vars['taxonomy'] )
-		&& 'series' == $wp_query->query_vars['taxonomy'] ) {
-
-	$series = $wp_query->query_vars['term'];
-
-	//default query args: by date, descending
-	// $args = array(
-	// 	'p' 				=> '',
-	// 	'post_type' 		=> 'post',
-	// 	'taxonomy' 			=> 'series',
-	// 	'term' 				=> $series,
-	// 	'order' 			=> 'DESC',
-	// 	'posts_per_page' 	=> $opt['per_page']
-	// );
-
-	// //stores original 'paged' value in 'pageholder'
-	// global $cftl_previous;
-	// if ( isset($cftl_previous['pageholder']) && $cftl_previous['pageholder'] > 1 ) {
-	// 	$args['paged'] = $cftl_previous['pageholder'];
-	// 	global $paged;
-	// 	$paged = $args['paged'];
-	// }
-
-	// //change args as needed
-	// //these unusual WP_Query args are handled by filters defined in cftl-series-order.php
-	// switch ( $opt['post_order'] ) {
-	// 	case 'ASC':
-	// 		$args['orderby'] = 'ASC';
-	// 		break;
-	// 	case 'custom':
-	// 		$args['orderby'] = 'series_custom';
-	// 		break;
-	// 	case 'featured, DESC':
-	// 	case 'featured, ASC':
-	// 		$args['orderby'] = $opt['post_order'];
-	// 		break;
-	// }
-
-	// $series_query = new WP_Query($args);
-	// $counter = 1;
-	// while ( $series_query->have_posts() ) : $series_query->the_post();
-	// 	$shown_ids[] = get_the_ID();
-	// 	get_template_part( 'partials/content', 'series' );
-	// 	do_action( 'largo_loop_after_post_x', $counter, $context = 'archive' );
-	// 	$counter++;
-	// endwhile;
-	wp_reset_postdata();
-
-	// Enqueue the LMP data
-	// $posts_term = of_get_option('posts_term_plural');
-	// largo_render_template('partials/load-more-posts', array(
-	// 	'nav_id' => 'nav-below',
-	// 	'the_query' => $series_query,
-	// 	'posts_term' => ($posts_term)? $posts_term : 'Posts'
-	// ));
-} ?>
 
 </div><!-- /.grid_8 #content -->
 
 <?php // display left rail
-if ($opt['cftl_layout'] != 'one-column') :
+if ($opt['cftl_layout'] != 'one-column') {
 	if (!empty($opt['right_region']) && $opt['right_region'] !== 'none') {
 		$right_rail = $opt['right_region'];
 	} else {
 		$right_rail = 'single';
 	}
-?>
-<aside id="sidebar" class="span4">
-	<?php do_action('largo_before_sidebar_content'); ?>
-	<div class="widget-area" role="complementary">
-		<?php
-			do_action('largo_before_sidebar_widgets');
-			dynamic_sidebar($right_rail);
-			do_action('largo_after_sidebar_widgets');
-		?>
-	</div><!-- .widget-area -->
-	<?php do_action('largo_after_sidebar_content'); ?>
-</aside>
+	?>
+	<aside id="sidebar" class="clearfix">
+		<?php do_action('largo_before_sidebar_content'); ?>
+		<div class="widget-area" role="complementary">
+			<?php
+				do_action('largo_before_sidebar_widgets');
+				dynamic_sidebar($right_rail);
+				do_action('largo_after_sidebar_widgets');
+			?>
+		</div><!-- .widget-area -->
+		<?php do_action('largo_after_sidebar_content'); ?>
+	</aside>
 
-<?php
-endif;
+	<?php
+}
 
 //display series footer
-if ( 'none' != $opt['footer_style'] ) : ?>
-	<section id="series-footer">
-		<?php
-			/*
-			 * custom footer html
-			 * If we don't reset the post meta here, then the footer HTML is from the wrong post. This doesn't mess with LMP, because it happens after LMP is enqueued in the main column.
-			 */
-			wp_reset_postdata();
-			if ( 'custom' == $opt['footer_style']) {
-				echo apply_filters( 'the_content', $opt['footerhtml'] );
-			} else if ( 'widget' == $opt['footer_style'] && is_active_sidebar( $post->post_name . "_footer" ) ) { ?>
-				<aside id="sidebar-bottom">
-				<?php dynamic_sidebar( $post->post_name . "_footer" ); ?>
-				</aside>
-			<?php }
-		?>
-	</section>
-<?php endif; ?>
+if ( 'none' != $opt['footer_style'] ) {
+	?>
+		<section id="series-footer">
+			<?php
+				/*
+				 * custom footer html
+				 * If we don't reset the post meta here, then the footer HTML is from the wrong post. This doesn't mess with LMP, because it happens after LMP is enqueued in the main column.
+				 */
+				wp_reset_postdata();
+				if ( 'custom' == $opt['footer_style']) {
+					echo apply_filters( 'the_content', $opt['footerhtml'] );
+				} else if ( 'widget' == $opt['footer_style'] && is_active_sidebar( $post->post_name . "_footer" ) ) { ?>
+					<aside id="sidebar-bottom">
+					<?php dynamic_sidebar( $post->post_name . "_footer" ); ?>
+					</aside>
+				<?php }
+			?>
+		</section>
+	<?php
+} ?>
 
 <!-- /.grid_4 -->
 <?php get_footer();
