@@ -609,79 +609,18 @@ function cftl_tax_landing_save_custom_fields( $post_id ){
 add_action('save_post', 'cftl_tax_landing_save_custom_fields');
 
 /**
- * Function to determine which partial slug should be used by LMP to render posts.
- *
- * Includes a "largo_lmp_template_partial" filter to allow for modifying the value $partial.
- *
- * @param WP_Query $post_query The WP_Query being used to generate LMP markup
- * @return string $partial The slug of partial that should be loaded.
- * @global $opt
- * @global $_POST
- * @see largo_load_more_posts
- * @since 0.5.3
+ * If we are on the Special Projects Featured Content widget, use its specific partial
+ * 
+ * @param String $partial The string represeting the template partial to use for the current context
+ * @param WP_Query $post_query The WP_Query object used to produce the LMP markup.
  */
-function largo_load_more_posts_choose_partial($post_query) {
-	global $opt, $post;
+function citylimits_special_projects_featured_content_widget_partial($partial, $post_query) {
 
-	$query_vars = $post_query->query_vars;
+	if ( isset( $post_query->query_vars['is_series_featured_content_widget'] ) && true === $post_query->query_vars['is_series_featured_content_widget'] ) {
+		$partial = 'series-featured-content-widget';
+	}
 
-	// Default is to use partials/content-home.php
-	$partial = 'home';
-	// This might be a category, tag, search, date, author, non-landing-page series, or other other archive
-	// check if this query is for a category
-	if ( isset($query_vars['category_name']) && $query_vars['category_name'] != '' ) {
-		$partial = 'archive';
-	}
-	// check if this query is for an author page
-	if ( isset($query_vars['author_name']) && $query_vars['author_name'] != '' ) {
-		$partial = 'archive';
-	}
-	// check if this query is for a tag
-	if ( isset($query_vars['tag']) && $query_vars['tag'] != '' ) {
-		$partial = 'archive';
-	}
-	// check if this query is for a search
-	if ( isset($query_vars['s']) && $query_vars['s'] != '' ) {
-		$partial = 'search';
-	}
-	// check if this query is for a date, assuming that all date queries have a year.
-	if ( isset($query_vars['year']) && $query_vars['year'] != 0 ) {
-		$partial = 'archive';
-	}
-	// Series landing pages
-	if ( isset($_POST['is_series_landing']) && $_POST['is_series_landing'] == 'true') {
-
-		if( true === $query_vars['is_series_featured_content_widget'] ) {
-			$partial = 'series-featured-content-widget';
-		} else {
-			$partial = 'series';
-		}
-		// necessary to pass the landing page display options along
-		// $_POST['opt'] comes from the LMP AJAX request, which was put on the page by largo_load_more_posts_data
-		$opt = $_POST['opt'];
-	}
-	// Non-series-landing series archives
-	if ( isset($query_vars['series']) && $query_vars['series'] != '' ) {
-		$partial = 'archive';
-	}
-	/**
-	 * Filter to modify the Load More Posts template partial.
-	 *
-	 * When building your own filter, you must set the fourth parameter of add_filter to 2:
-	 *
-	 *     function your_filter_name($partial, $post_type) {
-	 *         // things
-	 *         return $partials;
-	 *     }
-	 *     add_filter( 'largo_lmp_template_partial', 'your_filter_name', 10, 2);
-	 *                                                                       ^
-	 * Without setting '2', your filter will not be passed the $post_type or $context arguments.
-	 * In order to set '2', you must set the third parameter of add_filter, which defaults to 10. it is safe to leave that at 10.
-	 *
-	 * @since 0.5.3
-	 * @param String $partial The string represeting the template partial to use for the current context
-	 * @param WP_Query $post_query The WP_Query object used to produce the LMP markup.
-	 */
-	$partial = apply_filters( 'largo_lmp_template_partial', $partial, $post_query );
 	return $partial;
+
 }
+add_filter( 'largo_lmp_template_partial', 'citylimits_special_projects_featured_content_widget_partial', 10, 2);
