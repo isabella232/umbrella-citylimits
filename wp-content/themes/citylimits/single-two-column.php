@@ -29,11 +29,16 @@ get_header();
 	<?php if ( is_page() ) { do_action('largo_before_page_header'); } ?>
 	<header>
 
-		<h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
+		<hgroup>
+			<h1 class="entry-title" itemprop="headline"><?php the_title(); ?></h1>
+			<?php
+				if ( $subtitle = get_post_meta( $post->ID, 'subtitle', true ) ) {
+					echo '<h2 class="subtitle">' . $subtitle . '</h2>';
+				}
+			?>
+		</hgroup>
+
 		<?php
-			if ( $subtitle = get_post_meta( $post->ID, 'subtitle', true ) ) {
-				echo '<h2 class="subtitle">' . $subtitle . '</h2>';
-			}
 			if ( ! is_page() ) {
 				?>
 					<h5 class="byline">
