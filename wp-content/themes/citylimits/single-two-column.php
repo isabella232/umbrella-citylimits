@@ -46,7 +46,7 @@ get_header();
 							/* @todo make this count authors */
 							esc_html_e( 'Author', 'citylimits' );
 						?></span>
-						<?php largo_author_link( true, get_the_ID() ); ?>
+						<?php largo_byline( true, true, get_the_ID() ); ?>
 					</h5>
 				<?php
 
