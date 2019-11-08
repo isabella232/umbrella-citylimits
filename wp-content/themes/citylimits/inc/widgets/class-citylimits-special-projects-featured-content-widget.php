@@ -51,10 +51,6 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 		&& isset( $wp_query->query_vars['taxonomy'] )
 		&& 'series' == $wp_query->query_vars['taxonomy'] ) {
 
-			var_dump($query_vars['term']);
-			$term = get_term_by( 'name', 'election-watch-2018', 'series');
-			var_dump($term);
-
 			$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
 			echo $args['before_widget'];
