@@ -1,0 +1,73 @@
+.single.classic {
+  header + .span8 {
+    margin-left: 0;
+  }
+  @media ( min-width: 700px ) {
+    h1.entry-title {
+      font-size: calc( 20px + 3vw );
+    }
+    #main {
+      margin: 0;
+    }
+    #main header {
+      display: grid;
+      grid-template-columns: 200px 200px 1fr auto;
+      grid-template-areas:
+        "headline headline headline headline"
+        "subtitle subtitle subtitle subtitle"
+        "byline   date     .        social"
+      ;
+      margin-bottom: @measure;
+
+      h1 {
+        grid-area: headline;
+        text-align: center;
+        border-bottom: 1px solid @grey1;
+        margin-bottom: @measure;
+        padding: 5% 2.5%;
+      }
+      .subtitle {
+        // this does not provide styles for .subtitle
+        // because while Largo supports outputting a subtitle,
+        // Largo requires enabling the subtitle input metabox in a child theme
+        grid-area: subtitle;
+        text-align: center;
+      }
+      .byline {
+        grid-area: byline;
+        border-right: 1px solid @grey1;
+        padding-right: @measure;
+      }
+      .date {
+        grid-area: date;
+        border-right: 1px solid @grey1;
+        padding-right: @measure;
+        padding-left: @measure;
+      }
+      .largo-follow {
+        grid-area: social;
+      }
+      .label {
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        clear: both;
+      }
+    }
+  }
+  .hero {
+    background: transparent;
+    padding-bottom: @measure;
+    border-bottom: 1px solid @grey1;
+    margin-bottom: @measure;
+    .wp-caption-text {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  @media ( min-width: 1230px ) {
+    h1.entry-title {
+      font-size: 55px;
+    }
+  }
+}
