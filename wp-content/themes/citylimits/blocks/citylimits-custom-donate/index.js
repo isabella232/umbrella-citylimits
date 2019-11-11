@@ -112,15 +112,23 @@
 				'div',
 				{ className: props.className },
 				el(
+					'h3',
+					{
+						className: 'block-title',
+					},
+					el(
+						dashicon,
+						{
+							icon: 'money'
+						},
+					),
+					' ',
+					__( 'City Limits Donation Block' )
+				),
+				el(
 					TextControl,
 					{
 						label: [
-							el(
-								dashicon,
-								{
-									icon: 'money'
-								},
-							),
 							__( 'Headline' )
 						],
 						value: props.attributes.headline,
@@ -131,12 +139,19 @@
 				el(
 					RichText,
 					{
+						label: __( 'Call-to-Action Text' ),
 						tagName: 'div',
 						className: 'cta',
 						value: props.attributes.cta,
 						onChange: ( value ) => { props.setAttributes( { cta: value } ); },
 						placeholder: __( 'Message goes here.' ),
 						multiline: true,
+						allowedFormats: [
+							'core/bold',
+							'core/italic',
+							'core/link',
+							'core/underline',
+						],
 					}
 				),
 				el(
@@ -174,13 +189,44 @@
 		 * into the final markup, which is then serialized by Gutenberg into `post_content`.
 		 * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/#save
 		 *
+		 * @param {Object} [props] Properties passed from the editor.
 		 * @return {Element}       Element to render.
 		 */
-		save: function() {
+		save: function( props ) {
 			return el(
 				'div',
-				{},
-				__( 'Hello from the saved content!', 'citylimits' )
+				{
+					className: props.className,
+				},
+				el(
+					'div',
+					{
+						className: 'border',
+					},
+					el(
+						'h3',
+						{
+							className: 'widgettitle',
+						},
+						props.attributes.headline,
+					),
+					el(
+						RichText.Content,
+						{
+							tagName: 'div',
+							className: 'cta',
+							value: props.attributes.cta,
+						}
+					),
+					el(
+						'a',
+						{
+							className: 'btn btn-primary',
+							href: props.attributes.donate_url,
+						},
+						props.attributes.donate_text,
+					),
+				),
 			);
 		}
 	} );
