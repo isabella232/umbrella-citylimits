@@ -5,5 +5,29 @@
  */
 
 .wp-block-citylimits-citylimits-custom-donate {
-	border: 1px dotted #f00;
+  border: 1px solid #8d96a0;
+  background-color: #F8F9F9;
+  padding: 14px;
+  color: black;
+}
+.wp-block-citylimits-citylimits-custom-donate .block-title {
+  font-size: 13px;
+  margin-bottom: 0.5em;
+}
+.wp-block-citylimits-citylimits-custom-donate .block-title svg,
+.wp-block-citylimits-citylimits-custom-donate .components-base-control__label svg {
+  max-height: 13px;
+  vertical-align: middle;
+}
+.wp-block-citylimits-citylimits-custom-donate .block-editor-rich-text {
+  border-radius: 4px;
+  padding: 6px 8px;
+  border: 1px solid #8d96a0;
+  margin-bottom: 2px;
+  font-size: 13px;
+  max-width: 20em;
+  background-color: white;
+}
+.wp-block-citylimits-citylimits-custom-donate .block-editor-rich-text .block-editor-rich-text__editable * {
+  font-size: 13px;
 }
