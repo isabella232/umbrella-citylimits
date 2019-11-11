@@ -86,27 +86,31 @@ a:hover, a:active {
 .wp-block-pullquote.alignright {
   text-align: left;
 }
-@media (min-width: 769px) and (max-width: 979px) {
-  // .wp-block-pullquote.alignleft {
-  //   // 36px = left+right padding on #page
-  //   // 6.38297872% = left/right padding on section.entry-content
-  //   margin-left: calc( (100vw - 36px) * 0.0638297872 * -1 );
-  // }
-  // .wp-block-pullquote.alignright {
-  //   // 36px = left+right padding on #page
-  //   // 6.38297872% = left/right padding on section.entry-content
-  //   margin-right: calc( (100vw - 36px) * 0.0638297872 * -1 );
-  // }
+
+.wp-block-pullquote.alignwide {
+  width: auto;
+  margin-right: 0;
+  margin-left: 0;
 }
-@media (min-width: 980px) {
-  // .wp-block-pullquote.alignleft {
-  //   // copied from Largo .alignwide
-  //   // margin-left: ~"calc(-0.5 * (95vw * 0.17021276594) )";
-  // }
-  // .wp-block-pullquote.alignright {
-  //   // copied from Largo .alignwide
-  //   margin-right: ~"calc(-0.5 * (95vw * 0.17021276594) )";
-  // }
+
+@media (min-width: 1300px) {
+  .wp-block-pullquote.alignfull{
+    width: calc( 100% + ( 0.4 * ( 100vw - 1170px ) ) + ( 1170px * 0.0212765957 ) )!important;
+    margin-left: calc( -0.45 * ( 100vw - 1170px ) )!important;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1299px) {
+  .wp-block-pullquote.alignfull{
+    width: calc( 100% + ( 0.2 * ( 100vw - 1170px ) ) + ( 1170px * 0.0212765957 ) )!important;
+    margin-left: calc( -0.2 * ( 100vw - 1170px ) )!important;
+  }
+}
+@media (max-width: 1199px) {
+  .wp-block-pullquote.alignfull {
+    margin-left: 0;
+    margin-right: 0;
+    width: 103%;
+  }
 }
 .wp-block-pullquote.alignleft,
 .wp-block-pullquote.alignright {
