@@ -86,6 +86,7 @@ class citylimits_special_projects_widget extends WP_Widget {
 						'instance' => $instance,
 						'thumb' => false,
 						'excerpt' => $excerpt,
+						'podcast' => false,
 					);
 
 					$series->the_post();
