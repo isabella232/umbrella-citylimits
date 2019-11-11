@@ -1,0 +1,62 @@
+.cftl-tax-landing-template-series-landing-special-projects {
+    .gform_widget {
+        width: fit-content;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        .special-projects-survey_wrapper {
+            width: 100vw;
+            background: @beige;
+            margin: 0;
+            padding: 60px 0;
+            .special-projects-survey {
+                max-width: 1170px;
+                margin: 0 auto;
+                border-right: 1px solid @grey1;
+                .gform_heading {
+                    &::before {
+                        width: 97%;
+                        max-width: 1170px;
+                        content: "";
+                        height: 1.5rem;
+                        border-top: 1px solid @grey1;
+                        position: absolute;
+                    }
+                    .gform_title {
+                        position: relative;
+                        top: -1.5rem;
+                        line-height: 2rem;
+                        border-right: 1px solid @grey1;;
+                        padding-right: 1.5rem;
+                        width: auto;
+                        display: inline-block;
+                        clear: both;
+                        background-color: @beige;
+                        font-size: 1rem;
+                        vertical-align: middle;
+                        text-transform: uppercase;
+                        color: @black;
+                    }
+                }
+                textarea,
+                select,
+                input[type="text"] {
+                    background: transparent;
+                    border: 2px solid @black;
+                    border-radius: 0;
+                }
+                input[type="submit"] {
+                    background: @red;
+                    border: 0;
+                    padding: 10px 10%;
+                    color: @white;
+                    text-transform: uppercase;
+                    font-family: inherit;
+                }
+                @media (max-width: 1200px) {
+                    padding: 0 20px;
+                    border-right: 0;
+                }
+            }
+        }
+    }
+}
