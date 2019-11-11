@@ -107,7 +107,7 @@ body.clean-read.single-post.classic #content {
 .widget article p,
 .widget .by,
 .widget .byline .and {
-  color: @grey3;
+  color: @grey1;
 }
 .widget .excerpt p {
   font-size: 16px;
@@ -179,7 +179,7 @@ form .form-group {
   margin: 10px 0;
 }
 form label {
-  font-family: @font-sans;
+  font-family: @font-body;
   font-weight: bold;
   font-size: 18px;
   margin: 10px 0;
@@ -288,7 +288,7 @@ span#recaptcha_privacy { display: none; }
  */
 //body.page-template-page-neighborhoods,
 body.neighborhoods-lp {
-  font-family: @font-sans;
+  font-family: @font-body;
 
   * {
     box-sizing:border-box;
@@ -736,7 +736,7 @@ body.neighborhoods-lp {
     color: @white;
     border: none;
     padding: .5em;
-    font-family:@font-sans;
+    font-family:@font-body;
     font-weight:bold;
 
     &:hover {
@@ -1237,7 +1237,7 @@ h1.hidden-page-title {
 }
 
 .tribe-event-meta, .tribe-mini-calendar-event .byline, .tribe-mini-calendar-event .byline a {
-  font-family:@font-sans;
+  font-family:@font-body;
   color:#b1b1b1;
   font-size:14px;
   margin-bottom: 10px;
@@ -1329,7 +1329,7 @@ h1.hidden-page-title {
     color: @white;
     border: none;
     padding: .5em;
-    font-family:@font-sans;
+    font-family:@font-body;
     font-weight:bold;
 
     &:hover {
@@ -1338,7 +1338,7 @@ h1.hidden-page-title {
   }
 
   .ginput_container {
-    font-family:@font-sans;
+    font-family:@font-body;
   }
 
   input {
@@ -1377,7 +1377,7 @@ h1.hidden-page-title {
 }
 
 .communitywire-filters li {
-    font-family: @font-sans;
+    font-family: @font-body;
     margin-bottom: 5px;
     display: inline-block;
 }
@@ -1465,15 +1465,11 @@ h1.hidden-page-title {
 #jp-relatedposts {
 	padding-left: 24px;
 	h3.jp-relatedposts-headline {
-		font-family: @font-sans;
-		font-size: 26px;
-		font-weight: bold;
-		line-height: 1.27em;
-		margin-bottom: 8px;
+		.sg-h2-section();
 	}
 	.jp-relatedposts-items .jp-relatedposts-post span a.jp-relatedposts-post-a, .jp-relatedposts-items-visual h4.jp-relatedposts-post-title, .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a {
 		color: #000;
-		font-family: @font-sans;
+		font-family: @font-body;
 		font-size: 20px;
 		font-weight: bold;
 		line-height: 1.3em;
