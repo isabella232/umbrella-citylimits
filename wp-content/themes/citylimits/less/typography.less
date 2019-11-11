@@ -158,6 +158,9 @@ blockquote.type-pull-quote {
 // override "is-style-solid-color" styles
 .wp-block-pullquote.is-style-solid-color {
   border: solid transparent 1px;
+  &:before {
+    margin: -10px 10px;
+  }
   blockquote {
     max-width: 80%;
     margin: 2em auto;
