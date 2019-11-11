@@ -13,7 +13,7 @@
   background-image: url( '../../img/footer-skyline.png' );
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-size: auto 50px;
+  background-size: contain;
 }
 .wp-block-citylimits-citylimits-custom-donate h3.widgettitle {
   color: white;
@@ -25,11 +25,13 @@
   padding: 1.5rem 1.5rem 50px;
   clear: both;
 }
-.wp-block-citylimits-citylimits-custom-donate .border {
-  max-width: 20em;
+.wp-block-citylimits-citylimits-custom-donate.alignleft,
+.wp-block-citylimits-citylimits-custom-donate.alignright {
+  background-size: auto 50px;
 }
-.wp-block-citylimits-citylimits-custom-donate.aligncenter .border {
-  max-width: unset;
+.wp-block-citylimits-citylimits-custom-donate.alignleft .border,
+.wp-block-citylimits-citylimits-custom-donate.alignright .border {
+  max-width: 20em;
 }
 .wp-block-citylimits-citylimits-custom-donate .cta p {
   font-size: 16px;
@@ -41,10 +43,12 @@
 
 /* positioning */
 @media ( max-width: 769px ) {
-  .wp-block-citylimits-citylimits-custom-donate {
+  .wp-block-citylimits-citylimits-custom-donate.alignleft,
+  .wp-block-citylimits-citylimits-custom-donate.alignright {
     background-size: contain;
   }
-  .wp-block-citylimits-citylimits-custom-donate .border {
+  .wp-block-citylimits-citylimits-custom-donate.alignleft .border,
+  .wp-block-citylimits-citylimits-custom-donate.alignright .border {
     max-width: unset;
   }
 }
