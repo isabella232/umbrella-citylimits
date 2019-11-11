@@ -16,6 +16,18 @@
 	var __ = wp.i18n.__;
 
 	/**
+	 * Text tools
+	 */
+	var TextControl = wp.components.TextControl;
+	var RichText = wp.components.RichText; // this might need to be wp.editor.RichText;
+
+	/**
+	 * Literally just for a fancy dashicon
+	 * @see https://github.com/WordPress/gutenberg/blob/master/packages/components/src/dashicon/README.md
+	 */
+	var dashicon = wp.components.Dashicon;
+
+	/**
 	 * Every block starts by registering a new block type definition.
 	 * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/#registering-a-block
 	 */
@@ -50,6 +62,41 @@
 		supports: {
 			// Removes support for an HTML mode.
 			html: false,
+			alignWide: false,
+			align: ['left', 'right', 'none', 'center'],
+		},
+
+		/**
+		 * The block attributes
+		 *
+		 *
+		 */
+		attributes: {
+			align: {
+				type: 'string',
+				default: 'left',
+			},
+			headline: {
+				type: 'string',
+				source: 'text',
+				selector: 'h3.widgettitle',
+			},
+			cta: {
+				type: 'string',
+				source: 'html',
+				selector: 'div.cta',
+			},
+			donate_text: {
+				type: 'string',
+				source: 'text',
+				selector: 'a.btn',
+			},
+			donate_url: {
+				type: 'string',
+				source: 'attribute',
+				attribute: 'href',
+				selector: 'a.btn',
+			}
 		},
 
 		/**
@@ -62,9 +109,64 @@
 		 */
 		edit: function( props ) {
 			return el(
-				'p',
+				'div',
 				{ className: props.className },
-				__( 'Hello from the editor!', 'citylimits' )
+				el(
+					TextControl,
+					{
+						label: [
+							el(
+								dashicon,
+								{
+									icon: 'money'
+								},
+							),
+							__( 'Headline' )
+						],
+						value: props.attributes.headline,
+						placeholder: __( 'Title of Donation CTA' ),
+						onChange: ( value ) => { props.setAttributes( { headline: value } ); },
+					}
+				),
+				el(
+					RichText,
+					{
+						tagName: 'div',
+						className: 'cta',
+						value: props.attributes.cta,
+						placeholder: __( 'Donation message goes here.' ),
+						onChange: ( value ) => { props.setAttributes( { cta: value } ); },
+					}
+				),
+				el(
+					TextControl,
+					{
+						label: [
+							__( 'Button Text' )
+						],
+						value: props.attributes.donate_text,
+						placeholder: __( 'Donate' ),
+						onChange: ( value ) => { props.setAttributes( { donate_text: value } ); },
+					}
+				),
+				el(
+					TextControl,
+					{
+						label: [
+							el(
+								dashicon,
+								{
+									icon: 'admin-links'
+								},
+							),
+							__( 'Donate Link' )
+						],
+						value: props.attributes.donate_url,
+						placeholder: 'https://citylimits.org/donate/',
+						default: 'https://citylimits.org/donate/',
+						onChange: ( value ) => { props.setAttributes( { donate_url: value } ); },
+					}
+				)
 			);
 		},
 
@@ -77,7 +179,7 @@
 		 */
 		save: function() {
 			return el(
-				'p',
+				'div',
 				{},
 				__( 'Hello from the saved content!', 'citylimits' )
 			);

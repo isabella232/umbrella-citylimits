@@ -27,6 +27,7 @@ function citylimits_custom_donate_block_init() {
 			'wp-blocks',
 			'wp-i18n',
 			'wp-element',
+			'wp-editor',
 		),
 		filemtime( "$dir/$index_js" )
 	);
