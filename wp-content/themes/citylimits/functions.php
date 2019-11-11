@@ -30,6 +30,7 @@ function largo_child_require_files() {
 		'/inc/post-templates.php',
 		'/inc/registration.php',
 		'/inc/term-meta.php',
+		'/inc/block-color-palette.php',
 		// plugin compat
 		'/inc/acf.php',
 		'/inc/doubleclick-for-wordpress.php',
