@@ -39,7 +39,7 @@
 
 /* positioning */
 @media ( min-width: 661px ) {
-  .wp-block-citylimits-citylimits-custom-donate.aligncenter {
+  .wp-block-citylimits-citylimits-custom-donate {
     background-size: contain;
   }
 }
