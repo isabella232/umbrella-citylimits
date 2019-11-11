@@ -45,6 +45,7 @@ function largo_child_require_files() {
 		'/inc/widgets/class-citylimits-special-projects-widget.php',
 		'/inc/widgets/class-citylimits-podcast-widget.php',
 		'/inc/widgets/class-citylimits-series-seven-stories-widget.php',
+		'/inc/widgets/class-citylimits-special-projects-featured-content-widget.php',
 		// homepage
 		'/homepages/layout.php',
 	);
@@ -606,3 +607,20 @@ function cftl_tax_landing_save_custom_fields( $post_id ){
 
 }
 add_action('save_post', 'cftl_tax_landing_save_custom_fields');
+
+/**
+ * If we are on the Special Projects Featured Content widget, use its specific partial
+ * 
+ * @param String $partial The string represeting the template partial to use for the current context
+ * @param WP_Query $post_query The WP_Query object used to produce the LMP markup.
+ */
+function citylimits_special_projects_featured_content_widget_partial( $partial, $post_query ) {
+
+	if ( isset( $post_query->query_vars['is_series_featured_content_widget'] ) && true === $post_query->query_vars['is_series_featured_content_widget'] ) {
+		$partial = 'series-featured-content-widget';
+	}
+
+	return $partial;
+
+}
+add_filter( 'largo_lmp_template_partial', 'citylimits_special_projects_featured_content_widget_partial', 10, 2);
