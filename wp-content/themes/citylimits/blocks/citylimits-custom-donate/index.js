@@ -19,7 +19,7 @@
 	 * Text tools
 	 */
 	var TextControl = wp.components.TextControl;
-	var RichText = wp.components.RichText; // this might need to be wp.editor.RichText;
+	var RichText = wp.editor.RichText;
 
 	/**
 	 * Literally just for a fancy dashicon
@@ -134,16 +134,15 @@
 						tagName: 'div',
 						className: 'cta',
 						value: props.attributes.cta,
-						placeholder: __( 'Donation message goes here.' ),
 						onChange: ( value ) => { props.setAttributes( { cta: value } ); },
+						placeholder: __( 'Message goes here.' ),
+						multiline: true,
 					}
 				),
 				el(
 					TextControl,
 					{
-						label: [
-							__( 'Button Text' )
-						],
+						label: __( 'Button Text' ),
 						value: props.attributes.donate_text,
 						placeholder: __( 'Donate' ),
 						onChange: ( value ) => { props.setAttributes( { donate_text: value } ); },
