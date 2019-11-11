@@ -9,6 +9,7 @@
   background-color: #F8F9F9;
   padding: 14px;
   color: black;
+  background-image: none;
 }
 .wp-block-citylimits-citylimits-custom-donate .block-title {
   font-size: 13px;
@@ -26,8 +27,14 @@
   margin-bottom: 2px;
   font-size: 13px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  max-width: 20em;
   background-color: white;
+}
+.block-editor-block-list__layout .block-editor-block-list__block[data-align="left"] .wp-block-citylimits-citylimits-custom-donate .block-editor-rich-text,
+.block-editor-block-list__layout .block-editor-block-list__block[data-align="right"] .wp-block-citylimits-citylimits-custom-donate .block-editor-rich-text {
+  max-width: 20em;
+}
+.block-editor-block-list__block[data-align="center"] .wp-block-citylimits-citylimits-custom-donate {
+  text-align: left;
 }
 .wp-block-citylimits-citylimits-custom-donate .block-editor-rich-text .block-editor-rich-text__editable * {
   font-size: 13px;
