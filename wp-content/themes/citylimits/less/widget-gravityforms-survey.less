@@ -37,12 +37,18 @@
                         color: @black;
                     }
                 }
+                .gfield_label,
+                .gform_description {
+                    font-weight: normal;
+                    color: @grey3;
+                }
                 textarea,
                 select,
                 input[type="text"] {
                     background: transparent;
                     border: 2px solid @black;
                     border-radius: 0;
+                    color: @black;
                 }
                 input[type="submit"] {
                     background: @red;
@@ -51,6 +57,57 @@
                     color: @white;
                     text-transform: uppercase;
                     font-family: inherit;
+                }
+                .gfield_checkbox {
+                    li {
+                        input[type="checkbox"] {
+                            display: none;
+                        }
+                        input[type="checkbox"] + label:before {
+                            border: 2px solid @black;
+                            content: "\00a0";
+                            display: inline-block;
+                            font: 20px/1em sans-serif;
+                            height: 20px;
+                            margin: 0 1em 0 0;
+                            padding: 0;
+                            vertical-align: top;
+                            width: 20px;
+                        }
+                        input[type="checkbox"]:checked + label:before {
+                            background: transparent;
+                            color: @black;
+                            content: "\2713";
+                            text-align: center;
+                        }
+                        input[type="checkbox"]:checked + label:after {
+                            font-weight: bold;
+                        }
+                    }
+                }
+                .gfield_radio {
+                    li {
+                        input[type=radio] {
+                            display: none;
+                        }
+                        input[type=radio] + label:before {
+                            border: 2px solid @black;
+                            content: "\00a0";
+                            display: inline-block;
+                            font: 20px/1em sans-serif;
+                            height: 20px;
+                            margin: 0 1em 0 0;
+                            padding: 0;
+                            vertical-align: top;
+                            width: 20px;
+                        }
+                        input[type=radio]:checked + label:before {
+                            background: @black;
+                        }
+                        input[type=radio] + label:before{
+                            border-radius: 50%;
+                        }
+                    }
                 }
                 @media (max-width: 1200px) {
                     padding: 0 20px;
