@@ -152,7 +152,6 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 			echo '</ul>';
 
 			echo '</div>';
-			echo '</div>';
 			
 			echo $args['after_widget'];
 
