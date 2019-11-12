@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
 				}
 			});
 			homebannerCounter++;
-		});		
+		});
 	}
 	
 	var footerShown = false;
@@ -180,18 +180,4 @@ jQuery(document).ready(function($) {
 			}
 		})
 	})
-	
-	//testing banners
-	/*
-	$('.newsletter-signup form, .newsletter-signup .not-expanded').hide()
-	$('.newsletter-response').show()
-	$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '318px'})
-	*/
-	//testing landing page
-	//$('body.newsletter-landing .subscribe_button').eq(0).click()
-
 });
-
-function $c(t) {
-	console.log(t);
-}
