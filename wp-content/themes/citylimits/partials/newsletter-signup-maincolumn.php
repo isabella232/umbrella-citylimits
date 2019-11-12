@@ -10,31 +10,33 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 		<div class="row">
 			<div class="column signup_text_holder">
 				<div class="signup_text"></div>
-				<p><?= $newsletter_page->post_content ?></p>
+				<p><?php echo wp_kses_post(  $newsletter_page->post_content ) ?></p>
 			</div>
 			<div class="column newsletter_list">
-<?php 
-$checkedFlag = false;
-if ( function_exists( 'get_field' ) ) {
-foreach ( get_field('newsletter_group', 'option') as $group ) { 
-		foreach ( $group['newsletters'] as $newsletter) {
-			if (!$newsletter['active']) {
-				continue;
-			}
-			$checked = '';
-			if (!$checkedFlag) {
-				$checked = ' checked="checked"';
-				$checkedFlag = true;
-			}
-?>
-				<section>
-					<h3><?= $newsletter['title'] ?></h3>
-					<p><?= $newsletter['short_description'] ?></p>
-					<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]"<?= $checked ?> required><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
-				</section>
-<?php }
-	}
-} ?>
+				<?php
+					$checkedFlag = false;
+					if ( function_exists( 'get_field' ) ) {
+						foreach ( get_field('newsletter_group', 'option') as $group ) {
+							foreach ( $group['newsletters'] as $newsletter) {
+								if (!$newsletter['active']) {
+									continue;
+								}
+								$checked = '';
+								if (!$checkedFlag) {
+									$checked = ' checked="checked"';
+									$checkedFlag = true;
+								}
+								?>
+									<section>
+										<h3><?= $newsletter['title'] ?></h3>
+										<p><?= $newsletter['short_description'] ?></p>
+										<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]"<?= $checked ?> required><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
+									</section>
+								<?php
+							}
+						}
+					}
+				?>
 			</div>
 		</div><!--.row-->
 		<div class="row">
@@ -45,17 +47,17 @@ foreach ( get_field('newsletter_group', 'option') as $group ) {
 			</div>
 		</div><!--.row-->
 	</form>
-<?php if ( function_exists( 'get_field' ) ) { ?>
-	<div class="newsletter-response">
-		<div class="row">
-			<div class="column signup_text_holder">
-				<div class="signup_text"></div>
-				<div class="signup_intro"><?= get_field('intro_text', 'option') ?></div>
-			</div>
-			<div class="column newsletter-response-content">
-				<?= get_field('thank_you_text', 'option') ?>
-			</div>
-		</div><!--.row-->
-	</div><!--.newsletter-response-->
-<?php } ?>
+	<?php if ( function_exists( 'get_field' ) ) { ?>
+		<div class="newsletter-response">
+			<div class="row">
+				<div class="column signup_text_holder">
+					<div class="signup_text"></div>
+					<div class="signup_intro"><?php echo wp_kses_post( get_field('intro_text', 'option') ); ?></div>
+				</div>
+				<div class="column newsletter-response-content">
+					<?php echo wp_kses_post( get_field('thank_you_text', 'option') ) ; ?>
+				</div>
+			</div><!--.row-->
+		</div><!--.newsletter-response-->
+	<?php } ?>
 </div><!--.newsletter-signup-->
