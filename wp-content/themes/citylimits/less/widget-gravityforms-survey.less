@@ -49,6 +49,7 @@
                     border: 2px solid @black;
                     border-radius: 0;
                     color: @black;
+                    min-height: 40px;
                 }
                 input[type="submit"] {
                     background: @red;
@@ -57,6 +58,25 @@
                     color: @white;
                     text-transform: uppercase;
                     font-family: inherit;
+                }
+                li.gfield_error input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), 
+                li.gfield_error textarea {
+                    border: 2px solid @red!important;
+                }
+                li.gfield.gfield_error, 
+                li.gfield.gfield_error.gfield_contains_required.gfield_creditcard_warning {
+                    background-color: transparent;
+                    border-top: 0;
+                    border-bottom: 0;
+                }
+                .validation_message {
+                    color: @red;
+                }
+                div.validation_error {
+                    color: @red;
+                    text-align: left;
+                    border: 0;
+                    margin-bottom: 0;
                 }
                 .gfield_checkbox {
                     li {
