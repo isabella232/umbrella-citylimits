@@ -7,6 +7,9 @@
 }
 
 #homepage-featured {
+  .excerpt * {
+    font-size: 16px; // .sg-excerpt();
+  }
   #top-story {
     border-bottom: none;
     .inner {
@@ -46,18 +49,19 @@
   }
   #featured {
     .top-tag {
-      margin-bottom: 0.5 * @measure;
       .tt-plain();
+      margin-bottom: @measure;
     }
     a.img {
       max-width: 30%;
+      margin-top: calc( @measure + 30px );
     }
 
     .widgettitle,
     article h2 {
       font-size: 1.1rem;
       line-height: 1.5;
-      margin-bottom: 1em;
+      margin-bottom: @measure;
     }
   }
 
@@ -136,7 +140,7 @@
   }
 
   // tabletish
-  @media (min-width: 600px ) and  (max-width: 990px) {
+  @media (min-width: 600px ) and  (max-width: 989px) {
     display: grid;
     grid-template-areas:
       "img img inner"
