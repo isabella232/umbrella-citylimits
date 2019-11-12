@@ -2,11 +2,15 @@
 @import (reference) "../../../less/top-tag.less";
 @import (reference) "../../../less/mixin-bracket-borders.less";
 
+#main aside {
+  margin-bottom: 4.5rem!important;
+}
 .stories article {
   border-bottom: none; // a reset of Largo's default
 }
 
 #homepage-featured {
+  margin-bottom: 4.5rem;
   .excerpt * {
     font-size: 16px; // .sg-excerpt();
   }
@@ -27,6 +31,10 @@
 
       // necessary for creating new stacking context, for the backgrounds
       position: relative;
+      .excerpt, 
+      .byline {
+        padding: 0rem 2rem;
+      }
     }
     .top-tag {
       // this inherits a lot of styles from the main sitewide stylesheet
@@ -37,6 +45,8 @@
     h2 {
       font-size: 1.5 * @measure;
       margin-bottom: 1 * @measure;
+      padding: 1.5rem 2rem 0;
+      line-height: 1.35;
     }
     // what if there's no .top-tag to provide spacing above the h2?
     h2:first-child {
@@ -83,7 +93,7 @@
       grid-area: top;
       padding-right: @measure;
       border-right: 1px solid @grey1;
-
+      padding: 0 1.5rem 0 0!important;
       a.img {
         padding-bottom: 0.5 * @measure;
         border-bottom: 1px solid @grey1;
@@ -132,12 +142,13 @@
     article {
       padding-bottom: @measure;
       margin-bottom: 0;
-
+      padding: 1.5rem 0 1.5rem 1.5rem;
       border-bottom: none;
       & + .widget,
       & + article {
         border-top: 1px solid @grey1;
         padding-top: @measure;
+        padding: 1.5rem 0 1.5rem 1.5rem;
       }
     }
   }
@@ -194,6 +205,10 @@
       .top-tag {
         margin-top: -1.0 * @measure;
       }
+      .inner {
+        border-left: 0!important;
+        border-right: 0!important;
+      }
     }
 
     article {
@@ -205,6 +220,12 @@
       & + article {
         border-top: 1px solid @grey1;
         padding-top: @measure;
+      }
+      .top-tag {
+        margin-bottom: 20px;
+      }
+      .excerpt {
+        display: none;
       }
     }
   }
