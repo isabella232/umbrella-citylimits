@@ -49,6 +49,8 @@ function largo_child_require_files() {
 		'/inc/widgets/class-citylimits-special-projects-featured-content-widget.php',
 		// homepage
 		'/homepages/layout.php',
+		// blocks
+		'/blocks/citylimits-custom-donate.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
