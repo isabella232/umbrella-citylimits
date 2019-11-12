@@ -8,6 +8,9 @@
       border-bottom: 1px solid @grey1;
       margin-bottom: @measure;
     }
+    .entry-title {
+      .sg-h1();
+    }
     .byline {
       grid-area: byline;
       margin-bottom: 0;
@@ -77,6 +80,7 @@
   @media ( max-width: 699px ) {
     h1.entry-title {
       font-size: calc( 20px + 3vw );
+      font-size: 28px;
     }
     #main header {
       display: grid;
@@ -112,6 +116,7 @@
   @media ( min-width: 700px ) {
     h1.entry-title {
       font-size: calc( 20px + 3vw );
+      font-size: 64px;
     }
     #main {
       margin: 0;
@@ -159,6 +164,7 @@
   @media ( min-width: 1230px ) {
     h1.entry-title {
       font-size: 55px;
+      font-size: 64px;
     }
   }
 }
