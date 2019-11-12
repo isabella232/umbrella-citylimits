@@ -29,6 +29,10 @@ a:hover, a:active {
   color: @red;
   text-decoration: underline;
 }
+p {
+  font-size: 18px;
+  line-height: 28px;
+}
 
 .byline {
   .fn {
@@ -176,6 +180,9 @@ blockquote.type-pull-quote {
   }
 }
 
-.has-drop-cap:not(:focus)::first-letter {
+p.has-drop-cap:not(:focus)::first-letter {
   color: @color-heading;
+  font-size: 64px;
+  font-family: @font-body;
+  font-weight: 600;
 }
