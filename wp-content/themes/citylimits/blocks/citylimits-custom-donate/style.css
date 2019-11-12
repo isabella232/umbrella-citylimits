@@ -1,0 +1,59 @@
+/**
+ * The following styles get applied both on the front of your site and in the editor.
+ *
+ * Note that 0.75rem here is equal to 0.5 * @measure in the LESS files in this site.
+ */
+
+.wp-block-citylimits-citylimits-custom-donate {
+  border-top: 1px solid black;
+  border-bottom: 1px solid white;
+  background-color: black;
+  color: #fff;
+  padding: 0;
+  background-image: url( '../../img/footer-skyline.png' );
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+}
+.wp-block-citylimits-citylimits-custom-donate h3.widgettitle {
+  color: white;
+  font-size: 20px;
+}
+.wp-block-citylimits-citylimits-custom-donate .border {
+  margin: 0.75rem;
+  border: 1px solid white;
+  padding: 1.5rem 1.5rem 50px;
+  clear: both;
+}
+.wp-block-citylimits-citylimits-custom-donate.alignleft,
+.wp-block-citylimits-citylimits-custom-donate.alignright {
+  background-size: auto 50px;
+}
+.wp-block-citylimits-citylimits-custom-donate.alignleft .border,
+.wp-block-citylimits-citylimits-custom-donate.alignright .border {
+  max-width: 20em;
+}
+.wp-block-citylimits-citylimits-custom-donate .cta p {
+  font-size: 16px;
+  margin: 0.75rem 0;
+}
+.wp-block-citylimits-citylimits-custom-donate .border :last-child {
+  margin-bottom: 0.75rem;
+}
+
+/* positioning */
+@media ( max-width: 769px ) {
+  .wp-block-citylimits-citylimits-custom-donate.alignleft,
+  .wp-block-citylimits-citylimits-custom-donate.alignright {
+    background-size: contain;
+  }
+  .wp-block-citylimits-citylimits-custom-donate.alignleft .border,
+  .wp-block-citylimits-citylimits-custom-donate.alignright .border {
+    max-width: unset;
+  }
+}
+@media ( min-width: 1200px ) {
+  .single .wp-block-citylimits-citylimits-custom-donate.alignleft {
+    margin-left: calc( ( 100vw - 1170px - 5% ) / -4 );
+  }
+}
