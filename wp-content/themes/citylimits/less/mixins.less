@@ -1,6 +1,76 @@
 /**
  * MIXINS
  */
+
+/*
+ * font mixins from the styleguide
+ *
+ * @see https://github.com/INN/umbrella-citylimits/issues/105
+ */
+.sg-h1 {
+  // desktop: font-size: 64px;
+  // mobile: font-size: 28px
+  font-family: @font-header;
+  font-weight: 600;
+  font-style: normal;
+  color: @black;
+}
+.sg-h2-primary {
+  // desktop: font-size: 40px;
+  // mobile: font-size: 18px
+  font-family: @font-header;
+  font-weight: 600;
+  font-style: normal;
+  color: @color-heading;
+}
+.sg-h2-section {
+  // mobile and desktop: font-size: 18px
+  // used for widgettitles
+  font-family: @font-header;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+  color: @color-heading;
+  text-transform: uppercase;
+}
+.sg-h3 {
+  font-family: @font-header;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 26px;
+  color: @color-heading;
+}
+.sg-h4 {
+  font-family: @font-header;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 18px;
+  color: @color-heading;
+}
+.sg-p {
+  font-family: @font-body;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  color: @color-body;
+}
+.sg-excerpt {
+  font-family: @font-body;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  color: @color-body;
+}
+.sg-pullquote {
+  font-family: @font-header;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 32px;
+  color: @color-heading;
+}
+
+//
+// other stuff
 .a11y {
   position:absolute;
   left:-10000px;
