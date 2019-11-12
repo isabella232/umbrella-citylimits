@@ -14,6 +14,7 @@
 .widget h5.top-tag,  // ugh, override Largo's ridiculous redundancy at https://github.com/INN/largo/issues/1642#issuecomment-544311184
 h5.top-tag {
   font-size: 14px;
+  font-family: @font-body;
   background: white;
   position: relative;
 
@@ -41,6 +42,12 @@ h5.top-tag {
   border: 1px solid @red;
   width: auto;
   display: inline-block;
+  clear: both;
+  &::after {
+    display: table;
+    content: "";
+    clear: both;
+  }
 }
 .tt-fancy {
   margin-left: auto;
