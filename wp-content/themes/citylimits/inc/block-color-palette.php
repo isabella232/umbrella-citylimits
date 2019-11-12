@@ -43,8 +43,8 @@ function citylimits_block_colors() {
 			'color' => '#666',
 		),
 		array(
-			'name' => __( 'Beige', 'citylimits' ),
-			'slug' => 'beige',
+			'name' => __( 'Tan', 'citylimits' ),
+			'slug' => 'tan',
 			'color' => '#f5f2ed',
 		),
 		array(
