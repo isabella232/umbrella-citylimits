@@ -26,6 +26,8 @@ html.nav-open body {
             li {
                 &.menu-item {
                     a {
+                        font-family: @font-header;
+                        color: @black;
                         font-size: 15px;
                         font-weight: 500;
                         text-transform: uppercase;
@@ -58,7 +60,10 @@ html.nav-open body {
                 &.menu-item {
                     &:first-of-type {
                         font-weight: bold;
-                        border-right: 2px solid @black;
+                        border-right: 2px solid @grey3;
+                        a {
+                            color: @black;
+                        }
                     }
                     a {
                         font-size: 15px;
@@ -67,6 +72,7 @@ html.nav-open body {
                         line-height: 15px;
                         padding-left: 5px;
                         padding-right: 5px;
+                        font-family: @font-header;
                         &:hover {
                             background: none;
                             color: @red;
