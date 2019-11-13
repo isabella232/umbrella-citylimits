@@ -1,0 +1,139 @@
+.cftl-tax-landing-template-series-landing-special-projects {
+    .gform_widget {
+        width: fit-content;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        .special-projects-survey_wrapper {
+            width: 100vw;
+            background: @tan;
+            margin: 0;
+            padding: 60px 0;
+            .special-projects-survey {
+                max-width: 1170px;
+                margin: 0 auto;
+                border-right: 1px solid @grey1;
+                .gform_heading {
+                    &::before {
+                        width: 97%;
+                        max-width: 1170px;
+                        content: "";
+                        height: 1.5rem;
+                        border-top: 1px solid @grey1;
+                        position: absolute;
+                    }
+                    .gform_title {
+                        position: relative;
+                        top: -1.5rem;
+                        line-height: 2rem;
+                        border-right: 1px solid @grey1;;
+                        padding-right: 1.5rem;
+                        width: auto;
+                        display: inline-block;
+                        clear: both;
+                        background-color: @tan;
+                        font-size: 1rem;
+                        vertical-align: middle;
+                        text-transform: uppercase;
+                        color: @black;
+                    }
+                }
+                .gfield_label,
+                .gform_description {
+                    font-weight: normal;
+                    color: @grey3;
+                }
+                textarea,
+                select,
+                input[type="text"] {
+                    background: transparent;
+                    border: 2px solid @black;
+                    border-radius: 0;
+                    color: @black;
+                    min-height: 40px;
+                }
+                input[type="submit"] {
+                    background: @red;
+                    border: 0;
+                    padding: 10px 10%;
+                    color: @white;
+                    text-transform: uppercase;
+                    font-family: inherit;
+                }
+                li.gfield_error input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), 
+                li.gfield_error textarea {
+                    border: 2px solid @red!important;
+                }
+                li.gfield.gfield_error, 
+                li.gfield.gfield_error.gfield_contains_required.gfield_creditcard_warning {
+                    background-color: transparent;
+                    border-top: 0;
+                    border-bottom: 0;
+                }
+                .validation_message {
+                    color: @red;
+                }
+                div.validation_error {
+                    color: @red;
+                    text-align: left;
+                    border: 0;
+                    margin-bottom: 0;
+                }
+                .gfield_checkbox {
+                    li {
+                        input[type="checkbox"] {
+                            display: none;
+                        }
+                        input[type="checkbox"] + label:before {
+                            border: 2px solid @black;
+                            content: "\00a0";
+                            display: inline-block;
+                            font: 20px/1em sans-serif;
+                            height: 20px;
+                            margin: 0 1em 0 0;
+                            padding: 0;
+                            vertical-align: top;
+                            width: 20px;
+                        }
+                        input[type="checkbox"]:checked + label:before {
+                            background: transparent;
+                            color: @black;
+                            content: "\2713";
+                            text-align: center;
+                        }
+                        input[type="checkbox"]:checked + label:after {
+                            font-weight: bold;
+                        }
+                    }
+                }
+                .gfield_radio {
+                    li {
+                        input[type=radio] {
+                            display: none;
+                        }
+                        input[type=radio] + label:before {
+                            border: 2px solid @black;
+                            content: "\00a0";
+                            display: inline-block;
+                            font: 20px/1em sans-serif;
+                            height: 20px;
+                            margin: 0 1em 0 0;
+                            padding: 0;
+                            vertical-align: top;
+                            width: 20px;
+                        }
+                        input[type=radio]:checked + label:before {
+                            background: @black;
+                        }
+                        input[type=radio] + label:before{
+                            border-radius: 50%;
+                        }
+                    }
+                }
+                @media (max-width: 1200px) {
+                    padding: 0 20px;
+                    border-right: 0;
+                }
+            }
+        }
+    }
+}
