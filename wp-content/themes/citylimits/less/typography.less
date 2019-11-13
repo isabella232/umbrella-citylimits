@@ -10,21 +10,18 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-  color: @black;
   text-decoration: none;
-}
-h1 a:hover, h1 a:active, h1 a:active,
-h2 a:hover, h2 a:active, h2 a:active,
-h3 a:hover, h3 a:active, h3 a:active,
-h4 a:hover, h4 a:active, h4 a:active,
-h5 a:hover, h5 a:active, h5 a:active,
-h6 a:hover, h6 a:active, h6 a:active {
-  color: @red;
-  text-decoration: none;
+  &:hover,
+  &:active,
+  &:focus {
+    color: @red;
+    text-decoration: none;
+  }
 }
 a {
-  color: @red;
-  text-decoration: none;
+  color: @black;
+  text-decoration: underline;
+  text-decoration-color: @red;
 }
 a:hover, a:active {
   color: @red;
@@ -36,6 +33,9 @@ p {
 }
 
 .byline {
+  a {
+    text-decoration: none;
+  }
   .fn {
     text-transform: uppercase;
   }
