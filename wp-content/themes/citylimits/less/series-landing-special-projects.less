@@ -11,6 +11,7 @@
     }
   }
   #main {
+    margin: 3rem 0;
     @media ( min-width: 700px ) {
       border-bottom: 1px solid @grey1;
       padding-bottom: 0.5 * @measure;
@@ -36,7 +37,7 @@
       bottom: -1px; // to overlap the border-bottom on the containing element
       left: 0;
 
-      width: 40%;
+      width: 45%;
       min-width: 25em;
       border-left: none;
       padding: 0 @measure 0 0;
@@ -53,6 +54,7 @@
       height: 1 * @measure;
       line-height: 1 * @measure;
       font-size: 0.5 * @measure;
+      font-family: @font-header;
       background-color: @white;
       position: relative;
       border-right: 1px solid @grey1;
@@ -106,6 +108,9 @@
       margin-top: 1 * @measure;
       font-size: @measure;
       margin-bottom: @measure;
+      font-family: @font-header;
+      font-size: 40px;
+      color: @black;
       @media ( min-width: 700px ) and ( min-height: 500px ) {
         margin-top: 1.5 * @measure;
       }
@@ -118,7 +123,7 @@
     .description * {
       margin-top: 1 * @measure;
       font-size: 1rem;
-      color: @grey1;
+      color: @grey3;
     }
   }
 
