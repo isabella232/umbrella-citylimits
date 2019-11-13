@@ -45,25 +45,6 @@ remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 			$version
 		);
 
-		wp_enqueue_style(
-			'largo-stylesheet',
-			get_template_directory_uri() . '/css/style' . $suffix . '.css',
-			null,
-			$version
-		);
-
-		wp_enqueue_style(
-			'typekit',
-			'https://use.typekit.net/xkz6lbv.css'
-		);
-
-		wp_enqueue_style(
-			'largo-child-styles',
-			get_stylesheet_directory_uri() . '/css/child-style.css',
-			array( 'largo-stylesheet', 'typekit' ),
-			filemtime( get_stylesheet_directory() . '/css/child-style.css' )
-		);
-
 		// Core JS includes some utilities, initializes carousels, search form behavior,
 		// popovers, responsive header image, etc.
 		wp_enqueue_script(
@@ -121,6 +102,18 @@ remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
  * Enqueue specific styles and scripts for City Limits child theme
  */
 function citylimits_enqueue_styles(){
+	wp_enqueue_style(
+		'typekit',
+		'https://use.typekit.net/xkz6lbv.css'
+	);
+
+	wp_enqueue_style(
+		'largo-child-styles',
+		get_stylesheet_directory_uri() . '/css/child-style.css',
+		array( 'largo-stylesheet', 'typekit' ),
+		filemtime( get_stylesheet_directory() . '/css/child-style.css' )
+	);
+
 	wp_enqueue_style( 'dashicons' );
 	wp_enqueue_script(
 		'citylimits-navigation',
