@@ -306,16 +306,6 @@ function zonein_tax_archive_query( $query ) {
 }
 add_action( 'pre_get_posts', 'zonein_tax_archive_query', 1 );
 
-/**
- * get other scripts
- */
-function citylimits_communitywire_enqueue() {
- 	if (is_page_template( 'page-communitywire.php' )) {
-		wp_enqueue_script( 'inn-tools', get_stylesheet_directory_uri() . '/js/communitywire.js', array( 'jquery' ), '1.1', true );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
-
 /* need this to allow Gravity Forms to post to API */
 add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
     $request_url = rgars( $feed, 'meta/requestURL' );
@@ -334,32 +324,6 @@ function set_max_srcset_image_width( $max_width ) {
     return $max_width;
 }
 add_filter( 'max_srcset_image_width', 'set_max_srcset_image_width' );
-
-/**
- * newsletter subscribe forms
- */
-function citylimits_newsletter_enqueue() {
-	wp_register_script(
-		'jscookies',
-		get_stylesheet_directory_uri() . '/js/cookies.js',
-		null,
-		filemtime( get_stylesheet_directory() . '/js/cookies.js' ),
-		true
-	);
-	wp_register_script(
-		'cl-newsletter',
-		get_stylesheet_directory_uri() . '/js/newsletter.js',
-		array( 'jquery', 'jscookies' ),
-		filemtime( get_stylesheet_directory() . '/js/newsletter.js' ),
-		true
-	);
-	wp_localize_script(
-		'cl-newsletter',
-		'myAjax',
-		array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) )
-	);
-}
-add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
 
 function citylimits_newsletter_form_interstitial() {
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
@@ -396,29 +360,6 @@ function register_citylimits_menu_locations() {
 
 }
 add_action( 'init', 'register_citylimits_menu_locations' );
-
-/**
- * Enqueue specific styles and scripts for City Limits child theme
- */
-function citylimits_enqueue_styles(){
-	wp_enqueue_style( 'dashicons' );
-	wp_enqueue_script(
-		'citylimits-navigation',
-		get_stylesheet_directory_uri() . '/js/navigation.js',
-		array( 'jquery', 'largo-modernizr' ),
-		'1.0',
-		true
-	);
-}
-add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
-
-/**
- * Dequeue specific scripts
- */
-function citylimits_dequeue_scripts(){
-	wp_dequeue_script( 'largo-navigation' );
-}
-add_action( 'wp_print_scripts', 'citylimits_dequeue_scripts', 100 );
 
 /**
  * Function to add thumbnail images to the secondary special project nav menu
