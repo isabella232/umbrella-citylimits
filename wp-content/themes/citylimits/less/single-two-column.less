@@ -1,0 +1,223 @@
+.single.classic {
+  header + .span8 {
+    margin-left: 0;
+  }
+  header {
+    hgroup {
+      grid-area: hgroup;
+      border-bottom: 1px solid @grey1;
+      margin-bottom: @measure;
+    }
+    .entry-title {
+      .sg-h1();
+    }
+    .byline {
+      grid-area: byline;
+      margin-bottom: 0;
+      .fn {
+        text-transform: none;
+      }
+    }
+    .date {
+      grid-area: date;
+    }
+    .byline, .date {
+      font-size: 16px;
+    }
+    .by {
+      display: none;
+    }
+    .author {
+      font-weight: normal;
+      font-size: 16px;
+      text-transform: capitalize;
+    }
+    .edit-link {
+      display: none;
+    }
+    .largo-follow {
+      grid-area: social;
+    }
+    .label {
+      display: block;
+      text-transform: uppercase;
+      font-weight: bold;
+      clear: both;
+      font-family: @font-header;
+      font-size: 13px;
+      color: @black;
+      line-height: 1.5;
+    }
+  }
+  .largo-follow {
+    margin-bottom: 0;
+
+    // override Largo colors
+    .facebook,
+    .twitter,
+    .email,
+    .print,
+    .more-social-links {
+      background-color: transparent;
+      i {
+        font-size: 1.25em;
+      }
+    }
+    .more-social-links {
+      display: none;
+    }
+    a {
+      color: @red;
+      &:hover {
+        color: @black;
+      }
+    }
+    .hidden-phone {
+      display: none;
+    }
+    span {
+      margin: 0;
+    }
+    // make this fold to the right, not left
+    .popover {
+      left: unset;
+      right: 0;
+      z-index: 1;
+      &::after,
+      &::before {
+        left: unset;
+        right: 24px;
+      }
+    }
+  }
+
+
+  @media ( max-width: 699px ) {
+    h1.entry-title {
+      font-size: calc( 20px + 3vw );
+      font-size: 28px;
+    }
+    #main header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "hgroup hgroup"
+        "byline   date"
+        "social social"
+      ;
+
+      hgroup {
+        padding: 5% 0;
+      }
+      .byline {
+        border-right: 1px solid @grey1;
+        padding-right: @measure;
+      }
+      .date {
+        padding-left: @measure;
+      }
+      .byline, .date {
+        text-align: center;
+      }
+      .largo-follow {
+        margin-top: @measure;
+        text-align: center;
+        border-top: 1px solid @grey1;
+        padding-top: @measure;
+        padding-bottom: @measure;
+      }
+    }
+  }
+  @media ( min-width: 700px ) {
+    h1.entry-title {
+      font-size: calc( 20px + 3vw );
+      font-size: 64px;
+      line-height: 1.1;
+    }
+    #main {
+      margin: 0;
+    }
+    #main header {
+      display: grid;
+      grid-template-columns: 200px 200px 1fr auto;
+      grid-template-areas:
+        "hgroup hgroup hgroup hgroup"
+        "byline   date     .        social"
+      ;
+      margin-bottom: @measure;
+
+      hgroup {
+        text-align: center;
+        padding: 5% 2.5%;
+      }
+      .subtitle {
+        // this does not provide styles for .subtitle
+        // because while Largo supports outputting a subtitle,
+        // Largo requires enabling the subtitle input metabox in a child theme
+        text-align: center;
+      }
+      .byline {
+        border-right: 1px solid @grey1;
+        padding-right: @measure;
+      }
+      .date {
+        border-right: 1px solid @grey1;
+        padding-right: @measure;
+        padding-left: @measure;
+      }
+    }
+  }
+  .hero {
+    background: transparent;
+    padding-bottom: @measure;
+    border-bottom: 1px solid @grey1;
+    margin-bottom: @measure;
+    .wp-caption-text {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  @media ( min-width: 1230px ) {
+    h1.entry-title {
+      font-size: 55px;
+      font-size: 64px;
+    }
+  }
+  .wp-block-image figcaption, 
+  p.wp-caption-text {
+    font-size: 14px !important;
+    font-style: normal;
+  }
+  .largo-related-posts {
+    ul.related {
+      li {
+        // display: flex;
+        // flex-direction: column;
+        position: relative;
+        a {
+          img {
+            float: right;
+            padding-left: 5%;
+          }
+        }
+        p {
+          margin-bottom: 3em;
+        }
+        .byline {
+          // order: 4;
+          font-size: 13px;
+          font-family: @font-header;
+          position: absolute;
+          bottom: 0em;
+          .by-author {
+            .sep,
+            .pubdate,
+            .twitter {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

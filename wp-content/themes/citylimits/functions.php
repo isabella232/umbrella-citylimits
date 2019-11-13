@@ -30,6 +30,7 @@ function largo_child_require_files() {
 		'/inc/post-templates.php',
 		'/inc/registration.php',
 		'/inc/term-meta.php',
+		'/inc/block-color-palette.php',
 		// plugin compat
 		'/inc/acf.php',
 		'/inc/doubleclick-for-wordpress.php',
@@ -44,8 +45,12 @@ function largo_child_require_files() {
 		'/inc/widgets/cl-newsletter-header.php',
 		'/inc/widgets/class-citylimits-special-projects-widget.php',
 		'/inc/widgets/class-citylimits-podcast-widget.php',
+		'/inc/widgets/class-citylimits-series-seven-stories-widget.php',
+		'/inc/widgets/class-citylimits-special-projects-featured-content-widget.php',
 		// homepage
 		'/homepages/layout.php',
+		// blocks
+		'/blocks/citylimits-custom-donate.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -311,15 +316,6 @@ function citylimits_communitywire_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
 
-function citylimits_newsletter_enqueue() {
-	wp_enqueue_script( 'jscookies', get_stylesheet_directory_uri() . '/js/cookies.js', null, '1.1', true );
-
-	wp_register_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery', 'jscookies' ), null, true );
-	wp_localize_script( 'cl-newsletter', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));        
-	wp_enqueue_script( 'cl-newsletter' );
-}
-add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
-
 /* need this to allow Gravity Forms to post to API */
 add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
     $request_url = rgars( $feed, 'meta/requestURL' );
@@ -342,19 +338,18 @@ add_filter( 'max_srcset_image_width', 'set_max_srcset_image_width' );
 /**
  * newsletter subscribe forms
  */
+function citylimits_newsletter_enqueue() {
+	wp_register_script( 'jscookies', get_stylesheet_directory_uri() . '/js/cookies.js', null, '1.1', true );
+	wp_register_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery', 'jscookies' ), null, true );
+	wp_localize_script( 'cl-newsletter', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
 
 function citylimits_newsletter_form_interstitial() {
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
 }
-add_action( 'largo_before_sticky_posts', 'citylimits_newsletter_form_interstitial', 11 );
-add_action( 'largo_category_after_primary_featured_post', 'citylimits_newsletter_form_interstitial', 11 );
 add_action( 'largo_series_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
 add_action( 'largo_archive_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
-
-function citylimits_newsletter_form_footer() {
-	get_template_part( 'partials/newsletter-signup', 'footer' );
-}
-add_action( 'largo_before_footer', 'citylimits_newsletter_form_footer', 11 );
 
 function citylimits_newsletter_form_popover() {
 	get_template_part( 'partials/newsletter-signup', 'popover' );
@@ -391,7 +386,7 @@ add_action( 'init', 'register_citylimits_menu_locations' );
  */
 function citylimits_enqueue_styles(){
 	wp_enqueue_style( 'dashicons' );
-	wp_enqueue_script( 'citylimits-navigation', get_stylesheet_directory_uri() . '/js/navigation.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script( 'citylimits-navigation', get_stylesheet_directory_uri() . '/js/navigation.js', array( 'jquery', 'largo-modernizr' ), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
 
@@ -509,3 +504,116 @@ function citylimits_get_series_posts( $series_id, $number = -1, $order = null ) 
 	return false;
 
 }
+
+/**
+ * Add custom meta boxes to the cftl taxonomy landing page editor
+ */
+function add_meta_boxes_to_cftl_tax_landing_page_editor() {
+
+	add_meta_box(
+		'cftl_tax_landing_secondary_navigation',
+		__('Secondary Navigation', 'largo'),
+		'cftl_tax_landing_secondary_navigation',
+		'cftl-tax-landing',
+		'normal',
+		'high'
+	);
+
+}
+add_action('add_meta_boxes', 'add_meta_boxes_to_cftl_tax_landing_page_editor', 100);
+
+/**
+ * Displays the custom field for secondary navigation on the cftl taxonomy landing page editor
+ */
+function cftl_tax_landing_secondary_navigation() {
+
+	global $post;
+
+	// Get menus
+	$menus = wp_get_nav_menus();
+	$nav_menu = esc_attr( get_post_meta( $post->ID, 'cftl_secondary_navigation', true ) );
+	?>	
+
+	<div class="form-field">
+		<label for="cftl_secondary_navigation"><?php _e('Select the secondary navigation menu', 'cf-tax-landing') ?></label>
+		<br/>
+		<select name="cftl_secondary_navigation" id="cftl_secondary_navigation">
+			<option value="0"><?php _e( '&mdash; Select &mdash;' ); ?></option>
+			<?php foreach ( $menus as $menu ) : ?>
+				<option value="<?php echo esc_attr( $menu->term_id ); ?>" <?php selected( $nav_menu, $menu->term_id ); ?>>
+					<?php echo esc_html( $menu->name ); ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+	</div>
+
+	<?php
+}
+
+/**
+ * Save data from custom fields that were added to the cftl landing page editor
+ * Copied from https://github.com/INN/largo/blob/512da701664b329f2f92244bbe54880a6e146431/inc/wp-taxonomy-landing/functions/cftl-admin.php#L556-L614
+ * 
+ * @param int $post_id The id of the landing page we're saving data to
+ */
+function cftl_tax_landing_save_custom_fields( $post_id ){
+
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	if ( ! isset( $_POST['post_type'] )
+		|| $_POST['post_type'] != 'cftl-tax-landing') {
+		return;
+	}
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+
+	$custom_fields = array( 
+		'cftl_secondary_navigation' => 'sanitize_text_field',
+	 );
+
+	foreach( $custom_fields as $field_name => $sanitize ){
+
+		if( $_POST[$field_name] ){
+
+			switch ( $sanitize ) {
+				case 'bool':
+					$safe_value = ! empty( $_POST[ $field_name ] ) ? true : false;
+					break;
+				case 'sanitize_show':
+					$safe_value = array();
+					foreach( array( 'image', 'excerpt', 'byline', 'tags' ) as $key ) {
+						$safe_value[ $key ] = ! empty( $_POST[ $field_name ][ $key ] ) ? true : false;
+					}
+					break;
+				default:
+					$safe_value = ! empty( $_POST[ $field_name ] ) ? call_user_func( $sanitize, $_POST[ $field_name ] ) : '';
+					break;
+			}
+
+			update_post_meta( $post_id, $field_name, $safe_value );
+
+		}
+
+	}
+
+}
+add_action('save_post', 'cftl_tax_landing_save_custom_fields');
+
+/**
+ * If we are on the Special Projects Featured Content widget, use its specific partial
+ * 
+ * @param String $partial The string represeting the template partial to use for the current context
+ * @param WP_Query $post_query The WP_Query object used to produce the LMP markup.
+ */
+function citylimits_special_projects_featured_content_widget_partial( $partial, $post_query ) {
+
+	if ( isset( $post_query->query_vars['is_series_featured_content_widget'] ) && true === $post_query->query_vars['is_series_featured_content_widget'] ) {
+		$partial = 'series-featured-content-widget';
+	}
+
+	return $partial;
+
+}
+add_filter( 'largo_lmp_template_partial', 'citylimits_special_projects_featured_content_widget_partial', 10, 2);

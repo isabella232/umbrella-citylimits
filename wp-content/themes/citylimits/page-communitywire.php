@@ -23,6 +23,7 @@ $project_tax_query = array(
 
 // This is the rezone-specific header, /header-rezone.php
 get_header();
+wp_enqueue_script( 'cl-newsletter' );
 
 ?>
 

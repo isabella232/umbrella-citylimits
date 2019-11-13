@@ -53,9 +53,14 @@ remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 		);
 
 		wp_enqueue_style(
+			'typekit',
+			'https://use.typekit.net/xkz6lbv.css'
+		);
+
+		wp_enqueue_style(
 			'largo-child-styles',
 			get_stylesheet_directory_uri() . '/css/child-style.css',
-			array('largo-stylesheet'),
+			array( 'largo-stylesheet', 'typekit' ),
 			filemtime( get_stylesheet_directory() . '/css/child-style.css' )
 		);
 
@@ -110,17 +115,6 @@ remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 			$version,
 			true
 		);
-
-		// Only load jquery tabs for the related content box if it's active
-		if ( is_single() ) {
-			wp_enqueue_script(
-				'idTabs',
-				get_template_directory_uri() . '/js/jquery.idTabs.js',
-				array( 'jquery' ),
-				$version,
-				true
-			);
-		}
 	}
 
 /**

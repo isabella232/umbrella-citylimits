@@ -1,3 +1,11 @@
+.before-footer-wrapper {
+	background-color: none;
+}
+#before-footer {
+	>:last-child {
+		margin-bottom: 0;
+	}
+}
 .footer-bg {
     background-color: @white;
     .footer-skyline {
@@ -5,6 +13,7 @@
         background-color: @black;
         background-repeat: no-repeat;
         background-position: bottom;
+        background-size: 1170px auto;
         width: 100%;
         height: 200px;
         @media (max-width: 769px) {
@@ -83,63 +92,9 @@
             .row-fluid {
                 display: flex;
                 align-items: center;
-                #footer-social {
-                    li {
-                        float: right;
-                        i {
-                            &.icon-facebook {
-                                &::before {
-                                    content: url("../img/facebook.svg");
-                                }
-                                &:hover {
-                                    &::before {
-                                        content: url("../img/facebook-hover.svg");
-                                    }
-                                }
-                            }
-                            &.icon-twitter {
-                                &::before {
-                                    content: url("../img/twitter.svg");
-                                }
-                                &:hover {
-                                    &::before {
-                                        content: url("../img/twitter-hover.svg");
-                                    }
-                                }
-                            }
-                            &.icon-linkedin {
-                                &::before {
-                                    content: url("../img/linkedin.svg");
-                                }
-                                &:hover {
-                                    &::before {
-                                        content: url("../img/linkedin-hover.svg");
-                                    }
-                                }
-                            }
-                            &.icon-instagram {
-                                &::before {
-                                    content: url("../img/instagram.svg");
-                                }
-                                &:hover {
-                                    &::before {
-                                        content: url("../img/instagram-hover.svg");
-                                    }
-                                }
-                            }
-                            &.icon-youtube {
-                                &::before {
-                                    content: url("../img/youtube.svg");
-                                }
-                                &:hover {
-                                    &::before {
-                                        content: url("../img/youtube-hover.svg");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+            }
+            #footer-social li {
+              float: right;
             }
             @media (max-width: 769px) {
                 .row-fluid {

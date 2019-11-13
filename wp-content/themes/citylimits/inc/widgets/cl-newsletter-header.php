@@ -9,17 +9,17 @@ class cl_newsletter_header extends WP_Widget {
 
 		$widget_ops = array(
 			'classname' => 'cl-newsletter-header',
-			'description' => __( 'Quick-and-dirty widget to place newsletter/donate links in header', 'citylimits' )
+			'description' => __( 'Display the generic sitewide newsletter signup form.', 'citylimits' )
 		);
 		parent::__construct(
 			'cl-newsletter-header-widget', // Base ID
-			__( 'CL Newsletter Link for Header', 'citylimits' ), // Name
+			__( 'City Limits Newsletter Signup', 'citylimits' ), // Name
 			$widget_ops // Args
 		);
 
 	}
 
 	function widget( $args, $instance ) {
-		get_template_part( 'partials/newsletter-signup', 'header' );
+		get_template_part( 'partials/newsletter-signup', 'maincolumn' );
 	}
 }

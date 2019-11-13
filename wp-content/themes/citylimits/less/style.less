@@ -13,8 +13,19 @@ Version:        1.0
 @import "typography.less";
 @import "ads.less";
 @import "top-tag.less";
+@import "social.less";
+
+// templates
+@import "series-landing-special-projects.less";
+@import "single-two-column.less";
+@import "page-newsletter-subscriptions.less";
+
+// widgets
 @import "widget-citylimits-special-projects.less";
 @import "widget-citylimits-podcast.less";
+@import "widget-citylimits-special-projects-featured-content.less";
+@import "widget-citylimits-series-seven-stories.less";
+@import "widget-gravityforms-survey.less";
 
 // nav components
 @import "_navbar.less";
@@ -24,6 +35,12 @@ Version:        1.0
 
 // footer components
 @import "footer.less";
+
+@media (max-width: 768px) {
+  #page {
+    padding: 0 4.5%;
+  }
+}
 
 .zone-a-btn {
   a.btn {
@@ -57,13 +74,21 @@ Version:        1.0
 /**
  * GENERAL STYLES
  */
-
+.wp-media-credit a {
+  color: @grey3;
+  text-decoration-color: @grey3;
+  &:hover {
+    color: @red;
+  }
+}
 .btn {
   border-radius: 0;
   color: @white;
   background-color: @black;
   border: 1px solid @black;
   text-decoration: none;
+  font-family: @font-header;
+  text-transform: uppercase;
   a {
     color: @white;
   }
@@ -98,17 +123,22 @@ body.clean-read.single-post.classic #content {
 
 .widgettitle,
 .stories h3.widgettitle {
-  text-transform: inherit;
-  font-size:26px;
+  .sg-h2-section();
+}
+.widget article p,
+.widget .by,
+.widget .byline .and {
+  color: @grey3;
+}
+.widget .excerpt p {
+  font-size: 16px;
+  margin-bottom: 1em;
 }
 
 /* Homepage alert */
 .alert-wrapper {
   background-color: #f2dede;
   border: 1px solid #ebccd1;
-  color: #a94442;
-}
-#alert-container .widgettitle {
   color: #a94442;
 }
 #alert-container {
@@ -167,7 +197,7 @@ form .form-group {
   margin: 10px 0;
 }
 form label {
-  font-family: @font-sans;
+  font-family: @font-body;
   font-weight: bold;
   font-size: 18px;
   margin: 10px 0;
@@ -265,6 +295,16 @@ span#recaptcha_privacy { display: none; }
     margin: 0 auto;
   }
 }
+@media (min-width: 990px) {
+  .home #main {
+    margin-top: 3 * @measure;
+  }
+}
+@media (max-width: 768px) {
+  .home #main {
+    margin-top: 1 * @measure;
+  }
+}
 @media screen and (max-width: 480px) {
   .home #main {
     margin-top: 0;
@@ -276,7 +316,7 @@ span#recaptcha_privacy { display: none; }
  */
 //body.page-template-page-neighborhoods,
 body.neighborhoods-lp {
-  font-family: @font-sans;
+  font-family: @font-body;
 
   * {
     box-sizing:border-box;
@@ -724,7 +764,7 @@ body.neighborhoods-lp {
     color: @white;
     border: none;
     padding: .5em;
-    font-family:@font-sans;
+    font-family:@font-body;
     font-weight:bold;
 
     &:hover {
@@ -1225,7 +1265,7 @@ h1.hidden-page-title {
 }
 
 .tribe-event-meta, .tribe-mini-calendar-event .byline, .tribe-mini-calendar-event .byline a {
-  font-family:@font-sans;
+  font-family:@font-body;
   color:#b1b1b1;
   font-size:14px;
   margin-bottom: 10px;
@@ -1317,7 +1357,7 @@ h1.hidden-page-title {
     color: @white;
     border: none;
     padding: .5em;
-    font-family:@font-sans;
+    font-family:@font-body;
     font-weight:bold;
 
     &:hover {
@@ -1326,7 +1366,7 @@ h1.hidden-page-title {
   }
 
   .ginput_container {
-    font-family:@font-sans;
+    font-family:@font-body;
   }
 
   input {
@@ -1365,7 +1405,7 @@ h1.hidden-page-title {
 }
 
 .communitywire-filters li {
-    font-family: @font-sans;
+    font-family: @font-body;
     margin-bottom: 5px;
     display: inline-block;
 }
@@ -1397,10 +1437,6 @@ h1.hidden-page-title {
       background-color: unset;
       color: @black;
       padding: unset;
-    }
-
-    h3.widgettitle {
-      font-size:24px;
     }
 
     .tribe-event-meta, .byline, .tribe-event-excerpt {
@@ -1453,15 +1489,11 @@ h1.hidden-page-title {
 #jp-relatedposts {
 	padding-left: 24px;
 	h3.jp-relatedposts-headline {
-		font-family: @font-sans;
-		font-size: 26px;
-		font-weight: bold;
-		line-height: 1.27em;
-		margin-bottom: 8px;
+		.sg-h2-section();
 	}
 	.jp-relatedposts-items .jp-relatedposts-post span a.jp-relatedposts-post-a, .jp-relatedposts-items-visual h4.jp-relatedposts-post-title, .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a {
 		color: #000;
-		font-family: @font-sans;
+		font-family: @font-body;
 		font-size: 20px;
 		font-weight: bold;
 		line-height: 1.3em;

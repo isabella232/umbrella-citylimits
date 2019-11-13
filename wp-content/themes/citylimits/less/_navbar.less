@@ -13,6 +13,13 @@ html.nav-open body {
         border-top: 2px solid @grey2;
         border-bottom: 2px solid @grey2;
         padding: 15px 0;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding-left: 0!important;
+        padding-right: 0!important;
+        .home & {
+            border-bottom: none;
+        }
     }
     .nav-shelf {
         display: flex;
@@ -23,6 +30,8 @@ html.nav-open body {
             li {
                 &.menu-item {
                     a {
+                        font-family: @font-header;
+                        color: @black;
                         font-size: 15px;
                         font-weight: 500;
                         text-transform: uppercase;
@@ -50,20 +59,24 @@ html.nav-open body {
             float: left;
             margin: 0;
             padding-left: 25px;
-            border-left: 2px solid @grey2;
+            border-left: 2px solid @white;
             li {
                 &.menu-item {
                     &:first-of-type {
                         font-weight: bold;
-                        border-right: 2px solid @black;
+                        border-right: 2px solid @grey3;
+                        a {
+                            color: @black;
+                        }
                     }
                     a {
                         font-size: 15px;
-                        color: @dark_grey;
+                        color: @grey3;
                         text-transform: uppercase;
                         line-height: 15px;
                         padding-left: 5px;
                         padding-right: 5px;
+                        font-family: @font-header;
                         &:hover {
                             background: none;
                             color: @red;
@@ -229,7 +242,7 @@ html.nav-open body {
                             }
                             a {
                                 font-size: 15px;
-                                color: @dark_grey;
+                                color: @grey3;
                                 text-transform: uppercase;
                                 line-height: 15px;
                                 padding-left: 0px;
@@ -277,7 +290,7 @@ html.nav-open body {
                         .search-query {
                             border-radius: 0;
                             border: 2px solid black;
-                            border-right: 0;
+                            border-right: none;
                             width: 100%;
                             height: 35px;
                             text-indent: 10px;
@@ -305,6 +318,11 @@ html.nav-open body {
     }
 }
 #secondary-nav {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: 0!important;
+    padding-right: 0!important;
+    background: @red;
     .secondary-special-projects-nav {
         list-style: none;
         margin-left: 0;
@@ -312,15 +330,17 @@ html.nav-open body {
         display: flex;
         align-items: stretch;
         background: @red;
+        max-width: 1170px;
+        margin: 0 auto;
         li {
             display: flex;
             flex-grow: 1;
             flex-basis: 0;
             margin: 20px 0;
-            border-right: 1px solid @grey1;
+            border-right: 1px solid @white;
             padding: 0 @measure;
             &:last-of-type {
-                border-right: 0;
+                border-right: none;
             }
             a {
                 color: @white;
@@ -342,12 +362,12 @@ html.nav-open body {
             }
         }
     }
-    @media (max-width: 769px) {
+    @media (max-width: 768px) {
         display: none;
     }
 }
 .secondary-nav-item-thumbnail {
-    @media (max-width: 769px){
+    @media (max-width: 768px){
         display: none;
     }
 }

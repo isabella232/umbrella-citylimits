@@ -1,0 +1,283 @@
+/**
+ * Styles for series-landing-special-projects.php
+ */
+.cftl-tax-landing-template-series-landing-special-projects-php {
+  .series-banner {
+    @media ( min-width: 700px ) {
+      text-align: right;
+      img {
+        max-width: 70%;
+      }
+    }
+  }
+  #page {
+    padding-bottom: 0;
+  }
+  #main {
+    margin: 3rem 0;
+    @media ( min-width: 700px ) {
+      border-bottom: 1px solid @grey1;
+      padding-bottom: 0.5 * @measure;
+    }
+  }
+  #series-header {
+    background: @white;
+    text-align: left;
+    // this only works because of the combination of this specific image and border-image-slice
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice
+    // https://github.com/INN/umbrella-citylimits/pull/61#issuecomment-542890018
+    border-image: url("../img/homepage-border-img.png");
+    border-image-slice: 24 24 1 24;
+    border-image-repeat: space;
+    border-color: @white;
+    border-style: solid;
+    border-width: @measure * 0.5;
+    border-bottom-width: 1px;
+    // the above styles match up with those on #main
+
+    @media ( min-width: 700px ) {
+      position: absolute;
+      bottom: -1px; // to overlap the border-bottom on the containing element
+      left: 0;
+
+      width: 45%;
+      min-width: 25em;
+      border-left: none;
+      padding: 0 @measure 0 0;
+    }
+    @media ( max-width: 699px ) {
+      margin-top: 0;
+      padding: 0 ( 0.5 * @measure );
+      border-left: none;
+      border-right: none;
+    }
+
+    .special-project {
+      // should be roughly twice the height of the border-top on this element
+      height: 1 * @measure;
+      line-height: 1 * @measure;
+      font-size: 0.5 * @measure;
+      font-family: @font-header;
+      background-color: @white;
+      position: relative;
+      border-right: 1px solid @grey1;
+      @media ( min-width: 700px ) {
+        // left aligned
+        display: inline-block;
+        top: -0.5 * @measure;
+        left: -0.5 * @measure;
+        padding-right: 1 * @measure;
+        padding-left: 0.5 * @measure;
+      }
+      @media ( max-width: 699px ) {
+        // centered, with a pseudoelement for outline/border placement
+        top: -0.5 * @measure;
+        display: block;
+        margin: 0 auto;
+        width: max-content;
+        padding-left: 0.5 * @measure;
+        padding-right: 0.5 * @measure;
+        border-left: 1px solid @grey1;
+
+        position: relative;
+        overflow: visible;
+        &::before {
+          // set border-color to something to other than white to see how this works
+          box-sizing: border-box;
+          border-color: @white;
+          border-width: 0.5 * @measure;
+          border-style: solid;
+          border-bottom: none;
+          height: 0.5 * @measure;
+
+          display: block;
+          position: absolute;
+          left: -0.5 * @measure;
+          right: -0.5 * @measure;
+          top: -0.5 * @measure ;
+          bottom: 0.5 * @measure;
+          content: "";
+          background-color: @white;
+          width: auto;
+          background-color: transparent;
+        }
+      }
+
+      text-transform: uppercase;
+      font-weight: 700;
+      color: @black;
+    }
+    .entry-title {
+      margin-top: 1 * @measure;
+      font-size: @measure;
+      margin-bottom: @measure;
+      font-family: @font-header;
+      font-size: 40px;
+      color: @black;
+      @media ( min-width: 700px ) and ( min-height: 500px ) {
+        margin-top: 1.5 * @measure;
+      }
+      @media ( max-width: 699px ) {
+        margin-top: 1.0 * @measure;
+      }
+    }
+    .byline,
+    .description,
+    .description * {
+      margin-top: 1 * @measure;
+      font-size: 1rem;
+      color: @grey3;
+    }
+  }
+
+  #secondary-navigation-menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-bottom: 40px;
+    background: @red;
+    .secondary-navigation-menu {
+      list-style: none;
+      width: 100%;
+      max-width: 1170px;
+      min-height: 80px;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      li {
+        margin-bottom: 0;
+        display: flex;
+        flex: 1 1 0px;
+        a {
+          color: @white;
+          text-transform: uppercase;
+          height: 100%;
+          padding: 0 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex: 1 1 0px;
+          &:hover {
+            text-decoration: none;
+            background: @black;
+          }
+          @media (max-width: 769px) {
+            line-height: inherit;
+            padding: 0;
+            &:hover {
+              background: transparent;
+            }
+          }
+        }
+        @media (max-width: 769px) {
+          border-bottom: 1px solid @grey1;
+          &:not(:first-of-type) {
+            padding: 15px 0;
+          }
+          &:first-of-type {
+            padding: 0 0 15px;
+          }
+        }
+      }
+      @media (max-width: 769px) {
+        flex-direction: column;
+        max-width: 90%;
+        height: auto;
+        margin: 0 auto;
+        padding: 40px 0;
+        display: none;
+      }
+    }
+    @media (max-width: 769px) {
+      display: block;
+      margin-top: -1px;
+      &.open {
+        #secondary-navigation-menu-mobile {
+          background: @black;
+          .bars {
+            display: none!important;
+          }
+          .close {
+            display: inline-block;
+            margin-right: 2%;
+            .dashicons {
+              &::before {
+                border-radius: 50%;
+                border: 1px solid @white;
+              }
+            }
+          }
+        }
+        .secondary-navigation-menu {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  #secondary-navigation-menu-mobile {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background: @red;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 20px 0;
+    li {
+      margin-bottom: 0;
+      width: 100%;
+    }
+    .toggle-secondary-nav-bar {
+      background: transparent;
+      border: 0;
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+      .bars {
+        display: inline-block;
+        margin-right: 2%;
+        .icon-bar {
+          display: block;
+          width: 18px;
+          height: 3px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 3px;
+          background-color: @white;
+        }
+      }
+      .close {
+        display: none;
+      }
+      span {
+        text-transform: uppercase;
+      }
+    }
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
+
+  // use same formatting for the the_content area on this page as on the single-normal template
+  // scoped to section.entry-content rather than .entry-content so that it doesn't propagate to other .entry-content on the page.
+  section.entry-content {
+    // https://github.com/INN/largo/blob/v0.6.4/less/inc/single.less#L62-L65
+    padding: 0 17.021276594%;
+    // https://github.com/INN/largo/blob/v0.6.4/less/inc/single.less#L108-L110
+    @media ( max-width: 979px ) {
+      padding: 0 6.382978723%;
+    }
+    // https://github.com/INN/largo/blob/v0.6.4/less/inc/single.less#L128-129
+    @media ( max-width: 529px ) {
+      padding: 0;
+    }
+  }
+}

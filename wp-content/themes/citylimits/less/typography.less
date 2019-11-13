@@ -1,5 +1,8 @@
-body {
-  font-family: @font-sans;
+body,
+// this is all Largo
+button, input, select, textarea,
+#boilerplate, #header-search button, #header-search input, #site-footer input, #site-footer select, #site-footer ul, #topics-bar ul, .archive-background .related-topics, .archive-background .rss-subscribe-link, .author-box ul li.author-posts-link, .global-nav, .labels, .navbar, .pager, .post-pagination a, .post-pagination span, .post-social > span, .stories h5.tag-list, .subscribe, .tags, .widget.largo-series-posts li a, h1, h2, h3, h4, h5, h6, ul.staff-roster .staff-name {
+  font-family: @font-body;
 }
 h1 a,
 h2 a,
@@ -7,28 +10,32 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-  color: @black;
   text-decoration: none;
-}
-h1 a:hover, h1 a:active,
-h2 a:hover, h2 a:active,
-h3 a:hover, h3 a:active,
-h4 a:hover, h4 a:active,
-h5 a:hover, h5 a:active,
-h6 a:hover, h6 a:active {
-  color: #666;
-  text-decoration: none;
+  &:hover,
+  &:active,
+  &:focus {
+    color: @red;
+    text-decoration: none;
+  }
 }
 a {
-  color: #D41313;
-  text-decoration: none;
+  color: @black;
+  text-decoration: underline;
+  text-decoration-color: @red;
 }
 a:hover, a:active {
-  color: #f61212;
+  color: @red;
   text-decoration: underline;
+}
+p {
+  font-size: 18px;
+  line-height: 28px;
 }
 
 .byline {
+  a {
+    text-decoration: none;
+  }
   .fn {
     text-transform: uppercase;
   }
@@ -37,3 +44,146 @@ a:hover, a:active {
   }
 }
 
+.wp-block-pullquote {
+  position: relative;
+  border-color: @grey1;
+  &:before {
+    content: "\201C";
+    display: inline-block;
+    width: 1ch;
+    height: 1ch;
+    margin-left: -1ch;
+    color: @red;
+    width: 100%;
+    height: 1.5rem;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-color: inherit;
+    position: absolute;
+    top: 0;
+    font-size: 60px;
+    margin: -10px;
+    // padding: 10px 0;
+  }
+  &:after {
+    content: "\201D";
+    display: inline-block;
+    width: 1ch;
+    height: 1ch;
+    margin-right: -1ch;
+    color: @red;
+    width: 100%;
+    height: 1.5rem;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-color: inherit;
+    position: absolute;
+    bottom: 0;
+    font-size: 60px;
+    margin: -10px;
+    padding: 30px 0;
+    text-align: right;
+  }
+}
+
+.wp-block-pullquote,
+.wp-block-pullquote.alignwide,
+.wp-block-pullquote.alignfull,
+.wp-block-pullquote.alignleft,
+.wp-block-pullquote.alignright {
+  text-align: left;
+}
+
+.wp-block-pullquote.alignwide {
+  width: auto;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+@media (min-width: 1300px) {
+  .wp-block-pullquote.alignfull{
+    width: calc( 100% + ( 0.4 * ( 100vw - 1170px ) ) + ( 1170px * 0.0212765957 ) )!important;
+    margin-left: calc( -0.45 * ( 100vw - 1170px ) )!important;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1299px) {
+  .wp-block-pullquote.alignfull{
+    width: calc( 100% + ( 0.2 * ( 100vw - 1170px ) ) + ( 1170px * 0.0212765957 ) )!important;
+    margin-left: calc( -0.2 * ( 100vw - 1170px ) )!important;
+  }
+}
+@media (max-width: 1199px) {
+  .wp-block-pullquote.alignfull {
+    margin-left: 0;
+    margin-right: 0;
+    width: 103%;
+  }
+}
+.wp-block-pullquote.alignleft,
+.wp-block-pullquote.alignright {
+  max-width: 50%;
+  p {
+    font-size: inherit;
+  }
+}
+.wp-block-pullquote blockquote,
+.pull-quote,
+blockquote.pull-quote,
+.type-pull-quote,
+blockquote.type-pull-quote {
+  .sg-pullquote();
+  line-height: 1.3;
+  border: none;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1ch;
+  padding-right: 1ch;
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p,
+  cite {
+    font-style: normal;
+    font-size: inherit;
+    font-weight: 600;
+  }
+
+  // override Largo; see https://github.com/INN/largo/issues/1748
+  &::before,
+  &::after {
+    display: none;
+  }
+
+}
+
+// override "is-style-solid-color" styles
+.wp-block-pullquote.is-style-solid-color {
+  border: solid transparent 1px;
+  &:before {
+    margin: -10px 10px;
+  }
+  blockquote {
+    max-width: 80%;
+    margin: 2em auto;
+    > :first-child::before,
+    > p:last-of-type::after {
+      color: @red;
+    }
+
+    p {
+      font-size: inherit;
+    }
+  }
+}
+
+p.has-drop-cap:not(:focus)::first-letter {
+  color: @color-heading;
+  font-size: 64px;
+  font-family: @font-body;
+  font-weight: 600;
+}
