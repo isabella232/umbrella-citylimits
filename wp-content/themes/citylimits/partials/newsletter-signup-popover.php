@@ -1,5 +1,6 @@
 <?php
 $newsletter_page = get_page_by_path('newsletter-subscriptions');
+wp_enqueue_script( 'cl-newsletter' );
 ?>
 <div class="newsletter-signup footer clearfix mobile visible-xs">
 	<a href="<?= site_url() ?>/newsletter-subscriptions/"></a>

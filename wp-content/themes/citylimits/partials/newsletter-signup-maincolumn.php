@@ -1,5 +1,6 @@
 <?php
 $newsletter_page = get_page_by_path('newsletter-subscriptions');
+wp_enqueue_script( 'cl-newsletter' );
 ?>
 <aside class="newsletter-signup maincolumn clearfix">
 	<div class="not-expanded">
