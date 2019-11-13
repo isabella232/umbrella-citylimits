@@ -3,7 +3,7 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 ?>
 <div class="newsletter-signup footer clearfix mobile visible-xs">
 	<a href="<?= site_url() ?>/newsletter-subscriptions/"></a>
-	<div id="close_bar"><div class="close_box"></div></div>
+	<div id="close_bar"><div class="close_box"><span class="visuallyhidden">Close this popup</span></div></div>
 	<div class="mobile_footer_content">
 		<div class="signup_text_holder">
 			<div class="signup_text"></div>
@@ -25,6 +25,6 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 				}
 			?>
 		</ul>
-		<div class="subscribe_button">Sign Up</div>
+		<div class="btn">Sign Up</div>
 	</div><!--.mobile_footer_content-->
 </div><!--.newsletter-signup-->

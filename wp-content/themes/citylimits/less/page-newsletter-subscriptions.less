@@ -1,0 +1,226 @@
+/*
+ * NEWSLETTER LANDING PAGE
+ */
+.subscribe_button {
+	background-color: @red;
+	cursor: pointer;
+	-webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
+	font-family: @font-body;
+	font-weight: 500;
+	color: @white;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+input[type=submit].subscribe_button {
+	font-size: 18px;
+	border-style: none;
+	padding: 13px 31px;
+	border-style: none;
+}
+body.newsletter-landing {
+	#main {
+		margin-top: 60px;
+	}
+	.row-fluid #content.span8 {
+		margin-left: 0;
+	}
+	#landing_header {
+		height: 100px;
+		background-image: url(../img/skyline_bkg_landing.svg);
+		background-repeat: no-repeat;
+		background-position: center bottom;
+		background-size: cover;
+		background-color: @grey2;
+	}
+	.newsletter_intro p {
+		font-family: @font-body;
+		font-size: 18px;
+		line-height: 1.333em;
+		margin-bottom: @measure;
+		margin-top: @measure;
+		padding-bottom: @measure;
+		border-bottom: 1px @grey1 solid;
+	}
+	.newsletter_group {
+		padding-bottom: 9px;
+		border-bottom: 1px solid #000;
+		&:last-child {
+			border-bottom-style: none;
+		}
+		&+.newsletter_group {
+			margin-top: 23px;
+		}
+		h2 {
+			margin-bottom: 12px;
+		}
+		h3, h4, h5, p {
+			margin-bottom: 0;
+		}
+		.newsletter {
+			padding-bottom: 10px;
+			position: relative;
+			&+.newsletter {
+				margin-top: 0;
+			}
+			figure {
+				margin-bottom: 10px;
+			}
+			h3 {
+				font-size: 24px;
+			}
+			h5.subtitle {
+				font-size: 14px;
+				color: @grey3;
+				text-transform: uppercase;
+			}
+			h5.byline {
+				font-size: 11px;
+				color: @grey3;
+			}
+			p {
+				font-size: 16px;
+				margin-bottom: 1em;
+			}
+			a.sample {
+				font-size: 14px;
+			}
+			.newsletter_info {
+				margin-bottom: 12px;
+			}
+		}
+	}
+
+	.newsletter_group .newsletter,
+	#newsletter_cart form {
+		// clearfix
+		&:before, &:after {
+			display: table;
+			content: " ";
+		}
+		&:after {
+			clear: both;
+		}
+	}
+
+	div.divider {
+		height: 35px;
+		background: @grey2;
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		right: 170px;
+	}
+
+	div.subscribe_button {
+		width: 135px;
+		padding: 0 12px;
+		float: right;
+		clear: both;
+		&:hover {
+			background-color: #00a155; // ew, green
+		}
+		&.selected {
+			background-color: #00a155; // ew, green
+			cursor: default;
+			div.selected {
+				display: block;
+			}
+			div.unselected {
+				display: none;
+			}
+		}
+		div.selected {
+			display: none;
+		}
+		
+		div.selected, div.unselected {
+			float: right;
+			text-align: center;
+			font-size: 18px;
+			font-weight: 500;
+			color: @white;
+			padding: 4px 0;
+			width: 100%;
+		}
+	}
+
+	#newsletter_cart input[type=submit] {
+		margin-bottom: 0;
+		float: right;
+	}
+
+	#sidebar {
+		display: block;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin-bottom: 0;
+		* {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+	}
+	#newsletter_cart {
+		display: none;
+		padding: 19px 27px 27px;
+		background-color: @grey2;
+		h3 {
+			font-size: 28px;
+			margin-bottom: 12px;
+		}
+		#selected_newsletters {
+			list-style-type: none;
+			margin: 0 0 26px;
+			border-top: 1px solid #969696;
+			li {
+				margin-bottom: 0;
+				padding: 0;
+				border-bottom: 1px solid #969696;
+				font-family: @font-body;
+				font-weight: bold;
+				font-size: 16px;
+				line-height: 48px;
+				color: @grey3;
+				.remove {
+					width: 29px;
+					height: 29px;
+					margin-top: 10px;
+					background-image: url(../img/newsletter_close_box.svg);
+					background-repeat: no-repeat;
+					background-size: cover;
+					cursor: pointer;
+					float: right;
+					&:hover {
+						background-image: url(../img/newsletter_close_box_hover.svg);
+					}
+				}
+			}
+		}
+		.newsletter_to_subscribe {
+			padding-bottom: 8px;
+		}
+	}
+}
+
+@media (min-width: 769px) {
+	body.newsletter-landing {
+		.entry-content {
+			margin-right: 98px;
+		}
+		#main {
+			margin-top: 8px;
+		}
+		#sidebar {
+			position: static;
+			#newsletter_cart {
+				position: absolute;
+				margin-top: 19px;
+			}
+		}
+	}
+}

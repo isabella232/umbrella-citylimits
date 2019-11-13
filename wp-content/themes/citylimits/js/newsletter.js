@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 	var homebannerCounter = 0, signupH, signupOpenH, submitted = false;
 	if ($('.newsletter-signup.maincolumn .not-expanded').length) {
 		setBannerSizes()
-		
+
 		$('.newsletter-signup .not-expanded').on('mouseover click', function(e) {
 			if (submitted) {
 				return;
@@ -35,15 +35,11 @@ jQuery(document).ready(function($) {
 		if (!submitted 
 		&& $(window).width() >= 769 
 		&& !footerShown 
-		&& $(window).scrollTop() + $(window).height() >= $('#site-footer').position().top 
+		&& $(window).scrollTop() + $(window).height() >= $('#site-footer').position().top
 		&& !$('body').hasClass('newsletter-landing')) {
 			footerShown = true;
 			setTimeout(function() {
-				$('.newsletter-signup.footer').css({'background-size': $(window).width() + 'px', 'max-height': '500px'});
-				setTimeout(function() {
-					//after the CSS transition, set the background-size back to contain
-					$('.newsletter-signup.footer').css({'background-size': 'contain'});
-				}, 1400);
+				$('.newsletter-signup.footer').css({'max-height': '500px'});
 			}, 1000);
 		}
 	});
@@ -54,7 +50,7 @@ jQuery(document).ready(function($) {
 	&& !$('body').hasClass('newsletter-landing')) {
 		var footerH = $('.newsletter-signup.footer.mobile .mobile_footer_content').outerHeight();
 		setTimeout(function() {
-			$('.newsletter-signup.footer.mobile').css({'max-height': (footerH + 183) + 'px', 'background-position': '13% ' + (footerH + 20) + 'px'});
+			$('.newsletter-signup.footer.mobile').css({'max-height': (footerH + 183) + 'px'});
 		}, 10000);
 	}
 			
@@ -77,7 +73,7 @@ jQuery(document).ready(function($) {
 		signupH = $('.newsletter-signup .not-expanded').outerHeight() + 'px'
 		signupOpenH = $('.newsletter-signup .expanded').outerHeight() + 'px'
 		$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH})
-	
+
 		//set height for thanks in footer
 		signupFooterH = $('.newsletter-signup.footer form').outerHeight() + 'px'
 		$('.newsletter-signup.footer .newsletter-response').css({'height': signupFooterH})

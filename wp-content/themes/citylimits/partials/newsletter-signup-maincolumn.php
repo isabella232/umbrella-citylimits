@@ -1,18 +1,25 @@
 <?php
 $newsletter_page = get_page_by_path('newsletter-subscriptions');
 ?>
-<div class="newsletter-signup maincolumn clearfix">
+<aside class="newsletter-signup maincolumn clearfix">
 	<div class="not-expanded">
-		<div class="not-expanded-bkg"></div>
+		<hgroup>
+			<h1><?php esc_html_e( 'City Limits Newsletters', 'citylimits' ); ?></h1>
+			<h2><?php esc_html_e( 'Sign up for our newsletters to get our reporting delivered to you.', 'citylimits' ); ?></h2>
+		</hgroup>
+		<span class="btn btn-primary">
+			<?php esc_html_e( 'Sign up' ); ?>
+		</span>
 	</div>
 
 	<form class="expanded">
+		<hgroup>
+			<h1><?php esc_html_e( 'City Limits Newsletters', 'citylimits' ); ?></h1>
+			<h2><?php esc_html_e( 'Sign up for our newsletters to get our reporting delivered to you.', 'citylimits' ); ?></h2>
+		</hgroup>
 		<div class="row">
-			<div class="column signup_text_holder">
-				<div class="signup_text"></div>
-				<p><?php echo wp_kses_post(  $newsletter_page->post_content ) ?></p>
-			</div>
 			<div class="column newsletter_list">
+				<p><?php echo wp_kses_post(  $newsletter_page->post_content ) ?></p>
 				<?php
 					$checkedFlag = false;
 					if ( function_exists( 'get_field' ) ) {
@@ -43,7 +50,7 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 			<div class="column newsletter_form">
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
 				<input type="email" name="newsletter_email" placeholder="Email" required>
-				<input type="submit" class="subscribe_button" value="Sign Up">
+				<input type="submit" class="btn" value="Sign Up">
 			</div>
 		</div><!--.row-->
 	</form>
@@ -60,4 +67,4 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 			</div><!--.row-->
 		</div><!--.newsletter-response-->
 	<?php } ?>
-</div><!--.newsletter-signup-->
+</aside>
