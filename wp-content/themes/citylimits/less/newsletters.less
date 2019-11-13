@@ -239,12 +239,15 @@
 
 			// some bits to hide the background image when this is the last widget on the series landing page
 			// if it's the last one on the series landing page, go big or go home
+			// same if it's the before-footer widget area
+			#before-footer &.open:last-child,
 			.cftl-tax-landing-template-series-landing-special-projects #sidebar-bottom &.open:last-child {
 				background-image: none;
 				.expanded {
 					padding-bottom: 0;
 				}
 			}
+			#before-footer &:last-child,
 			.cftl-tax-landing-template-series-landing-special-projects #sidebar-bottom &:last-child {
 				margin-bottom: 0;
 				width: 100vw;
