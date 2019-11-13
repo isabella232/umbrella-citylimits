@@ -6,10 +6,10 @@ wp_enqueue_script( 'cl-newsletter' );
 	<a href="<?= site_url() ?>/newsletter-subscriptions/"></a>
 	<div id="close_bar"><div class="close_box"><span class="visuallyhidden">Close this popup</span></div></div>
 	<div class="mobile_footer_content">
-		<div class="signup_text_holder">
-			<div class="signup_text"></div>
-		</div>
-		<p><?= $newsletter_page->post_content ?></p>
+		<hgroup>
+			<h1><?php esc_html_e( 'City Limits Newsletters', 'citylimits' ); ?></h1>
+		</hgroup>
+		<div class="post_content"><?= $newsletter_page->post_content ?></div>
 		<ul>
 			<?php
 				if ( function_exists( 'get_field' ) ) {
@@ -26,6 +26,6 @@ wp_enqueue_script( 'cl-newsletter' );
 				}
 			?>
 		</ul>
-		<div class="btn">Sign Up</div>
+		<div class="btn btn-primary">Sign Up</div>
 	</div><!--.mobile_footer_content-->
 </div><!--.newsletter-signup-->
