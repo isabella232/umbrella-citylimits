@@ -339,9 +339,25 @@ add_filter( 'max_srcset_image_width', 'set_max_srcset_image_width' );
  * newsletter subscribe forms
  */
 function citylimits_newsletter_enqueue() {
-	wp_register_script( 'jscookies', get_stylesheet_directory_uri() . '/js/cookies.js', null, '1.1', true );
-	wp_register_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery', 'jscookies' ), null, true );
-	wp_localize_script( 'cl-newsletter', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+	wp_register_script(
+		'jscookies',
+		get_stylesheet_directory_uri() . '/js/cookies.js',
+		null,
+		filemtime( get_stylesheet_directory() . '/js/cookies.js' ),
+		true
+	);
+	wp_register_script(
+		'cl-newsletter',
+		get_stylesheet_directory_uri() . '/js/newsletter.js',
+		array( 'jquery', 'jscookies' ),
+		filemtime( get_stylesheet_directory() . '/js/newsletter.js' ),
+		true
+	);
+	wp_localize_script(
+		'cl-newsletter',
+		'myAjax',
+		array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) )
+	);
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
 
@@ -386,7 +402,13 @@ add_action( 'init', 'register_citylimits_menu_locations' );
  */
 function citylimits_enqueue_styles(){
 	wp_enqueue_style( 'dashicons' );
-	wp_enqueue_script( 'citylimits-navigation', get_stylesheet_directory_uri() . '/js/navigation.js', array( 'jquery', 'largo-modernizr' ), '1.0', true );
+	wp_enqueue_script(
+		'citylimits-navigation',
+		get_stylesheet_directory_uri() . '/js/navigation.js',
+		array( 'jquery', 'largo-modernizr' ),
+		'1.0',
+		true
+	);
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
 
