@@ -12,6 +12,10 @@
 	.newsletter-response {
 		display: none;
 	}
+	.btn {
+		padding: (0.5 * @measure) @measure;
+		text-transform: uppercase
+	}
 	.row,
 	.expanded {
 		&:before, &:after {
@@ -243,22 +247,31 @@
 			overflow: hidden;
 			.not-expanded {
 				position: relative;
+				margin-top: 2 * @measure;
+				border-top: 1px solid @white;
+				border-left: 1px solid @white;
+				border-right: 1px solid @white;
+				hgroup {
+					margin-top: -1 * @measure;
+					background: @black;
+				}
+				.btn {
+					display: block;
+					margin: 0 auto;
+					width: max-content;
+				}
 			}
 			.expanded {
 				background-color: @black;
 				display: none;
 				padding-top: 40px;
 				width: 100%;
-				.row:first-child {
-					margin-left: 13.530927835051546%;
-					margin-right: 11.211340206185567%;
-					.column {
-						width: 50%;
-						padding: 0;
-						&.newsletter_list {
-							padding-left: 20px;
-							border-left: 1px solid #3c3b36;
-						}
+				.column {
+					width: 50%;
+					padding: 0;
+					&.newsletter_list {
+						padding-left: 20px;
+						border-left: 1px solid #3c3b36;
 					}
 				}
 				.column.newsletter_form {

@@ -1,27 +1,44 @@
 jQuery(document).ready(function($) {
-	var homebannerCounter = 0, signupH, signupOpenH, submitted = false;
+	var homebannerCounter = 0,
+	    signupH, signupOpenH, submitted = false;
+
+	function setBannerSizes() {
+		signupH = $('.newsletter-signup .not-expanded').outerHeight() + 'px';
+		signupOpenH = $('.newsletter-signup .expanded').outerHeight() + 'px';
+		//$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH})
+
+		//set height for thanks in footer
+		signupFooterH = $('.newsletter-signup.footer form').outerHeight() + 'px';
+		$('.newsletter-signup.footer .newsletter-response').css({'height': signupFooterH});
+	}
+
 	if ($('.newsletter-signup.maincolumn .not-expanded').length) {
-		setBannerSizes()
+		setBannerSizes();
 
 		$('.newsletter-signup .not-expanded').on('mouseover click', function(e) {
 			if (submitted) {
 				return;
 			}
-			var $expanded = $(this).parent().find('.expanded');
+			var $this = $(this);
+			var $parent = $this.parent();
+			var $expanded = $parent.find('.expanded');
+			var $notexpanded = $parent.find('.not-expanded');
 			if (e.originalEvent.type == 'click' || homebannerCounter < 3) {
-				$(this).parent().addClass('open');
-				$(this).parent().css({'max-height': signupOpenH});
+				$parent.addClass('open');
+				$notexpanded.hide();
 				$expanded.fadeIn(300);
 			}
 			$expanded.mouseleave(function(e) {
 				//don't hide if they're in the middle of filling it out.
-				if ($expanded.find('input[name=newsletter_fname]').val() 
-				|| $expanded.find('input[name=newsletter_email]').val()) {
+				if (
+					$expanded.find('input[name=newsletter_fname]').val()
+					|| $expanded.find('input[name=newsletter_email]').val()
+				) {
 					return
 				}
 				if (homebannerCounter <= 3 && !submitted) {
-					$(this).parent().removeClass('open');
-					$(this).parent().css({'max-height': signupH});
+					$parent.removeClass('open');
+					$notexpanded.show();
 					$(this).fadeOut(300);
 				}
 			});
@@ -32,11 +49,13 @@ jQuery(document).ready(function($) {
 	var footerShown = false;
 	//show footer on scroll for wide layouts
 	$(window).scroll(function() {
-		if (!submitted 
-		&& $(window).width() >= 769 
-		&& !footerShown 
-		&& $(window).scrollTop() + $(window).height() >= $('#site-footer').position().top
-		&& !$('body').hasClass('newsletter-landing')) {
+		if (
+			!submitted 
+			&& $(window).width() >= 769 
+			&& !footerShown 
+			&& $(window).scrollTop() + $(window).height() >= $('#site-footer').position().top
+			&& !$('body').hasClass('newsletter-landing')
+		) {
 			footerShown = true;
 			setTimeout(function() {
 				$('.newsletter-signup.footer').css({'max-height': '500px'});
@@ -69,15 +88,6 @@ jQuery(document).ready(function($) {
 		}
 	})
 
-	function setBannerSizes() {
-		signupH = $('.newsletter-signup .not-expanded').outerHeight() + 'px'
-		signupOpenH = $('.newsletter-signup .expanded').outerHeight() + 'px'
-		$('.newsletter-signup.maincolumn').css({'height': signupOpenH, 'max-height': signupH})
-
-		//set height for thanks in footer
-		signupFooterH = $('.newsletter-signup.footer form').outerHeight() + 'px'
-		$('.newsletter-signup.footer .newsletter-response').css({'height': signupFooterH})
-	}
 	
 	//Newsletter Landing Page
 	if ($('body').hasClass('newsletter-landing')) {
@@ -171,7 +181,7 @@ jQuery(document).ready(function($) {
 					$('.newsletter-signup form, .newsletter-signup .not-expanded').hide()
 					$('.newsletter-response-content').html(response.message)
 					$('.newsletter-response').show()
-					$('.newsletter-signup.maincolumn').removeClass('open').css({'max-height': '318px'})
+					$('.newsletter-signup.maincolumn').removeClass('open')
 				}
 			}
 		})
