@@ -194,6 +194,8 @@
 		&.maincolumn {
 			display: block;
 			margin: 24px 0;
+
+
 			position: relative;
 			overflow: hidden;
 			-webkit-transition: max-height 1.4s, height 1.4s;
@@ -218,6 +220,32 @@
 					width: max-content;
 				}
 			}
+
+			// some bits to hide the background image when this is the last widget on the series landing page
+			&:last-child {
+				margin-bottom: 0;
+			}
+			&.open:last-child {
+				background-image: none;
+				.expanded {
+					padding-bottom: 0;
+				}
+			}
+			// if it's the last one on the series landing page, go big or go home
+			.cftl-tax-landing-template-series-landing-special-projects #sidebar-bottom &:last-child {
+				width: 100vw;
+				box-sizing: border-box;
+				margin-left: calc(50% - 50vw);
+				margin-right: calc(50% - 50vw);
+				.not-expanded,
+				.expanded {
+					max-width: 1170px;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+
+			// add the image background in general cases
 			&.open {
 				background-image: url( '../img/footer-skyline.png' );
 				background-repeat: no-repeat;
