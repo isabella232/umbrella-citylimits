@@ -115,17 +115,6 @@ remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 			$version,
 			true
 		);
-
-		// Only load jquery tabs for the related content box if it's active
-		if ( is_single() ) {
-			wp_enqueue_script(
-				'idTabs',
-				get_template_directory_uri() . '/js/jquery.idTabs.js',
-				array( 'jquery' ),
-				$version,
-				true
-			);
-		}
 	}
 
 /**

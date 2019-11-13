@@ -1,7 +1,12 @@
-/* NEWSLETTER SIGNUP FORMS */
+/**
+ * NEWSLETTER SIGNUP FORMS
+ */
+
+// General styles
 .newsletter-signup {
-	font-size: 12px;
-	font-family: @font-body;
+	background-color: @black;
+	color: @grey1;
+
 	* {
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -13,7 +18,12 @@
 	.newsletter-response {
 		display: none;
 	}
-	.row, .expanded {
+	.btn {
+		padding: (0.5 * @measure) (1.5 * @measure);
+		text-transform: uppercase
+	}
+	.row,
+	.expanded {
 		&:before, &:after {
 			display: table;
 			content: " ";
@@ -22,14 +32,32 @@
 			clear: both;
 		}
 	}
-	h2, h3, h4 {
+	hgroup {
+		text-align: center;
+		border-left: 1px solid @grey1;
+		border-right: 1px solid @grey1;
+		max-width: 30em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	h1 {
+		color: @white;
+		font-size: calc( 15px + 1vw );
 		margin-bottom: 0;
-		font-size: 15px;
-		line-height: 1.2em;
+	}
+	h2 {
+		color: @grey1;
+		font-size: 14px;
+		font-family: @font-body;
+		font-weight: normal;
 	}
 	h3 {
 		font-size: 16px;
-		color: #F00;
+		color: @red;
+		margin-bottom: 0;
+	}
+	.post_content {
+		margin-bottom: @measure;
 	}
 	label {
 		display: inline;
@@ -44,371 +72,129 @@
 	}
 	.signup_text_holder {
 		position: relative;
-		.signup_text {
-			padding-bottom: 30.41958041958042%;
-			background-image: url(../img/signup_text.svg);
-			background-repeat: no-repeat;
-			background-size: contain;
-		}
 	}
 	&.maincolumn {
+		// this gets revealed on larger viewports
 		display: none;
+		padding: 0 2.5%;
 	}
-	&.maincolumn, &.footer {
-		background-color: #EBEBEB;
-		.column {
-			float: left;
-			width: 33.33%;
-			padding: 15px;
-		}
-		p {
-			font-size: 12px;
-			margin-bottom: 0;
-		}
-		section+section {
-			margin-top: 9px;
-		}
+	.column {
+		float: left;
+		width: 33.33%;
+		padding: 15px;
 	}
-	
-	&.footer {
-		max-height: 0;
-		margin-top: 30px;
-		-webkit-transition: max-height 1.4s, background-position 1.4s;
-		transition: max-height 1.4s, background-position 1.4s;
-		overflow: hidden;
-		background-image: url(../img/skyline_bkg.svg);
-		background-position: 13% bottom;
-		background-repeat: no-repeat;
-		form {
-			display: none;
-		}
-		&.mobile {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			z-index: 99999;
-			max-height: 0;
-			-webkit-transition: max-height 1.4s;
-			transition: max-height 1.4s;
-			&>a {
-				position: absolute;
-				display: block;
-				z-index: 20;
-				top: 33px;
-				left: 0;
-				bottom: 0;
-				right: 0;
-			}
-			#close_bar {
-				height: 33px;
-				position: relative;
-				background-color: #b6b6b6;
-				border-top: 1px solid #979797;
-				border-bottom: 1px solid #979797;
-				.close_box {
-					position: absolute;
-					right: 0;
-					margin-top: -1px;
-					width: 33px;
-					height: 33px;
-					background-image: url(../img/newsletter_close_box_hover.svg);
-					background-repeat: no-repeat;
-					background-size: contain;
-					z-index: 100;
-					cursor: pointer;
-				}
-			}
-			.mobile_footer_content {
-				max-width: 293px;
-				position: relative;
-				margin: 35px auto 115px;
-				padding: 0 15px;
-				font-size: 14px;
-				.signup_text_holder {
-					margin-bottom: 15px;
-				}
-				ul {
-					font-size: 15px;
-					font-weight: bold;
-					color: #F00;
-					margin-left: 20px;
-					margin-top: 9px;
-					li {
-						margin: 0;
-					}
-				}
-				.subscribe_button {
-					text-align: center;
-					display: inline-block;
-					width: 135px;
-					height: 35px;
-					font-family: @font-body;
-					font-size: 18px;
-					font-weight: 500;
-					line-height: 35px;
-					text-transform: uppercase;
-					position: absolute;
-					right: 15px;
-				}
-					
-			}
-		}
-	}
-	
-	&.header {
-		.header-cl-ad {
-			display: none;
-		}
-		.cl-tagline-holder {
-			width: 388px;
-			height: 90px;
-			position: relative;
-			float: left;
-			.cl-tagline {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				background-image: url(../img/header_tagline.svg);
-				background-position: center;
-				background-size: cover;
-				background-repeat: no-repeat;
-			}
-		}
-	}
-	
-}
-
-.header-ad-zone {
-	width: 728px;
-	margin-top: 19px;
-}
-
-.subscribe_button {
-	background-color: #F00;
-	cursor: pointer;
-	-webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
-	-moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
-	box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.3);
-	font-family: @font-body;
-	font-weight: 500;
-	color: #FFF;
-	font-size: 18px;
-	text-transform: uppercase;
-}
-
-input[type=submit].subscribe_button {
-	font-size: 18px;
-	border-style: none;
-	padding: 13px 31px;
-	border-style: none;
-}
-
-/*NEWSLETTER LANDING PAGE*/
-body.newsletter-landing {
-	#main {
-		margin-top: 60px;
-	}
-	.row-fluid #content.span8 {
-		margin-left: 0;
-	}
-	#landing_header {
-		height: 100px;
-		background-image: url(../img/skyline_bkg_landing.svg);
-		background-repeat: no-repeat;
-		background-position: center bottom;
-		background-size: cover;
-		background-color: #EBEBEB;
-	}
-	.newsletter_intro p {
-		font-family: @font-body;
-		font-size: 18px;
-		line-height: 1.333em;
-		color: #333;
-		margin-bottom: 15px;
-		margin-top: 19px;
-		padding-bottom: 17px;
-		border-bottom: 1px #D1D1D1 solid;
-	}
-	.newsletter_group {
-		padding-bottom: 9px;
-		border-bottom: 1px solid #000;
-		&:last-child {
-			border-bottom-style: none;
-		}
-		&+.newsletter_group {
-			margin-top: 23px;
-		}
-		h2 {
-			margin-bottom: 12px;
-		}
-		h3, h4, h5, p {
-			margin-bottom: 0;
-		}
-		.newsletter {
-			padding-bottom: 10px;
-			position: relative;
-			&+.newsletter {
-				margin-top: 0;
-			}
-			figure {
-				margin-bottom: 10px;
-			}
-			h3 {
-				font-size: 24px;
-			}
-			h5.subtitle {
-				font-size: 14px;
-				color: #AAA;
-				text-transform: uppercase;
-			}
-			h5.byline {
-				font-size: 11px;
-				color: #343434;
-			}
-			p {
-				font-size: 16px;
-				color: #333;
-				margin-bottom: 1em;
-			}
-			a.sample {
-				font-size: 14px;
-				color: #F00;
-			}
-			.newsletter_info {
-				margin-bottom: 12px;
-			}
-		}
-	}
-	
-	.newsletter_group .newsletter, #newsletter_cart form {
-		&:before, &:after {
-			display: table;
-			content: " ";
-		}
-		&:after {
-			clear: both;
-		}
-	}
-	
-	div.divider {
-		height: 35px;
-		background: #EBEBEB;
-		position: absolute;
-		bottom: 10px;
-		left: 0;
-		right: 170px;
-	}
-
-	div.subscribe_button {
-		width: 135px;
-		padding: 0 12px;
-		float: right;
-		clear: both;
-		&:hover {
-			background-color: #00a155;
-		}
-		&.selected {
-			background-color: #00a155;
-			cursor: default;
-			div.selected {
-				display: block;
-			}
-			div.unselected {
-				display: none;
-			}
-		}
-		div.selected {
-			display: none;
-		}
-		
-		div.selected, div.unselected {
-			float: right;
-			text-align: center;
-			font-size: 18px;
-			font-weight: 500;
-			color: #FFF;
-			padding: 4px 0;
-			width: 100%;
-		}
-	}
-
-	
-	#newsletter_cart input[type=submit] {
+	p {
+		font-size: 12px;
 		margin-bottom: 0;
-		float: right;
 	}
-
-	#sidebar {
-		display: block;
+	section {
+		padding-left: 1 * @measure;
+	}
+	section input[type="checkbox"] {
+		float: left;
+		margin-top: 0.2rem;
+		margin-left: -1 * @measure;
+	}
+	section+section {
+		margin-top: @measure;
+	}
+	
+	&.mobile {
+		padding: 0;
 		position: fixed;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		margin-bottom: 0;
-		* {
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
+		z-index: 99999;
+		max-height: 0;
+		-webkit-transition: max-height 1.4s, height 1.4s;
+		transition: max-height 1.4s, height 1.4s;
+		&>a {
+			// basically covers the entire widget, save the close bar
+			position: absolute;
+			display: block;
+			z-index: 20;
+			top: 33px;
+			left: 0;
+			bottom: 0;
+			right: 0;
 		}
-	}
-	#newsletter_cart {
-		display: none;
-		padding: 19px 27px 27px;
-		background-color: #EBEBEB;
-		h3 {
-			font-size: 28px;
-			margin-bottom: 12px;
-		}
-		#selected_newsletters {
-			list-style-type: none;
-			margin: 0 0 26px;
-			border-top: 1px solid #969696;
-			li {
-				margin-bottom: 0;
-				padding: 0;
-				border-bottom: 1px solid #969696;
-				font-family: @font-body;
-				font-weight: bold;
-				font-size: 16px;
-				line-height: 48px;
-				color: #333;
-				.remove {
-					width: 29px;
-					height: 29px;
-					margin-top: 10px;
-					background-image: url(../img/newsletter_close_box.svg);
-					background-repeat: no-repeat;
-					background-size: cover;
-					cursor: pointer;
-					float: right;
-					&:hover {
-						background-image: url(../img/newsletter_close_box_hover.svg);
-					}
-				}
+		#close_bar {
+			position: relative;
+			background-color: @black;
+			height: 44px;
+			.close_box {
+				width: 44px;
+				height: 44px;
+				position: absolute;
+				right: 0;
+				margin-top: -1px;
+				background-image: url(../img/newsletter_close_box_hover.svg);
+				background-repeat: no-repeat;
+				background-size: contain;
+				z-index: 100;
+				cursor: pointer;
 			}
 		}
-		.newsletter_to_subscribe {
-			padding-bottom: 8px;
+		hgroup {
+			margin-top: -2 * @measure;
+			min-height: 2 * @measure;
+			background-color: @black;
+			margin-bottom: @measure;
+		}
+		h1 {
+			line-height: 2 * @measure;
+			vertical-align: middle;
+		}
+		.post-content {
+			text-align: center;
+		}
+		ul {
+			font-size: 15px;
+			font-weight: bold;
+			color: @red;
+			margin-left: 20px;
+			margin-top: 0;
+			li {
+				margin: 0;
+			}
+		}
+		.mobile_footer_content {
+			position: relative;
+			margin: @measure @measure 0;
+			padding: @measure;
+			font-size: 14px;
+			border-top: 1px solid @white;
+			border-left: 1px solid @white;
+			border-right: 1px solid @white;
+
 		}
 	}
 }
 
-#newsletter_cart, .newsletter-signup {
-	input[type=text], input[type=email] {
+// these styles apply to the signup forms in the widget and on the footer popup, but also to the checkout form on page-newsletter-subscriptions.php
+#newsletter_cart,
+.newsletter-signup {
+	input[type=text],
+	input[type=email] {
+		border: 2px solid @white;
+		font-family: @font-body;
+		color: @white;
+		background-color: @black;
+		&:hover, &:active, &:focus {
+			border: 2px solid @white;
+			color: @black;
+			background-color: @white;
+			&::placeholder {
+				color: @grey3;
+			}
+		}
+		&::placeholder {
+			color: @grey2;
+		}
 		width: 100%;
 		margin-bottom: 10px;
-		font-family: @font-body;
-		color: #000;
-		&::placeholder {
-			font-family: @font-body;
-			color: #878787;
-		}
-		border: 1px solid #7D7D7D;
 		padding: 4px 16px;
-		-webkit-box-shadow: inset 0 1px 5px 0 #7D7D7D;
-		-moz-box-shadow: inset 0 1px 5px 0 #7D7D7D;
-		box-shadow: inset 0 1px 5px 0 #7D7D7D;
 	}
 }
 
@@ -416,264 +202,118 @@ body.newsletter-landing {
 	.visible-xs {
 		display: none !important;
 	}
-	body.category, body.archive:not(.author) {
+	body.category,
+	body.archive:not(.author) {
 		.newsletter-signup.maincolumn {
-			.not-expanded .not-expanded-bkg {
-				padding-bottom: 8.583690987124464%;
-				background-image: url(../img/newsletter-1165x100-collapsed.svg);
-			}
-			.expanded {
-				background-size: 110%;
-				padding-top: 50px;
-				padding-bottom: 73px;
-				.row {
-					float: left;
-					&:first-child {
-						width: 49.871244635193133%;
-						margin: 0 0 0 14.763948497854077%;
-						.column {
-							&.signup_text_holder {
-								padding-right: 5.85197934595525%;
-							}
-							&.newsletter_list {
-								border-right: 1px solid #3c3b36;
-								padding: 0 7.573149741824441% 0;
-							}
-						}
-					}
-					&:last-child {
-						width: 18.025751072961373%;
-						.column.newsletter_form {
-							display: block;
-							margin: 0;
-							width: 100%;
-							padding-left: 16.19047619047619%;
-							padding-top: 0;
-							input {
-								display: block;
-							}
-							input[type=text], input[type=email] {
-								width: 100%;
-								padding: 4px 16px;
-								margin-bottom: 9px;
-							}
-							input[type=submit] {
-								width: 77.27272727272727%;
-								float: right;
-								height: 35px;
-								line-height: 35px;
-						}
-						}
-					}
-				}
-			}
 		}
 	}
-	.newsletter-signup {
-		&.header {
-			display: block;
-			position: relative;
-			.header-cl-ad {
-				height: 90px;
-				width: 340px;
-				display: inline-block;
-			}
-		}
 
+	.newsletter-signup {
+		// main column variant
 		&.maincolumn {
 			display: block;
 			margin: 24px 0;
+
+
 			position: relative;
-			max-height: 100px;
-			-webkit-transition: max-height .4s;
-			transition: max-height .4s;
 			overflow: hidden;
-			.not-expanded {
+			-webkit-transition: max-height 1.4s, height 1.4s;
+			transition: max-height 1.4s, height 1.4s;
+
+			.not-expanded,
+			.expanded {
 				position: relative;
-				.not-expanded-bkg {
-					cursor: pointer;
-					padding-bottom: 12.88659793814433%;
-					background-image: url(../img/newsletter-776x100-collapsed.svg);
-					background-repeat: no-repeat;
-					background-size: contain;
+				margin-top: 2 * @measure;
+				border-top: 1px solid @white;
+				border-left: 1px solid @white;
+				border-right: 1px solid @white;
+				hgroup {
+					margin-top: -1 * @measure;
+					background: @black;
 				}
 			}
-			.expanded {
-				background-color: #EBEBEB;
-				display: none;
-				position: absolute;
-				padding-top: 40px;
-				top: 0;
-				background-image: url(../img/skyline_bkg_footer.svg);
+			.not-expanded {
+				.btn {
+					display: block;
+					margin: 0 auto @measure;
+					width: max-content;
+				}
+			}
+
+			// some bits to hide the background image when this is the last widget on the series landing page
+			// if it's the last one on the series landing page, go big or go home
+			// same if it's the before-footer widget area
+			#before-footer &.open:last-child,
+			.cftl-tax-landing-template-series-landing-special-projects #sidebar-bottom &.open:last-child {
+				background-image: none;
+				.expanded {
+					padding-bottom: 0;
+				}
+			}
+			#before-footer &:last-child,
+			.cftl-tax-landing-template-series-landing-special-projects #sidebar-bottom &:last-child {
+				margin-bottom: 0;
+				width: 100vw;
+				box-sizing: border-box;
+				margin-left: calc(50% - 50vw);
+				margin-right: calc(50% - 50vw);
+				.not-expanded,
+				.expanded {
+					max-width: 1170px;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+
+			// add the image background in general cases
+			&.open {
+				background-image: url( '../img/footer-skyline.png' );
 				background-repeat: no-repeat;
-				background-size: 160%;
-				background-position: left bottom;
+				background-position: bottom center;
+				background-size: contain;
+			}
+			.expanded {
+				padding-bottom: calc( ( 100% / 1330 * 106 ) + ( 2 * @measure ) ); // to make room for the background image on the parent element, make these dimensions match footer-skyline.png's size
+				display: none;
 				width: 100%;
-				.row:first-child {
-					margin-left: 13.530927835051546%;
-					margin-right: 11.211340206185567%;
-					.column {
-						width: 50%;
-						padding: 0;
-						&.signup_text_holder {
-							padding-right: 20px;
-							p {
-								margin-top: 10px;
-								font-size: 14px;
-								padding-left: 30.514705882352941%;
-							}
-						}
-						&.newsletter_list {
-							padding-left: 20px;
-							border-left: 1px solid #3c3b36;
-						}
-					}
+				.row {
+					max-width: 950px;
+					margin: 0 auto;
+				}
+				.column {
+					padding: 0;
+					box-sizing: border-box;
+					padding: 0 @measure 0 @measure;
+				}
+				.column.newsletter_list {
+					width: 60%;
+					border-right: 1px solid @grey1;
 				}
 				.column.newsletter_form {
-					width: 90.721649484536082%;
-					margin: 18px 4.639175257731959% 35px;
-					padding: 0;
-					display: flex;
-					justify-content: space-between;
-					input[type=text], input[type=email] {
-						display: inline;
-						width: 36.715909090909091%;
+					width: 40%;
+					input[type=text],
+					input[type=email],
+					input[type=submit] {
+						display: inline-block;
 						padding: 6px 18px;
 						font-size: 14px;
 						line-height: 25px;
-					}
-					input[type=submit] {
-						display: inline;
-						height: 37px;
-						line-height: 37px;
-						margin-bottom: 10px;
-						width: 19.460227272727273%;
-						padding: 0 6px;
+						clear: both;
+						box-sizing: border-box;
 					}
 				}
 			}
 			.newsletter-response {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-image: url(../img/skyline_bkg_footer.svg);
-				background-repeat: no-repeat;
-				background-position: -2px bottom;
-				background-size: 175%;
-				background-color: #EBEBEB;
-				.column.signup_text_holder {
-					margin-top: 4px;
-					width: 51.354838709677419%;
-					padding-left: 13.806451612903226%;
-					.signup_intro {
-						margin-left: 35%;
-						margin-top: 14px;
-						p {
-							font-size: 14px;
-						}
-					}
+				margin: @measure 0;
+				p {
+					font-size: 20px;
+					line-height: 1.2em;
+					margin-bottom: 11px;
 				}
-				.column.newsletter-response-content {
-					width: 45.032258064516129%;
-					border-left: 1px solid #3c3b36;
-					margin-top: 56px;
-					text-align: center;
-					p {
-						font-size: 20px;
-						line-height: 1.2em;
-						margin-bottom: 11px;
-					}
-					h3 {
-						text-transform: uppercase;
-						font-size: 38px;
-					}
+				h3 {
+					text-transform: uppercase;
+					font-size: 38px;
 				}
-			}
-		}
-
-		&.footer {
-			padding: 0 2.5%;
-			background-image: url(../img/skyline_bkg_footer.svg);
-			.newsletter-response {
-				.row {
-					max-width: 1170px;
-					margin: 0 auto;
-					.column.signup_text_holder {
-						width: 24.8387096774193548%;
-						margin-left: 24.8387096774193548%;
-						margin-top: 6px;
-						padding-right: 37px;
-					}
-					.column.newsletter-response-content {
-						text-align: center;
-						width: 35%;
-						padding-left: 46px;
-						padding-bottom: 3px;
-						padding-top: 12px;
-						margin-top: 18px;
-						border-left: 1px solid #3c3b36;
-						p {
-							font-size: 16px;
-							line-height: 1.2em;
-							margin-bottom: 11px;
-						}
-						h3 {
-							text-transform: uppercase;
-							font-size: 36px;
-						}
-					}
-				}
-			}
-			.column {
-				margin-top: 20px;
-				margin-bottom: 35px;
-			}
-			.signup_text_holder {
-				width: 33.5176991150442%;
-				padding-right: 2.5%;
-			}
-			.newsletter_list {
-				width: 26.548672566371681%;
-				padding-left: 2.5%;
-				padding-right: 2.5%;
-				border-left: 1px solid #3c3b36;
-				border-right: 1px solid #3c3b36;
-			}
-			.newsletter_form {
-				width: 39.933628318584071%;
-				position: relative;
-				padding-left: 2.5%;
-			}
-			form {
-				display: block;
-				max-width: 1170px;
-				margin: 0 auto;
-				.newsletter_fields {
-					float: left;
-					width: 53.5%;
-				}
-				input[type=submit].subscribe_button {
-					width: 41%;
-					margin-left: 5.15%;
-				}
-			}
-		}
-	}
-	
-	body.newsletter-landing {
-		.entry-content {
-			margin-right: 98px;
-		}
-		#main {
-			margin-top: 8px;
-		}
-		#sidebar {
-			position: static;
-			#newsletter_cart {
-				position: absolute;
-				margin-top: 19px;
 			}
 		}
 	}
@@ -687,27 +327,10 @@ body.newsletter-landing {
 	}
 }
 
-@media (max-width: 768px) {
-	.header-ad-zone {
-		display: none;
-	}
-}
-
-@media (max-width: 1160px) {
-	.header-ad-zone {
-		margin: 0 auto;
-	}
-}
-
 @media (min-width: 1200px) {
 	.newsletter-signup {
 		&.footer {
 			margin: 0 auto;
-		}
-		&.header {
-			.header-cl-ad {
-				position: static;
-			}
 		}
 	}
 }

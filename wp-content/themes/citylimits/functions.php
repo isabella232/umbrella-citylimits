@@ -316,15 +316,6 @@ function citylimits_communitywire_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
 
-function citylimits_newsletter_enqueue() {
-	wp_enqueue_script( 'jscookies', get_stylesheet_directory_uri() . '/js/cookies.js', null, '1.1', true );
-
-	wp_register_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery', 'jscookies' ), null, true );
-	wp_localize_script( 'cl-newsletter', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));        
-	wp_enqueue_script( 'cl-newsletter' );
-}
-add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
-
 /* need this to allow Gravity Forms to post to API */
 add_filter( 'gform_webhooks_request_args', function ( $request_args, $feed ) {
     $request_url = rgars( $feed, 'meta/requestURL' );
@@ -347,19 +338,18 @@ add_filter( 'max_srcset_image_width', 'set_max_srcset_image_width' );
 /**
  * newsletter subscribe forms
  */
+function citylimits_newsletter_enqueue() {
+	wp_register_script( 'jscookies', get_stylesheet_directory_uri() . '/js/cookies.js', null, '1.1', true );
+	wp_register_script( 'cl-newsletter', get_stylesheet_directory_uri() . '/js/newsletter.js', array( 'jquery', 'jscookies' ), null, true );
+	wp_localize_script( 'cl-newsletter', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
 
 function citylimits_newsletter_form_interstitial() {
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
 }
-add_action( 'largo_before_sticky_posts', 'citylimits_newsletter_form_interstitial', 11 );
-add_action( 'largo_category_after_primary_featured_post', 'citylimits_newsletter_form_interstitial', 11 );
 add_action( 'largo_series_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
 add_action( 'largo_archive_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
-
-function citylimits_newsletter_form_footer() {
-	get_template_part( 'partials/newsletter-signup', 'footer' );
-}
-add_action( 'largo_before_footer', 'citylimits_newsletter_form_footer', 11 );
 
 function citylimits_newsletter_form_popover() {
 	get_template_part( 'partials/newsletter-signup', 'popover' );
