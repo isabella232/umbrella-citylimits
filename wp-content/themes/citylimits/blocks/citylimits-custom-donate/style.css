@@ -43,10 +43,6 @@
   margin: 0.75rem 0;
   color: #c3c3c3;
 }
-.wp-block-citylimits-citylimits-custom-donate .btn {
-  text-transform: uppercase;
-  font-family: roc-grotesk, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
 .wp-block-citylimits-citylimits-custom-donate .btn:hover {
   border-color: white;
 }
