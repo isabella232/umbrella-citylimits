@@ -36,8 +36,8 @@ wp_enqueue_script( 'cl-newsletter' );
 								}
 								?>
 									<section>
-										<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]"<?= $checked ?> required>
 										<label class="" for="newsletter_<?= $newsletter['id'] ?>">
+											<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]"<?= $checked ?> required>
 											<h3><?php esc_html_e( $newsletter['title'] ); ?></h3>
 											<p><?php echo wp_kses_post(  $newsletter['short_description'] ); ?></p>
 										</label>
