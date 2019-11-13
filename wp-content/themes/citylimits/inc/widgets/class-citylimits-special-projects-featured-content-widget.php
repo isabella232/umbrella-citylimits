@@ -119,7 +119,8 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 					$context = array(
 						'instance' => $instance,
 						'thumb' => $thumb,
-						'excerpt' => $excerpt
+						'excerpt' => $excerpt,
+						'podcast' => false,
 					);
 
 					ob_start();

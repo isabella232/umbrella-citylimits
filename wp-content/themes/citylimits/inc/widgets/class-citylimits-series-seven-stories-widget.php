@@ -125,6 +125,7 @@ class Citylimits_Series_Seven_Stories_Widget extends WP_Widget {
 					'instance' => $instance,
 					'thumb' => '',
 					'excerpt' => $excerpt,
+					'podcast' => false,
 				);
 
 				if ( $counter === 1 ) {
