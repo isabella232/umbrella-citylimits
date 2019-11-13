@@ -47,17 +47,14 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 		// Preserve global $post
 		$preserve = $post;
 
-		if ( isset( $wp_query->query_vars['term'] )
-		&& isset( $wp_query->query_vars['taxonomy'] )
-		&& 'series' == $wp_query->query_vars['taxonomy'] ) {
+		if (
+			isset( $wp_query->query_vars['term'] )
+			&& isset( $wp_query->query_vars['taxonomy'] )
+			&& 'series' == $wp_query->query_vars['taxonomy']
+		) {
 
 			$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
-			echo $args['before_widget'];
-
-			echo '<div class="citylimits-special-projects-featured-content-inner-container">';
-
-			if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
 
 			$thumb = isset( $instance['thumbnail_display'] ) ? $instance['thumbnail_display'] : 'small';
 			$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
@@ -65,7 +62,7 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 			$series = $wp_query->query_vars['term'];
 
 			// default query args: by date, descending
-			$args = array(
+			$query_args = array(
 				'p' 				=> '',
 				'post_type' 		=> 'post',
 				'taxonomy' 			=> 'series',
@@ -79,33 +76,43 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 			//stores original 'paged' value in 'pageholder'
 			global $cftl_previous;
 			if ( isset($cftl_previous['pageholder']) && $cftl_previous['pageholder'] > 1 ) {
-				$args['paged'] = $cftl_previous['pageholder'];
+				$query_args['paged'] = $cftl_previous['pageholder'];
 				global $paged;
-				$paged = $args['paged'];
+				$paged = $query_args['paged'];
 			}
 
 			//change args as needed
 			//these unusual WP_Query args are handled by filters defined in cftl-series-order.php
 			switch ( $opt['post_order'] ) {
 				case 'ASC':
-					$args['orderby'] = 'ASC';
+					$query_args['orderby'] = 'ASC';
 					break;
 				case 'custom':
-					$args['orderby'] = 'series_custom';
+					$query_args['orderby'] = 'series_custom';
 					break;
 				case 'featured, DESC':
 				case 'featured, ASC':
-					$args['orderby'] = $opt['post_order'];
+					$query_args['orderby'] = $opt['post_order'];
 					break;
 			}
 
 			if ( isset( $instance['avoid_duplicates'] ) && 1 === $instance['avoid_duplicates'] ) {
-				$args['post__not_in'] = $shown_ids;
+				$query_args['post__not_in'] = $shown_ids;
 			}
+
+			/*
+			 * setup complete, let's start the output
+			 */
+
+			echo $args['before_widget'];
+
+			echo '<div class="citylimits-special-projects-featured-content-inner-container">';
+
+			if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
 
 			echo '<ul>';
 
-			$series_query = new WP_Query($args);
+			$series_query = new WP_Query($query_args);
 			$counter = 1;
 
 			if ( $series_query->have_posts() ) {
@@ -152,15 +159,13 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 			echo '</ul>';
 
 			echo '</div>';
-			
+
 			echo $args['after_widget'];
 
 			// Restore global $post
 			wp_reset_postdata();
 			$post = $preserve;
-
 		}
-
 	}
 
 	function update( $new_instance, $old_instance ) {
