@@ -14,18 +14,23 @@
     .byline {
       grid-area: byline;
       margin-bottom: 0;
+      .fn {
+        text-transform: none;
+      }
     }
     .date {
       grid-area: date;
     }
     .byline, .date {
-      font-size: 14px;
+      font-size: 16px;
     }
     .by {
       display: none;
     }
     .author {
       font-weight: normal;
+      font-size: 16px;
+      text-transform: capitalize;
     }
     .edit-link {
       display: none;
@@ -38,6 +43,10 @@
       text-transform: uppercase;
       font-weight: bold;
       clear: both;
+      font-family: @font-header;
+      font-size: 13px;
+      color: @black;
+      line-height: 1.5;
     }
   }
   .largo-follow {
@@ -50,6 +59,12 @@
     .print,
     .more-social-links {
       background-color: transparent;
+      i {
+        font-size: 1.25em;
+      }
+    }
+    .more-social-links {
+      display: none;
     }
     a {
       color: @red;
@@ -117,6 +132,7 @@
     h1.entry-title {
       font-size: calc( 20px + 3vw );
       font-size: 64px;
+      line-height: 1.1;
     }
     #main {
       margin: 0;
@@ -165,6 +181,43 @@
     h1.entry-title {
       font-size: 55px;
       font-size: 64px;
+    }
+  }
+  .wp-block-image figcaption, 
+  p.wp-caption-text {
+    font-size: 14px !important;
+    font-style: normal;
+  }
+  .largo-related-posts {
+    ul.related {
+      li {
+        // display: flex;
+        // flex-direction: column;
+        position: relative;
+        a {
+          img {
+            float: right;
+            padding-left: 5%;
+          }
+        }
+        p {
+          margin-bottom: 3em;
+        }
+        .byline {
+          // order: 4;
+          font-size: 13px;
+          font-family: @font-header;
+          position: absolute;
+          bottom: 0em;
+          .by-author {
+            .sep,
+            .pubdate,
+            .twitter {
+              display: none;
+            }
+          }
+        }
+      }
     }
   }
 }

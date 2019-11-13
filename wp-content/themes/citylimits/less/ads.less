@@ -4,8 +4,17 @@
 .home #widget-area .dfw-loaded {
   padding: 5vw 0;
 }
-#header-ad-zone-container .dfw-loaded {
-  padding: @measure 0;
+#header-ad-zone-container {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: 0!important;
+  padding-right: 0!important;
+  .dfw-loaded {
+    padding: @measure 0;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 .scaip .dfw-loaded {
   padding: 5vw 0;

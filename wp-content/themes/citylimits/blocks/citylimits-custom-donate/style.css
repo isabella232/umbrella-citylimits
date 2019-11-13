@@ -17,7 +17,9 @@
 }
 .wp-block-citylimits-citylimits-custom-donate h3.widgettitle {
   color: white;
-  font-size: 20px;
+  font-size: 26px;
+  line-height: 2.3rem;
+  text-transform: none;
 }
 .wp-block-citylimits-citylimits-custom-donate .border {
   margin: 0.75rem;
@@ -33,9 +35,16 @@
 .wp-block-citylimits-citylimits-custom-donate.alignright .border {
   max-width: 20em;
 }
+.wp-block-citylimits-citylimits-custom-donate .cta {
+  margin-bottom: 24px;
+}
 .wp-block-citylimits-citylimits-custom-donate .cta p {
   font-size: 16px;
   margin: 0.75rem 0;
+  color: #c3c3c3;
+}
+.wp-block-citylimits-citylimits-custom-donate .btn:hover {
+  border-color: white;
 }
 .wp-block-citylimits-citylimits-custom-donate .border :last-child {
   margin-bottom: 0.75rem;
@@ -54,6 +63,6 @@
 }
 @media ( min-width: 1200px ) {
   .single .wp-block-citylimits-citylimits-custom-donate.alignleft {
-    margin-left: calc( ( 100vw - 1170px - 5% ) / -4 );
+    margin-left: calc( ( 100vw - 1170px - 66% ) / -4 );
   }
 }
