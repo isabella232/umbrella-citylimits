@@ -295,6 +295,10 @@
           margin-top: 0.5 * @measure;
           margin-bottom: 0;
         }
+        .byline {
+          font-size: 13px;
+          font-family: @font-header;
+        }
       }
     }
 
@@ -305,6 +309,13 @@
       ul {
         li {
           margin-bottom: @measure;
+          h5.post-title {
+            margin-bottom: 20px!important;
+            line-height: 1.4;
+          }
+          p {
+            display: none;
+          }
         }
       }
       li:first-of-type {
@@ -321,6 +332,9 @@
           max-width: 25%;
           float: right;
           margin-left: @measure;
+          img {
+            margin-top: 40%;
+          }
         }
       }
       li:not(:last-of-type) {
@@ -455,5 +469,10 @@
         }
       }
     } // media query for desktop
+  }
+  .widget {
+    @media (max-width: 600px) {
+      margin-bottom: 20px;
+    }
   }
 }
