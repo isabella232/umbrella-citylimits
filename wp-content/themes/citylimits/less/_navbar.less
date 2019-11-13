@@ -13,6 +13,10 @@ html.nav-open body {
         border-top: 2px solid @grey2;
         border-bottom: 2px solid @grey2;
         padding: 15px 0;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding-left: 0!important;
+        padding-right: 0!important;
         .home & {
             border-bottom: none;
         }
@@ -314,6 +318,11 @@ html.nav-open body {
     }
 }
 #secondary-nav {
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: 0!important;
+    padding-right: 0!important;
+    background: @red;
     .secondary-special-projects-nav {
         list-style: none;
         margin-left: 0;
@@ -321,6 +330,8 @@ html.nav-open body {
         display: flex;
         align-items: stretch;
         background: @red;
+        max-width: 1170px;
+        margin: 0 auto;
         li {
             display: flex;
             flex-grow: 1;
