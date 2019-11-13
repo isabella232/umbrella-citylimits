@@ -59,15 +59,9 @@ wp_enqueue_script( 'cl-newsletter' );
 	</form>
 	<?php if ( function_exists( 'get_field' ) ) { ?>
 		<div class="newsletter-response">
-			<div class="row">
-				<div class="column signup_text_holder">
-					<div class="signup_text"></div>
-					<div class="signup_intro"><?php echo wp_kses_post( get_field('intro_text', 'option') ); ?></div>
-				</div>
-				<div class="column newsletter-response-content">
-					<?php echo wp_kses_post( get_field('thank_you_text', 'option') ) ; ?>
-				</div>
-			</div><!--.row-->
+			<div class="newsletter-response-content">
+				<?php echo wp_kses_post( get_field('thank_you_text', 'option') ) ; ?>
+			</div>
 		</div><!--.newsletter-response-->
 	<?php } ?>
 </aside>
