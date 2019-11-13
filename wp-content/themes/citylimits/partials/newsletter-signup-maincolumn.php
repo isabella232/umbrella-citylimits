@@ -19,7 +19,7 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 		</hgroup>
 		<div class="row">
 			<div class="column newsletter_list">
-				<p><?php echo wp_kses_post(  $newsletter_page->post_content ) ?></p>
+				<div class="post_content"><?php echo wp_kses_post(  $newsletter_page->post_content ) ?></div>
 				<?php
 					$checkedFlag = false;
 					if ( function_exists( 'get_field' ) ) {
@@ -35,9 +35,11 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 								}
 								?>
 									<section>
-										<h3><?= $newsletter['title'] ?></h3>
-										<p><?= $newsletter['short_description'] ?></p>
-										<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]"<?= $checked ?> required><label for="newsletter_<?= $newsletter['id'] ?>">Sign up for <?= $newsletter['title'] ?></label>
+										<input type="checkbox" id="newsletter_<?= $newsletter['id'] ?>" value="<?= $newsletter['id'] ?>" name="newsletter[]"<?= $checked ?> required>
+										<label class="" for="newsletter_<?= $newsletter['id'] ?>">
+											<h3><?php esc_html_e( $newsletter['title'] ); ?></h3>
+											<p><?php echo wp_kses_post(  $newsletter['short_description'] ); ?></p>
+										</label>
 									</section>
 								<?php
 							}
@@ -45,12 +47,12 @@ $newsletter_page = get_page_by_path('newsletter-subscriptions');
 					}
 				?>
 			</div>
-		</div><!--.row-->
-		<div class="row">
 			<div class="column newsletter_form">
-				<input type="text" name="newsletter_fname" placeholder="First Name" required>
-				<input type="email" name="newsletter_email" placeholder="Email" required>
-				<input type="submit" class="btn" value="Sign Up">
+				<label for="newsletter_fname"><?php esc_html_e( 'First Name', 'citylimits' ); ?></label>
+				<input type="text" name="newsletter_fname" placeholder="<?php esc_attr_e( 'First Name', 'citylimits' ); ?>" required>
+				<label for="newsletter_fname"><?php esc_html_e( 'Email address', 'citylimits' ); ?></label>
+				<input type="email" name="newsletter_email" placeholder="<?php esc_attr_e( 'Email address', 'citylimits' ); ?>" required>
+				<input type="submit" class="btn btn-primary" value="Sign Up">
 			</div>
 		</div><!--.row-->
 	</form>

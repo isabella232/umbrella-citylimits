@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
 			if (e.originalEvent.type == 'click' || homebannerCounter < 3) {
 				$parent.addClass('open');
 				$notexpanded.hide();
-				$expanded.fadeIn(300);
+				$expanded.show();
 			}
 			$expanded.mouseleave(function(e) {
 				//don't hide if they're in the middle of filling it out.
@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
 				if (homebannerCounter <= 3 && !submitted) {
 					$parent.removeClass('open');
 					$notexpanded.show();
-					$(this).fadeOut(300);
+					$(this).hide();
 				}
 			});
 			homebannerCounter++;
