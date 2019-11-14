@@ -95,7 +95,7 @@ $queried_object = get_queried_object();
 						<h2>Photos</h2>
 						<div class="row-fluid">
 						</div>
-						<?php while ( $photos->have_posts() ) : $photos->the_post(); $shown_ids[] = get_the_id(); ?>
+						<?php while ( $photos->have_posts() ) : $photos->the_post(); $shown_ids[] = get_the_ID(); ?>
 							<!-- <div class="span4">
 								<a href=" <?php echo the_post_thumbnail_url( 'full' ); ?> " target="_blank"><?php the_post_thumbnail( 'medium' ); ?></a>
 							</div> -->
@@ -128,14 +128,14 @@ $queried_object = get_queried_object();
 				<?php if ( $news->have_posts() ) : ?>
 					<section class="news">
 						<h2>News</h2>
-						<?php while ( $news->have_posts() ) : $news->the_post(); $shown_ids[] = get_the_id(); ?>
+						<?php while ( $news->have_posts() ) : $news->the_post(); $shown_ids[] = get_the_ID(); ?>
 							<div class="row-fluid">
 								<div class="span3">
 									<?php the_post_thumbnail( 'medium' ); ?>
 								</div>
 								<div class="span9">
 									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-									<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+									<h5 class="byline"><?php largo_byline( true, true, get_the_ID() ); ?></h5>
 									<?php the_excerpt(); ?>
 									<a href="<?php the_permalink(); ?>" class="read-more">Read more ></a>
 								</div>

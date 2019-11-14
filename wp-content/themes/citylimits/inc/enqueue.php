@@ -45,25 +45,6 @@ remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 			$version
 		);
 
-		wp_enqueue_style(
-			'largo-stylesheet',
-			get_template_directory_uri() . '/css/style' . $suffix . '.css',
-			null,
-			$version
-		);
-
-		wp_enqueue_style(
-			'typekit',
-			'https://use.typekit.net/xkz6lbv.css'
-		);
-
-		wp_enqueue_style(
-			'largo-child-styles',
-			get_stylesheet_directory_uri() . '/css/child-style.css',
-			array( 'largo-stylesheet', 'typekit' ),
-			filemtime( get_stylesheet_directory() . '/css/child-style.css' )
-		);
-
 		// Core JS includes some utilities, initializes carousels, search form behavior,
 		// popovers, responsive header image, etc.
 		wp_enqueue_script(
@@ -116,6 +97,80 @@ remove_action( 'wp_enqueue_scripts', 'largo_enqueue_child_theme_css' );
 			true
 		);
 	}
+
+/**
+ * Enqueue specific styles and scripts for City Limits child theme
+ */
+function citylimits_enqueue_styles(){
+	wp_enqueue_style(
+		'typekit',
+		'https://use.typekit.net/xkz6lbv.css'
+	);
+
+	wp_enqueue_style(
+		'largo-child-styles',
+		get_stylesheet_directory_uri() . '/css/child-style.css',
+		array( 'largo-stylesheet', 'typekit' ),
+		filemtime( get_stylesheet_directory() . '/css/child-style.css' )
+	);
+
+	wp_enqueue_style( 'dashicons' );
+	wp_enqueue_script(
+		'citylimits-navigation',
+		get_stylesheet_directory_uri() . '/js/navigation.js',
+		array( 'jquery', 'largo-modernizr' ),
+		filemtime( get_stylesheet_directory() . '/js/navigation.js' ),
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_enqueue_styles' );
+
+/**
+ * Dequeue specific scripts
+ */
+function citylimits_dequeue_scripts(){
+	wp_dequeue_script( 'largo-navigation' );
+}
+add_action( 'wp_print_scripts', 'citylimits_dequeue_scripts', 100 );
+
+function citylimits_communitywire_enqueue() {
+ 	if (is_page_template( 'page-communitywire.php' )) {
+		wp_enqueue_script(
+			'inn-tools',
+			get_stylesheet_directory_uri() . '/js/communitywire.js',
+			array( 'jquery' ),
+			filemtime( get_stylesheet_directory() . '/js/communitywire.js' ),
+			true
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_communitywire_enqueue' );
+
+/**
+ * newsletter subscribe forms
+ */
+function citylimits_newsletter_enqueue() {
+	wp_register_script(
+		'jscookies',
+		get_stylesheet_directory_uri() . '/js/cookies.js',
+		null,
+		filemtime( get_stylesheet_directory() . '/js/cookies.js' ),
+		true
+	);
+	wp_register_script(
+		'cl-newsletter',
+		get_stylesheet_directory_uri() . '/js/newsletter.js',
+		array( 'jquery', 'jscookies' ),
+		filemtime( get_stylesheet_directory() . '/js/newsletter.js' ),
+		true
+	);
+	wp_localize_script(
+		'cl-newsletter',
+		'myAjax',
+		array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) )
+	);
+}
+add_action( 'wp_enqueue_scripts', 'citylimits_newsletter_enqueue' );
 
 /**
  * ADD Google Tag Manager Verification code TO HEADER

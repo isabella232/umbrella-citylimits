@@ -4,8 +4,8 @@
  *
  * Copied from Largo in order to comment out the hero image
  *
- * @since Largo 0.5.5.2
- * @since February 21, 2017
+ * @since Largo 0.6.4
+ * @since November 14, 2019 - date of last comparison to Largo trunk
  */
 ?>
 
@@ -21,7 +21,7 @@
 		<?php if ( $subtitle = get_post_meta( $post->ID, 'subtitle', true ) ) : ?>
 			<h2 class="subtitle"><?php echo $subtitle ?></h2>
 		<?php endif; ?>
-		<h5 class="byline"><?php largo_byline(); ?></h5>
+		<h5 class="byline"><?php largo_byline( true, false, get_the_ID ); ?></h5>
 
 		<?php if ( ! of_get_option( 'single_social_icons' ) == false ) {
 			largo_post_social_links();
@@ -34,7 +34,8 @@
 	<?php
 		do_action('largo_after_post_header');
 
-		//largo_hero(null,'span12');
+		// https://github.com/INN/umbrella-citylimits/pull/5
+		// largo_hero(null,'span12');
 
 		do_action('largo_after_hero');
 	?>
@@ -42,9 +43,9 @@
 	<?php get_sidebar(); ?>
 
 	<section class="entry-content clearfix" itemprop="articleBody">
-		
+
 		<?php largo_entry_content( $post ); ?>
-		
+
 	</section>
 
 	<?php do_action('largo_after_post_content'); ?>
