@@ -9,7 +9,13 @@
  * Enqueue custom sidebar styles
  */
 function largo_jobboard_enqueue() {
-	wp_enqueue_style('job-board-styles', get_stylesheet_directory_uri() . '/css/job-board.css', false, '20170609', 'screen');
+	wp_enqueue_style(
+		'job-board-styles',
+		get_stylesheet_directory_uri() . '/css/job-board.css',
+		false,
+		filemtime( get_stylesheet_directory() . '/css/job-board.css' ),
+		'screen'
+	);
 }
 add_action('wp_enqueue_scripts', 'largo_jobboard_enqueue' );
 

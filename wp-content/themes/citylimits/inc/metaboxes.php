@@ -127,27 +127,47 @@ class CityLimits_Create_Meta_Boxes {
 	public function enqueue_datepicker() {
 		wp_enqueue_script( 'jquery-ui-datepicker' );
 		wp_enqueue_script( 'jquery-ui-slider' );
-		wp_enqueue_script( 'jquery-timepicker', get_stylesheet_directory_uri().'/js/jquery-ui-timepicker-addon.js', array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-slider' ) );
+		wp_enqueue_script(
+			'jquery-timepicker',
+			get_stylesheet_directory_uri().'/js/jquery-ui-timepicker-addon.js',
+			array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-slider' ),
+			filemtime( get_stylesheet_directory().'/js/jquery-ui-timepicker-addon.js' )
+		);
 	}
 
 	public function initialize_datepicker() {
 		$current_screen = get_current_screen();
 		if ( in_array( $current_screen->id, $this->screens ) ) { 
-			wp_register_style( 'jquery-ui-smoothness', get_stylesheet_directory_uri().'/css/jquery-ui-smoothness' . $suffix . '.css' );
-			wp_register_style( 'jquery-ui-datepicker', get_stylesheet_directory_uri().'/css/datepicker' . $suffix . '.css' );
-			wp_register_style( 'jquery-ui-timepicker-addon', get_stylesheet_directory_uri().'/css/jquery-ui-timepicker-addon' . $suffix . '.css' );
+			wp_register_style(
+				'jquery-ui-smoothness',
+				get_stylesheet_directory_uri().'/css/jquery-ui-smoothness.css',
+				array(),
+				filemtime( get_stylesheet_directory().'/css/jquery-ui-smoothness.css' ),
+			);
+			wp_register_style(
+				'jquery-ui-datepicker',
+				get_stylesheet_directory_uri().'/css/datepicker.css',
+				array(),
+				filemtime( get_stylesheet_directory().'/css/datepicker.css' ),
+			);
+			wp_register_style(
+				'jquery-ui-timepicker-addon',
+				get_stylesheet_directory_uri().'/css/jquery-ui-timepicker-addon.css',
+				array(),
+				filemtime( get_stylesheet_directory().'/css/jquery-ui-timepicker-addon.css' ),
+			);
 
 			wp_enqueue_style( 'jquery-ui-smoothness' );
 			wp_enqueue_style( 'jquery-ui-datepicker' );
 			wp_enqueue_style( 'jquery-ui-timepicker-addon' );
 			?>
-			<script>
-				jQuery(document).ready(function($) {
-					$("input[type=datetime]").datetimepicker();
-				});
-			</script>
-		<?php
+				<script>
+					jQuery(document).ready(function($) {
+						$("input[type=datetime]").datetimepicker();
+					});
+				</script>
+			<?php
 		}
-	}	
+	}
 }
 new CityLimits_Create_Meta_Boxes;
