@@ -83,7 +83,9 @@ get_header();
 				if ( $partial == 'single-classic' ) {
 					do_action( 'largo_after_post_header' );
 
-					largo_hero( null,'' );
+					// https://github.com/INN/umbrella-citylimits/pull/5
+					// https://github.com/INN/umbrella-citylimits/issues/124
+					// largo_hero( null,'' );
 
 					do_action( 'largo_after_hero' );
 
