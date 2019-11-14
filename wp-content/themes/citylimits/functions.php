@@ -27,7 +27,6 @@ function largo_child_require_files() {
 		'/inc/communitywire.php',
 		'/inc/enqueue.php',
 		'/inc/metaboxes.php',
-		'/inc/post-templates.php',
 		'/inc/registration.php',
 		'/inc/term-meta.php',
 		'/inc/block-color-palette.php',
