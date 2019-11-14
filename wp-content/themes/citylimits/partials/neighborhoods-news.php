@@ -18,7 +18,7 @@
 		$recent_posts = new WP_Query( $args );
 		if ( $recent_posts->have_posts() ) :
 			$count = 0;
-			while ( $recent_posts->have_posts() ) : $recent_posts->the_post(); $shown_ids[] = get_the_id();
+			while ( $recent_posts->have_posts() ) : $recent_posts->the_post(); $shown_ids[] = get_the_ID();
 			?>
 				<?php if ( 0 == $count ) : ?>
 					<div class="news-feature span8">
@@ -27,7 +27,7 @@
 						</div>
 						<div class="span6">
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+							<h5 class="byline"><?php largo_byline( true, true, get_the_ID() ); ?></h5>
 							<?php the_excerpt(); ?>
 							<a href="<?php the_permalink(); ?>" class="read-more">Read more ></a>
 						</div>
@@ -36,18 +36,18 @@
 					<div class="span4">
 						<div <?php post_class( 'story' ); ?> >
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+							<h5 class="byline"><?php largo_byline( true, true, get_the_ID() ); ?></h5>
 						</div>
 				<?php elseif ( 3 == $count ) : ?>
 						<div <?php post_class( 'story' ); ?> >
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+							<h5 class="byline"><?php largo_byline( true, true, get_the_ID() ); ?></h5>
 						</div>
 					</div>
 				<?php else : ?>
 						<div <?php post_class( 'story' ); ?> >
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-							<h5 class="byline"><?php largo_byline( true, true ); ?></h5>
+							<h5 class="byline"><?php largo_byline( true, true, get_the_ID() ); ?></h5>
 						</div>
 				<?php endif; ?>
 			<?php $count++; ?>
@@ -56,4 +56,3 @@
 	</div>
 	<div class="morelink"><a href="<?php echo get_term_link( 'news', 'post-type' ); ?>" class="btn more">More News</a></div>
 </section>
-
