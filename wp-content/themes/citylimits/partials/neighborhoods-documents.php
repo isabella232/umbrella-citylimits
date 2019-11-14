@@ -18,7 +18,7 @@
 		?>
 		<?php if ( $documents->have_posts() ) : ?>
 			<?php $count = 0; ?>
-			<?php while ( $documents->have_posts() ) : $documents->the_post(); $shown_ids[] = get_the_id(); ?>
+			<?php while ( $documents->have_posts() ) : $documents->the_post(); $shown_ids[] = get_the_ID(); ?>
 				<?php if ( 0 == $count%3 ) : ?>
 					<div class="span4">
 				<?php endif; ?>

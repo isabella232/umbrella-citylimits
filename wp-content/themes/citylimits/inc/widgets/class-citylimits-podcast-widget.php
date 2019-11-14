@@ -116,7 +116,7 @@ class Citylimits_Podcasts_Widget extends WP_Widget {
 				// wrap the items in li's.
 				$output .= sprintf(
 					'<li class="%1$s" >',
-					implode( ' ', get_post_class( '', get_the_id() ) )
+					implode( ' ', get_post_class( '', get_the_ID() ) )
 				);
 
 				$context = array(

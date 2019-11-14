@@ -1,11 +1,14 @@
 <?php
 /**
- * The template for displaying content in the single.php template
+ * The template for displaying content in the single-two-column.php template
  *
  * Copied from Largo in order to comment out the hero image
  *
- * @since Largo 0.5.5.2
- * @since February 21, 2017
+ * This doesn't actually affect the site, because single-two-column.php
+ * has its own template logic since https://github.com/INN/umbrella-citylimits/pull/99
+ *
+ * @since Largo 0.6.4
+ * @since November 14, 2019 - date of last comparison to Largo trunk
  */
 ?>
 
@@ -19,7 +22,7 @@
 		<?php if ( $subtitle = get_post_meta( $post->ID, 'subtitle', true ) )
 			echo '<h2 class="subtitle">' . $subtitle . '</h2>';
 		?>
-		<h5 class="byline"><?php largo_byline(); ?></h5>
+		<h5 class="byline"><?php largo_byline( true, false, get_the_ID() ); ?></h5>
 
 		<?php
 			if ( !of_get_option( 'single_social_icons' ) == false ) {
@@ -34,6 +37,7 @@
 	<?php
 		do_action( 'largo_after_post_header' );
 
+		// https://github.com/INN/umbrella-citylimits/pull/5
 		// largo_hero( null,'' );
 
 		do_action( 'largo_after_hero' );
