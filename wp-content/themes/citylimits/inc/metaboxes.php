@@ -142,19 +142,19 @@ class CityLimits_Create_Meta_Boxes {
 				'jquery-ui-smoothness',
 				get_stylesheet_directory_uri().'/css/jquery-ui-smoothness.css',
 				array(),
-				filemtime( get_stylesheet_directory().'/css/jquery-ui-smoothness.css' ),
+				filemtime( get_stylesheet_directory().'/css/jquery-ui-smoothness.css' )
 			);
 			wp_register_style(
 				'jquery-ui-datepicker',
 				get_stylesheet_directory_uri().'/css/datepicker.css',
 				array(),
-				filemtime( get_stylesheet_directory().'/css/datepicker.css' ),
+				filemtime( get_stylesheet_directory().'/css/datepicker.css' )
 			);
 			wp_register_style(
 				'jquery-ui-timepicker-addon',
 				get_stylesheet_directory_uri().'/css/jquery-ui-timepicker-addon.css',
 				array(),
-				filemtime( get_stylesheet_directory().'/css/jquery-ui-timepicker-addon.css' ),
+				filemtime( get_stylesheet_directory().'/css/jquery-ui-timepicker-addon.css' )
 			);
 
 			wp_enqueue_style( 'jquery-ui-smoothness' );
