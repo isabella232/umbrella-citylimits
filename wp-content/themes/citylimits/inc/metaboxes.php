@@ -154,7 +154,7 @@ class CityLimits_Create_Meta_Boxes {
 				'jquery-ui-timepicker-addon',
 				get_stylesheet_directory_uri().'/css/jquery-ui-timepicker-addon.css',
 				array(),
-				filemtime( get_stylesheet_directory().'/css/jquery-ui-timepickr-addon.css' ),
+				filemtime( get_stylesheet_directory().'/css/jquery-ui-timepicker-addon.css' ),
 			);
 
 			wp_enqueue_style( 'jquery-ui-smoothness' );
