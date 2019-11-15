@@ -927,22 +927,6 @@ body.neighborhoods-lp {
       font-size: .8em;
     }
 
-    .map {
-      .span8 {
-        min-width: 100%;
-      }
-      .plan-status {
-        min-width: 100%;
-        margin-left: 0;
-        margin-top:1em;
-
-        .zone-w-status {
-          min-width: 42%;
-          display: inline-block;
-        }
-      }
-    }
-
     .bottom-ctas {
 
       display:block;
@@ -1598,6 +1582,24 @@ section.map {
 
   }
 
+}
+
+@media (max-width: 650px) {
+  .map {
+    .span8 {
+      min-width: 100%;
+    }
+    .plan-status {
+      min-width: 100%;
+      margin-left: 0;
+      margin-top:1em;
+
+      .zone-w-status {
+        min-width: 42%;
+        display: inline-block;
+      }
+    }
+  }
 }
 
 @import "newsletters.less";
