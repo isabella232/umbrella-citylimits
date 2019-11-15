@@ -47,6 +47,7 @@ function largo_child_require_files() {
 		'/inc/widgets/class-citylimits-podcast-widget.php',
 		'/inc/widgets/class-citylimits-series-seven-stories-widget.php',
 		'/inc/widgets/class-citylimits-special-projects-featured-content-widget.php',
+		'/inc/widgets/class-citylimits-the-neighborhoods-map-widget.php',
 		// homepage
 		'/homepages/layout.php',
 		// blocks
