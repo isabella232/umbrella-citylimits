@@ -92,8 +92,15 @@ function largo_post_social_links( $echo = true ) {
     }
 
     if ( isset( $utilities['email'] ) && '1' === $utilities['email'] ) {
+        // order of the following string for the email body:
+        // %4$s - 'From City Limits '
+        // %3$s - post title
+        // %0D%0A - carriage return, line feed
+        // %5$s - excerpt
+        // %20%0D%0A - space, carriage return, line feed
+        // %6$s - permalink
         $output .= sprintf(
-            '<span data-service="email" class="email share-button"><a href="mailto:?subject=%2$s%3$s&body=%4$s%3$s%0D%0A%5$s%20%0D%0A%6$s" target="_blank"><i class="icon-mail"></i> <span class="hidden-phone">%1$s</span></a></span>',
+            '<span data-service="email" class="email share-button"><a href="mailto:?subject=%2$s%3$s&body=%4$s%3$s%%20%0D%0A%5$s%20%0D%0A%6$s" target="_blank"><i class="icon-mail"></i> <span class="hidden-phone">%1$s</span></a></span>',
             esc_attr( __( 'Email', 'citylimits' ) ),
             esc_attr( __( 'CityLimits.org: ', 'citylimits' ) ), // start of subject
             rawurlencode( html_entity_decode( get_the_title(), ENT_QUOTES, get_option( 'blog_charset' ) ) ), // subject - post title
