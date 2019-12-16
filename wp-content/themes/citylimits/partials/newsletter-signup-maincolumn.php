@@ -22,7 +22,6 @@ wp_enqueue_script( 'cl-newsletter' );
 			<div class="column newsletter_list">
 				<div class="post_content"><?php echo wp_kses_post(  $newsletter_page->post_content ) ?></div>
 				<?php
-					$checkedFlag = false;
 					if ( function_exists( 'get_field' ) ) {
 						foreach ( get_field('newsletter_group', 'option') as $group ) {
 							foreach ( $group['newsletters'] as $newsletter) {
@@ -30,7 +29,7 @@ wp_enqueue_script( 'cl-newsletter' );
 									continue;
 								}
 								$checked = '';
-								if (!$checkedFlag) {
+								if ( $newsletter['checked_on_frontend'] ) {
 									$checked = ' checked="checked"';
 									$checkedFlag = true;
 								}

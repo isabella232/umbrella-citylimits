@@ -136,6 +136,25 @@
                             "maxlength": ""
                         },
                         {
+                            "key": "field_5df7bbe7c258d",
+                            "label": "Checked on frontend?",
+                            "name": "checked_on_frontend",
+                            "type": "true_false",
+                            "instructions": "Should this newsletter be checked by default on the frontend?",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 1,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
                             "key": "field_5cd9a1a52a102",
                             "label": "Active?",
                             "name": "active",
@@ -349,5 +368,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1558462331
+    "modified": 1576516743
 }
