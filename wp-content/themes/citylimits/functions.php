@@ -52,6 +52,8 @@ function largo_child_require_files() {
 		'/homepages/layout.php',
 		// blocks
 		'/blocks/citylimits-custom-donate.php',
+		// customizations to post social functions
+		'/inc/post-social.php',
 	);
 
 	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
