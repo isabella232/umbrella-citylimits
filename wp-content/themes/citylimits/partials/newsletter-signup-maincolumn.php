@@ -31,7 +31,6 @@ wp_enqueue_script( 'cl-newsletter' );
 								$checked = '';
 								if ( $newsletter['checked_on_frontend'] ) {
 									$checked = ' checked="checked"';
-									$checkedFlag = true;
 								}
 								?>
 									<section>
