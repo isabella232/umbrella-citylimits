@@ -88,7 +88,7 @@ $site_name = ( of_get_option( 'nav_alt_site_name', false ) ) ? of_get_option( 'n
 
 								/* Build Main Navigation using Boostrap_Walker_Nav_Menu() */
 								$args = array(
-									'theme_location' => 'main-nav',
+									'theme_location' => 'mobile-sticky-main-nav',
 									'depth'		 => 0,
 									'container'	 => false,
 									'items_wrap' => '%3$s',
