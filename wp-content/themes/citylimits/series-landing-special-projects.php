@@ -127,7 +127,7 @@ if ( 'three-column' == $opt['cftl_layout'] ) {
 ?>
 
 <div id="content" class="span<?php echo $content_span[ $opt['cftl_layout'] ]; ?> stories" role="main">
-<?php do_action( 'largo_series_before_stories' ); ?>
+<?php do_action( 'city_limits_special_projects_series_before_stories' ); ?>
 
 </div><!-- /.grid_8 #content -->
 
