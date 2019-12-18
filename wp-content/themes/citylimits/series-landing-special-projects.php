@@ -127,7 +127,7 @@ if ( 'three-column' == $opt['cftl_layout'] ) {
 ?>
 
 <div id="content" class="span<?php echo $content_span[ $opt['cftl_layout'] ]; ?> stories" role="main">
-<?php do_action( 'largo_series_before_stories' ); ?>
+<?php do_action( 'city_limits_special_projects_series_before_stories' ); ?>
 
 </div><!-- /.grid_8 #content -->
 
@@ -166,9 +166,9 @@ if ( 'none' != $opt['footer_style'] ) {
 				wp_reset_postdata();
 				if ( 'custom' == $opt['footer_style']) {
 					echo apply_filters( 'the_content', $opt['footerhtml'] );
-				} else if ( 'widget' == $opt['footer_style'] && is_active_sidebar( $post->post_name . "_footer" ) ) { ?>
+				} else if ( 'widget' == $opt['footer_style'] && is_active_sidebar( largo_make_slug( $post->post_title )."_footer" ) ) { ?>
 					<aside id="sidebar-bottom">
-					<?php dynamic_sidebar( $post->post_name . "_footer" ); ?>
+					<?php dynamic_sidebar( largo_make_slug( $post->post_title )."_footer" ); ?>
 					</aside>
 				<?php }
 			?>
