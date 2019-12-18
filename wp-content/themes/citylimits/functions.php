@@ -334,11 +334,6 @@ function citylimits_newsletter_form_interstitial() {
 add_action( 'largo_series_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
 add_action( 'largo_archive_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
 
-function citylimits_newsletter_form_popover() {
-	get_template_part( 'partials/newsletter-signup', 'popover' );
-}
-add_action( 'wp_footer', 'citylimits_newsletter_form_popover', 11 );
-
 add_shortcode('cl-newsletter', function() {
 	ob_start();
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
