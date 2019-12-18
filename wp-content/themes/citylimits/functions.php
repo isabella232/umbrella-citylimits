@@ -541,7 +541,7 @@ function cftl_tax_landing_save_custom_fields( $post_id ){
 
 	foreach( $custom_fields as $field_name => $sanitize ){
 
-		if( $_POST[$field_name] || '0' === $_POST[$field_name] ){
+		if( isset( $_POST[$field_name] ) || '0' === $_POST[$field_name] ){
 
 			switch ( $sanitize ) {
 				case 'bool':
