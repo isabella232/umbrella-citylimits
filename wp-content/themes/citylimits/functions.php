@@ -328,12 +328,6 @@ function set_max_srcset_image_width( $max_width ) {
 }
 add_filter( 'max_srcset_image_width', 'set_max_srcset_image_width' );
 
-function citylimits_newsletter_form_interstitial() {
-	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
-}
-add_action( 'largo_series_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
-add_action( 'largo_archive_before_stories', 'citylimits_newsletter_form_interstitial', 11 );
-
 add_shortcode('cl-newsletter', function() {
 	ob_start();
 	get_template_part( 'partials/newsletter-signup', 'maincolumn' );
