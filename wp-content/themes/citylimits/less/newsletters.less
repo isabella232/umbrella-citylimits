@@ -240,6 +240,21 @@
 				}
 			}
 
+			#sidebar & { //sidebar variant
+				.column.newsletter_list {
+					width: 55%;
+				}
+				.column.newsletter_form {
+					width: 45%;
+					input[type=text],
+					input[type=email] {
+						&::placeholder {
+							font-size: 10px;
+						}
+					}
+				}
+			}
+
 			// some bits to hide the background image when this is the last widget on the series landing page
 			// if it's the last one on the series landing page, go big or go home
 			// same if it's the before-footer widget area

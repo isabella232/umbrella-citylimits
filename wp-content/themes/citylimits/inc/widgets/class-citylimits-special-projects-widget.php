@@ -70,13 +70,11 @@ class citylimits_special_projects_widget extends WP_Widget {
 
 					$thumbnail = get_the_post_thumbnail_url( $term_meta_post, 'rect_thumb_half' );
 
-					echo '<a class="citylimits-special-project-title" href="'.$title_link.'"><div class="citylimits-special-projects-img-overlay"></div><img class="citylimits-special-project-img" src="'.$thumbnail.'"><span class="citylimits-special-projects-title-border"><span>'.$title.'</span></span></a>';
-
-				} else {
-
-					echo '<a class="citylimits-special-project-title" href="'.$title_link.'"><div class="citylimits-special-project-img"></div><span class="citylimits-special-projects-title-border"><span>'.$title.'</span></span></a>';
+					echo '<a class="citylimits-special-project-image" href="'.$title_link.'"><img class="citylimits-special-project-img" src="'.$thumbnail.'"><span class="citylimits-special-projects-image-border"></span></a>';
 
 				}
+
+				echo '<a class="citylimits-special-project-title" href="'.$title_link.'">'.$title.'</a>';
 
 				echo '<ul>';
 
