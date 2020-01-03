@@ -572,3 +572,33 @@ function citylimits_special_projects_featured_content_widget_partial( $partial, 
 
 }
 add_filter( 'largo_lmp_template_partial', 'citylimits_special_projects_featured_content_widget_partial', 10, 2);
+
+/**
+ * Update author archive page titles so the correct CAP author shows if relevant
+ * 
+ * @param String $title The title being output
+ * @return String $title The title being output
+ */
+function citylimits_yoast_filter_author_page_title( $title ) {
+
+	if( ! is_author() ) {
+		return $title;
+	}
+
+	// current name that's displaying
+	$current_display_name = get_the_author_meta( 'display_name', get_query_var( 'author' ) );
+
+	// object for the real author
+	$author_obj = get_queried_object();
+
+	// new display name to swap in for the real author
+	$new_display_name = $author_obj->display_name;
+
+	if( $current_display_name != $new_display_name ){
+		return str_replace( $current_display_name, $new_display_name, $title );
+	} else {
+		return $title;
+	}
+
+}
+add_filter( 'wpseo_title', 'citylimits_yoast_filter_author_page_title' );
