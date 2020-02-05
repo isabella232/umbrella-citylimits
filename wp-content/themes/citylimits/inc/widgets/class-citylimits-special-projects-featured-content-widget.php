@@ -61,6 +61,9 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 
 			$series = $wp_query->query_vars['term'];
 
+			// Enqueue the LMP data
+			$posts_term = of_get_option('posts_term_plural');
+
 			// default query args: by date, descending
 			$query_args = array(
 				'p' 				=> '',
@@ -72,6 +75,28 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 				'post__not_in'   => get_option( 'sticky_posts' ),
 				'is_series_featured_content_widget'   => true,
 			);
+
+			if ( isset( $instance['avoid_duplicates'] ) && $instance['avoid_duplicates'] === 1 ) {
+			$query_args['post__not_in'] = $shown_ids;
+			}
+			if ( ! empty( $instance['cat'] ) ) {
+				$query_args['cat'] = $instance['cat'];
+			}
+			if ( ! empty( $instance['tag'] ) ) {
+				$query_args['tag'] = $instance['tag'];
+			}
+			if ( ! empty( $instance['author'] ) ) {
+				$query_args['author'] = $instance['author'];
+			}
+			if ( ! empty( $instance['taxonomy'] ) && ! empty( $instance['term'] ) ) {
+				$query_args['tax_query'] = array(
+					array(
+						'taxonomy'	=> $instance['taxonomy'],
+						'field' 	=> 'slug',
+						'terms' 	=> $instance['term']
+					)
+				);
+			}
 
 			//stores original 'paged' value in 'pageholder'
 			global $cftl_previous;
@@ -113,6 +138,7 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 			echo '<ul>';
 
 			$series_query = new WP_Query($query_args);
+
 			$counter = 1;
 
 			if ( $series_query->have_posts() ) {
@@ -147,9 +173,6 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 
 			wp_reset_postdata();
 
-			// Enqueue the LMP data
-			$posts_term = of_get_option('posts_term_plural');
-
 			largo_render_template('partials/load-more-posts', array(
 				'nav_id' => 'nav-below',
 				'the_query' => $series_query,
@@ -179,6 +202,9 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 		$instance['num_sentences'] = intval( $new_instance['num_sentences'] );
 		$instance['show_byline'] = ! empty($new_instance['show_byline']);
 		$instance['hide_byline_date'] = ! empty($new_instance['hide_byline_date']);
+		$instance['cat'] = intval( $new_instance['cat'] );
+		$instance['tag'] = sanitize_text_field( $new_instance['tag'] );
+		$instance['author'] = intval( $new_instance['author'] );
 		return $instance;
 	}
 
@@ -191,6 +217,9 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 			'num_sentences' => 2,
 			'show_byline' => '',
 			'hide_byline_date' => '',
+			'cat' => 0,
+			'tag' => '',
+			'author' => '',
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults );
 		$duplicates = $instance['avoid_duplicates'] ? 'checked="checked"' : '';
@@ -227,6 +256,21 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 
 		<p>
 			<input class="checkbox" type="checkbox" <?php echo $hidebylinedate; ?> id="<?php echo $this->get_field_id( 'hide_byline_date' ); ?>" name="<?php echo $this->get_field_name( 'hide_byline_date' ); ?>" /> <label for="<?php echo $this->get_field_id( 'hide_byline_date' ); ?>"><?php _e( 'Hide the publish date in the byline?', 'largo' ); ?></label>
+		</p>
+
+		<p><strong><?php _e( 'Limit by Author, Categories or Tags', 'largo' ); ?></strong><br /><small><?php _e( 'Select an author or category from the dropdown menus or enter post tags separated by commas (\'cat,dog\')', 'largo' ); ?></small></p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'author' ); ?>"><?php _e( 'Limit to author: ', 'largo' ); ?><br />
+			<?php wp_dropdown_users( array( 'name' => $this->get_field_name( 'author' ), 'show_option_all' => __( 'None (all authors)', 'largo' ), 'selected'=>$instance['author'])); ?></label>
+
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('cat'); ?>"><?php _e('Limit to category: ', 'largo'); ?>
+			<?php wp_dropdown_categories( array( 'name' => $this->get_field_name( 'cat' ), 'show_option_all' => __( 'None (all categories)', 'largo' ), 'hide_empty'=>0, 'hierarchical'=>1, 'selected'=>$instance['cat'] ) ); ?></label>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'tag' ); ?>"><?php _e( 'Limit to tags:', 'largo' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'tag' ); ?>" name="<?php echo $this->get_field_name( 'tag' ); ?>" type="text" value="<?php echo $instance['tag']; ?>" />
 		</p>
 
 	<?php
