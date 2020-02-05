@@ -155,7 +155,6 @@ add_filter('body_class', function($classes) {
 			<div class="row-fluid">
 				<div class="span12">
 					<?php get_template_part( 'partials/nav', 'main' ); ?>
-					<a href="/series/zonein/"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/mapping-the-future-logo.png" alt="Mapping The Future Project Logo" width="100%" /></a>
 					<?php get_template_part( 'partials/nav', 'rezone' ); ?>
 				</div>
 			</div>
