@@ -88,15 +88,6 @@ class citylimits_special_projects_featured_content_widget extends WP_Widget {
 			if ( ! empty( $instance['author'] ) ) {
 				$query_args['author'] = $instance['author'];
 			}
-			if ( ! empty( $instance['taxonomy'] ) && ! empty( $instance['term'] ) ) {
-				$query_args['tax_query'] = array(
-					array(
-						'taxonomy'	=> $instance['taxonomy'],
-						'field' 	=> 'slug',
-						'terms' 	=> $instance['term']
-					)
-				);
-			}
 
 			//stores original 'paged' value in 'pageholder'
 			global $cftl_previous;
