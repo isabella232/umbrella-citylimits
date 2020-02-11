@@ -90,8 +90,17 @@
       }
     }
   }
-
-
+  @media (min-width: 770px) {
+    .content-container {
+        display: flex;
+        #sidebar {
+            .widget-area {
+                position: sticky;
+                top: @measure;
+            }
+        }
+    }
+}
   @media ( max-width: 699px ) {
     h1.entry-title {
       font-size: calc( 20px + 3vw );
