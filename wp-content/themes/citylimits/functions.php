@@ -147,6 +147,7 @@ function create_neighborhoods_taxonomy() {
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
+		'show_in_rest'               => true,
 	);
 	register_taxonomy( 'neighborhoods', array( 'post' ), $args );
 
