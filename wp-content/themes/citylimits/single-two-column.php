@@ -71,67 +71,72 @@ get_header();
 	<?php if ( is_single() ) { do_action('largo_after_post_header'); } ?>
 	<?php if ( is_page() ) { do_action('largo_after_page_header'); } ?>
 
-	<div id="content" class="span8" role="main">
-		<?php
-			while ( have_posts() ) : the_post();
+	<div class="content-container">
 
-				$shown_ids[] = get_the_ID();
+		<div id="content" class="span8" role="main">
+			<?php
+				while ( have_posts() ) : the_post();
 
-				$partial = ( is_page() ) ? 'page' : 'single-classic';
+					$shown_ids[] = get_the_ID();
+
+					$partial = ( is_page() ) ? 'page' : 'single-classic';
 
 
-				if ( $partial == 'single-classic' ) {
-					do_action( 'largo_after_post_header' );
+					if ( $partial == 'single-classic' ) {
+						do_action( 'largo_after_post_header' );
 
-					// https://github.com/INN/umbrella-citylimits/pull/5
-					// https://github.com/INN/umbrella-citylimits/issues/124
-					// largo_hero( null,'' );
+						// https://github.com/INN/umbrella-citylimits/pull/5
+						// https://github.com/INN/umbrella-citylimits/issues/124
+						// largo_hero( null,'' );
 
-					do_action( 'largo_after_hero' );
+						do_action( 'largo_after_hero' );
 
-					?>
-						<div class="entry-content clearfix" itemprop="articleBody">
-							<?php largo_entry_content( $post ); ?>
-						</div><!-- .entry-content -->
+						?>
+							<div class="entry-content clearfix" itemprop="articleBody">
+								<?php largo_entry_content( $post ); ?>
+							</div><!-- .entry-content -->
 
-						<?php do_action( 'largo_after_post_content' ); ?>
+							<?php do_action( 'largo_after_post_content' ); ?>
 
-						<footer class="post-meta bottom-meta">
-						</footer><!-- /.post-meta -->
-					<?php
+							<footer class="post-meta bottom-meta">
+							</footer><!-- /.post-meta -->
+						<?php
 
-					do_action( 'largo_after_post_footer' );
+						do_action( 'largo_after_post_footer' );
 
-					do_action( 'largo_before_post_bottom_widget_area' );
+						do_action( 'largo_before_post_bottom_widget_area' );
 
-					do_action( 'largo_post_bottom_widget_area' );
+						do_action( 'largo_post_bottom_widget_area' );
 
-					do_action( 'largo_after_post_bottom_widget_area' );
+						do_action( 'largo_after_post_bottom_widget_area' );
 
-					do_action( 'largo_before_comments' );
+						do_action( 'largo_before_comments' );
 
-					comments_template( '', true );
+						comments_template( '', true );
 
-					do_action( 'largo_after_comments' );
-				} else {
-					?>
-						<section class="entry-content">
-							<?php
-								do_action('largo_before_page_content');
-								the_content();
-								do_action('largo_after_page_content');
-							?>
-						</section><!-- .entry-content -->
-					<?php
-				}
+						do_action( 'largo_after_comments' );
+					} else {
+						?>
+							<section class="entry-content">
+								<?php
+									do_action('largo_before_page_content');
+									the_content();
+									do_action('largo_after_page_content');
+								?>
+							</section><!-- .entry-content -->
+						<?php
+					}
 
-			endwhile;
-		?>
+				endwhile;
+			?>
+		</div>
+
+		<?php do_action('largo_after_content'); ?>
+
+		<?php get_sidebar(); ?>
+		
 	</div>
-
-	<?php do_action('largo_after_content'); ?>
-
-	<?php get_sidebar(); ?>
+	
 </article><!-- #post-<?php the_ID(); ?> -->
 
 <?php get_footer();
