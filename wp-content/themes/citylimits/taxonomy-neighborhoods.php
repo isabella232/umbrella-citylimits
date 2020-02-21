@@ -58,8 +58,6 @@ $queried_object = get_queried_object();
 
 					<?php largo_post_social_links(); ?>
 
-					<div class="zone-w-status"><div class="circle <?php echo $status; ?>"></div><?php echo ucfirst( $status ); ?></div>
-
 					<?php if ( isset( $description ) ) : ?>
 						<div class="archive-description"><?php echo $description; ?></div>
 					<?php endif; ?>
