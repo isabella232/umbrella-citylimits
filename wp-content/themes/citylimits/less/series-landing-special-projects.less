@@ -1,15 +1,132 @@
 /**
  * Styles for series-landing-special-projects.php
  */
-.cftl-tax-landing-template-series-landing-special-projects-php {
-  .series-banner {
-    @media ( min-width: 700px ) {
-      text-align: right;
-      img {
-        max-width: 70%;
-      }
+.series-header-container {
+  position: relative;
+  border-bottom: 1px solid #c3c3c3;
+  padding-bottom: .75rem;
+}
+.series-banner {
+  @media ( min-width: 700px ) {
+    text-align: right;
+    img {
+      max-width: 70%;
     }
   }
+}
+#series-header {
+  background: @white;
+  text-align: left;
+  // this only works because of the combination of this specific image and border-image-slice
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice
+  // https://github.com/INN/umbrella-citylimits/pull/61#issuecomment-542890018
+  border-image: url("../img/homepage-border-img.png");
+  border-image-slice: 24 24 1 24;
+  border-image-repeat: space;
+  border-color: @white;
+  border-style: solid;
+  border-width: @measure * 0.5;
+  border-bottom-width: 1px;
+  // the above styles match up with those on #main
+
+  @media ( min-width: 700px ) {
+    position: absolute;
+    bottom: -1px; // to overlap the border-bottom on the containing element
+    left: 0;
+
+    width: 45%;
+    min-width: 25em;
+    border-left: none;
+    padding: 0 @measure 0 0;
+  }
+  @media ( max-width: 699px ) {
+    margin-top: 0;
+    padding: 0 ( 0.5 * @measure );
+    border-left: none;
+    border-right: none;
+  }
+
+  .special-project {
+    // should be roughly twice the height of the border-top on this element
+    height: 1 * @measure;
+    line-height: 1 * @measure;
+    font-size: 0.5 * @measure;
+    font-family: @font-header;
+    background-color: @white;
+    position: relative;
+    border-right: 1px solid @grey1;
+    @media ( min-width: 700px ) {
+      // left aligned
+      display: inline-block;
+      top: -0.5 * @measure;
+      left: -0.5 * @measure;
+      padding-right: 1 * @measure;
+      padding-left: 0.5 * @measure;
+    }
+    @media ( max-width: 699px ) {
+      // centered, with a pseudoelement for outline/border placement
+      top: -0.5 * @measure;
+      display: block;
+      margin: 0 auto;
+      width: max-content;
+      padding-left: 0.5 * @measure;
+      padding-right: 0.5 * @measure;
+      border-left: 1px solid @grey1;
+
+      position: relative;
+      overflow: visible;
+      &::before {
+        // set border-color to something to other than white to see how this works
+        box-sizing: border-box;
+        border-color: @white;
+        border-width: 0.5 * @measure;
+        border-style: solid;
+        border-bottom: none;
+        height: 0.5 * @measure;
+
+        display: block;
+        position: absolute;
+        left: -0.5 * @measure;
+        right: -0.5 * @measure;
+        top: -0.5 * @measure ;
+        bottom: 0.5 * @measure;
+        content: "";
+        background-color: @white;
+        width: auto;
+        background-color: transparent;
+      }
+    }
+
+    text-transform: uppercase;
+    font-weight: 700;
+    color: @black;
+  }
+  .entry-title {
+    margin-top: 1 * @measure;
+    font-size: @measure;
+    margin-bottom: @measure;
+    font-family: @font-header;
+    font-size: 40px;
+    color: @black;
+    @media ( min-width: 700px ) and ( min-height: 500px ) {
+      margin-top: 1.5 * @measure;
+    }
+    @media ( max-width: 699px ) {
+      margin-top: 1.0 * @measure;
+    }
+    @media ( min-width: 700px ) and ( max-width: 900px ) {
+      font-size: 32px;
+    } 
+  }
+  .byline,
+  .description,
+  .description * {
+    margin-top: 1 * @measure;
+    font-size: 1rem;
+    color: @grey3;
+  }
+}
+.cftl-tax-landing-template-series-landing-special-projects-php {
   #page {
     padding-bottom: 0;
   }
@@ -20,116 +137,6 @@
       padding-bottom: 0.5 * @measure;
     }
   }
-  #series-header {
-    background: @white;
-    text-align: left;
-    // this only works because of the combination of this specific image and border-image-slice
-    // https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice
-    // https://github.com/INN/umbrella-citylimits/pull/61#issuecomment-542890018
-    border-image: url("../img/homepage-border-img.png");
-    border-image-slice: 24 24 1 24;
-    border-image-repeat: space;
-    border-color: @white;
-    border-style: solid;
-    border-width: @measure * 0.5;
-    border-bottom-width: 1px;
-    // the above styles match up with those on #main
-
-    @media ( min-width: 700px ) {
-      position: absolute;
-      bottom: -1px; // to overlap the border-bottom on the containing element
-      left: 0;
-
-      width: 45%;
-      min-width: 25em;
-      border-left: none;
-      padding: 0 @measure 0 0;
-    }
-    @media ( max-width: 699px ) {
-      margin-top: 0;
-      padding: 0 ( 0.5 * @measure );
-      border-left: none;
-      border-right: none;
-    }
-
-    .special-project {
-      // should be roughly twice the height of the border-top on this element
-      height: 1 * @measure;
-      line-height: 1 * @measure;
-      font-size: 0.5 * @measure;
-      font-family: @font-header;
-      background-color: @white;
-      position: relative;
-      border-right: 1px solid @grey1;
-      @media ( min-width: 700px ) {
-        // left aligned
-        display: inline-block;
-        top: -0.5 * @measure;
-        left: -0.5 * @measure;
-        padding-right: 1 * @measure;
-        padding-left: 0.5 * @measure;
-      }
-      @media ( max-width: 699px ) {
-        // centered, with a pseudoelement for outline/border placement
-        top: -0.5 * @measure;
-        display: block;
-        margin: 0 auto;
-        width: max-content;
-        padding-left: 0.5 * @measure;
-        padding-right: 0.5 * @measure;
-        border-left: 1px solid @grey1;
-
-        position: relative;
-        overflow: visible;
-        &::before {
-          // set border-color to something to other than white to see how this works
-          box-sizing: border-box;
-          border-color: @white;
-          border-width: 0.5 * @measure;
-          border-style: solid;
-          border-bottom: none;
-          height: 0.5 * @measure;
-
-          display: block;
-          position: absolute;
-          left: -0.5 * @measure;
-          right: -0.5 * @measure;
-          top: -0.5 * @measure ;
-          bottom: 0.5 * @measure;
-          content: "";
-          background-color: @white;
-          width: auto;
-          background-color: transparent;
-        }
-      }
-
-      text-transform: uppercase;
-      font-weight: 700;
-      color: @black;
-    }
-    .entry-title {
-      margin-top: 1 * @measure;
-      font-size: @measure;
-      margin-bottom: @measure;
-      font-family: @font-header;
-      font-size: 40px;
-      color: @black;
-      @media ( min-width: 700px ) and ( min-height: 500px ) {
-        margin-top: 1.5 * @measure;
-      }
-      @media ( max-width: 699px ) {
-        margin-top: 1.0 * @measure;
-      }
-    }
-    .byline,
-    .description,
-    .description * {
-      margin-top: 1 * @measure;
-      font-size: 1rem;
-      color: @grey3;
-    }
-  }
-
   #secondary-navigation-menu-container {
     display: flex;
     justify-content: center;
