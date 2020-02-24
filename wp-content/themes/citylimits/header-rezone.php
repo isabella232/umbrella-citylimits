@@ -149,6 +149,13 @@ add_filter('body_class', function($classes) {
 		 * @since 0.4
 		 */
 		do_action( 'largo_main_top' );
+
+		$title = single_term_title( '', false );
+		$description = term_description();
+
+		$queried_object = get_queried_object();
+		$post_id = largo_get_term_meta_post( $queried_object->taxonomy, $queried_object->term_id );
+		$post = get_post( $post_id );
 		?>
 
 		<div class="rezone-header">
@@ -158,4 +165,31 @@ add_filter('body_class', function($classes) {
 					<?php get_template_part( 'partials/nav', 'rezone' ); ?>
 				</div>
 			</div>
+		</div>
+		<div class="series-header-container">
+			<div class="series-banner">
+				<?php the_post_thumbnail( 'large' ); ?>
+			</div>
+			<section id="series-header" class="">
+				<span class="special-project"><?php esc_html_e( 'Special Project', 'citylimits' ); ?></span>
+				<h1 class="entry-title">
+					<?php 
+						if( $title ) {
+							echo $title;
+						} else {
+							the_title();
+						}
+					?>
+				</h1>
+				<?php
+					if ( $opt['show_series_byline'] ) {
+						echo '<h5 class="byline">' . largo_byline( false, false, $post_id ) . '</h5>';
+					} else {
+						echo '<h5 class="byline">' . $description . '</h5>';
+					}
+				?>
+					<div class="description">
+						<?php echo apply_filters( 'the_content', $post->post_excerpt ); ?>
+					</div>
+			</section>
 		</div>

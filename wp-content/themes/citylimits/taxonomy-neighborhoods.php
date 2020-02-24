@@ -50,12 +50,6 @@ $queried_object = get_queried_object();
 						$status = get_term_meta( $term_id, 'neighborhood-status', true );
 					?>
 
-					<?php if ( isset( $title ) ) : ?>
-						<h1 class="page-title">
-							<?php echo $title; ?>		
-						</h1>
-					<?php endif; ?>
-
 					<?php largo_post_social_links(); ?>
 
 					<?php if ( isset( $description ) ) : ?>
