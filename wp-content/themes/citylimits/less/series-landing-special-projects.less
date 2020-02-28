@@ -4,9 +4,36 @@
 .series-header-container {
   position: relative;
   padding-bottom: .75rem;
-  margin-top: @measure;
+  margin-top: @measure * 2;
+  margin-bottom: @measure * 2;
   @media ( min-width: 700px ) {
     border-bottom: 1px solid #c3c3c3;
+  }
+  @media ( min-width: 769px ) and ( max-width: 1000px ) {
+    margin-top: @measure * 5;
+  }
+  .series-banner {
+    @media ( min-width: 700px ) and ( max-width: 768px ) {
+      img {
+        max-width: 100%;
+      }
+    }
+    @media ( min-width: 769px ) {
+      text-align: right;
+      img {
+        max-width: 55%;
+      }
+    }
+  }
+  #series-header {
+    @media ( max-width: 768px ) {
+      margin-top: 0;
+      padding: 0 ( 0.5 * @measure );
+      border-left: none;
+      border-right: none;
+      position: relative;
+      width: 100%;
+    }
   }
 }
 .series-banner {
