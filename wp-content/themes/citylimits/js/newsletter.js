@@ -140,6 +140,21 @@ jQuery(document).ready(function($) {
 			}
 		}
 	})
+
+	// actions to take place once the form is submitted, such as 
+	// displaying the success message
+	function form_submission_success(message) {
+
+		if ($('body').hasClass('newsletter-landing')) {
+			$('#main').html(message);
+		} else {
+			$('.newsletter-signup form, .newsletter-signup .not-expanded').hide();
+			$('.newsletter-response-content').html(message);
+			$('.newsletter-response').show();
+			$('.newsletter-signup.maincolumn').removeClass('open');
+		}
+
+	}
 	
 
 	/*FORM SUBMIT*/
@@ -148,6 +163,23 @@ jQuery(document).ready(function($) {
 		e.preventDefault();
 
 		var $this = $(e.target);
+
+		// find our honeypot field
+		var honeypot_name = $this.find('input[name=name]').val();
+
+		// if our hidden honeypot field has a value, it's probably a bot filling out the form
+		// let's return a false success
+		if( honeypot_name ) {
+
+			Cookies.set('signed_up_for_newsletter', true, { expires: Infinity });
+			Cookies.set('newsletter_modal_snooze', true, { expires: Infinity });
+
+			form_submission_success( 'Submitted.' );
+
+			return;
+
+		}
+
 		$this.find('input[type=submit]').attr('disabled', true)
 		var email = $this.find('input[name=newsletter_email]').val()
 		var fname = $this.find('input[name=newsletter_fname]').val()
@@ -175,14 +207,7 @@ jQuery(document).ready(function($) {
 					Cookies.set('signed_up_for_newsletter', true, { expires: Infinity });
 					Cookies.set('newsletter_modal_snooze', true, { expires: Infinity });
 				}
-				if ($('body').hasClass('newsletter-landing')) {
-					$('#main').html(response.message)
-				} else {
-					$('.newsletter-signup form, .newsletter-signup .not-expanded').hide()
-					$('.newsletter-response-content').html(response.message)
-					$('.newsletter-response').show()
-					$('.newsletter-signup.maincolumn').removeClass('open')
-				}
+				form_submission_success( response.message );
 			}
 		})
 	})
