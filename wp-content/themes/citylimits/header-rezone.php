@@ -162,13 +162,12 @@ add_filter('body_class', function($classes) {
 			<div class="row-fluid">
 				<div class="span12">
 					<?php get_template_part( 'partials/nav', 'main' ); ?>
-					<?php get_template_part( 'partials/nav', 'rezone' ); ?>
 				</div>
 			</div>
 		</div>
 		<div class="series-header-container">
 			<div class="series-banner">
-				<?php the_post_thumbnail( 'large' ); ?>
+				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/neighborhoods-featured.png" class="attachment-large size-large wp-post-image">
 			</div>
 			<section id="series-header" class="">
 				<span class="special-project"><?php esc_html_e( 'Special Project', 'citylimits' ); ?></span>
