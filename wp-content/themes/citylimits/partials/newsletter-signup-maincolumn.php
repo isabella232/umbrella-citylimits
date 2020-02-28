@@ -52,8 +52,8 @@ wp_enqueue_script( 'cl-newsletter' );
 				<label for="newsletter_fname"><?php esc_html_e( 'Email address', 'citylimits' ); ?></label>
 				<input type="email" name="newsletter_email" placeholder="<?php esc_attr_e( 'Email address', 'citylimits' ); ?>" required>
 				<!-- H o n e y p o t -->
-				<label class="uhohhoneypot" for="name"></label>
-				<input class="uhohhoneypot" autocomplete="off" type="text" id="name" name="name" placeholder="Your name here">
+				<label class="visuallyhidden" for="name"></label>
+				<input class="visuallyhidden" autocomplete="off" type="text" id="name" name="name" placeholder="Your name here">
 				<!-- End H o n e y p o t -->
 				<input type="submit" class="btn btn-primary" value="Sign Up">
 			</div>
