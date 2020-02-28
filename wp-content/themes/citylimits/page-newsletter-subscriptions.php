@@ -105,6 +105,10 @@ get_header();
 				<input type="text" name="newsletter_fname" placeholder="First Name" required>
 				<!--<input type="text" name="newsletter_lname" placeholder="Last Name" required>-->
 				<input type="email" name="newsletter_email" placeholder="Email" required>
+				<!-- H o n e y p o t -->
+				<label class="uhohhoneypot" for="name"></label>
+				<input class="uhohhoneypot" autocomplete="off" type="text" id="name" name="name" placeholder="Your name here">
+				<!-- End H o n e y p o t -->
 				<input type="submit" class="subscribe_button" value="Sign Up">
 		</form>
 	</div>
