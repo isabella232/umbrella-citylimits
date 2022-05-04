@@ -1,16 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="19.992" height="14.65" viewBox="0 0 19.992 14.65">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #e62322;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 1.5px;
-      }
-    </style>
-  </defs>
-  <g id="Logos_Videos_social-video-youtube-clip" data-name="Logos / Videos / social-video-youtube-clip" transform="translate(0.75 0.75)">
-    <path id="Path_7" data-name="Path 7" class="cls-1" d="M531.245,751.829A2.825,2.825,0,0,0,528.42,749H515.579a2.826,2.826,0,0,0-2.826,2.826v7.5a2.826,2.826,0,0,0,2.826,2.827H528.42a2.826,2.826,0,0,0,2.825-2.827Zm-11.3,6.987V751.7l5.563,3.559Z" transform="translate(-512.753 -749.003)"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="19.992" height="14.65" viewBox="0 0 19.992 14.65"><defs><style>.cls-1{fill:none;stroke:#e62322;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}</style></defs><g id="Logos_Videos_social-video-youtube-clip" data-name="Logos / Videos / social-video-youtube-clip" transform="translate(0.75 0.75)"><path id="Path_7" d="M531.245,751.829A2.825,2.825,0,0,0,528.42,749H515.579a2.826,2.826,0,0,0-2.826,2.826v7.5a2.826,2.826,0,0,0,2.826,2.827H528.42a2.826,2.826,0,0,0,2.825-2.827Zm-11.3,6.987V751.7l5.563,3.559Z" class="cls-1" data-name="Path 7" transform="translate(-512.753 -749.003)"/></g></svg>
